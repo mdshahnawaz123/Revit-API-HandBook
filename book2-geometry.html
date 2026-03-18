@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Handbook — Book 2: Geometry Elements</title>
+<link rel="stylesheet" href="style.css"/></head>
+<body><div class="layout">
+<nav class="sidebar">
+  <div class="sb-logo"><div class="sb-eyebrow">// Revit API</div><div class="sb-title">Developer<br/>Handbook</div><div class="sb-version">C# · 2024+ · Complete Guide</div></div>
+  <div class="sb-nav">
+    <div class="sb-section"><div class="sb-sec-label">This Book</div>
+      <a class="sb-link active" onclick="nav(this,'s1')"><span class="ni">01</span>XYZ &amp; Vectors</a>
+      <a class="sb-link" onclick="nav(this,'s2')"><span class="ni">02</span>Walls</a>
+      <a class="sb-link" onclick="nav(this,'s3')"><span class="ni">03</span>Floors &amp; Ceilings</a>
+      <a class="sb-link" onclick="nav(this,'s4')"><span class="ni">04</span>Roofs</a>
+      <a class="sb-link" onclick="nav(this,'s5')"><span class="ni">05</span>Levels &amp; Grids</a>
+      <a class="sb-link" onclick="nav(this,'s6')"><span class="ni">06</span>Openings &amp; Rooms</a>
+      <a class="sb-link" onclick="nav(this,'s7')"><span class="ni">07</span>Family Instances</a>
+      <a class="sb-link" onclick="nav(this,'s8')"><span class="ni">08</span>Geometry Extraction</a>
+    </div>
+  </div>
+  <div class="sb-files"><div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link current" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+<main class="main">
+  <div class="hero">
+    <div class="hero-label">// Book 02 of 13 — Geometry Elements</div>
+    <h1>Walls, Floors, Roofs,<br/>Levels &amp; Instances</h1>
+    <p>Create, modify and read every major geometric element in the Revit model — from walls and floors to family instances and openings.</p>
+    <div class="hero-chips">
+      <span class="chip c-or">Wall.Create()</span><span class="chip c-bl">Floor.Create()</span><span class="chip c-gr">XYZ / Transform</span><span class="chip c-ye">FamilyInstance</span>
+    </div>
+  </div>
+  <div class="content">
+
+  <div class="section" id="s1">
+    <div class="sec-num">// 01</div><h2>XYZ, Vectors &amp; Transform</h2>
+    <p><code>XYZ</code> is used for both points and vectors. <code>Transform</code> handles rotation, translation and scaling.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Creating points and vectors</span>
+<span class="cls">XYZ</span> origin  = <span class="cls">XYZ</span>.Zero;                         <span class="cmt">// (0,0,0)</span>
+<span class="cls">XYZ</span> pt      = <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">3.0</span>, <span class="num">0.0</span>, <span class="num">0.0</span>);          <span class="cmt">// in feet!</span>
+<span class="cls">XYZ</span> up      = <span class="cls">XYZ</span>.BasisZ;                        <span class="cmt">// (0,0,1)</span>
+
+<span class="cmt">// Vector operations</span>
+<span class="cls">XYZ</span>    a      = <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">1</span>,<span class="num">0</span>,<span class="num">0</span>);
+<span class="cls">XYZ</span>    b      = <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">1</span>,<span class="num">0</span>);
+<span class="kw">double</span> dot    = a.<span class="fn">DotProduct</span>(b);                <span class="cmt">// scalar product</span>
+<span class="cls">XYZ</span>    cross  = a.<span class="fn">CrossProduct</span>(b);              <span class="cmt">// perpendicular</span>
+<span class="cls">XYZ</span>    norm   = a.<span class="fn">Normalize</span>();                   <span class="cmt">// unit vector</span>
+<span class="kw">double</span> len    = a.<span class="prop">GetLength</span>();
+<span class="kw">double</span> dist   = a.<span class="fn">DistanceTo</span>(b);
+
+<span class="cmt">// Transform (position + orientation)</span>
+<span class="cls">Transform</span> t = <span class="cls">Transform</span>.Identity;
+t.Origin     = <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>, <span class="num">0</span>, <span class="num">0</span>);
+t.BasisX     = <span class="cls">XYZ</span>.BasisX;
+t.BasisY     = <span class="cls">XYZ</span>.BasisY;
+t.BasisZ     = <span class="cls">XYZ</span>.BasisZ;
+
+<span class="cmt">// Create rotation transform</span>
+<span class="cls">Transform</span> rot = <span class="cls">Transform</span>.<span class="fn">CreateRotation</span>(
+    <span class="cls">XYZ</span>.BasisZ, Math.PI / <span class="num">2</span>);          <span class="cmt">// 90° around Z</span>
+
+<span class="cmt">// Line creation</span>
+<span class="cls">Line</span> line  = <span class="cls">Line</span>.<span class="fn">CreateBound</span>(pt, pt + <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">10</span>,<span class="num">0</span>,<span class="num">0</span>));</pre></div>
+  </div>
+
+  <div class="section" id="s2">
+    <div class="sec-num">// 02</div><h2>Walls</h2>
+    <p>There are four wall kinds: Basic, Stacked, Curtain, Unknown. The API works best with Basic walls.</p>
+
+    <div class="table-wrap"><table>
+      <tr><th>WallKind</th><th>Description</th><th>API Support</th></tr>
+      <tr><td>Basic</td><td>Standard single-layer or compound wall</td><td>Full — create, modify, read</td></tr>
+      <tr><td>Stacked</td><td>Multiple walls stacked vertically</td><td>Limited — cannot get sub-walls via API</td></tr>
+      <tr><td>Curtain</td><td>Glass curtain wall system</td><td>Limited — panels/mullions separate</td></tr>
+      <tr><td>Unknown</td><td>Unresolved type</td><td>Read only</td></tr>
+    </table></div>
+
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Create a wall</span>
+<span class="cls">Line</span>     line     = <span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">10</span>,<span class="num">0</span>,<span class="num">0</span>));
+<span class="cls">Level</span>    level    = <span class="fn">GetLevel</span>(doc, <span class="str">"Level 1"</span>);
+<span class="cls">WallType</span> wallType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">WallType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">WallType</span>&gt;().<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Wall"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Wall</span> wall = <span class="cls">Wall</span>.<span class="fn">Create</span>(doc, line, wallType.Id, level.Id,
+        <span class="num">3.0</span>,    <span class="cmt">// height in feet</span>
+        <span class="num">0.0</span>,    <span class="cmt">// offset from level</span>
+        <span class="kw">false</span>, <span class="cmt">// flip</span>
+        <span class="kw">false</span>); <span class="cmt">// structural</span>
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Read wall properties</span>
+<span class="cls">Wall</span> w = ...;
+<span class="cls">WallKind</span>     kind     = w.WallType.Kind;
+<span class="kw">bool</span>         flipped  = w.Flipped;
+<span class="kw">double</span>       width    = w.Width;                <span class="cmt">// in feet</span>
+<span class="cls">LocationCurve</span> loc     = w.Location <span class="kw">as</span> <span class="cls">LocationCurve</span>;
+<span class="cls">Curve</span>        curve    = loc.Curve;
+<span class="cls">XYZ</span>          start    = curve.<span class="fn">GetEndPoint</span>(<span class="num">0</span>);
+<span class="cls">XYZ</span>          end      = curve.<span class="fn">GetEndPoint</span>(<span class="num">1</span>);
+<span class="kw">double</span>       length   = curve.Length;           <span class="cmt">// in feet</span>
+
+<span class="cmt">// Flip wall orientation</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Flip"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    w.<span class="fn">flip</span>();   <span class="cmt">// flips exterior/interior face</span>
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Wall Location Line values (WALL_KEY_REF_PARAM)</span>
+<span class="cmt">// 0=Centerline, 1=Core Centerline</span>
+<span class="cmt">// 2=Finish Face:Exterior, 3=Finish Face:Interior</span>
+<span class="cmt">// 4=Core Face:Exterior, 5=Core Face:Interior</span>
+<span class="cls">Parameter</span> locLine = w.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.WALL_KEY_REF_PARAM);
+locLine.<span class="fn">Set</span>(<span class="num">2</span>); <span class="cmt">// Finish Face Exterior</span></pre></div>
+
+    <div class="callout ca-or">
+      <strong>// Wall.Flipped</strong>
+      The Wall.Flipped property and Wall.flip() method control which face is the exterior. Orientation is (0,1,0) before flip and (0,-1,0) after. Location line value 3 = Finish Face Interior means the wall moved but location not changed.
+    </div>
+
+    <h3>Compound Structure</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cls">WallType</span> wt = wall.WallType;
+<span class="cls">CompoundStructure</span> cs = wt.<span class="fn">GetCompoundStructure</span>();
+
+<span class="kw">int</span> layerCount = cs.LayerCount;
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; layerCount; i++)
+{
+    <span class="kw">double</span>   thickness = cs.<span class="fn">GetLayerWidth</span>(i);           <span class="cmt">// feet</span>
+    <span class="cls">ElementId</span> matId    = cs.<span class="fn">GetMaterialId</span>(i);
+    <span class="cls">MaterialFunctionAssignment</span> fn = cs.<span class="fn">GetLayerFunction</span>(i);
+    <span class="cmt">// fn: Structure, Finish1, Finish2, Membrane, etc.</span>
+}</pre></div>
+  </div>
+
+  <div class="section" id="s3">
+    <div class="sec-num">// 03</div><h2>Floors &amp; Ceilings</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Create a floor from a profile</span>
+<span class="cls">FloorType</span> floorType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">FloorType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">FloorType</span>&gt;().<span class="fn">First</span>();
+
+<span class="cmt">// Build a closed loop (CurveLoop)</span>
+<span class="kw">var</span> profile = <span class="kw">new</span> <span class="cls">CurveLoop</span>();
+profile.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">10</span>,<span class="num">0</span>,<span class="num">0</span>)));
+profile.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">10</span>,<span class="num">0</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">10</span>,<span class="num">10</span>,<span class="num">0</span>)));
+profile.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">10</span>,<span class="num">10</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">10</span>,<span class="num">0</span>)));
+profile.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">10</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>)));
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Floor"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Floor</span> floor = <span class="cls">Floor</span>.<span class="fn">Create</span>(doc,
+        <span class="kw">new</span> <span class="cls">List</span>&lt;<span class="cls">CurveLoop</span>&gt; { profile },
+        floorType.Id,
+        level.Id);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s4">
+    <div class="sec-num">// 04</div><h2>Roofs</h2>
+    <p>Roofs are created using <code>FootPrintRoof</code> (most common), <code>ExtrusionRoof</code>, or via <code>RoofBase</code>.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cls">RoofType</span> roofType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">RoofType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">RoofType</span>&gt;().<span class="fn">First</span>();
+
+<span class="cls">ModelCurveArray</span> footprint = <span class="kw">new</span> <span class="cls">ModelCurveArray</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Roof"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">FootPrintRoof</span> roof = doc.Create.<span class="fn">NewFootPrintRoof</span>(
+        footprint, level, roofType, <span class="kw">out</span> <span class="cls">ModelCurveArray</span> curveMapping);
+
+    <span class="cmt">// Set slope for each edge</span>
+    <span class="kw">foreach</span> (<span class="cls">ModelCurve</span> mc <span class="kw">in</span> curveMapping)
+    {
+        roof.<span class="fn">set_DefinesSlope</span>(mc, <span class="kw">true</span>);
+        roof.<span class="fn">set_SlopeAngle</span>(mc, <span class="num">0.5236</span>); <span class="cmt">// 30 degrees in radians</span>
+    }
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s5">
+    <div class="sec-num">// 05</div><h2>Levels &amp; Grids</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get all levels sorted by elevation</span>
+<span class="kw">var</span> levels = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Level</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">Level</span>&gt;()
+    .<span class="fn">OrderBy</span>(l => l.Elevation)
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// Level properties</span>
+<span class="cls">Level</span> lvl = levels[<span class="num">0</span>];
+<span class="kw">string</span> name      = lvl.Name;
+<span class="kw">double</span> elevation = lvl.Elevation;   <span class="cmt">// feet</span>
+<span class="kw">double</span> elev_mm   = elevation * <span class="num">304.8</span>;
+
+<span class="cmt">// Create a new level</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"New Level"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Level</span> newLevel = <span class="cls">Level</span>.<span class="fn">Create</span>(doc, <span class="num">10.0</span>);   <span class="cmt">// 10 feet elevation</span>
+    newLevel.Name = <span class="str">"Level 4"</span>;
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Grids</span>
+<span class="kw">var</span> grids = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Grid</span>)).<span class="fn">Cast</span>&lt;<span class="cls">Grid</span>&gt;().<span class="fn">ToList</span>();
+
+<span class="cmt">// Create a grid</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"New Grid"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Line</span> gridLine = <span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">20</span>,<span class="num">0</span>));
+    <span class="cls">Grid</span> grid = <span class="cls">Grid</span>.<span class="fn">Create</span>(doc, gridLine);
+    grid.Name = <span class="str">"A"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s6">
+    <div class="sec-num">// 06</div><h2>Openings &amp; Rooms</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Create a rectangular opening in a wall</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Opening"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Opening</span> op = doc.Create.<span class="fn">NewOpening</span>(
+        wall,
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">2</span>, <span class="num">0</span>, <span class="num">0.5</span>),    <span class="cmt">// lower-left corner</span>
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">4</span>, <span class="num">0</span>, <span class="num">2.5</span>));   <span class="cmt">// upper-right corner</span>
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Rooms — get all rooms</span>
+<span class="kw">var</span> rooms = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_Rooms)
+    .<span class="fn">Cast</span>&lt;<span class="cls">Room</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="kw">foreach</span> (<span class="kw">var</span> room <span class="kw">in</span> rooms)
+{
+    <span class="kw">string</span> name   = room.Name;
+    <span class="kw">string</span> number = room.Number;
+    <span class="kw">double</span> area   = room.Area;           <span class="cmt">// sq ft</span>
+    <span class="kw">double</span> areaSM = area * <span class="num">0.0929</span>;      <span class="cmt">// to sq metres</span>
+
+    <span class="cmt">// Room boundaries</span>
+    <span class="cls">SpatialElementBoundaryOptions</span> opts =
+        <span class="kw">new</span> <span class="cls">SpatialElementBoundaryOptions</span>();
+    <span class="cls">IList</span>&lt;<span class="cls">IList</span>&lt;<span class="cls">BoundarySegment</span>&gt;&gt; boundaries =
+        room.<span class="fn">GetBoundarySegments</span>(opts);
+}</pre></div>
+  </div>
+
+  <div class="section" id="s7">
+    <div class="sec-num">// 07</div><h2>Family Instances</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get a FamilySymbol (door type)</span>
+<span class="cls">FamilySymbol</span> sym = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">FamilySymbol</span>))
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_Doors)
+    .<span class="fn">Cast</span>&lt;<span class="cls">FamilySymbol</span>&gt;()
+    .<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Place Instance"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// Activate symbol if not already active</span>
+    <span class="kw">if</span> (!sym.IsActive) sym.<span class="fn">Activate</span>();
+
+    <span class="cmt">// Place on a host (wall)</span>
+    <span class="cls">FamilyInstance</span> fi = doc.Create.<span class="fn">NewFamilyInstance</span>(
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>,<span class="num">0</span>,<span class="num">0</span>),      <span class="cmt">// location</span>
+        sym,               <span class="cmt">// symbol</span>
+        wall,              <span class="cmt">// host</span>
+        <span class="cls">StructuralType</span>.NonStructural);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Read family instance properties</span>
+<span class="cls">FamilyInstance</span> door = ...;
+<span class="cls">Family</span>       family = door.Symbol.Family;
+<span class="kw">string</span>         fname  = family.Name;
+<span class="cls">FamilySymbol</span>   sym2   = door.Symbol;
+<span class="kw">string</span>         sname  = sym2.Name;
+<span class="cls">Element</span>        host   = door.Host;          <span class="cmt">// the wall</span>
+<span class="cls">LocationPoint</span>  lp     = door.Location <span class="kw">as</span> <span class="cls">LocationPoint</span>;
+<span class="cls">XYZ</span>            pos    = lp.Point;
+<span class="kw">double</span>         rot    = lp.Rotation;        <span class="cmt">// radians</span></pre></div>
+  </div>
+
+  <div class="section" id="s8">
+    <div class="sec-num">// 08</div><h2>Geometry Extraction</h2>
+    <p>Access solids, faces and edges from any element using <code>get_Geometry()</code>. Always set <code>ComputeReferences = true</code> when dimensioning.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">var</span> opts = <span class="kw">new</span> <span class="cls">Options</span>()
+{
+    <span class="prop">View</span>                    = doc.ActiveView,
+    <span class="prop">ComputeReferences</span>       = <span class="kw">true</span>,    <span class="cmt">// REQUIRED for dimensioning!</span>
+    <span class="prop">IncludeNonVisibleObjects</span> = <span class="kw">false</span>
+};
+
+<span class="cls">GeometryElement</span> geomElem = element.<span class="fn">get_Geometry</span>(opts);
+
+<span class="kw">foreach</span> (<span class="cls">GeometryObject</span> obj <span class="kw">in</span> geomElem)
+{
+    <span class="kw">if</span> (obj <span class="kw">is</span> <span class="cls">Solid</span> solid &amp;&amp; solid.Volume > <span class="num">0</span>)
+    {
+        <span class="kw">foreach</span> (<span class="cls">Face</span> face <span class="kw">in</span> solid.Faces)
+        {
+            <span class="cls">Reference</span> faceRef  = face.Reference;     <span class="cmt">// for dimensions</span>
+            <span class="cls">XYZ</span>       normal   = face.<span class="fn">ComputeNormal</span>(<span class="kw">new</span> <span class="cls">UV</span>(.5,.5));
+            <span class="kw">double</span>    area     = face.Area;           <span class="cmt">// sq ft</span>
+        }
+        <span class="kw">foreach</span> (<span class="cls">Edge</span> edge <span class="kw">in</span> solid.Edges)
+        {
+            <span class="cls">Curve</span> edgeCurve = edge.<span class="fn">AsCurve</span>();
+            <span class="kw">double</span> length   = edgeCurve.Length;
+        }
+    }
+    <span class="kw">else if</span> (obj <span class="kw">is</span> <span class="cls">GeometryInstance</span> gi)
+    {
+        <span class="cmt">// FamilyInstance contains a GeometryInstance</span>
+        <span class="cls">GeometryElement</span> instGeom = gi.<span class="fn">GetInstanceGeometry</span>();
+    }
+}</pre></div>
+  </div>
+
+  </div>
+</main>
+</div>
+<script>
+function nav(el,id){document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));el.classList.add('active');document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+const sections=['s1','s2','s3','s4','s5','s6','s7','s8'];
+window.addEventListener('scroll',()=>{let cur=sections[0];sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<130)cur=id;});document.querySelectorAll('.sb-link').forEach((l,i)=>l.classList.toggle('active',sections[i]===cur));},{passive:true});
+</script>
+</body></html>

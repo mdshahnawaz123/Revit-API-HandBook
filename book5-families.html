@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Handbook — Book 5: Families & Conceptual Design</title>
+<link rel="stylesheet" href="style.css"/></head>
+<body><div class="layout">
+<nav class="sidebar">
+  <div class="sb-logo"><div class="sb-eyebrow">// Revit API</div><div class="sb-title">Developer<br/>Handbook</div><div class="sb-version">C# · 2024+ · Complete Guide</div></div>
+  <div class="sb-nav">
+    <div class="sb-section"><div class="sb-sec-label">This Book</div>
+      <a class="sb-link active" onclick="nav(this,'s1')"><span class="ni">01</span>Family Concepts</a>
+      <a class="sb-link" onclick="nav(this,'s2')"><span class="ni">02</span>Load &amp; Place Families</a>
+      <a class="sb-link" onclick="nav(this,'s3')"><span class="ni">03</span>Family Documents</a>
+      <a class="sb-link" onclick="nav(this,'s4')"><span class="ni">04</span>Family Parameters</a>
+      <a class="sb-link" onclick="nav(this,'s5')"><span class="ni">05</span>Family Geometry</a>
+      <a class="sb-link" onclick="nav(this,'s6')"><span class="ni">06</span>Conceptual Design</a>
+      <a class="sb-link" onclick="nav(this,'s7')"><span class="ni">07</span>Materials</a>
+    </div>
+  </div>
+  <div class="sb-files"><div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link current" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+<main class="main">
+  <div class="hero">
+    <div class="hero-label">// Book 05 of 13 — Families &amp; Conceptual Design</div>
+    <h1>Family Creation,<br/>Parameters &amp; Materials</h1>
+    <p>Load and place families, create family documents programmatically, manage parameters, build geometry and work with materials.</p>
+    <div class="hero-chips">
+      <span class="chip c-or">Family / FamilySymbol</span><span class="chip c-bl">FamilyManager</span><span class="chip c-gr">Extrusion</span><span class="chip c-ye">Material</span>
+    </div>
+  </div>
+  <div class="content">
+
+  <div class="section" id="s1">
+    <div class="sec-num">// 01</div><h2>Family Concepts</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Class</th><th>Description</th><th>Analogy</th></tr>
+      <tr><td>Family</td><td>The family container (.rfa)</td><td>A class definition</td></tr>
+      <tr><td>FamilySymbol</td><td>A specific type/size within the family</td><td>A class with specific values</td></tr>
+      <tr><td>FamilyInstance</td><td>A placed instance in the model</td><td>An object/instance of the class</td></tr>
+    </table></div>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Navigate the Family → Symbol → Instance hierarchy</span>
+<span class="cls">FamilyInstance</span> fi = ...;
+<span class="cls">FamilySymbol</span>   sym    = fi.Symbol;
+<span class="cls">Family</span>         family = sym.Family;
+
+<span class="kw">string</span> familyName = family.Name;
+<span class="kw">string</span> typeName   = sym.Name;
+
+<span class="cmt">// Get all types in a family</span>
+<span class="kw">foreach</span> (<span class="cls">ElementId</span> symId <span class="kw">in</span> family.<span class="fn">GetFamilySymbolIds</span>())
+{
+    <span class="cls">FamilySymbol</span> s = doc.<span class="fn">GetElement</span>(symId) <span class="kw">as</span> <span class="cls">FamilySymbol</span>;
+}
+
+<span class="cmt">// Get all family instances of a category</span>
+<span class="kw">var</span> doors = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_Doors)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">FamilyInstance</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">FamilyInstance</span>&gt;()
+    .<span class="fn">ToList</span>();</pre></div>
+  </div>
+
+  <div class="section" id="s2">
+    <div class="sec-num">// 02</div><h2>Load &amp; Place Families</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Load Family"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// Load a .rfa family into the project</span>
+    <span class="cls">Family</span> family;
+    <span class="kw">bool</span> loaded = doc.<span class="fn">LoadFamily</span>(
+        <span class="str">@"C:\Families\MyDoor.rfa"</span>, <span class="kw">out</span> family);
+
+    <span class="kw">if</span> (loaded)
+    {
+        <span class="cmt">// Get the first symbol from the loaded family</span>
+        <span class="cls">FamilySymbol</span> sym = doc.<span class="fn">GetElement</span>(
+            family.<span class="fn">GetFamilySymbolIds</span>().<span class="fn">First</span>()) <span class="kw">as</span> <span class="cls">FamilySymbol</span>;
+
+        <span class="kw">if</span> (!sym.IsActive) sym.<span class="fn">Activate</span>();   <span class="cmt">// REQUIRED before placing!</span>
+
+        <span class="cmt">// Place on a wall host</span>
+        <span class="cls">FamilyInstance</span> fi = doc.Create.<span class="fn">NewFamilyInstance</span>(
+            <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>, <span class="num">0</span>, <span class="num">0</span>),
+            sym,
+            wall,
+            <span class="cls">StructuralType</span>.NonStructural);
+
+        <span class="cmt">// Place free-standing (no host)</span>
+        <span class="cls">FamilyInstance</span> chair = doc.Create.<span class="fn">NewFamilyInstance</span>(
+            <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">3</span>, <span class="num">3</span>, <span class="num">0</span>),
+            chairSym,
+            level,
+            <span class="cls">StructuralType</span>.NonStructural);
+    }
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Load with duplication handling option</span>
+doc.<span class="fn">LoadFamily</span>(path, <span class="kw">new</span> <span class="cls">FamilyLoadOptions</span>(), <span class="kw">out</span> <span class="kw">var</span> f2);
+
+<span class="cmt">// Implement IFamilyLoadOptions to control overwrite behavior</span>
+<span class="kw">public class</span> <span class="cls">FamilyLoadOptions</span> : <span class="cls">IFamilyLoadOptions</span>
+{
+    <span class="kw">public bool</span> <span class="fn">OnFamilyFound</span>(<span class="kw">bool</span> familyInUse, <span class="kw">out bool</span> overwriteParamValues)
+    { overwriteParamValues = <span class="kw">true</span>; <span class="kw">return true</span>; }
+    <span class="kw">public bool</span> <span class="fn">OnSharedFamilyFound</span>(<span class="cls">Family</span> sf, <span class="kw">bool</span> familyInUse,
+        <span class="kw">out</span> <span class="cls">FamilySource</span> src, <span class="kw">out bool</span> overwriteParams)
+    { src = <span class="cls">FamilySource</span>.Family; overwriteParams = <span class="kw">true</span>; <span class="kw">return true</span>; }
+}</pre></div>
+  </div>
+
+  <div class="section" id="s3">
+    <div class="sec-num">// 03</div><h2>Family Documents</h2>
+    <p>Open a family document programmatically to modify or create types.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Edit an existing family</span>
+<span class="cls">Document</span> famDoc = doc.<span class="fn">EditFamily</span>(family);
+
+<span class="cmt">// Or open a .rfa directly</span>
+<span class="cls">Document</span> famDoc2 = app.Application.<span class="fn">OpenDocumentFile</span>(<span class="str">@"C:\Fam.rfa"</span>);
+
+<span class="kw">if</span> (famDoc.IsFamilyDocument)
+{
+    <span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(famDoc, <span class="str">"Edit Family"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="cmt">// ... edit family content ...</span>
+        tx.<span class="fn">Commit</span>();
+    }
+
+    <span class="cmt">// Load back into the host project</span>
+    famDoc.<span class="fn">LoadFamily</span>(doc, <span class="kw">new</span> <span class="cls">FamilyLoadOptions</span>());
+    famDoc.<span class="fn">Close</span>(<span class="kw">false</span>);    <span class="cmt">// false = don't save separately</span>
+}</pre></div>
+  </div>
+
+  <div class="section" id="s4">
+    <div class="sec-num">// 04</div><h2>Family Parameters</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// FamilyManager manages types and parameters</span>
+<span class="cls">FamilyManager</span> mgr = famDoc.FamilyManager;
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(famDoc, <span class="str">"Family Params"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// Add a new parameter</span>
+    <span class="cls">FamilyParameter</span> param = mgr.<span class="fn">AddParameter</span>(
+        <span class="str">"MyWidth"</span>,                          <span class="cmt">// name</span>
+        <span class="cls">GroupTypeId</span>.Dimensions,             <span class="cmt">// group</span>
+        <span class="cls">SpecTypeId</span>.Length,                  <span class="cmt">// type</span>
+        <span class="kw">true</span>);                               <span class="cmt">// isInstance</span>
+
+    <span class="cmt">// Set value for current type</span>
+    mgr.<span class="fn">Set</span>(param, <span class="cls">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="num">900</span>, <span class="cls">UnitTypeId</span>.Millimeters));
+
+    <span class="cmt">// Add a new family type</span>
+    mgr.<span class="fn">NewType</span>(<span class="str">"1200 Wide"</span>);
+    mgr.<span class="fn">Set</span>(param, <span class="cls">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="num">1200</span>, <span class="cls">UnitTypeId</span>.Millimeters));
+
+    <span class="cmt">// Iterate all types</span>
+    <span class="kw">foreach</span> (<span class="cls">FamilyType</span> ft <span class="kw">in</span> mgr.Types)
+    {
+        <span class="kw">string</span> typeName = ft.Name;
+        mgr.<span class="fn">CurrentType</span> = ft;
+        <span class="kw">double</span> val = mgr.<span class="fn">GetValue</span>(param).<span class="fn">AsDouble</span>();
+    }
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s5">
+    <div class="sec-num">// 05</div><h2>Family Geometry — Extrusions &amp; Blends</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Create an extrusion in a family document</span>
+<span class="cls">SketchPlane</span> sketchPlane = <span class="cls">SketchPlane</span>.<span class="fn">Create</span>(famDoc,
+    <span class="cls">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="cls">XYZ</span>.BasisZ, <span class="cls">XYZ</span>.Zero));
+
+<span class="cmt">// Build a closed CurveArrArray profile</span>
+<span class="kw">var</span> loop = <span class="kw">new</span> <span class="cls">CurveArray</span>();
+loop.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">1</span>,<span class="num">0</span>,<span class="num">0</span>)));
+loop.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">1</span>,<span class="num">0</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">1</span>,<span class="num">1</span>,<span class="num">0</span>)));
+loop.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">1</span>,<span class="num">1</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">1</span>,<span class="num">0</span>)));
+loop.<span class="fn">Append</span>(<span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">1</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>)));
+
+<span class="kw">var</span> profile = <span class="kw">new</span> <span class="cls">CurveArrArray</span>();
+profile.<span class="fn">Append</span>(loop);
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(famDoc, <span class="str">"Create Extrusion"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cls">Extrusion</span> extrusion = famDoc.FamilyCreate.<span class="fn">NewExtrusion</span>(
+        <span class="kw">true</span>,         <span class="cmt">// isSolid</span>
+        profile,
+        sketchPlane,
+        <span class="num">2.0</span>);         <span class="cmt">// height in feet</span>
+
+    <span class="cmt">// Assign a material</span>
+    <span class="cls">ElementId</span> matId = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(famDoc)
+        .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Material</span>)).<span class="fn">Cast</span>&lt;<span class="cls">Material</span>&gt;()
+        .<span class="fn">First</span>(m => m.Name.Contains(<span class="str">"Concrete"</span>)).Id;
+
+    extrusion.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.MATERIAL_ID_PARAM)
+        .<span class="fn">Set</span>(matId);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s6">
+    <div class="sec-num">// 06</div><h2>Conceptual Design &amp; Adaptive Components</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Work with adaptive components (mass families)</span>
+<span class="cls">FamilyInstance</span> adaptive = ...;
+
+<span class="cmt">// Check if it's adaptive</span>
+<span class="kw">bool</span> isAdaptive = <span class="cls">AdaptiveComponentInstanceUtils</span>
+    .<span class="fn">IsAdaptiveComponentInstance</span>(adaptive);
+
+<span class="kw">if</span> (isAdaptive)
+{
+    <span class="cmt">// Get adaptive points</span>
+    <span class="cls">IList</span>&lt;<span class="cls">ElementId</span>&gt; ptIds = <span class="cls">AdaptiveComponentInstanceUtils</span>
+        .<span class="fn">GetInstanceAdaptivePointElementIds</span>(adaptive);
+
+    <span class="kw">foreach</span> (<span class="kw">var</span> ptId <span class="kw">in</span> ptIds)
+    {
+        <span class="cls">ReferencePoint</span> rp  = doc.<span class="fn">GetElement</span>(ptId) <span class="kw">as</span> <span class="cls">ReferencePoint</span>;
+        <span class="cls">XYZ</span>            pos = rp.Position;
+    }
+}
+
+<span class="cmt">// Get mass geometry</span>
+<span class="kw">var</span> masses = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_Mass)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">ToList</span>();</pre></div>
+  </div>
+
+  <div class="section" id="s7">
+    <div class="sec-num">// 07</div><h2>Materials</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get all materials</span>
+<span class="kw">var</span> materials = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Material</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">Material</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// Read material properties</span>
+<span class="cls">Material</span> mat = materials.<span class="fn">First</span>();
+<span class="kw">string</span>  name       = mat.Name;
+<span class="cls">Color</span>   surfaceColor = mat.Color;
+<span class="cls">Color</span>   cutColor     = mat.CutForegroundPatternColor;
+<span class="kw">int</span>     transparency = mat.Transparency;
+
+<span class="cmt">// Create a new material</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Material"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cls">ElementId</span> newMatId = <span class="cls">Material</span>.<span class="fn">Create</span>(doc, <span class="str">"My Red Material"</span>);
+    <span class="cls">Material</span>  newMat   = doc.<span class="fn">GetElement</span>(newMatId) <span class="kw">as</span> <span class="cls">Material</span>;
+
+    newMat.Color        = <span class="kw">new</span> <span class="cls">Color</span>(<span class="num">200</span>, <span class="num">50</span>, <span class="num">50</span>);
+    newMat.Transparency = <span class="num">20</span>;
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Apply material to a wall</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Apply Material"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Parameter</span> matParam = wall.<span class="fn">get_Parameter</span>(
+        <span class="cls">BuiltInParameter</span>.MATERIAL_ID_PARAM);
+    <span class="kw">if</span> (matParam != <span class="kw">null</span>) matParam.<span class="fn">Set</span>(newMatId);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  </div>
+</main>
+</div>
+<script>
+function nav(el,id){document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));el.classList.add('active');document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+const sections=['s1','s2','s3','s4','s5','s6','s7'];
+window.addEventListener('scroll',()=>{let cur=sections[0];sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<130)cur=id;});document.querySelectorAll('.sb-link').forEach((l,i)=>l.classList.toggle('active',sections[i]===cur));},{passive:true});
+</script>
+</body></html>

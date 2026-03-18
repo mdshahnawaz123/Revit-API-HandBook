@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Handbook — Book 3: Views & Annotations</title>
+<link rel="stylesheet" href="style.css"/></head>
+<body><div class="layout">
+<nav class="sidebar">
+  <div class="sb-logo"><div class="sb-eyebrow">// Revit API</div><div class="sb-title">Developer<br/>Handbook</div><div class="sb-version">C# · 2024+ · Complete Guide</div></div>
+  <div class="sb-nav">
+    <div class="sb-section"><div class="sb-sec-label">This Book</div>
+      <a class="sb-link active" onclick="nav(this,'s1')"><span class="ni">01</span>View Types</a>
+      <a class="sb-link" onclick="nav(this,'s2')"><span class="ni">02</span>Create Floor Plans</a>
+      <a class="sb-link" onclick="nav(this,'s3')"><span class="ni">03</span>Create Sections</a>
+      <a class="sb-link" onclick="nav(this,'s4')"><span class="ni">04</span>Sheets</a>
+      <a class="sb-link" onclick="nav(this,'s5')"><span class="ni">05</span>View Filters</a>
+      <a class="sb-link" onclick="nav(this,'s6')"><span class="ni">06</span>Dimensions</a>
+      <a class="sb-link" onclick="nav(this,'s7')"><span class="ni">07</span>Text &amp; Tags</a>
+      <a class="sb-link" onclick="nav(this,'s8')"><span class="ni">08</span>Detail Lines</a>
+    </div>
+  </div>
+  <div class="sb-files"><div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link current" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+<main class="main">
+  <div class="hero">
+    <div class="hero-label">// Book 03 of 13 — Views &amp; Annotations</div>
+    <h1>Views, Sheets,<br/>Dimensions &amp; Tags</h1>
+    <p>Create and manage all view types, place them on sheets, add dimensions, text notes, tags and detail lines programmatically.</p>
+    <div class="hero-chips">
+      <span class="chip c-or">ViewPlan.Create()</span><span class="chip c-bl">ViewSection</span><span class="chip c-gr">ViewSheet</span><span class="chip c-ye">Dimension</span><span class="chip c-pu">TextNote</span>
+    </div>
+  </div>
+  <div class="content">
+
+  <div class="section" id="s1">
+    <div class="sec-num">// 01</div><h2>View Types Overview</h2>
+    <div class="table-wrap"><table>
+      <tr><th>View Class</th><th>ViewType</th><th>Notes</th></tr>
+      <tr><td>ViewPlan</td><td>FloorPlan / CeilingPlan / AreaPlan / EngineeringPlan</td><td>Plan views — require a Level</td></tr>
+      <tr><td>ViewSection</td><td>Section / Detail / Elevation</td><td>Requires BoundingBoxXYZ + Transform</td></tr>
+      <tr><td>View3D</td><td>ThreeD</td><td>3D views — perspective or orthographic</td></tr>
+      <tr><td>ViewDrafting</td><td>DraftingView</td><td>2D only, no model geometry</td></tr>
+      <tr><td>ViewSheet</td><td>DrawingSheet</td><td>A sheet/print layout</td></tr>
+      <tr><td>ViewSchedule</td><td>Schedule / PanelSchedule</td><td>Data tables</td></tr>
+    </table></div>
+
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C# — Collect all views</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// All views (excluding templates)</span>
+<span class="kw">var</span> allViews = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">View</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">View</span>&gt;()
+    .<span class="fn">Where</span>(v => !v.IsTemplate)
+    .<span class="fn">ToList</span>();
+
+<span class="kw">foreach</span> (<span class="kw">var</span> view <span class="kw">in</span> allViews)
+{
+    <span class="kw">string</span>   name     = view.Name;
+    <span class="cls">ViewType</span> type     = view.ViewType;
+    <span class="kw">int</span>      scale    = view.Scale;       <span class="cmt">// e.g. 100 for 1:100</span>
+    <span class="kw">bool</span>     isTmpl  = view.IsTemplate;
+    <span class="cls">ElementId</span> tmplId = view.ViewTemplateId;
+}</pre></div>
+  </div>
+
+  <div class="section" id="s2">
+    <div class="sec-num">// 02</div><h2>Create Floor Plan Views</h2>
+    <div class="callout ca-or">
+      <strong>// Critical</strong>
+      Use <code>ViewFamilyType</code> ID (not a <code>ViewPlan</code> ID) in <code>ViewPlan.Create()</code>. These are completely different types.
+    </div>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get the ViewFamilyType for FloorPlan</span>
+<span class="cls">ElementId</span> floorPlanTypeId = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ViewFamilyType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">ViewFamilyType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(x => x.ViewFamily == <span class="cls">ViewFamily</span>.FloorPlan)?.Id;
+
+<span class="kw">var</span> levels = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Level</span>)).<span class="fn">Cast</span>&lt;<span class="cls">Level</span>&gt;().<span class="fn">ToList</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Floor Plans"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="kw">foreach</span> (<span class="kw">var</span> lvl <span class="kw">in</span> levels)
+    {
+        <span class="kw">var</span> name = <span class="str">$"Auto_FloorPlan_{lvl.Name}"</span>;
+
+        <span class="kw">bool</span> exists = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ViewPlan</span>)).<span class="fn">Any</span>(v => v.Name == name);
+        <span class="kw">if</span> (exists) <span class="kw">continue</span>;
+
+        <span class="cls">ViewPlan</span> vp = <span class="cls">ViewPlan</span>.<span class="fn">Create</span>(doc, floorPlanTypeId, lvl.Id);
+        vp.Name = name;
+        vp.Scale = <span class="num">100</span>;
+    }
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s3">
+    <div class="sec-num">// 03</div><h2>Create Section Views</h2>
+    <p>Sections require a <code>BoundingBoxXYZ</code> with a <code>Transform</code> that defines position and orientation.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cls">ElementId</span> sectionTypeId = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ViewFamilyType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">ViewFamilyType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(x => x.ViewFamily == <span class="cls">ViewFamily</span>.Section)?.Id;
+
+<span class="cmt">// For a wall cross-section:</span>
+<span class="cls">LocationCurve</span> lc       = wall.Location <span class="kw">as</span> <span class="cls">LocationCurve</span>;
+<span class="cls">XYZ</span>           midPt    = lc.Curve.<span class="fn">Evaluate</span>(<span class="num">0.5</span>, <span class="kw">true</span>);
+<span class="cls">XYZ</span>           wallDir  = (lc.Curve.<span class="fn">GetEndPoint</span>(<span class="num">1</span>) - lc.Curve.<span class="fn">GetEndPoint</span>(<span class="num">0</span>)).<span class="fn">Normalize</span>();
+<span class="cls">XYZ</span>           upDir    = <span class="cls">XYZ</span>.BasisZ;
+<span class="cls">XYZ</span>           viewDir  = wallDir.<span class="fn">CrossProduct</span>(upDir).<span class="fn">Normalize</span>();
+
+<span class="cls">Transform</span> t = <span class="cls">Transform</span>.Identity;
+t.Origin  = midPt;
+t.BasisX  = wallDir;   <span class="cmt">// horizontal in view</span>
+t.BasisY  = upDir;     <span class="cmt">// vertical in view</span>
+t.BasisZ  = viewDir;   <span class="cmt">// camera direction (into wall)</span>
+
+<span class="cls">BoundingBoxXYZ</span> bb = <span class="kw">new</span> <span class="cls">BoundingBoxXYZ</span>
+{
+    Transform = t,
+    Min = <span class="kw">new</span> <span class="cls">XYZ</span>(-<span class="num">10</span>, <span class="num">0</span>, -<span class="num">5</span>),
+    Max = <span class="kw">new</span> <span class="cls">XYZ</span>( <span class="num">10</span>, <span class="num">10</span>,  <span class="num">5</span>)
+};
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Section"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">ViewSection</span> section = <span class="cls">ViewSection</span>.<span class="fn">CreateSection</span>(doc, sectionTypeId, bb);
+    section.Name = <span class="str">$"Section_{wall.Id}"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+
+    <h3>Rotate a Section View 90°</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Rotate Section"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">BoundingBoxXYZ</span> bb  = section.<span class="fn">GetCropBox</span>();
+    <span class="cls">XYZ</span>            oldX = bb.Transform.BasisX;
+    <span class="cls">XYZ</span>            oldY = bb.Transform.BasisY;
+    bb.Transform.BasisX = -oldY;    <span class="cmt">// 90° rotation</span>
+    bb.Transform.BasisY =  oldX;
+    section.<span class="fn">SetCropBox</span>(bb);
+    section.CropBoxActive = <span class="kw">true</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s4">
+    <div class="sec-num">// 04</div><h2>Sheets</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get a title block family symbol</span>
+<span class="cls">FamilySymbol</span> titleBlock = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_TitleBlocks)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">FamilySymbol</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">FamilySymbol</span>&gt;()
+    .<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Sheet"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// Create a new sheet</span>
+    <span class="cls">ViewSheet</span> sheet = <span class="cls">ViewSheet</span>.<span class="fn">Create</span>(doc, titleBlock.Id);
+    sheet.Name          = <span class="str">"Floor Plans"</span>;
+    sheet.SheetNumber   = <span class="str">"A-101"</span>;
+
+    <span class="cmt">// Place a view on the sheet</span>
+    <span class="cls">XYZ</span> viewportCenter = <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0.5</span>, <span class="num">0.35</span>, <span class="num">0</span>); <span class="cmt">// in sheet coordinates</span>
+    <span class="cls">Viewport</span> vp = <span class="cls">Viewport</span>.<span class="fn">Create</span>(doc, sheet.Id, floorPlanView.Id, viewportCenter);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Get all viewports on a sheet</span>
+<span class="cls">ViewSheet</span> existingSheet = ...;
+<span class="kw">foreach</span> (<span class="cls">ElementId</span> vpId <span class="kw">in</span> existingSheet.<span class="fn">GetAllViewports</span>())
+{
+    <span class="cls">Viewport</span> vp   = doc.<span class="fn">GetElement</span>(vpId) <span class="kw">as</span> <span class="cls">Viewport</span>;
+    <span class="cls">View</span>     view = doc.<span class="fn">GetElement</span>(vp.ViewId) <span class="kw">as</span> <span class="cls">View</span>;
+}</pre></div>
+  </div>
+
+  <div class="section" id="s5">
+    <div class="sec-num">// 05</div><h2>View Filters &amp; Graphic Overrides</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// 1. Build the parameter filter rule (exterior walls = function 0)</span>
+<span class="kw">var</span> categories = <span class="kw">new</span> <span class="cls">List</span>&lt;<span class="cls">ElementId</span>&gt;
+    { <span class="kw">new</span> <span class="cls">ElementId</span>(<span class="cls">BuiltInCategory</span>.OST_Walls) };
+
+<span class="kw">var</span> provider  = <span class="kw">new</span> <span class="cls">ParameterValueProvider</span>(
+    <span class="kw">new</span> <span class="cls">ElementId</span>(<span class="cls">BuiltInParameter</span>.FUNCTION_PARAM));
+<span class="kw">var</span> rule      = <span class="kw">new</span> <span class="cls">FilterDoubleRule</span>(
+    provider, <span class="kw">new</span> <span class="cls">FilterNumericEquals</span>(), <span class="num">0</span>, <span class="num">1e-6</span>);
+<span class="kw">var</span> elemFilter = <span class="kw">new</span> <span class="cls">ElementParameterFilter</span>(rule);
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Add View Filter"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// 2. Create the ParameterFilterElement (check for duplicates first)</span>
+    <span class="kw">bool</span> exists = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ParameterFilterElement</span>))
+        .<span class="fn">Any</span>(f => f.Name == <span class="str">"Exterior Walls"</span>);
+
+    <span class="cls">ParameterFilterElement</span> pfe = exists
+        ? <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ParameterFilterElement</span>))
+            .<span class="fn">Cast</span>&lt;<span class="cls">ParameterFilterElement</span>&gt;()
+            .<span class="fn">First</span>(f => f.Name == <span class="str">"Exterior Walls"</span>)
+        : <span class="cls">ParameterFilterElement</span>.<span class="fn">Create</span>(
+            doc, <span class="str">"Exterior Walls"</span>, categories, elemFilter);
+
+    <span class="cmt">// 3. Build color override</span>
+    <span class="kw">var</span> overrides = <span class="kw">new</span> <span class="cls">OverrideGraphicSettings</span>();
+    overrides.<span class="fn">SetCutFillColor</span>(<span class="kw">new</span> <span class="cls">Color</span>(<span class="num">255</span>, <span class="num">0</span>, <span class="num">0</span>));
+    overrides.<span class="fn">SetProjectionLineColor</span>(<span class="kw">new</span> <span class="cls">Color</span>(<span class="num">255</span>, <span class="num">0</span>, <span class="num">0</span>));
+    overrides.<span class="fn">SetSurfaceTransparency</span>(<span class="num">50</span>);
+
+    <span class="cmt">// 4. Apply to all floor plan views</span>
+    <span class="kw">var</span> plans = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ViewPlan</span>)).<span class="fn">Cast</span>&lt;<span class="cls">ViewPlan</span>&gt;()
+        .<span class="fn">Where</span>(v => !v.IsTemplate).<span class="fn">ToList</span>();
+
+    <span class="kw">foreach</span> (<span class="kw">var</span> view <span class="kw">in</span> plans)
+    {
+        view.<span class="fn">AddFilter</span>(pfe.Id);
+        view.<span class="fn">SetFilterOverrides</span>(pfe.Id, overrides);
+        view.<span class="fn">SetFilterVisibility</span>(pfe.Id, <span class="kw">true</span>);
+    }
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s6">
+    <div class="sec-num">// 06</div><h2>Dimensions</h2>
+    <p>See <strong>Book 3 Supplement</strong> for the complete dimensions handbook. Here is the core pattern.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Always: View + ReferenceArray + Line → NewDimension()</span>
+<span class="cls">ReferenceArray</span> refs = <span class="kw">new</span> <span class="cls">ReferenceArray</span>();
+refs.<span class="fn">Append</span>(curve.<span class="fn">GetEndPointReference</span>(<span class="num">0</span>));   <span class="cmt">// start</span>
+refs.<span class="fn">Append</span>(curve.<span class="fn">GetEndPointReference</span>(<span class="num">1</span>));   <span class="cmt">// end</span>
+
+<span class="cls">Line</span> dimLine = <span class="cls">Line</span>.<span class="fn">CreateBound</span>(
+    curve.<span class="fn">GetEndPoint</span>(<span class="num">0</span>) + <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">3</span>,<span class="num">0</span>),
+    curve.<span class="fn">GetEndPoint</span>(<span class="num">1</span>) + <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">3</span>,<span class="num">0</span>));
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Dimension"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Dimension</span> dim = doc.Create.<span class="fn">NewDimension</span>(doc.ActiveView, dimLine, refs);
+    tx.<span class="fn">Commit</span>();
+
+    <span class="cmt">// Read value (internal feet → mm)</span>
+    <span class="kw">if</span> (dim.Value.HasValue)
+    {
+        <span class="kw">double</span> mm = dim.Value.Value * <span class="num">304.8</span>;
+    }
+}
+
+<span class="cmt">// Reference types summary:</span>
+<span class="cmt">// Grids:        new Reference(grid)                ← CORRECT</span>
+<span class="cmt">// Wall faces:   face.Reference (ComputeReferences=true)</span>
+<span class="cmt">// Endpoints:    curve.GetEndPointReference(0 or 1)</span>
+<span class="cmt">// Families:     fi.GetReferences(FamilyInstanceReferenceType.xxx)</span></pre></div>
+  </div>
+
+  <div class="section" id="s7">
+    <div class="sec-num">// 07</div><h2>Text Notes &amp; Tags</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get a TextNoteType</span>
+<span class="cls">TextNoteType</span> tnt = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">TextNoteType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">TextNoteType</span>&gt;()
+    .<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Add Text"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// Create text note</span>
+    <span class="cls">TextNote</span> note = <span class="cls">TextNote</span>.<span class="fn">Create</span>(doc, doc.ActiveView.Id,
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>, <span class="num">5</span>, <span class="num">0</span>),    <span class="cmt">// position</span>
+        <span class="str">"Hello Revit API"</span>,  <span class="cmt">// text</span>
+        tnt.Id);            <span class="cmt">// type</span>
+
+    <span class="cmt">// Tag an element (IndependentTag)</span>
+    <span class="cls">IndependentTag</span> tag = <span class="cls">IndependentTag</span>.<span class="fn">Create</span>(
+        doc,
+        doc.ActiveView.Id,
+        <span class="kw">new</span> <span class="cls">Reference</span>(wall),
+        <span class="kw">false</span>,               <span class="cmt">// hasLeader</span>
+        <span class="cls">TagMode</span>.TM_ADDBY_CATEGORY,
+        <span class="cls">TagOrientation</span>.Horizontal,
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>, <span class="num">5</span>, <span class="num">0</span>));  <span class="cmt">// tag head position</span>
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s8">
+    <div class="sec-num">// 08</div><h2>Detail Lines &amp; Filled Regions</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get a line style</span>
+<span class="cls">Category</span>   lineCat    = doc.Settings.Categories.<span class="fn">get_Item</span>(<span class="cls">BuiltInCategory</span>.OST_Lines);
+<span class="cls">GraphicsStyle</span> lineStyle = lineCat.SubCategories.<span class="fn">get_Item</span>(<span class="str">"Wide Lines"</span>)
+    .GetGraphicsStyle(<span class="cls">GraphicsStyleType</span>.Projection);
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Detail Line"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// Detail line in active view</span>
+    <span class="cls">DetailLine</span> dl = doc.Create.<span class="fn">NewDetailCurve</span>(
+        doc.ActiveView,
+        <span class="cls">Line</span>.<span class="fn">CreateBound</span>(<span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">0</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>,<span class="num">0</span>,<span class="num">0</span>)))
+        <span class="kw">as</span> <span class="cls">DetailLine</span>;
+    dl.LineStyle = lineStyle;
+
+    <span class="cmt">// Filled region</span>
+    <span class="cls">FilledRegionType</span> frt = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">FilledRegionType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">FilledRegionType</span>&gt;().<span class="fn">First</span>();
+
+    <span class="kw">var</span> loop = <span class="kw">new</span> <span class="cls">CurveLoop</span>();
+    <span class="cmt">// ... add curves to loop ...</span>
+
+    <span class="cls">FilledRegion</span> fr = <span class="cls">FilledRegion</span>.<span class="fn">Create</span>(
+        doc, frt.Id, doc.ActiveView.Id,
+        <span class="kw">new</span> <span class="cls">List</span>&lt;<span class="cls">CurveLoop</span>&gt; { loop });
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  </div>
+</main>
+</div>
+<script>
+function nav(el,id){document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));el.classList.add('active');document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+const sections=['s1','s2','s3','s4','s5','s6','s7','s8'];
+window.addEventListener('scroll',()=>{let cur=sections[0];sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<130)cur=id;});document.querySelectorAll('.sb-link').forEach((l,i)=>l.classList.toggle('active',sections[i]===cur));},{passive:true});
+</script>
+</body></html>

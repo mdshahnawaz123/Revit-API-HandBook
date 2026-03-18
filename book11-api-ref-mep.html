@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Reference — Book 11: MEP · Architecture · Structure · Storage</title>
+<link rel="stylesheet" href="api-style.css"/>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Namespace<br/>Reference</div>
+    <div class="sb-sub">Book 11 · MEP · Arch · Structure</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search class or method…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav">
+
+    <!-- MEP Electrical -->
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>
+        DB.Electrical
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-cabletray')"><span class="type-badge tb-class">CLS</span>CableTray</div>
+        <div class="sb-ns-child" onclick="go('cls-cabletraytype')"><span class="type-badge tb-class">CLS</span>CableTrayType</div>
+        <div class="sb-ns-child" onclick="go('cls-conduit')"><span class="type-badge tb-class">CLS</span>Conduit</div>
+        <div class="sb-ns-child" onclick="go('cls-electricalsystem')"><span class="type-badge tb-class">CLS</span>ElectricalSystem</div>
+        <div class="sb-ns-child" onclick="go('cls-electricalsystemtype')"><span class="type-badge tb-enum">ENUM</span>ElectricalSystemType</div>
+        <div class="sb-ns-child" onclick="go('cls-panelscheduleview')"><span class="type-badge tb-class">CLS</span>PanelScheduleView</div>
+      </div>
+    </div>
+
+    <!-- MEP Mechanical -->
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>
+        DB.Mechanical
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-duct')"><span class="type-badge tb-class">CLS</span>Duct</div>
+        <div class="sb-ns-child" onclick="go('cls-ducttype')"><span class="type-badge tb-class">CLS</span>DuctType</div>
+        <div class="sb-ns-child" onclick="go('cls-mechanicalsystem')"><span class="type-badge tb-class">CLS</span>MechanicalSystem</div>
+        <div class="sb-ns-child" onclick="go('cls-mechanicalsystemtype')"><span class="type-badge tb-class">CLS</span>MechanicalSystemType</div>
+        <div class="sb-ns-child" onclick="go('cls-space')"><span class="type-badge tb-class">CLS</span>Space</div>
+      </div>
+    </div>
+
+    <!-- MEP Plumbing -->
+    <div class="sb-ns-group open" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>
+        DB.Plumbing
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-pipe')"><span class="type-badge tb-class">CLS</span>Pipe</div>
+        <div class="sb-ns-child" onclick="go('cls-pipetype')"><span class="type-badge tb-class">CLS</span>PipeType</div>
+        <div class="sb-ns-child" onclick="go('cls-pipingsystem')"><span class="type-badge tb-class">CLS</span>PipingSystem</div>
+        <div class="sb-ns-child" onclick="go('cls-pipingsystemtype')"><span class="type-badge tb-class">CLS</span>PipingSystemType</div>
+      </div>
+    </div>
+
+    <!-- MEP Connectors -->
+    <div class="sb-ns-group open" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>
+        MEP Connectors
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-connector')"><span class="type-badge tb-class">CLS</span>Connector</div>
+        <div class="sb-ns-child" onclick="go('cls-connectormanager')"><span class="type-badge tb-class">CLS</span>ConnectorManager</div>
+        <div class="sb-ns-child" onclick="go('cls-connectortype')"><span class="type-badge tb-enum">ENUM</span>ConnectorType</div>
+        <div class="sb-ns-child" onclick="go('cls-mepmodel')"><span class="type-badge tb-class">CLS</span>MEPModel</div>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="sb-ns-group open" id="ng5">
+      <div class="sb-ns-header" onclick="tog('ng5',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>
+        DB.Architecture
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-room')"><span class="type-badge tb-class">CLS</span>Room</div>
+        <div class="sb-ns-child" onclick="go('cls-stairs')"><span class="type-badge tb-class">CLS</span>Stairs</div>
+        <div class="sb-ns-child" onclick="go('cls-railing')"><span class="type-badge tb-class">CLS</span>Railing</div>
+        <div class="sb-ns-child" onclick="go('cls-topography')"><span class="type-badge tb-class">CLS</span>TopographySurface</div>
+        <div class="sb-ns-child" onclick="go('cls-buildingpad')"><span class="type-badge tb-class">CLS</span>BuildingPad</div>
+      </div>
+    </div>
+
+    <!-- Structure -->
+    <div class="sb-ns-group" id="ng6">
+      <div class="sb-ns-header" onclick="tog('ng6',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>
+        DB.Structure
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-rebar')"><span class="type-badge tb-class">CLS</span>Rebar</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarbartype')"><span class="type-badge tb-class">CLS</span>RebarBarType</div>
+        <div class="sb-ns-child" onclick="go('cls-analyticalmodel')"><span class="type-badge tb-class">CLS</span>AnalyticalModel</div>
+      </div>
+    </div>
+
+    <!-- ExtensibleStorage -->
+    <div class="sb-ns-group" id="ng7">
+      <div class="sb-ns-header" onclick="tog('ng7',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>
+        DB.ExtensibleStorage
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-schema')"><span class="type-badge tb-class">CLS</span>Schema</div>
+        <div class="sb-ns-child" onclick="go('cls-entity')"><span class="type-badge tb-class">CLS</span>Entity</div>
+        <div class="sb-ns-child" onclick="go('cls-schemabuilder')"><span class="type-badge tb-class">CLS</span>SchemaBuilder</div>
+        <div class="sb-ns-child" onclick="go('cls-fieldbdr')"><span class="type-badge tb-class">CLS</span>FieldBuilder</div>
+      </div>
+    </div>
+
+    <!-- DMU -->
+    <div class="sb-ns-group" id="ng8">
+      <div class="sb-ns-header" onclick="tog('ng8',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>
+        DMU — IUpdater
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-iupdater')"><span class="type-badge tb-iface">INT</span>IUpdater</div>
+        <div class="sb-ns-child" onclick="go('cls-updaterregistry')"><span class="type-badge tb-class">CLS</span>UpdaterRegistry</div>
+        <div class="sb-ns-child" onclick="go('cls-updaterdata')"><span class="type-badge tb-class">CLS</span>UpdaterData</div>
+        <div class="sb-ns-child" onclick="go('cls-updaterid')"><span class="type-badge tb-class">CLS</span>UpdaterId</div>
+      </div>
+    </div>
+
+    <!-- View3D + ViewSchedule -->
+    <div class="sb-ns-group" id="ng9">
+      <div class="sb-ns-header" onclick="tog('ng9',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>
+        View Classes
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-view3d')"><span class="type-badge tb-class">CLS</span>View3D</div>
+        <div class="sb-ns-child" onclick="go('cls-viewschedule')"><span class="type-badge tb-class">CLS</span>ViewSchedule</div>
+        <div class="sb-ns-child" onclick="go('cls-viewport')"><span class="type-badge tb-class">CLS</span>Viewport</div>
+        <div class="sb-ns-child" onclick="go('cls-viewfamilytype')"><span class="type-badge tb-class">CLS</span>ViewFamilyType</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link current" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 11 of 13 — MEP · Architecture · Structure · ExtensibleStorage · DMU</div>
+  <h1>MEP, Architecture<br/><span>&amp; Structure Reference</span></h1>
+  <p>Complete class reference for all MEP namespaces (Electrical, Mechanical, Plumbing, Connectors), Architecture (Room, Stairs, Topography), Structure (Rebar, Analytical), ExtensibleStorage (Schema, Entity), DMU (IUpdater), and advanced View classes.</p>
+  <div class="hero-chips">
+    <span class="chip c-ye">DB.Electrical</span>
+    <span class="chip c-bl">DB.Mechanical</span>
+    <span class="chip c-gr">DB.Plumbing</span>
+    <span class="chip c-or">DB.Architecture</span>
+    <span class="chip c-pu">ExtensibleStorage</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════════
+     NAMESPACE: Autodesk.Revit.DB.Electrical
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-elec">
+  <div class="ns-header">
+    <div class="ns-icon">⚡</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Namespace</div>
+      <h2>Autodesk.Revit.DB.Electrical</h2>
+      <p>Cable trays, conduits, electrical systems, panel schedules and wiring elements.</p>
+    </div>
+  </div>
+
+<!-- CableTray -->
+<div class="class-block" id="cls-cabletray">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">CableTray</span></div><div class="class-inherit">Inherits: <span>MEPCurve → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Electrical</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a cable tray element used to support and route electrical cables. Cable trays have width and height dimensions, a system type, and connectors at both ends for joining to fittings or other trays. Created using CableTray.Create().</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">CableTray</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">cableTrayTypeId</span>, <span class="tp">ElementId</span> <span class="pm">levelId</span>, <span class="tp">XYZ</span> <span class="pm">startPoint</span>, <span class="tp">XYZ</span> <span class="pm">endPoint</span>)</span></div>
+      <div class="member-desc">Creates a straight cable tray segment between two 3D points at the specified level. The cable tray type determines the tray's available sizes and material. Both points must be at the same elevation for a horizontal tray.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>doc</td><td>Document</td><td>The target document.</td></tr><tr><td>cableTrayTypeId</td><td>ElementId</td><td>ElementId of the CableTrayType to use.</td></tr><tr><td>levelId</td><td>ElementId</td><td>ElementId of the reference level.</td></tr><tr><td>startPoint</td><td>XYZ</td><td>Start point of the tray in model coordinates (feet).</td></tr><tr><td>endPoint</td><td>XYZ</td><td>End point of the tray in model coordinates (feet).</td></tr></table></div>
+      <div class="returns-row">Returns: <span>CableTray</span> — The newly created cable tray element.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create cable tray run at ceiling height</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">CableTrayType</span> ctType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">CableTrayType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">CableTrayType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(t => t.Name.Contains(<span class="s">"300"</span>));  <span class="cm">// 300mm wide tray</span>
+
+<span class="tp">Level</span> level = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+<span class="cm">// Create at 2700mm above level (ceiling zone)</span>
+<span class="k">double</span> zFt = level.Elevation +
+    <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">2700</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="tp">XYZ</span> start = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,  <span class="n">0</span>, zFt);
+<span class="tp">XYZ</span> end   = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">20</span>, <span class="n">0</span>, zFt);   <span class="cm">// 6m run</span>
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Cable Tray"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">CableTray</span> ct = <span class="tp">CableTray</span>.<span class="fn">Create</span>(doc, ctType.Id, level.Id, start, end);
+
+    <span class="cm">// Set width and height</span>
+    ct.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CABLETRAY_WIDTH_PARAM)
+        .<span class="fn">Set</span>(<span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">300</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+    ct.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CABLETRAY_HEIGHT_PARAM)
+        .<span class="fn">Set</span>(<span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">100</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Read cable tray properties</span>
+<span class="tp">CableTray</span> existingCT = ...;
+<span class="k">double</span> widthMm  = existingCT.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CABLETRAY_WIDTH_PARAM)
+    .<span class="fn">AsDouble</span>() * <span class="n">304.8</span>;
+<span class="k">double</span> lengthMm = (existingCT.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.Length * <span class="n">304.8</span>;
+
+<span class="cm">// Navigate connectors</span>
+<span class="tp">ConnectorManager</span> cm = existingCT.<span class="fn">GetMEPModel</span>().ConnectorManager;
+<span class="k">foreach</span> (<span class="tp">Connector</span> c <span class="k">in</span> cm.Connectors)
+{
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Connector at {c.Origin} connected={c.IsConnected}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Conduit -->
+<div class="class-block" id="cls-conduit">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Conduit</span></div><div class="class-inherit">Inherits: <span>MEPCurve → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Electrical</span></div>
+  <div class="class-desc">Represents a conduit (protective tube) for electrical wiring. Conduits are cylindrical and sized by nominal diameter. Like pipes, they use ConnectorManager for joining to fittings.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Conduit</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">conduitTypeId</span>, <span class="tp">ElementId</span> <span class="pm">levelId</span>, <span class="tp">XYZ</span> <span class="pm">startPoint</span>, <span class="tp">XYZ</span> <span class="pm">endPoint</span>)</span></div>
+      <div class="member-desc">Creates a conduit segment between two points. Uses the same pattern as CableTray.Create().</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create conduit with diameter</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">ConduitType</span> ct = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ConduitType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">ConduitType</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Conduit"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Conduit</span> conduit = <span class="tp">Conduit</span>.<span class="fn">Create</span>(doc, ct.Id, level.Id,
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">8</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">0</span>, <span class="n">8</span>));
+
+    <span class="cm">// Set nominal diameter to 25mm</span>
+    conduit.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CONDUIT_DIAMETER_PARAM)
+        .<span class="fn">Set</span>(<span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">25</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ElectricalSystem -->
+<div class="class-block" id="cls-electricalsystem">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ElectricalSystem</span></div><div class="class-inherit">Inherits: <span>MEPSystem → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Electrical</span></div>
+  <div class="class-desc">Represents an electrical circuit system connecting a panel to one or more electrical devices. Provides access to connected load, panel, circuit number and all elements in the circuit.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ElectricalSystemType</span> <span class="v">SystemType</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the type of electrical system: PowerCircuit, Data, Telephone, Security, FireAlarm, Nurse, Controls, Communication, or Other.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FamilyInstance</span> <span class="v">BaseEquipment</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the panel or distribution board (FamilyInstance) this circuit originates from.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">CircuitNumber</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the circuit number string as shown on the panel schedule (e.g. "1", "3", "5-7").</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Electrical system audit</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> systems = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ElectricalSystem</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">ElectricalSystem</span>&gt;()
+    .<span class="fn">Where</span>(s => s.SystemType == <span class="tp">ElectricalSystemType</span>.PowerCircuit)
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> sys <span class="k">in</span> systems)
+{
+    <span class="k">string</span>         circuit   = sys.CircuitNumber;
+    <span class="tp">FamilyInstance</span> panel     = sys.BaseEquipment;
+    <span class="k">string</span>         panelName = panel?.Name ?? <span class="s">"No Panel"</span>;
+
+    <span class="cm">// Get connected load (VA)</span>
+    <span class="k">double</span> loadVA = sys.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.RBS_ELEC_CIRCUIT_TOTAL_DEMAND_CURRENT_PARAM)
+        ?.AsDouble() ?? <span class="n">0</span>;
+
+    <span class="cm">// Get all elements on this circuit</span>
+    <span class="tp">ConnectorSet</span> elems = sys.ConnectorManager.Connectors;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Panel:{panelName} Circuit:{circuit} Load:{loadVA:F1}VA"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-elec -->
+
+<!-- ═══════════════════════════════════════════════
+     NAMESPACE: Autodesk.Revit.DB.Mechanical
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-mech" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🌀</div>
+    <div class="ns-meta"><div class="ns-label">// Namespace</div><h2>Autodesk.Revit.DB.Mechanical</h2><p>Ducts, mechanical systems, spaces and HVAC load calculation elements.</p></div>
+  </div>
+
+<!-- Duct -->
+<div class="class-block" id="cls-duct">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Duct</span></div><div class="class-inherit">Inherits: <span>MEPCurve → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Mechanical</span></div>
+  <div class="class-desc">Represents a duct segment for HVAC air distribution. Ducts can be rectangular (width × height), round (diameter), or oval. They connect to fittings and terminal devices via connectors. Created with Duct.Create() using a MechanicalSystemType.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Usage</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Duct</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">systemTypeId</span>, <span class="tp">ElementId</span> <span class="pm">ductTypeId</span>, <span class="tp">ElementId</span> <span class="pm">levelId</span>, <span class="tp">XYZ</span> <span class="pm">startPoint</span>, <span class="tp">XYZ</span> <span class="pm">endPoint</span>)</span></div>
+      <div class="member-desc">Creates a straight duct segment. The system type (supply/return/exhaust) determines airflow direction. The duct type determines shape (rectangular/round/oval) and material.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>systemTypeId</td><td>ElementId</td><td>MechanicalSystemType ID (supply air, return air, exhaust, etc.)</td></tr><tr><td>ductTypeId</td><td>ElementId</td><td>DuctType ID (rectangular, round, oval)</td></tr><tr><td>levelId</td><td>ElementId</td><td>Reference level</td></tr><tr><td>startPoint</td><td>XYZ</td><td>Start point (feet)</td></tr><tr><td>endPoint</td><td>XYZ</td><td>End point (feet)</td></tr></table></div>
+      <div class="returns-row">Returns: <span>Duct</span> — The created duct element.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create rectangular supply air duct</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get supply air system type</span>
+<span class="tp">MechanicalSystemType</span> supplyType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">MechanicalSystemType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">MechanicalSystemType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(t => t.SystemClassification ==
+        <span class="tp">MEPSystemClassification</span>.SupplyAir);
+
+<span class="cm">// Get rectangular duct type</span>
+<span class="tp">DuctType</span> rectDuct = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">DuctType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">DuctType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(d => d.Shape == <span class="tp">ConnectorProfileType</span>.Rectangular);
+
+<span class="k">double</span> zFt = level.Elevation +
+    <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">2800</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Duct"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Duct</span> duct = <span class="tp">Duct</span>.<span class="fn">Create</span>(doc,
+        supplyType?.Id ?? <span class="tp">ElementId</span>.InvalidElementId,
+        rectDuct.Id, level.Id,
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, zFt),
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">16.4</span>, <span class="n">0</span>, zFt));  <span class="cm">// ~5m</span>
+
+    <span class="cm">// Set dimensions (rectangular duct)</span>
+    duct.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CURVE_WIDTH_PARAM)
+        .<span class="fn">Set</span>(<span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">400</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+    duct.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CURVE_HEIGHT_PARAM)
+        .<span class="fn">Set</span>(<span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">200</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Read duct dimensions</span>
+<span class="tp">Duct</span> d2 = ...;
+<span class="k">double</span> wMm = d2.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CURVE_WIDTH_PARAM)
+    .<span class="fn">AsDouble</span>() * <span class="n">304.8</span>;
+<span class="k">double</span> hMm = d2.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_CURVE_HEIGHT_PARAM)
+    .<span class="fn">AsDouble</span>() * <span class="n">304.8</span>;
+<span class="k">double</span> lMm = (d2.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.Length * <span class="n">304.8</span>;</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Space -->
+<div class="class-block" id="cls-space">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Space</span></div><div class="class-inherit">Inherits: <span>SpatialElement → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Mechanical</span></div>
+  <div class="class-desc">Represents an MEP Space — the mechanical equivalent of an architectural Room. Spaces carry HVAC load data, supply/return air volumes, occupancy data, and link to their corresponding architectural rooms. Used for energy analysis and HVAC system design.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Room</span> <span class="v">Room</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the architectural Room this MEP Space is associated with (if any). The association is based on geometric overlap at the space's reference point.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Area</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the floor area of the space in sq.ft internal units. Multiply by 0.092903 for m².</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Volume</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the volume in cubic feet. Multiply by 0.0283168 for m³.</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — MEP Space HVAC data extraction</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> spaces = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_MEPSpaces)
+    .<span class="fn">Cast</span>&lt;<span class="tp">Space</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> space <span class="k">in</span> spaces)
+{
+    <span class="k">string</span> name     = space.Name;
+    <span class="k">string</span> number   = space.Number;
+    <span class="k">double</span> areaSqM  = space.Area * <span class="n">0.092903</span>;
+    <span class="k">double</span> volCubM  = space.Volume * <span class="n">0.0283168</span>;
+
+    <span class="cm">// Linked architectural room</span>
+    <span class="tp">Room</span>   room     = space.Room;
+    <span class="k">string</span> roomName = room?.Name ?? <span class="s">"No linked room"</span>;
+
+    <span class="cm">// HVAC parameters</span>
+    <span class="k">double</span> supplyAir = space.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.ROOM_DESIGN_SUPPLY_AIRFLOW_PARAM)
+        ?.AsDouble() ?? <span class="n">0</span>;
+    <span class="k">double</span> coolingLoad = space.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.ROOM_ACTUAL_COOLING_LOAD_PARAM)
+        ?.AsDouble() ?? <span class="n">0</span>;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"{name}: {areaSqM:F1}m² | Supply: {supplyAir:F0}L/s | Cooling: {coolingLoad:F0}W"</span>);
+}
+
+<span class="cm">// Create a new Space</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Space"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Space</span> newSpace = doc.Create.<span class="fn">NewSpace</span>(level, <span class="k">new</span> <span class="tp">UV</span>(<span class="n">5</span>, <span class="n">5</span>));
+    newSpace.Name   = <span class="s">"Office 101"</span>;
+    newSpace.Number = <span class="s">"SP-101"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-mech -->
+
+<!-- ═══════════════════════════════════════════════
+     NAMESPACE: Autodesk.Revit.DB.Plumbing
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-plumb" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔧</div>
+    <div class="ns-meta"><div class="ns-label">// Namespace</div><h2>Autodesk.Revit.DB.Plumbing</h2><p>Pipes, pipe types, plumbing systems and pipe insulation.</p></div>
+  </div>
+
+<!-- Pipe -->
+<div class="class-block" id="cls-pipe">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Pipe</span></div><div class="class-inherit">Inherits: <span>MEPCurve → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Plumbing</span></div>
+  <div class="class-desc">Represents a pipe element in a plumbing or fire protection system. Pipes are round, defined by their nominal diameter, and connect to fittings and fixtures through connectors. The most critical MEP element for clash detection with structural members.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Properties</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Pipe</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">systemTypeId</span>, <span class="tp">ElementId</span> <span class="pm">pipeTypeId</span>, <span class="tp">ElementId</span> <span class="pm">levelId</span>, <span class="tp">XYZ</span> <span class="pm">startPoint</span>, <span class="tp">XYZ</span> <span class="pm">endPoint</span>)</span></div>
+      <div class="member-desc">Creates a pipe segment between two points. The PipingSystemType determines the fluid type (domestic cold water, hot water, fire sprinkler, etc.) and system classification.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create pipe network segment</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get domestic cold water system type</span>
+<span class="tp">PipingSystemType</span> coldWater = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">PipingSystemType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">PipingSystemType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(s => s.SystemClassification ==
+        <span class="tp">MEPSystemClassification</span>.DomesticColdWater);
+
+<span class="tp">PipeType</span> pipeType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">PipeType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">PipeType</span>&gt;().<span class="fn">First</span>();
+
+<span class="cm">// Pipe height: 2500mm above level (in ceiling void)</span>
+<span class="k">double</span> zFt = level.Elevation +
+    <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">2500</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Pipe"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Pipe</span> pipe = <span class="tp">Pipe</span>.<span class="fn">Create</span>(doc,
+        coldWater?.Id ?? <span class="tp">ElementId</span>.InvalidElementId,
+        pipeType.Id,
+        level.Id,
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, zFt),
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">16.4</span>, <span class="n">0</span>, zFt));
+
+    <span class="cm">// Set diameter to 50mm</span>
+    pipe.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_PIPE_DIAMETER_PARAM)
+        .<span class="fn">Set</span>(<span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">50</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Read pipe properties</span>
+<span class="k">var</span> pipes = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Pipe</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Pipe</span>&gt;().<span class="fn">ToList</span>();
+
+<span class="k">double</span> totalRunMm = <span class="n">0</span>;
+<span class="k">foreach</span> (<span class="k">var</span> p <span class="k">in</span> pipes)
+{
+    <span class="k">double</span> diamMm = p.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.RBS_PIPE_DIAMETER_PARAM)
+        .<span class="fn">AsDouble</span>() * <span class="n">304.8</span>;
+    <span class="k">double</span> lenMm  = (p.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.Length * <span class="n">304.8</span>;
+    totalRunMm += lenMm;
+
+    <span class="cm">// Check slope</span>
+    <span class="tp">XYZ</span> start = (p.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+    <span class="tp">XYZ</span> end   = (p.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+    <span class="k">double</span> slope = Math.Abs(end.Z - start.Z) / Math.Abs(end.X - start.X + end.Y - start.Y + <span class="n">0.001</span>);
+    <span class="k">if</span> (slope &lt; <span class="n">0.01</span>)
+        System.Diagnostics.Debug.WriteLine(<span class="s">$"Low slope pipe: {p.Id} slope={slope:P1}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- PipingSystem -->
+<div class="class-block" id="cls-pipingsystem">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PipingSystem</span></div><div class="class-inherit">Inherits: <span>MEPSystem → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Plumbing</span></div>
+  <div class="class-desc">Represents a plumbing system grouping connected pipes, fittings, and fixtures. Provides access to all elements in the system, total flow rate, and system classification. Used for pipe network traversal and system-level analysis.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods + Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">MEPSystemClassification</span> <span class="v">SystemClassification</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the system classification: SupplyHydronic, ReturnHydronic, DomesticColdWater, DomesticHotWater, Sanitary, FireProtectWet, etc.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="fn">GetFlow</span>()</span></div><div class="member-desc">Returns the system's total flow rate in internal units (cubic feet per second). Convert to L/s by multiplying by 28.317.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Traverse a piping system</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> pipingSystems = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">PipingSystem</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">PipingSystem</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> sys <span class="k">in</span> pipingSystems)
+{
+    <span class="tp">MEPSystemClassification</span> cls   = sys.SystemClassification;
+    <span class="k">double</span>                  flow  = sys.<span class="fn">GetFlow</span>() * <span class="n">28.317</span>;  <span class="cm">// L/s</span>
+    <span class="k">string</span>                  name  = sys.Name;
+
+    <span class="cm">// Get all pipes in the system</span>
+    <span class="tp">ConnectorManager</span> cm = sys.ConnectorManager;
+    <span class="k">var</span> pipeIds = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Pipe</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">Pipe</span>&gt;()
+        .<span class="fn">Where</span>(p => p.<span class="fn">GetMEPModel</span>()?.ConnectorManager?.Connectors != <span class="k">null</span>)
+        .<span class="fn">Select</span>(p => p.Id).<span class="fn">ToList</span>();
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"System: {name} | Class: {cls} | Flow: {flow:F2}L/s"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-plumb -->
+
+<!-- ═══════════════════════════════════════════════
+     MEP CONNECTORS
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-conn" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔌</div>
+    <div class="ns-meta"><div class="ns-label">// MEP</div><h2>MEP Connectors</h2><p>Connector, ConnectorManager — the endpoint connection system for all MEP elements.</p></div>
+  </div>
+
+<!-- Connector -->
+<div class="class-block" id="cls-connector">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Connector</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a connection point on an MEP element (pipe end, duct end, fitting port, equipment port). Every MEP element has a ConnectorManager with one or more Connectors. Connectors define the size, shape, flow direction, and connection status. Two connectors on adjacent elements are connected by calling ConnectTo().</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">Origin</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the 3D position of this connector in model coordinates (feet). Used to find matching connectors on adjacent elements.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsConnected</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">True if this connector is already joined to another connector. Check before calling ConnectTo() to avoid redundant connections.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ConnectorType</span> <span class="v">ConnectorType</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the connector type: End (pipe/duct ends), Curve (along a curve), Physical (equipment port), or Logical.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Radius</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">For round connectors (pipes, conduit), gets the connector radius in feet. Diameter = Radius × 2.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ConnectorSet</span> <span class="v">AllRefs</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets all connectors that this connector is connected to. Typically one for pipe ends (the matching connector on the next element).</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">ConnectTo</span>(<span class="tp">Connector</span> <span class="pm">connector</span>)</span></div>
+      <div class="member-desc">Connects this connector to another connector. Both connectors must be unconnected, compatible (same size/shape), and in close proximity. Must be called inside a Transaction.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Connect two pipe endpoints</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Helper: find connector nearest to a 3D point</span>
+<span class="tp">Connector</span> <span class="fn">GetConnectorAt</span>(<span class="tp">Element</span> elem, <span class="tp">XYZ</span> point, <span class="k">double</span> tol = <span class="n">0.01</span>)
+{
+    <span class="tp">ConnectorManager</span> cm = (elem <span class="k">as</span> <span class="tp">MEPCurve</span>)?.<span class="fn">GetMEPModel</span>()?.ConnectorManager
+                        ?? (elem <span class="k">as</span> <span class="tp">FamilyInstance</span>)?.<span class="fn">GetMEPModel</span>()?.ConnectorManager;
+    <span class="k">if</span> (cm == <span class="k">null</span>) <span class="k">return null</span>;
+    <span class="k">foreach</span> (<span class="tp">Connector</span> c <span class="k">in</span> cm.Connectors)
+        <span class="k">if</span> (c.Origin.<span class="fn">DistanceTo</span>(point) &lt; tol) <span class="k">return</span> c;
+    <span class="k">return null</span>;
+}
+
+<span class="cm">// Connect pipe1 end to pipe2 start</span>
+<span class="tp">Pipe</span> pipe1 = ...;
+<span class="tp">Pipe</span> pipe2 = ...;
+
+<span class="tp">XYZ</span> pipe1End   = (pipe1.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+<span class="tp">XYZ</span> pipe2Start = (pipe2.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Connect Pipes"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Connector</span> c1 = <span class="fn">GetConnectorAt</span>(pipe1, pipe1End);
+    <span class="tp">Connector</span> c2 = <span class="fn">GetConnectorAt</span>(pipe2, pipe2Start);
+
+    <span class="k">if</span> (c1 != <span class="k">null</span> &amp;&amp; c2 != <span class="k">null</span> &amp;&amp; !c1.IsConnected &amp;&amp; !c2.IsConnected)
+        c1.<span class="fn">ConnectTo</span>(c2);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Traverse a connected network from a seed element</span>
+<span class="tp">Pipe</span> seedPipe = ...;
+<span class="k">var</span> visited  = <span class="k">new</span> <span class="tp">HashSet</span>&lt;<span class="tp">ElementId</span>&gt;();
+<span class="k">var</span> queue    = <span class="k">new</span> <span class="tp">Queue</span>&lt;<span class="tp">Element</span>&gt;();
+queue.<span class="fn">Enqueue</span>(seedPipe);
+
+<span class="k">while</span> (queue.Count > <span class="n">0</span>)
+{
+    <span class="tp">Element</span> cur = queue.<span class="fn">Dequeue</span>();
+    <span class="k">if</span> (!visited.<span class="fn">Add</span>(cur.Id)) <span class="k">continue</span>;
+
+    <span class="tp">ConnectorManager</span> cm = (cur <span class="k">as</span> <span class="tp">MEPCurve</span>)?.<span class="fn">GetMEPModel</span>()?.ConnectorManager;
+    <span class="k">if</span> (cm == <span class="k">null</span>) <span class="k">continue</span>;
+
+    <span class="k">foreach</span> (<span class="tp">Connector</span> c <span class="k">in</span> cm.Connectors)
+        <span class="k">foreach</span> (<span class="tp">Connector</span> neighbor <span class="k">in</span> c.AllRefs)
+        {
+            <span class="tp">Element</span> next = doc.<span class="fn">GetElement</span>(neighbor.Owner.Id);
+            <span class="k">if</span> (next != <span class="k">null</span> &amp;&amp; !visited.<span class="fn">Contains</span>(next.Id))
+                queue.<span class="fn">Enqueue</span>(next);
+        }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ConnectorManager -->
+<div class="class-block" id="cls-connectormanager">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ConnectorManager</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Manages all connectors on a single MEP element. Obtained via MEPModel.ConnectorManager. Provides access to all connectors and the unused (open) connectors at element endpoints.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ConnectorSet</span> <span class="v">Connectors</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets all connectors on this element. Enumerate with foreach. Typically 2 for pipe segments, more for fittings and equipment.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ConnectorSet</span> <span class="v">UnusedConnectors</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets only the connectors that are NOT yet connected to another element. Used to find open endpoints for network traversal or routing.</div></div>
+  </div>
+</div>
+
+</div><!-- /ns-conn -->
+
+<!-- ═══════════════════════════════════════════════
+     NAMESPACE: Autodesk.Revit.DB.Architecture
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-arch" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🏛️</div>
+    <div class="ns-meta"><div class="ns-label">// Namespace</div><h2>Autodesk.Revit.DB.Architecture</h2><p>Rooms, stairs, railings, topography and site elements.</p></div>
+  </div>
+
+<!-- Room -->
+<div class="class-block" id="cls-room">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Room</span></div><div class="class-inherit">Inherits: <span>SpatialElement → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Architecture</span></div>
+  <div class="class-desc">Represents an architectural room — a bounded space with name, number, area, volume, and finish data. Rooms are placed in floor plan views and bounded by walls, separation lines, or room bounding elements. The Room is the most important element for space management, area calculations, and BIM data assignment.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">Name</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the room name. Displayed in the room tag. Setting requires an open Transaction.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">Number</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the room number. Unique identifier for the room within the project.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Area</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the floor area of the room in sq.ft internal units. Multiply by 0.092903 for m². Returns 0 for unplaced rooms.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Volume</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the room volume in cubic feet. Only computed when Room Volume calculation is enabled in project settings.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Level</span> <span class="v">Level</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the Level this room is placed on.</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="fn">IsPointInRoom</span>(<span class="tp">XYZ</span> <span class="pm">point</span>)</span></div>
+      <div class="member-desc">Returns true if the given 3D point is inside this room's boundary. Used for spatial queries: finding which room a pipe passes through, assigning rooms to equipment, etc. The point must be within the room's elevation range.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>point</td><td>XYZ</td><td>The point to test (in model coordinates, feet).</td></tr></table></div>
+      <div class="returns-row">Returns: <span>bool</span> — true if the point is inside this room.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IList</span>&lt;<span class="tp">IList</span>&lt;<span class="tp">BoundarySegment</span>&gt;&gt; <span class="fn">GetBoundarySegments</span>(<span class="tp">SpatialElementBoundaryOptions</span> <span class="pm">options</span>)</span></div>
+      <div class="member-desc">Returns the boundary of the room as a list of loops, each containing BoundarySegment objects. Index 0 is the outer boundary; subsequent loops are holes. Each BoundarySegment identifies the bounding wall element.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete Room operations</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Collect all placed rooms (Area > 0)</span>
+<span class="k">var</span> rooms = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rooms)
+    .<span class="fn">Cast</span>&lt;<span class="tp">Room</span>&gt;()
+    .<span class="fn">Where</span>(r => r.Area > <span class="n">1</span>)    <span class="cm">// placed rooms only</span>
+    .<span class="fn">OrderBy</span>(r => r.Number)
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> room <span class="k">in</span> rooms)
+{
+    <span class="k">string</span> name    = room.Name;
+    <span class="k">string</span> number  = room.Number;
+    <span class="k">double</span> areaSqM = room.Area * <span class="n">0.092903</span>;
+    <span class="k">string</span> dept    = room.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ROOM_DEPARTMENT)
+                        ?.AsString() ?? <span class="s">""</span>;
+
+    <span class="cm">// Get room boundary to create a floor</span>
+    <span class="k">var</span> bOpts = <span class="k">new</span> <span class="tp">SpatialElementBoundaryOptions</span>();
+    <span class="tp">IList</span>&lt;<span class="tp">IList</span>&lt;<span class="tp">BoundarySegment</span>&gt;&gt; segs = room.<span class="fn">GetBoundarySegments</span>(bOpts);
+
+    <span class="k">if</span> (segs.Count &gt; <span class="n">0</span>)
+    {
+        <span class="tp">CurveLoop</span> boundary = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+        <span class="k">foreach</span> (<span class="k">var</span> seg <span class="k">in</span> segs[<span class="n">0</span>])  <span class="cm">// outer loop only</span>
+            boundary.<span class="fn">Append</span>(seg.GetCurve());
+
+        <span class="cm">// Identify bounding walls</span>
+        <span class="k">foreach</span> (<span class="k">var</span> seg <span class="k">in</span> segs[<span class="n">0</span>])
+        {
+            <span class="tp">ElementId</span> wallId = seg.ElementId;
+            <span class="k">if</span> (wallId != <span class="tp">ElementId</span>.InvalidElementId)
+            {
+                <span class="tp">Wall</span> w = doc.<span class="fn">GetElement</span>(wallId) <span class="k">as</span> <span class="tp">Wall</span>;
+                System.Diagnostics.Debug.WriteLine(
+                    <span class="s">$"  Bounded by: {w?.WallType?.Name}"</span>);
+            }
+        }
+    }
+
+    <span class="cm">// Check if a point is in the room</span>
+    <span class="tp">XYZ</span> testPt = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">5</span>, room.Level.Elevation + <span class="n">1</span>);
+    <span class="k">bool</span> inside = room.<span class="fn">IsPointInRoom</span>(testPt);
+}
+
+<span class="cm">// Create a room programmatically</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Room"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">UV</span>   location = <span class="k">new</span> <span class="tp">UV</span>(<span class="n">5</span>, <span class="n">5</span>);  <span class="cm">// XY position on level</span>
+    <span class="tp">Room</span> newRoom  = doc.Create.<span class="fn">NewRoom</span>(level, location);
+    newRoom.Name   = <span class="s">"Conference Room"</span>;
+    newRoom.Number = <span class="s">"101"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- TopographySurface -->
+<div class="class-block" id="cls-topography">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">TopographySurface</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Architecture</span></div>
+  <div class="class-desc">Represents the topography/site surface. Contains a mesh of 3D points defining the terrain. Points can be read, added, moved, or deleted. Sub-regions are child TopographySurface elements with different materials applied to portions of the surface.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IList</span>&lt;<span class="tp">XYZ</span>&gt; <span class="fn">GetPoints</span>()</span></div>
+      <div class="member-desc">Returns all the XYZ points that define the topography mesh. Points are in model coordinates (feet). Useful for elevation analysis, contour generation, and cut/fill calculations.</div>
+      <div class="returns-row">Returns: <span>IList&lt;XYZ&gt;</span> — All mesh points defining the terrain surface.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Topography analysis and export</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">TopographySurface</span> topo = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">TopographySurface</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">TopographySurface</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(t => !t.IsSiteSubRegion);
+
+<span class="k">if</span> (topo == <span class="k">null</span>) <span class="k">return</span> <span class="tp">Result</span>.Failed;
+
+<span class="tp">IList</span>&lt;<span class="tp">XYZ</span>&gt; pts = topo.<span class="fn">GetPoints</span>();
+
+<span class="cm">// Statistics</span>
+<span class="k">double</span> minElev = pts.<span class="fn">Min</span>(p => p.Z) * <span class="n">304.8</span>;
+<span class="k">double</span> maxElev = pts.<span class="fn">Max</span>(p => p.Z) * <span class="n">304.8</span>;
+<span class="k">double</span> avgElev = pts.<span class="fn">Average</span>(p => p.Z) * <span class="n">304.8</span>;
+
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Topo"</span>,
+    <span class="s">$"Points: {pts.Count}\nMin: {minElev:F0}mm\nMax: {maxElev:F0}mm\nAvg: {avgElev:F0}mm"</span>);
+
+<span class="cm">// Export as XYZ CSV</span>
+<span class="k">var</span> csv = <span class="k">new</span> System.Text.StringBuilder(<span class="s">"X,Y,Z\n"</span>);
+<span class="k">foreach</span> (<span class="k">var</span> p <span class="k">in</span> pts)
+    csv.<span class="fn">AppendLine</span>(<span class="s">$"{p.X * 304.8:F3},{p.Y * 304.8:F3},{p.Z * 304.8:F3}"</span>);
+
+<span class="cm">// Modify topo points</span>
+<span class="k">using</span> (<span class="tp">TopographyEditScope</span> scope = <span class="k">new</span> <span class="tp">TopographyEditScope</span>(doc, <span class="s">"Edit Topo"</span>))
+{
+    scope.<span class="fn">Start</span>(topo.Id);
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Move Points"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="cm">// Raise points within a region by 500mm</span>
+        <span class="k">var</span> ptsToRaise = pts.<span class="fn">Where</span>(p => p.X > <span class="n">0</span> &amp;&amp; p.Y > <span class="n">0</span>).<span class="fn">ToList</span>();
+        <span class="k">double</span> raise = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">500</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+        <span class="k">var</span> newPts = ptsToRaise.<span class="fn">Select</span>(p => <span class="k">new</span> <span class="tp">XYZ</span>(p.X, p.Y, p.Z + raise)).<span class="fn">ToList</span>();
+        topo.<span class="fn">ChangePointsToElevation</span>(ptsToRaise, newPts);
+        tx.<span class="fn">Commit</span>();
+    }
+    scope.<span class="fn">Commit</span>(<span class="k">new</span> <span class="tp">TopographyEditFailuresPreprocessor</span>());
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Stairs -->
+<div class="class-block" id="cls-stairs">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Stairs</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Architecture</span></div>
+  <div class="class-desc">Represents a stair assembly. Stairs contain runs (StairsRun) and landings (StairsLanding). Stairs are created and modified using StairsEditScope. Key parameters: riser height, tread depth, number of risers.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties + Usage</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">int</span> <span class="v">DesiredRisersNumber</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the desired number of risers. Revit calculates the actual riser height based on this and the floor-to-floor height.</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Read stair properties and check compliance</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> stairs = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Stairs</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Stairs</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> stair <span class="k">in</span> stairs)
+{
+    <span class="k">int</span>    risers   = stair.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STAIRS_RISER_NUMBER)?.AsInteger() ?? <span class="n">0</span>;
+    <span class="k">double</span> riserH   = stair.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STAIRS_ACTUAL_RISER_HEIGHT)?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+    <span class="k">double</span> treadD   = stair.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STAIRS_ACTUAL_TREAD_DEPTH)?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+
+    <span class="cm">// UK Building Regs: max riser 220mm, min going 220mm</span>
+    <span class="k">bool</span> riserOK  = riserH &lt;= <span class="n">220</span>;
+    <span class="k">bool</span> treadOK  = treadD &gt;= <span class="n">220</span>;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Stair {stair.Id}: Risers={risers} H={riserH:F0}mm T={treadD:F0}mm " +</span>
+        <span class="s">$"{(riserOK &amp;&amp; treadOK ? "PASS" : "FAIL")}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-arch -->
+
+<!-- ═══════════════════════════════════════════════
+     NAMESPACE: DB.ExtensibleStorage
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-storage" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">💾</div>
+    <div class="ns-meta"><div class="ns-label">// Namespace</div><h2>Autodesk.Revit.DB.ExtensibleStorage</h2><p>Schema, Entity, SchemaBuilder, FieldBuilder — store custom data on Revit elements without project parameters.</p></div>
+  </div>
+  <div class="callout c-tip" style="margin:0 0 20px 0;"><strong>// What is ExtensibleStorage?</strong>ExtensibleStorage lets you attach arbitrary structured data (strings, doubles, arrays, maps) directly to Revit elements and the document itself — without creating project parameters. Data survives copy/paste, worksharing, and IFC export. Each data schema is identified by a GUID.</div>
+
+<!-- Schema -->
+<div class="class-block" id="cls-schema">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Schema</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.ExtensibleStorage</span></div>
+  <div class="class-desc">Defines the structure (field names and types) for extensible storage data. A Schema is like a table definition — it describes what data can be stored, but not the data itself. Schemas are identified by GUID and are shared across all documents. Created via SchemaBuilder.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Lookup</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Schema</span> <span class="fn">Lookup</span>(<span class="tp">Guid</span> <span class="pm">schemaGuid</span>)</span></div>
+      <div class="member-desc">Looks up a Schema by its GUID. Returns null if no schema with that GUID has been registered in this session. Call this before creating a new schema to avoid duplicates.</div>
+      <div class="returns-row">Returns: <span>Schema</span> — The existing schema, or null if not found.</div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Field</span> <span class="fn">GetField</span>(<span class="tp">string</span> <span class="pm">fieldName</span>)</span></div><div class="member-desc">Gets a named Field from this schema. Use the returned Field when reading/writing Entity data.</div></div>
+  </div>
+</div>
+
+<!-- SchemaBuilder + Entity -->
+<div class="class-block" id="cls-schemabuilder">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">SchemaBuilder</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.ExtensibleStorage</span></div>
+  <div class="class-desc">Fluent builder for creating a new Schema definition. Define fields (typed data columns), access levels, and GUID, then call Finish() to register the schema. Only create a schema if Schema.Lookup() returns null.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete ExtensibleStorage Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete ExtensibleStorage write & read cycle</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.ExtensibleStorage;
+
+<span class="cm">// ── STEP 1: Create or lookup the Schema ──</span>
+<span class="tp">Guid</span>   schemaGuid = <span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"A1B2C3D4-E5F6-7890-ABCD-EF1234567890"</span>);
+<span class="tp">Schema</span> schema     = <span class="tp">Schema</span>.<span class="fn">Lookup</span>(schemaGuid);
+
+<span class="k">if</span> (schema == <span class="k">null</span>)
+{
+    <span class="k">var</span> builder = <span class="k">new</span> <span class="tp">SchemaBuilder</span>(schemaGuid);
+    builder.<span class="fn">SetSchemaName</span>(<span class="s">"WallBIMData"</span>);
+    builder.<span class="fn">SetReadAccessLevel</span>(<span class="tp">AccessLevel</span>.Public);
+    builder.<span class="fn">SetWriteAccessLevel</span>(<span class="tp">AccessLevel</span>.Public);
+
+    <span class="cm">// Add fields (typed columns)</span>
+    builder.<span class="fn">AddSimpleField</span>(<span class="s">"FireRating"</span>,  <span class="k">typeof</span>(<span class="k">string</span>));
+    builder.<span class="fn">AddSimpleField</span>(<span class="s">"UValue"</span>,      <span class="k">typeof</span>(<span class="k">double</span>))
+           .<span class="fn">SetUnitType</span>(<span class="tp">UnitTypeId</span>.WattsPerSquareMeterKelvin);
+    builder.<span class="fn">AddSimpleField</span>(<span class="s">"Approved"</span>,    <span class="k">typeof</span>(<span class="k">bool</span>));
+    builder.<span class="fn">AddSimpleField</span>(<span class="s">"ReviewDate"</span>,  <span class="k">typeof</span>(<span class="k">string</span>));
+
+    schema = builder.<span class="fn">Finish</span>();
+}
+
+<span class="cm">// ── STEP 2: WRITE data to an element ──</span>
+<span class="tp">Wall</span> wall = ...;
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Write BIM Data"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="tp">Entity</span> entity = <span class="k">new</span> <span class="tp">Entity</span>(schema);
+    entity.<span class="fn">Set</span>(<span class="s">"FireRating"</span>,  <span class="s">"2HR"</span>);
+    entity.<span class="fn">Set</span>(<span class="s">"UValue"</span>,      <span class="n">0.35</span>);
+    entity.<span class="fn">Set</span>(<span class="s">"Approved"</span>,    <span class="k">true</span>);
+    entity.<span class="fn">Set</span>(<span class="s">"ReviewDate"</span>,  DateTime.Now.ToString(<span class="s">"yyyy-MM-dd"</span>));
+
+    wall.<span class="fn">SetEntity</span>(entity);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── STEP 3: READ data from an element ──</span>
+<span class="tp">Entity</span> stored = wall.<span class="fn">GetEntity</span>(schema);
+<span class="k">if</span> (stored.IsValid())
+{
+    <span class="k">string</span> fireRating  = stored.<span class="fn">Get</span>&lt;<span class="k">string</span>&gt;(<span class="s">"FireRating"</span>);
+    <span class="k">double</span> uValue      = stored.<span class="fn">Get</span>&lt;<span class="k">double</span>&gt;(<span class="s">"UValue"</span>);
+    <span class="k">bool</span>   approved    = stored.<span class="fn">Get</span>&lt;<span class="k">bool</span>&gt;(<span class="s">"Approved"</span>);
+    <span class="k">string</span> reviewDate  = stored.<span class="fn">Get</span>&lt;<span class="k">string</span>&gt;(<span class="s">"ReviewDate"</span>);
+
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"BIM Data"</span>,
+        <span class="s">$"Fire:{fireRating} U:{uValue:F3} Approved:{approved} Date:{reviewDate}"</span>);
+}
+
+<span class="cm">// ── STEP 4: FIND all elements with this schema ──</span>
+<span class="k">var</span> extFilter = <span class="k">new</span> <span class="tp">ExtensibleStorageFilter</span>(schemaGuid);
+<span class="k">var</span> wallsWithData = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">WherePasses</span>(extFilter)
+    .<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// ── STEP 5: DELETE entity from element ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Delete Entity"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    wall.<span class="fn">DeleteEntity</span>(schema);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-storage -->
+
+<!-- ═══════════════════════════════════════════════
+     DMU — IUpdater
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-dmu" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔄</div>
+    <div class="ns-meta"><div class="ns-label">// Dynamic Model Update</div><h2>IUpdater &amp; UpdaterRegistry</h2><p>The DMU framework lets you react to model changes by modifying the model — unlike DocumentChanged which is read-only.</p></div>
+  </div>
+
+<div class="class-block" id="cls-iupdater">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IUpdater</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">The core interface for Dynamic Model Update. Implement this to react to element changes with model writes. Unlike DocumentChanged (read-only), DMU updaters fire INSIDE the triggering transaction, so you can modify related elements in response to changes without starting a new transaction.</div>
+  <div class="callout c-warn" style="margin:12px 24px 0;"><strong>// Warning — No New Transactions</strong>Inside IUpdater.Execute(), you are already inside an open transaction. Do NOT start a new Transaction — just modify elements directly. Starting a nested transaction will throw InvalidOperationException.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Required Methods + Complete Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete IUpdater implementation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public class</span> <span class="tp">WallMarkAutoUpdater</span> : <span class="tp">IUpdater</span>
+{
+    <span class="k">private static</span> <span class="tp">AddInId</span>   _appId;
+    <span class="k">private static</span> <span class="tp">UpdaterId</span> _id;
+
+    <span class="k">public</span> <span class="fn">WallMarkAutoUpdater</span>(<span class="tp">AddInId</span> appId)
+    {
+        _appId = appId;
+        _id    = <span class="k">new</span> <span class="tp">UpdaterId</span>(appId,
+            <span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"AABBCCDD-1234-5678-ABCD-EF0123456789"</span>));
+    }
+
+    <span class="cm">// Fires INSIDE the active transaction — no new Transactions here!</span>
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="tp">UpdaterData</span> data)
+    {
+        <span class="tp">Document</span> doc = data.<span class="fn">GetDocument</span>();
+
+        <span class="cm">// Handle modified walls</span>
+        <span class="k">foreach</span> (<span class="tp">ElementId</span> id <span class="k">in</span> data.<span class="fn">GetModifiedElementIds</span>())
+        {
+            <span class="tp">Wall</span> wall = doc.<span class="fn">GetElement</span>(id) <span class="k">as</span> <span class="tp">Wall</span>;
+            <span class="k">if</span> (wall == <span class="k">null</span>) <span class="k">continue</span>;
+
+            <span class="cm">// Auto-update Mark with length</span>
+            <span class="k">double</span> lenMm = (wall.Location <span class="k">as</span> <span class="tp">LocationCurve</span>)
+                .Curve.Length * <span class="n">304.8</span>;
+            <span class="tp">Parameter</span> mark = wall.<span class="fn">get_Parameter</span>(
+                <span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK);
+            <span class="k">if</span> (mark != <span class="k">null</span> &amp;&amp; !mark.IsReadOnly)
+                mark.<span class="fn">Set</span>(<span class="s">$"W-{lenMm:F0}mm"</span>);  <span class="cm">// write directly, no tx needed</span>
+        }
+
+        <span class="cm">// Handle newly added walls</span>
+        <span class="k">foreach</span> (<span class="tp">ElementId</span> id <span class="k">in</span> data.<span class="fn">GetAddedElementIds</span>())
+        {
+            <span class="tp">Wall</span> wall = doc.<span class="fn">GetElement</span>(id) <span class="k">as</span> <span class="tp">Wall</span>;
+            <span class="k">if</span> (wall == <span class="k">null</span>) <span class="k">continue</span>;
+            <span class="cm">// Tag new walls automatically</span>
+            wall.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+                ?.<span class="fn">Set</span>(<span class="s">$"NEW-{wall.Id.IntegerValue}"</span>);
+        }
+    }
+
+    <span class="k">public string</span>      <span class="fn">GetUpdaterName</span>()             => <span class="s">"Wall Mark Auto Updater"</span>;
+    <span class="k">public string</span>      <span class="fn">GetAdditionalInformation</span>()   => <span class="s">"Auto-tags walls with length on change"</span>;
+    <span class="k">public</span> <span class="tp">ChangePriority</span> <span class="fn">GetChangePriority</span>()       => <span class="tp">ChangePriority</span>.MEPFixtures;
+    <span class="k">public</span> <span class="tp">UpdaterId</span>  <span class="fn">GetUpdaterId</span>()               => _id;
+}
+
+<span class="cm">// ── Register in OnStartup ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="k">var</span> updater = <span class="k">new</span> <span class="tp">WallMarkAutoUpdater</span>(app.ActiveAddInId);
+    <span class="tp">UpdaterRegistry</span>.<span class="fn">RegisterUpdater</span>(updater);
+
+    <span class="cm">// Trigger: fire on geometry change of any Wall</span>
+    <span class="tp">UpdaterRegistry</span>.<span class="fn">AddTrigger</span>(
+        updater.<span class="fn">GetUpdaterId</span>(),
+        <span class="k">new</span> <span class="tp">ElementClassFilter</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)),
+        <span class="tp">Element</span>.<span class="fn">GetChangeTypeGeometry</span>());
+
+    <span class="cm">// Also trigger on any Wall addition</span>
+    <span class="tp">UpdaterRegistry</span>.<span class="fn">AddTrigger</span>(
+        updater.<span class="fn">GetUpdaterId</span>(),
+        <span class="k">new</span> <span class="tp">ElementClassFilter</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)),
+        <span class="tp">Element</span>.<span class="fn">GetChangeTypeElementAddition</span>());
+
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}
+
+<span class="cm">// ── Unregister in OnShutdown ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnShutdown</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="tp">UpdaterRegistry</span>.<span class="fn">UnregisterUpdater</span>(_updater.<span class="fn">GetUpdaterId</span>());
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- UpdaterRegistry -->
+<div class="class-block" id="cls-updaterregistry">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">UpdaterRegistry</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Static class for registering, unregistering, and querying IUpdater instances. All DMU updaters must be registered before they can receive triggers. Updaters are registered per session — they must be re-registered on every Revit startup.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Static Methods</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static void</span> <span class="fn">RegisterUpdater</span>(<span class="tp">IUpdater</span> <span class="pm">updater</span>)</span></div><div class="member-desc">Registers an IUpdater so it can receive trigger events. Call in OnStartup(). Does NOT add any triggers — call AddTrigger() separately.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static void</span> <span class="fn">UnregisterUpdater</span>(<span class="tp">UpdaterId</span> <span class="pm">updaterId</span>)</span></div><div class="member-desc">Removes the updater and all its triggers. Call in OnShutdown(). Failing to unregister causes memory leaks and may cause crashes on Revit close.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static void</span> <span class="fn">AddTrigger</span>(<span class="tp">UpdaterId</span> <span class="pm">updaterId</span>, <span class="tp">ElementFilter</span> <span class="pm">filter</span>, <span class="tp">ChangeType</span> <span class="pm">changeType</span>)</span></div><div class="member-desc">Registers a trigger: when elements matching the filter change in the specified way, the updater's Execute() is called. Can add multiple triggers per updater.</div></div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static void</span> <span class="fn">AddTrigger</span>(<span class="tp">UpdaterId</span> <span class="pm">updaterId</span>, <span class="tp">ElementFilter</span> <span class="pm">filter</span>, <span class="tp">ElementId</span> <span class="pm">changeParamId</span>)</span></div>
+      <div class="member-desc">Adds a parameter-specific trigger that fires only when a specific parameter on matching elements changes. More efficient than geometry change triggers for parameter-only reactions.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Change types reference</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// All available change types:</span>
+<span class="tp">Element</span>.<span class="fn">GetChangeTypeGeometry</span>()           <span class="cm">// geometry changed (move, resize)</span>
+<span class="tp">Element</span>.<span class="fn">GetChangeTypeAny</span>()                <span class="cm">// any change at all</span>
+<span class="tp">Element</span>.<span class="fn">GetChangeTypeElementAddition</span>()    <span class="cm">// element created</span>
+<span class="tp">Element</span>.<span class="fn">GetChangeTypeElementDeletion</span>()    <span class="cm">// element deleted</span>
+<span class="tp">Element</span>.<span class="fn">GetChangeTypeParameter</span>(           <span class="cm">// specific param changed</span>
+    <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK))
+
+<span class="cm">// Scope: can limit trigger to specific document</span>
+<span class="tp">UpdaterRegistry</span>.<span class="fn">AddTrigger</span>(
+    updaterId,
+    doc,                                    <span class="cm">// document scope</span>
+    <span class="k">new</span> <span class="tp">ElementClassFilter</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)),
+    <span class="tp">Element</span>.<span class="fn">GetChangeTypeGeometry</span>());</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-dmu -->
+
+<!-- ═══════════════════════════════════════════════
+     VIEW CLASSES
+═══════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-views" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🗺️</div>
+    <div class="ns-meta"><div class="ns-label">// View Classes</div><h2>View3D · ViewSchedule · Viewport · ViewFamilyType</h2><p>Specialised view classes for 3D views, schedules, viewport management and view type lookup.</p></div>
+  </div>
+
+<!-- View3D -->
+<div class="class-block" id="cls-view3d">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">View3D</span></div><div class="class-inherit">Inherits: <span>View → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a 3D view — orthographic or perspective. 3D views support section boxes, camera positioning, ray casting (ReferenceIntersector requires View3D), and walkthrough paths. Section boxes define the visible region of the model in the view.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">View3D</span> <span class="fn">CreateIsometric</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">viewFamilyTypeId</span>)</span></div>
+      <div class="member-desc">Creates an orthographic (isometric) 3D view. This is the standard 3D view type that shows the whole model.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create 3D view and set section box</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get 3D view family type</span>
+<span class="tp">ElementId</span> vftId = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+    .<span class="fn">First</span>(x => x.ViewFamily == <span class="tp">ViewFamily</span>.ThreeD).Id;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"3D View"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Create isometric 3D view</span>
+    <span class="tp">View3D</span> v3d = <span class="tp">View3D</span>.<span class="fn">CreateIsometric</span>(doc, vftId);
+    v3d.Name = <span class="s">"ISO - Full Building"</span>;
+
+    <span class="cm">// Set section box to building extents</span>
+    <span class="tp">BoundingBoxXYZ</span> bb = <span class="k">new</span> <span class="tp">BoundingBoxXYZ</span>();
+    bb.Min = <span class="k">new</span> <span class="tp">XYZ</span>(-<span class="n">5</span>, -<span class="n">5</span>, -<span class="n">1</span>);
+    bb.Max = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">50</span>, <span class="n">50</span>, <span class="n">30</span>);
+    v3d.<span class="fn">SetSectionBox</span>(bb);
+    v3d.IsSectionBoxActive = <span class="k">true</span>;
+
+    <span class="cm">// Create perspective view</span>
+    <span class="tp">View3D</span> persp = <span class="tp">View3D</span>.<span class="fn">CreatePerspective</span>(doc, vftId);
+    persp.Name = <span class="s">"Camera - Entrance"</span>;
+
+    <span class="cm">// Set camera orientation</span>
+    <span class="tp">ViewOrientation3D</span> orient = <span class="k">new</span> <span class="tp">ViewOrientation3D</span>(
+        <span class="k">new</span> <span class="tp">XYZ</span>(-<span class="n">10</span>, -<span class="n">10</span>, <span class="n">5.5</span>),    <span class="cm">// eye position</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">1</span>),             <span class="cm">// up direction</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">15</span>, <span class="n">15</span>, <span class="n">2</span>));          <span class="cm">// forward direction</span>
+    persp.<span class="fn">SetOrientation</span>(orient);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ViewSchedule -->
+<div class="class-block" id="cls-viewschedule">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ViewSchedule</span></div><div class="class-inherit">Inherits: <span>View → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a schedule view (element schedule, key schedule, material takeoff, or sheet list). Schedules are created programmatically with fields, filters, sorting, and grouping. Data is read via TableData.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Data Reading</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ViewSchedule</span> <span class="fn">CreateSchedule</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">categoryId</span>)</span></div>
+      <div class="member-desc">Creates a new schedule for the given category. After creation, use ScheduleDefinition to add fields, filters, and sorting.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create wall schedule + read data</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Schedule"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Create wall schedule</span>
+    <span class="tp">ViewSchedule</span> sched = <span class="tp">ViewSchedule</span>.<span class="fn">CreateSchedule</span>(doc,
+        <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInCategory</span>.OST_Walls));
+    sched.Name = <span class="s">"Wall Schedule"</span>;
+
+    <span class="tp">ScheduleDefinition</span> def = sched.Definition;
+
+    <span class="cm">// Add fields from schedulable fields</span>
+    <span class="tp">IList</span>&lt;<span class="tp">SchedulableField</span>&gt; schedulable = def.<span class="fn">GetSchedulableFields</span>();
+
+    <span class="cm">// Find and add: Mark, Length, Area, Type</span>
+    <span class="k">var</span> wantedBIPs = <span class="k">new</span> []
+    {
+        <span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK,
+        <span class="tp">BuiltInParameter</span>.CURVE_ELEM_LENGTH,
+        <span class="tp">BuiltInParameter</span>.HOST_AREA_COMPUTED,
+        <span class="tp">BuiltInParameter</span>.ELEM_TYPE_PARAM
+    };
+    <span class="k">foreach</span> (<span class="k">var</span> bip <span class="k">in</span> wantedBIPs)
+    {
+        <span class="k">var</span> sf = schedulable.<span class="fn">FirstOrDefault</span>(
+            f => f.ParameterId == <span class="k">new</span> <span class="tp">ElementId</span>(bip));
+        <span class="k">if</span> (sf != <span class="k">null</span>)
+            def.<span class="fn">AddField</span>(sf);
+    }
+
+    <span class="cm">// Sort by Mark</span>
+    <span class="k">var</span> sortField = def.<span class="fn">GetField</span>(<span class="n">0</span>);
+    <span class="k">var</span> sortOrder = <span class="k">new</span> <span class="tp">ScheduleSortGroupField</span>(sortField.FieldId);
+    sortOrder.SortOrder = <span class="tp">ScheduleSortOrder</span>.Ascending;
+    def.<span class="fn">SetSortGroupFields</span>(<span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ScheduleSortGroupField</span>&gt; { sortOrder });
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Read schedule data row by row</span>
+<span class="tp">ViewSchedule</span> existingSched = ...;
+<span class="tp">TableData</span>    table = existingSched.<span class="fn">GetTableData</span>();
+<span class="tp">TableSectionData</span> body = table.<span class="fn">GetSectionData</span>(<span class="tp">SectionType</span>.Body);
+
+<span class="k">int</span> rows = body.NumberOfRows;
+<span class="k">int</span> cols = body.NumberOfColumns;
+
+<span class="k">for</span> (<span class="k">int</span> r = <span class="n">0</span>; r &lt; rows; r++)
+{
+    <span class="k">var</span> rowData = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="k">string</span>&gt;();
+    <span class="k">for</span> (<span class="k">int</span> c = <span class="n">0</span>; c &lt; cols; c++)
+        rowData.<span class="fn">Add</span>(body.<span class="fn">GetCellText</span>(r, c));
+    System.Diagnostics.Debug.WriteLine(<span class="k">string</span>.<span class="fn">Join</span>(<span class="s">" | "</span>, rowData));
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ViewFamilyType -->
+<div class="class-block" id="cls-viewfamilytype">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ViewFamilyType</span></div><div class="class-inherit">Inherits: <span>ElementType → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Defines the type of a view — its family (FloorPlan, CeilingPlan, Section, Elevation, etc.). The ViewFamilyType ID is required when creating views with ViewPlan.Create(), ViewSection.CreateSection(), etc. This is one of the most common sources of bugs — always use ViewFamilyType.Id, NOT ViewPlan.Id.</div>
+  <div class="callout c-crit" style="margin:12px 24px 0;"><strong>// Critical Bug Prevention</strong>ViewPlan.Create(doc, viewFamilyTypeId, levelId) requires a ViewFamilyType ID in the second parameter — NOT a ViewPlan ID. These are completely different classes. Always use the lookup pattern below.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Lookup Patterns</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ViewFamily</span> <span class="v">ViewFamily</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the ViewFamily classification: FloorPlan, CeilingPlan, Section, Elevation, ThreeD, DraftingView, Schedule, DrawingSheet, etc.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — ViewFamilyType lookup for all view types</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Get IDs for all common view types ──</span>
+<span class="k">var</span> allVFTs = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// Floor plan type ID</span>
+<span class="tp">ElementId</span> fpId = allVFTs
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.FloorPlan).Id;
+
+<span class="cm">// Ceiling plan type ID</span>
+<span class="tp">ElementId</span> cpId = allVFTs
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.CeilingPlan).Id;
+
+<span class="cm">// Section type ID</span>
+<span class="tp">ElementId</span> secId = allVFTs
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.Section).Id;
+
+<span class="cm">// Elevation type ID</span>
+<span class="tp">ElementId</span> elevId = allVFTs
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.Elevation).Id;
+
+<span class="cm">// 3D view type ID</span>
+<span class="tp">ElementId</span> v3dId = allVFTs
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.ThreeD).Id;
+
+<span class="cm">// Drafting view type ID</span>
+<span class="tp">ElementId</span> draftId = allVFTs
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.DraftingView).Id;
+
+<span class="cm">// Use to create views</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Views"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// CORRECT — fpId is ViewFamilyType.Id</span>
+    <span class="tp">ViewPlan</span> fp = <span class="tp">ViewPlan</span>.<span class="fn">Create</span>(doc, fpId, level.Id);
+    fp.Name = <span class="s">"FP - Ground Floor"</span>;
+
+    <span class="cm">// WRONG (common bug) — do NOT pass fp.Id or level.Id as type</span>
+    <span class="cm">// ViewPlan.Create(doc, fp.Id, level.Id); ← CRASH</span>
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Viewport -->
+<div class="class-block" id="cls-viewport">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Viewport</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a view placed on a sheet. A Viewport is the container that holds a view on a ViewSheet. Created with Viewport.Create() and positioned on the sheet by setting its center point. Each viewport has a type (label visible, no label, etc.) and can be queried for its bounding box on the sheet.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Viewport</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">viewSheetId</span>, <span class="tp">ElementId</span> <span class="pm">viewId</span>, <span class="tp">XYZ</span> <span class="pm">point</span>)</span></div>
+      <div class="member-desc">Places a view on a sheet at the given center point (in sheet coordinates, feet from sheet origin). The view must not already be placed on another sheet (most views), or must be a schedule (which can appear on multiple sheets).</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create sheet and place views</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get title block</span>
+<span class="tp">FamilySymbol</span> titleBlock = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_TitleBlocks)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Sheet"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Create sheet</span>
+    <span class="tp">ViewSheet</span> sheet = <span class="tp">ViewSheet</span>.<span class="fn">Create</span>(doc, titleBlock.Id);
+    sheet.SheetNumber = <span class="s">"A-101"</span>;
+    sheet.Name        = <span class="s">"Floor Plans"</span>;
+
+    <span class="cm">// Place a floor plan view at sheet centre</span>
+    <span class="tp">ViewPlan</span> floorPlan = ...;
+    <span class="tp">XYZ</span> centre = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">1.1</span>, <span class="n">0.7</span>, <span class="n">0</span>);  <span class="cm">// approx centre of A1 sheet</span>
+
+    <span class="k">if</span> (<span class="tp">Viewport</span>.<span class="fn">CanAddViewToSheet</span>(doc, sheet.Id, floorPlan.Id))
+    {
+        <span class="tp">Viewport</span> vp = <span class="tp">Viewport</span>.<span class="fn">Create</span>(doc, sheet.Id, floorPlan.Id, centre);
+
+        <span class="cm">// Read viewport box on sheet (paper coordinates)</span>
+        <span class="tp">BoundingBoxXYZ</span> box = vp.<span class="fn">GetBoxOutline</span>();
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"VP width={( box.Max.X - box.Min.X)*304.8:F0}mm"</span>);
+    }
+
+    <span class="cm">// List all viewports on a sheet</span>
+    <span class="k">foreach</span> (<span class="tp">ElementId</span> vpId <span class="k">in</span> sheet.<span class="fn">GetAllViewports</span>())
+    {
+        <span class="tp">Viewport</span> v  = doc.<span class="fn">GetElement</span>(vpId) <span class="k">as</span> <span class="tp">Viewport</span>;
+        <span class="tp">View</span>     vi = doc.<span class="fn">GetElement</span>(v.ViewId) <span class="k">as</span> <span class="tp">View</span>;
+        System.Diagnostics.Debug.WriteLine(<span class="s">$"  View: {vi.Name}"</span>);
+    }
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Rebar -->
+<div class="class-block" id="cls-rebar" style="margin-top:20px;">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Rebar</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Structure</span></div>
+  <div class="class-desc">Represents a reinforcement bar in a concrete element. Rebar elements have a bar type (diameter), shape, cover distance, and can be straight, hooked, or shaped. Created using Rebar.CreateFromCurves() inside a host structural element.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Properties</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Rebar</span> <span class="fn">CreateFromCurves</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">RebarStyle</span> <span class="pm">style</span>, <span class="tp">RebarBarType</span> <span class="pm">barType</span>, <span class="tp">RebarHookType</span> <span class="pm">startHook</span>, <span class="tp">RebarHookType</span> <span class="pm">endHook</span>, <span class="tp">Element</span> <span class="pm">host</span>, <span class="tp">XYZ</span> <span class="pm">normal</span>, <span class="tp">IList</span>&lt;<span class="tp">Curve</span>&gt; <span class="pm">curves</span>, <span class="tp">RebarHookOrientation</span> <span class="pm">startHookOrient</span>, <span class="tp">RebarHookOrientation</span> <span class="pm">endHookOrient</span>)</span></div>
+      <div class="member-desc">Creates a rebar element from a list of curves within a host element. The normal defines the plane of the rebar shape.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create bottom reinforcement bar in a beam</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get bar type (e.g. 16mm diameter)</span>
+<span class="tp">RebarBarType</span> barType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RebarBarType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">RebarBarType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(b => b.BarNominalDiameter *<span class="n">304.8</span> > <span class="n">15</span> &amp;&amp;
+                        b.BarNominalDiameter * <span class="n">304.8</span> &lt; <span class="n">17</span>);
+
+<span class="tp">FamilyInstance</span> beam = ...;  <span class="cm">// structural beam host</span>
+
+<span class="cm">// Get beam geometry to find its centreline</span>
+<span class="tp">LocationCurve</span> lc   = beam.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+<span class="tp">XYZ</span>           s    = lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+<span class="tp">XYZ</span>           e    = lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+
+<span class="cm">// Offset downward 50mm for cover</span>
+<span class="k">double</span> coverFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">50</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="tp">XYZ</span>    offset  = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, -coverFt);
+<span class="tp">Line</span>   barPath = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(s + offset, e + offset);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Rebar"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Rebar</span> rebar = <span class="tp">Rebar</span>.<span class="fn">CreateFromCurves</span>(
+        doc,
+        <span class="tp">RebarStyle</span>.Standard,
+        barType,
+        <span class="k">null</span>, <span class="k">null</span>,         <span class="cm">// no hooks</span>
+        beam,              <span class="cm">// host</span>
+        <span class="tp">XYZ</span>.BasisY,         <span class="cm">// normal to bar plane</span>
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt; { barPath },
+        <span class="tp">RebarHookOrientation</span>.Left,
+        <span class="tp">RebarHookOrientation</span>.Left);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Read rebar properties</span>
+<span class="k">var</span> allRebar = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar)
+    .<span class="fn">Cast</span>&lt;<span class="tp">Rebar</span>&gt;().<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> rb <span class="k">in</span> allRebar)
+{
+    <span class="tp">RebarBarType</span> bt     = doc.<span class="fn">GetElement</span>(rb.GetTypeId()) <span class="k">as</span> <span class="tp">RebarBarType</span>;
+    <span class="k">double</span>       dia    = bt?.BarNominalDiameter * <span class="n">304.8</span> ?? <span class="n">0</span>;
+    <span class="k">double</span>       len    = rb.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.REBAR_ELEM_LENGTH)?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Ø{dia:F0}mm L={len:F0}mm"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-views -->
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+const sections=['cls-cabletray','cls-conduit','cls-electricalsystem','cls-duct','cls-space','cls-pipe','cls-pipingsystem','cls-connector','cls-connectormanager','cls-room','cls-topography','cls-stairs','cls-schema','cls-schemabuilder','cls-iupdater','cls-updaterregistry','cls-view3d','cls-viewschedule','cls-viewfamilytype','cls-viewport','cls-rebar'];
+window.addEventListener('scroll',()=>{
+  let cur=sections[0];
+  sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<140)cur=id;});
+  document.querySelectorAll('.sb-ns-child').forEach(c=>{
+    c.classList.toggle('active',c.getAttribute('onclick')?.includes(cur));
+  });
+},{passive:true});
+</script>
+</body>
+</html>

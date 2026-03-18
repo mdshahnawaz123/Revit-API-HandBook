@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Reference — Autodesk.Revit.DB (A–E)</title>
+<link rel="stylesheet" href="api-style.css"/>
+</head>
+<body>
+<div class="layout">
+
+<!-- ══════════════════ SIDEBAR ══════════════════ -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Namespace<br/>Reference</div>
+    <div class="sb-sub">2024+ · All Namespaces · C#</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search class or method…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav" id="sb-nav">
+
+    <!-- Autodesk.Revit.DB -->
+    <div class="sb-ns-group open" id="ns-db-grp">
+      <div class="sb-ns-header active" onclick="toggleNs('ns-db-grp',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>
+        Autodesk.Revit.DB
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="scrollTo('cls-addInId')"><span class="type-badge tb-class">CLS</span>AddInId</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-arc')"><span class="type-badge tb-class">CLS</span>Arc</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-area')"><span class="type-badge tb-class">CLS</span>Area</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-boundingbox')"><span class="type-badge tb-class">CLS</span>BoundingBoxXYZ</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-builtincategory')"><span class="type-badge tb-enum">ENUM</span>BuiltInCategory</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-builtinparameter')"><span class="type-badge tb-enum">ENUM</span>BuiltInParameter</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-category')"><span class="type-badge tb-class">CLS</span>Category</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-color')"><span class="type-badge tb-class">CLS</span>Color</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-compound')"><span class="type-badge tb-class">CLS</span>CompoundStructure</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-curve')"><span class="type-badge tb-class">CLS</span>Curve</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-curveloop')"><span class="type-badge tb-class">CLS</span>CurveLoop</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-dimension')"><span class="type-badge tb-class">CLS</span>Dimension</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-document')"><span class="type-badge tb-class">CLS</span>Document</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-edge')"><span class="type-badge tb-class">CLS</span>Edge</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-element')"><span class="type-badge tb-class">CLS</span>Element</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-elementid')"><span class="type-badge tb-class">CLS</span>ElementId</div>
+        <div class="sb-ns-child" onclick="scrollTo('cls-fec')"><span class="type-badge tb-class">CLS</span>FilteredElementCollector</div>
+      </div>
+    </div>
+
+    <!-- Autodesk.Revit.DB.Analysis -->
+    <div class="sb-ns-group" id="ns-analysis-grp">
+      <div class="sb-ns-header" onclick="toggleNs('ns-analysis-grp',this)">
+        <div class="sb-ns-dot" style="background:#7c6af7"></div>
+        Autodesk.Revit.DB.Analysis
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>SpatialFieldManager</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>SpatialFieldPrimitive</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>AnalysisResultSchema</div>
+      </div>
+    </div>
+
+    <!-- Autodesk.Revit.DB.Architecture -->
+    <div class="sb-ns-group" id="ns-arch-grp">
+      <div class="sb-ns-header" onclick="toggleNs('ns-arch-grp',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>
+        Autodesk.Revit.DB.Architecture
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>Room</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>RoomTag</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>Stairs</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>Railing</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>TopographySurface</div>
+      </div>
+    </div>
+
+    <!-- Autodesk.Revit.DB.Electrical -->
+    <div class="sb-ns-group" id="ns-elec-grp">
+      <div class="sb-ns-header" onclick="toggleNs('ns-elec-grp',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>
+        Autodesk.Revit.DB.Electrical
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>ElectricalSystem</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>CableTray</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>Conduit</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>PanelScheduleView</div>
+      </div>
+    </div>
+
+    <!-- Autodesk.Revit.DB.Events -->
+    <div class="sb-ns-group" id="ns-events-grp">
+      <div class="sb-ns-header" onclick="toggleNs('ns-events-grp',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>
+        Autodesk.Revit.DB.Events
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>DocumentOpenedEventArgs</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>DocumentChangedEventArgs</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>DocumentSavingEventArgs</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>DocumentClosingEventArgs</div>
+      </div>
+    </div>
+
+    <!-- Autodesk.Revit.UI -->
+    <div class="sb-ns-group" id="ns-ui-grp">
+      <div class="sb-ns-header" onclick="toggleNs('ns-ui-grp',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>
+        Autodesk.Revit.UI
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>UIApplication</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>UIDocument</div>
+        <div class="sb-ns-child"><span class="type-badge tb-iface">INT</span>IExternalCommand</div>
+        <div class="sb-ns-child"><span class="type-badge tb-iface">INT</span>IExternalApplication</div>
+        <div class="sb-ns-child"><span class="type-badge tb-iface">INT</span>IExternalEventHandler</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>ExternalEvent</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>TaskDialog</div>
+        <div class="sb-ns-child"><span class="type-badge tb-class">CLS</span>RibbonPanel</div>
+      </div>
+    </div>
+
+  </div><!-- /sb-nav -->
+
+  <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link current" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN ══════════════════ -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 09 of 13 — API Reference · Autodesk.Revit.DB</div>
+  <h1>Revit API<br/><span>Namespace Reference</span></h1>
+  <p>Complete class, constructor, property, method and enum reference for every type in the Revit API — with detailed C# code examples for every member. Structured exactly like the official developer guide.</p>
+  <div class="hero-chips">
+    <span class="chip c-bl">Autodesk.Revit.DB</span>
+    <span class="chip c-pu">Classes A → E</span>
+    <span class="chip c-gr">All Constructors</span>
+    <span class="chip c-ye">All Methods</span>
+    <span class="chip c-or">Code Examples</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ══════════════════════════════════════════════════════
+     NAMESPACE: Autodesk.Revit.DB
+════════════════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-db">
+  <div class="ns-header">
+    <div class="ns-icon">📦</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Namespace</div>
+      <h2>Autodesk.Revit.DB</h2>
+      <p>The primary namespace containing all core Revit model elements, geometry, parameters, transactions and filtering classes.</p>
+    </div>
+  </div>
+
+<!-- ══════════ CLASS: AddInId ══════════ -->
+<div class="class-block" id="cls-addInId">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">AddInId</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>System.Object</span></div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents the unique identifier for a Revit add-in. Used to register updaters (DMU), identify the add-in in event handlers, and create UpdaterId instances. Every IExternalApplication and IExternalCommand has an associated AddInId provided by Revit at runtime.</div>
+
+  <!-- Constructors -->
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+
+    <div class="member">
+      <div class="member-sig">
+        <span class="member-icon">🟣</span>
+        <span class="sig-text"><span class="kw">public</span> <span class="tp">AddInId</span>(<span class="tp">Guid</span> <span class="pm">guid</span>)</span>
+      </div>
+      <div class="member-desc">Creates an AddInId from a GUID. This GUID must match the GUID specified in the add-in's .addin manifest file exactly. Mismatches will cause registration failures at runtime.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>guid</td><td>Guid</td><td>The unique GUID that identifies this add-in. Must match the addin manifest GUID.</td></tr>
+        </table>
+      </div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — AddInId Constructor</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// In IExternalApplication.OnStartup — Revit provides the AddInId</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="cm">// Revit gives you the AddInId automatically</span>
+    <span class="tp">AddInId</span> addInId = app.ActiveAddInId;
+    <span class="tp">Guid</span> guid = addInId.GetGUID();
+
+    <span class="cm">// Or create one manually (must match .addin file GUID)</span>
+    <span class="tp">Guid</span> myGuid = <span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"12345678-1234-1234-1234-123456789abc"</span>);
+    <span class="tp">AddInId</span> manualId = <span class="k">new</span> <span class="tp">AddInId</span>(myGuid);
+
+    <span class="cm">// Used when creating an UpdaterId for DMU</span>
+    <span class="tp">UpdaterId</span> updaterId = <span class="k">new</span> <span class="tp">UpdaterId</span>(addInId,
+        <span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"aaaabbbb-cccc-dddd-eeee-ffffaaaabbbb"</span>));
+
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Methods -->
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Methods</div>
+
+    <div class="member">
+      <div class="member-sig">
+        <span class="member-icon">🟢</span>
+        <span class="sig-text"><span class="kw">public</span> <span class="tp">Guid</span> <span class="fn">GetGUID</span>()</span>
+      </div>
+      <div class="member-desc">Returns the GUID that uniquely identifies this add-in. This GUID corresponds to the &lt;AddInId&gt; value in the .addin manifest XML file.</div>
+      <div class="returns-row">Returns: <span>Guid</span> — The unique identifier GUID of this add-in.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — GetGUID</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">AddInId</span> id = app.ActiveAddInId;
+<span class="tp">Guid</span> guid = id.GetGUID();
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Add-In ID"</span>, <span class="s">$"This add-in GUID: {guid}"</span>);</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- /AddInId -->
+
+<!-- ══════════ CLASS: Arc ══════════ -->
+<div class="class-block" id="cls-arc">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">Arc</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>Curve → APIObject</span></div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a circular arc in 3D space. Arcs are defined by a center, radius, start angle and end angle. As a subclass of Curve, Arc inherits all curve operations including parameter evaluation, projection, tessellation, and endpoint access. Arcs are used for curved walls, circular dimensions, and any circular geometry in the model.</div>
+
+  <div class="callout c-note" style="margin:12px 24px 0;">
+    <strong>// Note</strong>
+    Arc is immutable — all Create() methods return a new Arc instance. You cannot modify a created arc in-place. Use the appropriate Create() overload for your use case: three points, center+radius+angles, or plane+radius+angles.
+  </div>
+
+  <!-- Static Factory Methods (Constructors) -->
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Static Factory Methods (Creation)</div>
+
+    <div class="member">
+      <div class="member-sig">
+        <span class="member-icon">🟣</span>
+        <span class="sig-text"><span class="kw">public static</span> <span class="tp">Arc</span> <span class="fn">Create</span>(<span class="tp">XYZ</span> <span class="pm">end0</span>, <span class="tp">XYZ</span> <span class="pm">end1</span>, <span class="tp">XYZ</span> <span class="pm">pointOnCurve</span>)</span>
+      </div>
+      <div class="member-desc">Creates a new arc passing through three points. The arc passes through end0, pointOnCurve, and end1. This is the most common overload when you know three points on the arc but not the center.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>end0</td><td>XYZ</td><td>The start point (first endpoint) of the arc.</td></tr>
+          <tr><td>end1</td><td>XYZ</td><td>The end point (second endpoint) of the arc.</td></tr>
+          <tr><td>pointOnCurve</td><td>XYZ</td><td>A point that lies on the arc between the two endpoints. Cannot be collinear with end0 and end1.</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>Arc</span> — A new Arc object passing through all three points.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Arc.Create(3 points)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// Create an arc from three known points</span>
+<span class="tp">XYZ</span> start  = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>);
+<span class="tp">XYZ</span> mid    = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">5</span>, <span class="n">0</span>);    <span class="cm">// point on arc</span>
+<span class="tp">XYZ</span> end    = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">0</span>, <span class="n">0</span>);
+
+<span class="tp">Arc</span> arc = <span class="tp">Arc</span>.<span class="fn">Create</span>(start, end, mid);
+
+<span class="cm">// Read arc properties</span>
+<span class="tp">XYZ</span>    center = arc.Center;                <span class="cm">// center point</span>
+<span class="k">double</span> radius = arc.Radius;               <span class="cm">// radius in feet</span>
+<span class="k">double</span> startA = arc.GetEndParameter(<span class="n">0</span>);  <span class="cm">// start angle (radians)</span>
+<span class="k">double</span> endA   = arc.GetEndParameter(<span class="n">1</span>);  <span class="cm">// end angle (radians)</span>
+<span class="k">bool</span>   isBound = arc.IsBound;             <span class="cm">// true for bounded arc</span>
+
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Arc"</span>,
+    <span class="s">$"Center: {center}\nRadius: {radius * 304.8:F1}mm"</span>);</pre>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig">
+        <span class="member-icon">🟣</span>
+        <span class="sig-text"><span class="kw">public static</span> <span class="tp">Arc</span> <span class="fn">Create</span>(<span class="tp">Plane</span> <span class="pm">plane</span>, <span class="tp">double</span> <span class="pm">radius</span>, <span class="tp">double</span> <span class="pm">startAngle</span>, <span class="tp">double</span> <span class="pm">endAngle</span>)</span>
+      </div>
+      <div class="member-desc">Creates a new arc on a specified plane with a given radius, start angle and end angle. The center of the arc is the origin of the plane. Angles are measured from the plane's X-axis in the plane's XY plane.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>plane</td><td>Plane</td><td>The plane that contains the arc. The origin is the arc center.</td></tr>
+          <tr><td>radius</td><td>double</td><td>The radius of the arc in internal units (feet).</td></tr>
+          <tr><td>startAngle</td><td>double</td><td>The start angle of the arc in radians, measured from plane's X-axis.</td></tr>
+          <tr><td>endAngle</td><td>double</td><td>The end angle of the arc in radians. Must be greater than startAngle.</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>Arc</span> — A new bounded Arc on the specified plane.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Arc.Create(Plane, radius, angles) — Quarter circle</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// Create a quarter-circle arc (0° to 90°) at radius 5000mm</span>
+<span class="tp">Plane</span> xyPlane = <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(
+    <span class="tp">XYZ</span>.BasisZ,
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>));
+
+<span class="k">double</span> radiusFt   = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">5000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> startAngle = <span class="n">0</span>;                   <span class="cm">// 0 degrees</span>
+<span class="k">double</span> endAngle   = Math.PI / <span class="n">2</span>;        <span class="cm">// 90 degrees</span>
+
+<span class="tp">Arc</span> quarterArc = <span class="tp">Arc</span>.<span class="fn">Create</span>(xyPlane, radiusFt, startAngle, endAngle);
+
+<span class="cm">// Use to create a curved wall</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Curved Wall"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Wall</span>.<span class="fn">Create</span>(doc, quarterArc, wallType.Id, level.Id,
+        <span class="n">3.0</span>, <span class="n">0.0</span>, <span class="k">false</span>, <span class="k">false</span>);
+    tx.<span class="fn">Commit</span>();
+}</pre>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig">
+        <span class="member-icon">🟣</span>
+        <span class="sig-text"><span class="kw">public static</span> <span class="tp">Arc</span> <span class="fn">Create</span>(<span class="tp">XYZ</span> <span class="pm">center</span>, <span class="tp">double</span> <span class="pm">radius</span>, <span class="tp">double</span> <span class="pm">startAngle</span>, <span class="tp">double</span> <span class="pm">endAngle</span>, <span class="tp">XYZ</span> <span class="pm">xAxis</span>, <span class="tp">XYZ</span> <span class="pm">yAxis</span>)</span>
+      </div>
+      <div class="member-desc">Creates a new arc with explicit center, radius, angles, and axis vectors. This overload gives full control over the arc's orientation in 3D space without requiring a Plane object. xAxis and yAxis define the arc's reference frame.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>center</td><td>XYZ</td><td>The center point of the arc's full circle.</td></tr>
+          <tr><td>radius</td><td>double</td><td>The radius in internal units (feet).</td></tr>
+          <tr><td>startAngle</td><td>double</td><td>Start angle in radians from xAxis.</td></tr>
+          <tr><td>endAngle</td><td>double</td><td>End angle in radians from xAxis.</td></tr>
+          <tr><td>xAxis</td><td>XYZ</td><td>Unit vector defining 0° direction (must be unit length).</td></tr>
+          <tr><td>yAxis</td><td>XYZ</td><td>Unit vector perpendicular to xAxis in the arc plane.</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>Arc</span> — A new Arc with the specified geometry.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Arc.Create(center, radius, angles, axes)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// Create a tilted arc in the XZ plane (vertical arc)</span>
+<span class="tp">XYZ</span> center = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">0</span>, <span class="n">3</span>);
+<span class="k">double</span> radius = <span class="n">2.0</span>;          <span class="cm">// 2 feet</span>
+<span class="tp">XYZ</span> xAxis  = <span class="tp">XYZ</span>.BasisX;     <span class="cm">// horizontal</span>
+<span class="tp">XYZ</span> yAxis  = <span class="tp">XYZ</span>.BasisZ;     <span class="cm">// vertical — makes this a vertical arc</span>
+
+<span class="tp">Arc</span> verticalArc = <span class="tp">Arc</span>.<span class="fn">Create</span>(
+    center, radius,
+    <span class="n">0</span>,              <span class="cm">// start: 0°</span>
+    Math.PI,        <span class="cm">// end: 180° (semicircle)</span>
+    xAxis, yAxis);
+
+<span class="cm">// Tessellate the arc to get polyline approximation</span>
+<span class="tp">IList</span>&lt;<span class="tp">XYZ</span>&gt; pts = verticalArc.<span class="fn">Tessellate</span>();
+<span class="k">foreach</span> (<span class="k">var</span> pt <span class="k">in</span> pts)
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Point: ({pt.X:F3}, {pt.Y:F3}, {pt.Z:F3})"</span>);</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Properties -->
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Properties</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">Center</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the center point of the circle of which this arc is a part. For an unbounded arc (full circle), this is the center of the circle. Available after creation.</div>
+      <div class="returns-row">Returns: <span>XYZ</span> — The center point in model coordinates (feet).</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Radius</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the radius of the arc in internal units (feet). Convert to mm by multiplying by 304.8, or use UnitUtils.ConvertFromInternalUnits().</div>
+      <div class="returns-row">Returns: <span>double</span> — The arc radius in feet (internal units).</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">XDirection</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the X-direction unit vector of the arc's local coordinate frame. Angles are measured from this direction. This is the direction of the arc at parameter = 0.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">YDirection</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the Y-direction unit vector, perpendicular to XDirection in the arc's plane.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">Normal</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the normal to the plane that contains this arc, computed as CrossProduct(XDirection, YDirection).</div>
+    </div>
+  </div>
+
+  <!-- Methods inherited from Curve -->
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Methods (including Curve inherited)</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="fn">Evaluate</span>(<span class="tp">double</span> <span class="pm">parameter</span>, <span class="tp">bool</span> <span class="pm">normalized</span>)</span></div>
+      <div class="member-desc">Evaluates a point on the arc at the given parameter. If normalized = true, parameter 0.0 = start point and 1.0 = end point. If normalized = false, parameter is the raw angle in radians.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>parameter</td><td>double</td><td>0.0–1.0 if normalized, or raw angle if not normalized.</td></tr>
+          <tr><td>normalized</td><td>bool</td><td>true = parameter is 0–1 fraction of arc length; false = raw arc parameter (angle).</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>XYZ</span> — The 3D point at that parameter position.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Evaluate midpoint of arc</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Arc</span> arc = ...;
+
+<span class="cm">// Normalized: 0 = start, 0.5 = midpoint, 1.0 = end</span>
+<span class="tp">XYZ</span> midPoint = arc.<span class="fn">Evaluate</span>(<span class="n">0.5</span>, <span class="k">true</span>);
+<span class="tp">XYZ</span> startPt  = arc.<span class="fn">Evaluate</span>(<span class="n">0.0</span>, <span class="k">true</span>);
+<span class="tp">XYZ</span> endPt    = arc.<span class="fn">Evaluate</span>(<span class="n">1.0</span>, <span class="k">true</span>);
+
+<span class="cm">// Place a family instance at arc midpoint</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Place at Arc Mid"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    doc.Create.<span class="fn">NewFamilyInstance</span>(midPoint, sym, level,
+        <span class="tp">StructuralType</span>.NonStructural);
+    tx.<span class="fn">Commit</span>();
+}</pre>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="fn">GetEndPoint</span>(<span class="tp">int</span> <span class="pm">index</span>)</span></div>
+      <div class="member-desc">Gets the start or end point of the bounded arc. Index 0 = start point, index 1 = end point. Throws if the arc is unbounded (full circle).</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>index</td><td>int</td><td>0 for start point, 1 for end point.</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>XYZ</span> — The endpoint in model coordinates.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IntersectionResultArray</span> <span class="fn">Intersect</span>(<span class="tp">Curve</span> <span class="pm">curve</span>)</span></div>
+      <div class="member-desc">Computes the intersection(s) between this arc and another curve. Returns all intersection results. Used for finding where arcs cross lines or other arcs.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>curve</td><td>Curve</td><td>The curve to intersect with. Can be Line, Arc, Ellipse, etc.</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>IntersectionResultArray</span> — Collection of intersection results, or null/empty if no intersection.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Arc.Intersect with Line</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Arc</span>  arc  = ...;
+<span class="tp">Line</span> line = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(-<span class="n">10</span>, <span class="n">0</span>, <span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">0</span>, <span class="n">0</span>));
+
+<span class="tp">IntersectionResultArray</span> results;
+<span class="tp">SetComparisonResult</span> res = arc.<span class="fn">Intersect</span>(line, <span class="k">out</span> results);
+
+<span class="k">if</span> (res == <span class="tp">SetComparisonResult</span>.Overlap && results != <span class="k">null</span>)
+{
+    <span class="k">foreach</span> (<span class="tp">IntersectionResult</span> ir <span class="k">in</span> results)
+    {
+        <span class="tp">XYZ</span>    pt    = ir.XYZPoint;      <span class="cm">// 3D intersection point</span>
+        <span class="k">double</span> paramA = ir.Parameter;    <span class="cm">// param on arc</span>
+        <span class="k">double</span> paramB = ir.Parameter2;   <span class="cm">// param on line</span>
+        System.Diagnostics.Debug.WriteLine(<span class="s">$"Intersection at {pt}"</span>);
+    }
+}</pre>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IList</span>&lt;<span class="tp">XYZ</span>&gt; <span class="fn">Tessellate</span>()</span></div>
+      <div class="member-desc">Returns a polyline approximation of the arc as a list of XYZ points. The accuracy is controlled by Revit's tessellation tolerance. The first and last points match the arc endpoints exactly.</div>
+      <div class="returns-row">Returns: <span>IList&lt;XYZ&gt;</span> — Ordered list of points approximating the arc.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Curve</span> <span class="fn">CreateOffset</span>(<span class="tp">double</span> <span class="pm">offsetDist</span>, <span class="tp">XYZ</span> <span class="pm">normal</span>)</span></div>
+      <div class="member-desc">Creates a new curve that is parallel to this arc at the specified offset distance. For arcs, the offset produces another arc with the same center but different radius. The normal parameter defines which side to offset to.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>offsetDist</td><td>double</td><td>Offset distance in internal units (feet). Positive = same side as normal cross product direction.</td></tr>
+          <tr><td>normal</td><td>XYZ</td><td>Normal vector of the reference plane for the offset direction.</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>Curve</span> — A new Arc at the offset distance (or Line for degenerate cases).</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Offset an arc outward by 500mm</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Arc</span>    arc     = ...;
+<span class="k">double</span> offsetMM = <span class="n">500</span>;
+<span class="k">double</span> offsetFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(offsetMM, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="cm">// Offset outward (away from center) — normal = Z-axis for XY plane arc</span>
+<span class="tp">Curve</span> offsetArc = arc.<span class="fn">CreateOffset</span>(offsetFt, <span class="tp">XYZ</span>.BasisZ);
+<span class="tp">Arc</span>   result    = offsetArc <span class="k">as</span> <span class="tp">Arc</span>;
+
+<span class="k">if</span> (result != <span class="k">null</span>)
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Offset"</span>, <span class="s">$"New radius: {result.Radius * 304.8:F1}mm"</span>);</pre>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Transform</span> <span class="fn">ComputeDerivatives</span>(<span class="tp">double</span> <span class="pm">parameter</span>, <span class="tp">bool</span> <span class="pm">normalized</span>)</span></div>
+      <div class="member-desc">Returns the position and first/second derivative vectors of the arc at the given parameter. The Transform's origin is the point on the curve, BasisX is the tangent vector, BasisY is the normal (pointing toward center), and BasisZ is the binormal.</div>
+      <div class="returns-row">Returns: <span>Transform</span> — A frame where Origin=point, BasisX=tangent, BasisY=normal, BasisZ=binormal.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Tangent direction at arc midpoint</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Arc</span>       arc        = ...;
+<span class="tp">Transform</span> derivs     = arc.<span class="fn">ComputeDerivatives</span>(<span class="n">0.5</span>, <span class="k">true</span>);
+
+<span class="tp">XYZ</span> pointOnArc = derivs.Origin;   <span class="cm">// position at parameter 0.5</span>
+<span class="tp">XYZ</span> tangent    = derivs.BasisX;   <span class="cm">// tangent direction (normalized)</span>
+<span class="tp">XYZ</span> normal     = derivs.BasisY;   <span class="cm">// points toward center</span>
+
+<span class="cm">// Place element aligned to arc tangent at midpoint</span>
+<span class="tp">Transform</span> placement = <span class="tp">Transform</span>.Identity;
+placement.Origin  = pointOnArc;
+placement.BasisX  = tangent;
+placement.BasisY  = <span class="tp">XYZ</span>.BasisZ;
+placement.BasisZ  = tangent.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ);</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- /Arc -->
+
+<!-- ══════════ CLASS: BoundingBoxXYZ ══════════ -->
+<div class="class-block" id="cls-boundingbox">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">BoundingBoxXYZ</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>APIObject</span></div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents an axis-aligned bounding box defined by minimum and maximum XYZ points, plus an optional Transform. Used extensively for: getting element extents, creating section views (BoundingBoxXYZ defines the section box), defining 3D view section boxes, and spatial queries. The Transform defines a local coordinate frame — Min and Max are in the transform's local space.</div>
+
+  <div class="callout c-crit" style="margin:12px 24px 0;">
+    <strong>// Critical — Section Views</strong>
+    When creating section views with ViewSection.CreateSection(), the BoundingBoxXYZ MUST have its Transform set. A BoundingBoxXYZ with Transform = Identity will create a section at the world origin. Set Transform.Origin to the cut location and Transform.BasisX/Y/Z to the view orientation.
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">BoundingBoxXYZ</span>()</span></div>
+      <div class="member-desc">Creates a new empty BoundingBoxXYZ with Min and Max set to invalid values and Transform set to Identity. You must set Min, Max, and typically Transform before use.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Create BoundingBoxXYZ for a section view</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// Creating a section perpendicular to a wall</span>
+<span class="tp">Wall</span>          wall    = ...;
+<span class="tp">LocationCurve</span> lc      = wall.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+<span class="tp">XYZ</span>           midPt   = lc.Curve.<span class="fn">Evaluate</span>(<span class="n">0.5</span>, <span class="k">true</span>);
+<span class="tp">XYZ</span>           wallDir = (lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">1</span>) - lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">0</span>)).<span class="fn">Normalize</span>();
+<span class="tp">XYZ</span>           viewDir = wallDir.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ).<span class="fn">Normalize</span>();
+
+<span class="cm">// Build the Transform (defines section orientation)</span>
+<span class="tp">Transform</span> t = <span class="tp">Transform</span>.Identity;
+t.Origin  = midPt;
+t.BasisX  = wallDir;     <span class="cm">// horizontal in view</span>
+t.BasisY  = <span class="tp">XYZ</span>.BasisZ; <span class="cm">// vertical in view</span>
+t.BasisZ  = viewDir;     <span class="cm">// camera direction</span>
+
+<span class="cm">// Build the bounding box (extents in local space)</span>
+<span class="tp">BoundingBoxXYZ</span> bb = <span class="k">new</span> <span class="tp">BoundingBoxXYZ</span>();
+bb.Transform = t;
+bb.Min = <span class="k">new</span> <span class="tp">XYZ</span>(-<span class="n">5</span>, <span class="n">0</span>, -<span class="n">1</span>);    <span class="cm">// left, bottom, near (feet)</span>
+bb.Max = <span class="k">new</span> <span class="tp">XYZ</span>( <span class="n">5</span>, <span class="n">10</span>, <span class="n">1</span>);   <span class="cm">// right, top, far (feet)</span>
+
+<span class="cm">// Create the section view</span>
+<span class="tp">ElementId</span> sectionTypeId = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+    .<span class="fn">First</span>(x => x.ViewFamily == <span class="tp">ViewFamily</span>.Section).Id;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Section"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">ViewSection</span> sec = <span class="tp">ViewSection</span>.<span class="fn">CreateSection</span>(doc, sectionTypeId, bb);
+    sec.Name = <span class="s">"Wall Section"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Properties</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">Min</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div>
+      <div class="member-desc">Gets or sets the minimum corner of the bounding box in the Transform's local coordinate space. For a standard element bounding box, this is the bottom-left-near corner.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">Max</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div>
+      <div class="member-desc">Gets or sets the maximum corner of the bounding box in local space. For an element bounding box this is the top-right-far corner.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Transform</span> <span class="v">Transform</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div>
+      <div class="member-desc">Gets or sets the transform that maps from the bounding box's local coordinate space to the world (model) coordinate space. For element bounding boxes this is often Identity. For section views this defines the cut orientation.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">Enabled</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div>
+      <div class="member-desc">Gets or sets whether the bounding box is enabled. Used primarily with View3D.SetSectionBox — setting Enabled = false on the section box disables section box clipping in the 3D view.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Element bounding box and centroid</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Element</span> elem = ...;
+
+<span class="cm">// Get element bounding box (pass null for model extents, view for view-clipped)</span>
+<span class="tp">BoundingBoxXYZ</span> bb = elem.<span class="fn">get_BoundingBox</span>(<span class="k">null</span>);
+
+<span class="k">if</span> (bb != <span class="k">null</span>)
+{
+    <span class="tp">XYZ</span> min = bb.Min;
+    <span class="tp">XYZ</span> max = bb.Max;
+
+    <span class="cm">// Compute centroid</span>
+    <span class="tp">XYZ</span> center = <span class="k">new</span> <span class="tp">XYZ</span>(
+        (min.X + max.X) / <span class="n">2</span>,
+        (min.Y + max.Y) / <span class="n">2</span>,
+        (min.Z + max.Z) / <span class="n">2</span>);
+
+    <span class="cm">// Dimensions in mm</span>
+    <span class="k">double</span> widthMM  = (max.X - min.X) * <span class="n">304.8</span>;
+    <span class="k">double</span> depthMM  = (max.Y - min.Y) * <span class="n">304.8</span>;
+    <span class="k">double</span> heightMM = (max.Z - min.Z) * <span class="n">304.8</span>;
+
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"BBox"</span>,
+        <span class="s">$"W:{widthMM:F0} D:{depthMM:F0} H:{heightMM:F0}mm"</span>);
+}</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- /BoundingBoxXYZ -->
+
+<!-- ══════════ ENUM: BuiltInCategory ══════════ -->
+<div class="class-block" id="cls-builtincategory">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-enum">Enum</span>
+        <span class="class-name">BuiltInCategory</span>
+      </div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Identifies built-in Revit categories. Used with FilteredElementCollector.OfCategory() and to compare element category IDs. Contains hundreds of values — the most commonly used are listed below. The integer value of each member matches the category's internal ID in Revit.</div>
+
+  <div class="class-section">
+    <div class="section-title st-enum">🟡 Key Enum Values</div>
+    <div class="member">
+      <table class="enum-table">
+        <tr><th>Member</th><th>Value</th><th>Description</th></tr>
+        <tr><td>OST_Walls</td><td>-2000011</td><td>Architectural and structural walls</td></tr>
+        <tr><td>OST_Floors</td><td>-2000032</td><td>Floor slabs and floor elements</td></tr>
+        <tr><td>OST_Ceilings</td><td>-2000038</td><td>Ceiling elements</td></tr>
+        <tr><td>OST_Roofs</td><td>-2000035</td><td>Roof elements (FootPrint, Extrusion)</td></tr>
+        <tr><td>OST_Doors</td><td>-2000023</td><td>Door family instances</td></tr>
+        <tr><td>OST_Windows</td><td>-2000014</td><td>Window family instances</td></tr>
+        <tr><td>OST_Columns</td><td>-2000168</td><td>Architectural columns</td></tr>
+        <tr><td>OST_StructuralColumns</td><td>-2001330</td><td>Structural columns</td></tr>
+        <tr><td>OST_StructuralFraming</td><td>-2001320</td><td>Beams, braces and structural framing</td></tr>
+        <tr><td>OST_StructuralFoundation</td><td>-2001300</td><td>Structural foundations (isolated, wall, slab)</td></tr>
+        <tr><td>OST_Rooms</td><td>-2000160</td><td>Architectural rooms</td></tr>
+        <tr><td>OST_MEPSpaces</td><td>-2003100</td><td>MEP spaces (for HVAC calculations)</td></tr>
+        <tr><td>OST_PipeCurves</td><td>-2008044</td><td>Pipe elements in plumbing system</td></tr>
+        <tr><td>OST_DuctCurves</td><td>-2008000</td><td>Duct elements in mechanical system</td></tr>
+        <tr><td>OST_CableTray</td><td>-2008170</td><td>Cable tray elements</td></tr>
+        <tr><td>OST_Conduit</td><td>-2008150</td><td>Conduit elements</td></tr>
+        <tr><td>OST_LightingFixtures</td><td>-2001120</td><td>Lighting fixture family instances</td></tr>
+        <tr><td>OST_ElectricalEquipment</td><td>-2001040</td><td>Panels, switchboards etc.</td></tr>
+        <tr><td>OST_Dimensions</td><td>-2000260</td><td>Dimension annotations</td></tr>
+        <tr><td>OST_TextNotes</td><td>-2000300</td><td>Text note annotations</td></tr>
+        <tr><td>OST_Lines</td><td>-2000530</td><td>Model and detail lines (parent)</td></tr>
+        <tr><td>OST_DetailComponents</td><td>-2000895</td><td>Detail component 2D elements</td></tr>
+        <tr><td>OST_Furniture</td><td>-2000080</td><td>Furniture family instances</td></tr>
+        <tr><td>OST_Grids</td><td>-2000240</td><td>Grid elements</td></tr>
+        <tr><td>OST_Levels</td><td>-2000240</td><td>Level datum elements</td></tr>
+        <tr><td>OST_TitleBlocks</td><td>-2000280</td><td>Title block family instances on sheets</td></tr>
+        <tr><td>OST_Rebar</td><td>-2009030</td><td>Reinforcement bar elements</td></tr>
+        <tr><td>OST_Mass</td><td>-2003400</td><td>Conceptual mass elements</td></tr>
+        <tr><td>OST_Areas</td><td>-2003200</td><td>Area elements</td></tr>
+        <tr><td>OST_RevisionClouds</td><td>-2000575</td><td>Revision cloud annotations</td></tr>
+        <tr><td>OST_MechanicalEquipment</td><td>-2001000</td><td>Mechanical equipment (AHU, chillers etc.)</td></tr>
+      </table>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — BuiltInCategory usage</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// 1. Use with FilteredElementCollector</span>
+<span class="k">var</span> doors = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Doors)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// 2. Compare an element's category</span>
+<span class="tp">Element</span> elem = ...;
+<span class="k">if</span> (elem.Category?.Id.IntegerValue == (<span class="k">int</span>)<span class="tp">BuiltInCategory</span>.OST_Walls)
+{
+    <span class="tp">Wall</span> wall = elem <span class="k">as</span> <span class="tp">Wall</span>;
+}
+
+<span class="cm">// 3. Get a Category object from a BuiltInCategory</span>
+<span class="tp">Category</span> wallCat = doc.Settings.Categories
+    .<span class="fn">get_Item</span>(<span class="tp">BuiltInCategory</span>.OST_Walls);
+
+<span class="cm">// 4. Use in ElementMulticategoryFilter</span>
+<span class="k">var</span> cats = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">BuiltInCategory</span>&gt;
+{
+    <span class="tp">BuiltInCategory</span>.OST_Walls,
+    <span class="tp">BuiltInCategory</span>.OST_Floors,
+    <span class="tp">BuiltInCategory</span>.OST_Roofs
+};
+<span class="k">var</span> envelopeFilter = <span class="k">new</span> <span class="tp">ElementMulticategoryFilter</span>(cats);
+<span class="k">var</span> envelope = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(envelopeFilter)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">ToList</span>();</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- /BuiltInCategory -->
+
+<!-- ══════════ ENUM: BuiltInParameter ══════════ -->
+<div class="class-block" id="cls-builtinparameter">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-enum">Enum</span>
+        <span class="class-name">BuiltInParameter</span>
+      </div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Identifies built-in Revit parameters that are present on elements by default (not user-created). Using BuiltInParameter is the most reliable way to access parameters — it is language-independent and faster than name-based lookup. There are thousands of values; the most important are listed below.</div>
+
+  <div class="class-section">
+    <div class="section-title st-enum">🟡 Key Enum Values — Common Parameters</div>
+    <div class="member">
+      <table class="enum-table">
+        <tr><th>Member</th><th>Category</th><th>Description · StorageType</th></tr>
+        <tr><td>ALL_MODEL_MARK</td><td>All elements</td><td>The "Mark" parameter shown in properties · String</td></tr>
+        <tr><td>ALL_MODEL_COMMENTS</td><td>All elements</td><td>The "Comments" parameter · String</td></tr>
+        <tr><td>ELEM_FAMILY_PARAM</td><td>All instances</td><td>Family name of the element · String (read-only)</td></tr>
+        <tr><td>ELEM_TYPE_PARAM</td><td>All instances</td><td>Type name of the element · String (read-only)</td></tr>
+        <tr><td>WALL_USER_HEIGHT_PARAM</td><td>Wall</td><td>Unconnected height of wall · Double (feet)</td></tr>
+        <tr><td>WALL_ATTR_WIDTH_PARAM</td><td>Wall</td><td>Wall type thickness/width · Double (feet, read-only)</td></tr>
+        <tr><td>WALL_ATTR_AREA_PARAM</td><td>Wall</td><td>Gross wall area · Double (sq.ft)</td></tr>
+        <tr><td>WALL_KEY_REF_PARAM</td><td>Wall</td><td>Location line (0=Centerline, 2=Finish Face Ext.) · Integer</td></tr>
+        <tr><td>FUNCTION_PARAM</td><td>Wall/Floor type</td><td>Function: 0=Interior, 1=Exterior, 2=Foundation… · Integer</td></tr>
+        <tr><td>FLOOR_ATTR_THICKNESS_PARAM</td><td>Floor type</td><td>Floor type thickness · Double (feet)</td></tr>
+        <tr><td>ROOM_NAME</td><td>Room</td><td>Room name · String</td></tr>
+        <tr><td>ROOM_NUMBER</td><td>Room</td><td>Room number · String</td></tr>
+        <tr><td>ROOM_AREA</td><td>Room</td><td>Room area · Double (sq.ft)</td></tr>
+        <tr><td>ROOM_DEPARTMENT</td><td>Room</td><td>Room department · String</td></tr>
+        <tr><td>LEVEL_ELEV</td><td>Level</td><td>Level elevation · Double (feet)</td></tr>
+        <tr><td>RBS_PIPE_DIAMETER_PARAM</td><td>Pipe</td><td>Pipe diameter · Double (feet)</td></tr>
+        <tr><td>RBS_CURVE_WIDTH_PARAM</td><td>Duct</td><td>Duct width · Double (feet)</td></tr>
+        <tr><td>RBS_CURVE_HEIGHT_PARAM</td><td>Duct</td><td>Duct height · Double (feet)</td></tr>
+        <tr><td>CURVE_ELEM_LENGTH</td><td>Curves (walls, pipes)</td><td>Length of curve element · Double (feet)</td></tr>
+        <tr><td>MATERIAL_ID_PARAM</td><td>Extrusion, geometry</td><td>Material assignment · ElementId</td></tr>
+        <tr><td>SYMBOL_ID_PARAM</td><td>FamilySymbol</td><td>Type mark of a family type · String</td></tr>
+        <tr><td>HOST_AREA_COMPUTED</td><td>Hosted elements</td><td>Gross area of the host · Double</td></tr>
+        <tr><td>ELEM_PARTITION_PARAM</td><td>All (workshared)</td><td>Workset ID the element belongs to · Integer</td></tr>
+        <tr><td>PHASE_CREATED</td><td>All elements</td><td>Phase the element was created in · ElementId</td></tr>
+        <tr><td>PHASE_DEMOLISHED</td><td>All elements</td><td>Phase the element was demolished in · ElementId</td></tr>
+        <tr><td>STRUCTURAL_SECTION_SHAPE</td><td>Structural framing</td><td>Profile shape type of a structural member · Integer (enum)</td></tr>
+        <tr><td>STAIRS_ACTUAL_RISER_HEIGHT</td><td>Stairs</td><td>Actual riser height · Double (feet)</td></tr>
+        <tr><td>STAIRS_RISER_NUMBER</td><td>Stairs</td><td>Number of risers · Integer</td></tr>
+        <tr><td>VIEW_PHASE</td><td>View</td><td>Phase assigned to a view · ElementId</td></tr>
+        <tr><td>DESIGN_OPTION_ID</td><td>Design option elements</td><td>The design option this element belongs to · ElementId</td></tr>
+      </table>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — BuiltInParameter access patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Element</span> elem = ...;
+
+<span class="cm">// Read a string parameter</span>
+<span class="tp">Parameter</span> mark = elem.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK);
+<span class="k">string</span> markVal = mark?.AsString() ?? <span class="s">""</span>;
+
+<span class="cm">// Read a double parameter with unit conversion</span>
+<span class="tp">Wall</span> wall = elem <span class="k">as</span> <span class="tp">Wall</span>;
+<span class="k">if</span> (wall != <span class="k">null</span>)
+{
+    <span class="k">double</span> heightFt = wall
+        .<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.WALL_USER_HEIGHT_PARAM)
+        .<span class="fn">AsDouble</span>();
+    <span class="k">double</span> heightMm = <span class="tp">UnitUtils</span>
+        .<span class="fn">ConvertFromInternalUnits</span>(heightFt, <span class="tp">UnitTypeId</span>.Millimeters);
+}
+
+<span class="cm">// Set a parameter inside a transaction</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Set Mark"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Parameter</span> p = elem.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK);
+    <span class="k">if</span> (p != <span class="k">null</span> &amp;&amp; !p.IsReadOnly)
+        p.<span class="fn">Set</span>(<span class="s">"W-001"</span>);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Read ElementId parameter (phase)</span>
+<span class="tp">Parameter</span> phaseParam = elem.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PHASE_CREATED);
+<span class="tp">ElementId</span> phaseId    = phaseParam?.AsElementId();
+<span class="k">if</span> (phaseId != <span class="tp">ElementId</span>.InvalidElementId)
+{
+    <span class="tp">Phase</span> phase = doc.<span class="fn">GetElement</span>(phaseId) <span class="k">as</span> <span class="tp">Phase</span>;
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Phase: {phase?.Name}"</span>);
+}</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- /BuiltInParameter -->
+
+<!-- ══════════ CLASS: Color ══════════ -->
+<div class="class-block" id="cls-color">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">Color</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>APIObject</span></div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents an RGB colour used throughout the Revit API for graphic overrides, material colours, line colours, and fill pattern colours. Unlike System.Drawing.Color, Revit's Color uses byte components (0–255 each) and has no alpha channel support at the API level.</div>
+
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Color</span>(<span class="tp">byte</span> <span class="pm">red</span>, <span class="tp">byte</span> <span class="pm">green</span>, <span class="tp">byte</span> <span class="pm">blue</span>)</span></div>
+      <div class="member-desc">Creates a new Color from red, green, and blue byte components (each 0–255). This is the only constructor — there are no named colour constants in the Revit Color class.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>red</td><td>byte</td><td>Red component (0–255)</td></tr>
+          <tr><td>green</td><td>byte</td><td>Green component (0–255)</td></tr>
+          <tr><td>blue</td><td>byte</td><td>Blue component (0–255)</td></tr>
+        </table>
+      </div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Color with OverrideGraphicSettings</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// Define standard colours</span>
+<span class="tp">Color</span> red     = <span class="k">new</span> <span class="tp">Color</span>(<span class="n">255</span>, <span class="n">0</span>,   <span class="n">0</span>);
+<span class="tp">Color</span> green   = <span class="k">new</span> <span class="tp">Color</span>(<span class="n">0</span>,   <span class="n">200</span>, <span class="n">80</span>);
+<span class="tp">Color</span> blue    = <span class="k">new</span> <span class="tp">Color</span>(<span class="n">30</span>,  <span class="n">120</span>, <span class="n">255</span>);
+<span class="tp">Color</span> orange  = <span class="k">new</span> <span class="tp">Color</span>(<span class="n">255</span>, <span class="n">140</span>, <span class="n">0</span>);
+
+<span class="cm">// Apply to view override — highlight external walls red</span>
+<span class="k">var</span> overrides = <span class="k">new</span> <span class="tp">OverrideGraphicSettings</span>();
+overrides.<span class="fn">SetProjectionLineColor</span>(red);
+overrides.<span class="fn">SetCutLineColor</span>(red);
+overrides.<span class="fn">SetCutFillColor</span>(red);
+overrides.<span class="fn">SetSurfaceForegroundPatternColor</span>(red);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Override"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+        .<span class="fn">Where</span>(w => w.WallType.Function == <span class="tp">WallFunction</span>.Exterior);
+
+    <span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> walls)
+        doc.ActiveView.<span class="fn">SetElementOverrides</span>(wall.Id, overrides);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Apply colour to a material</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Material Color"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Material</span> mat = doc.<span class="fn">GetElement</span>(matId) <span class="k">as</span> <span class="tp">Material</span>;
+    <span class="k">if</span> (mat != <span class="k">null</span>)
+        mat.Color = <span class="k">new</span> <span class="tp">Color</span>(<span class="n">200</span>, <span class="n">180</span>, <span class="n">140</span>); <span class="cm">// beige</span>
+    tx.<span class="fn">Commit</span>();
+}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Properties</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">byte</span> <span class="v">Red</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the red component (0–255) of this colour.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">byte</span> <span class="v">Green</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the green component (0–255) of this colour.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">byte</span> <span class="v">Blue</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the blue component (0–255) of this colour.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsValid</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Returns true if this Color was created with valid RGB values. An invalid Color has undefined R,G,B values and should not be used in API calls.</div>
+    </div>
+  </div>
+</div><!-- /Color -->
+
+<!-- ══════════ CLASS: CurveLoop ══════════ -->
+<div class="class-block" id="cls-curveloop">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">CurveLoop</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>APIObject · IEnumerable&lt;Curve&gt;</span></div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a closed or open sequence of connected curves. CurveLoop is the primary way to define profiles for Floor.Create(), ceiling profiles, void extrusions, filled regions, and room separators. The curves must be connected end-to-start — the endpoint of each curve must match the start of the next within tolerance.</div>
+
+  <div class="callout c-warn" style="margin:12px 24px 0;">
+    <strong>// Warning — Curve Connectivity</strong>
+    All curves in a CurveLoop must be end-to-end connected. If curves don't connect within Revit's tolerance, API calls using the CurveLoop will fail with an exception. Use CurveLoop.IsOpen() to verify, and ensure curves are appended in order.
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">CurveLoop</span>()</span></div>
+      <div class="member-desc">Creates an empty CurveLoop. Curves are added using Append(). The loop can also be created from an existing IEnumerable of curves using CreateViaThicken() or static factory methods.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — CurveLoop for a rectangular floor</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// Create a 6m × 4m rectangular room profile</span>
+<span class="tp">XYZ</span> p0 = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,  <span class="n">0</span>, <span class="n">0</span>);
+<span class="tp">XYZ</span> p1 = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">20</span>, <span class="n">0</span>, <span class="n">0</span>);   <span class="cm">// 6096mm ≈ 20 feet</span>
+<span class="tp">XYZ</span> p2 = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">20</span>, <span class="n">13</span>, <span class="n">0</span>);  <span class="cm">// ~4m</span>
+<span class="tp">XYZ</span> p3 = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,  <span class="n">13</span>, <span class="n">0</span>);
+
+<span class="tp">CurveLoop</span> loop = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(p0, p1));
+loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(p1, p2));
+loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(p2, p3));
+loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(p3, p0));
+
+<span class="cm">// Verify it's closed</span>
+<span class="k">bool</span> isOpen = loop.<span class="fn">IsOpen</span>();   <span class="cm">// should be false</span>
+<span class="k">double</span> perimeter = loop.<span class="fn">GetExactLength</span>();
+
+<span class="cm">// Use to create a floor</span>
+<span class="tp">FloorType</span> ft = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FloorType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">FloorType</span>&gt;().<span class="fn">First</span>();
+<span class="tp">Level</span> lv = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Floor"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Floor</span>.<span class="fn">Create</span>(doc, <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { loop }, ft.Id, lv.Id);
+    tx.<span class="fn">Commit</span>();
+}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Methods</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="kw">void</span> <span class="fn">Append</span>(<span class="tp">Curve</span> <span class="pm">curve</span>)</span></div>
+      <div class="member-desc">Adds a curve to the end of this loop. The curve's start point must be within tolerance of the previous curve's end point. The order of Append() calls defines the winding direction of the loop.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="fn">IsOpen</span>()</span></div>
+      <div class="member-desc">Returns true if the loop's last curve end does not connect back to the first curve's start (open chain). For use as a floor or room profile, IsOpen() must return false.</div>
+      <div class="returns-row">Returns: <span>bool</span> — false = closed loop (correct for floor profiles); true = open chain.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="fn">GetExactLength</span>()</span></div>
+      <div class="member-desc">Computes the exact perimeter (sum of all curve lengths) of this loop in internal units (feet). Convert to mm with ×304.8.</div>
+      <div class="returns-row">Returns: <span>double</span> — Total perimeter length in feet.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="kw">static</span> <span class="tp">CurveLoop</span> <span class="fn">CreateViaThicken</span>(<span class="tp">Curve</span> <span class="pm">curve</span>, <span class="tp">double</span> <span class="pm">thickness</span>, <span class="tp">XYZ</span> <span class="pm">normal</span>)</span></div>
+      <div class="member-desc">Creates a closed CurveLoop by offsetting a single open curve by the specified thickness, creating a "slab" profile (two parallel curves with end caps). Very useful for creating wall-like floor profiles from a single centreline.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>curve</td><td>Curve</td><td>The centreline curve to thicken.</td></tr>
+          <tr><td>thickness</td><td>double</td><td>The total thickness in feet. Curve is offset thickness/2 on each side.</td></tr>
+          <tr><td>normal</td><td>XYZ</td><td>Normal to the plane containing the curve (e.g. XYZ.BasisZ for horizontal curves).</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>CurveLoop</span> — A closed loop representing the thickened profile.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — CreateViaThicken for a strip footing</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// Create a 600mm-wide strip footing profile along a wall centreline</span>
+<span class="tp">Line</span>   wallCentreline = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">0</span>,<span class="n">0</span>));
+<span class="k">double</span> widthFt         = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">600</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="tp">CurveLoop</span> footingProfile = <span class="tp">CurveLoop</span>.<span class="fn">CreateViaThicken</span>(
+    wallCentreline,
+    widthFt,
+    <span class="tp">XYZ</span>.BasisZ);   <span class="cm">// Z-normal = horizontal plane</span>
+
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Profile"</span>,
+    <span class="s">$"Perimeter: {footingProfile.GetExactLength() * 304.8:F0}mm"</span>);</pre>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="kw">void</span> <span class="fn">Flip</span>()</span></div>
+      <div class="member-desc">Reverses the winding direction of the loop (changes the loop from clockwise to counter-clockwise or vice versa). This also reverses the direction of each curve in the loop. Useful when Revit requires a specific winding order.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">CurveLoop</span> <span class="fn">CreateTransformed</span>(<span class="tp">Transform</span> <span class="pm">transform</span>)</span></div>
+      <div class="member-desc">Returns a new CurveLoop that is this loop transformed by the given Transform. The original loop is unchanged. Used to move, rotate, or scale a loop profile.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Copy loop to a different level</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">CurveLoop</span> groundFloorProfile = ...;  <span class="cm">// at Z = 0</span>
+
+<span class="cm">// Move the profile up to floor 2 (elevation 4m = 13.12 ft)</span>
+<span class="k">double</span> elevation = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">4000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="tp">Transform</span> moveUp = <span class="tp">Transform</span>.<span class="fn">CreateTranslation</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, elevation));
+
+<span class="tp">CurveLoop</span> upperFloorProfile = groundFloorProfile.<span class="fn">CreateTransformed</span>(moveUp);</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- /CurveLoop -->
+
+<!-- ══════════ CLASS: Element ══════════ -->
+<div class="class-block" id="cls-element">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">Element</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>APIObject</span> · All model elements inherit from this class</div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">The base class for every element in the Revit model. Both instance elements (Wall, Floor, FamilyInstance) and type elements (WallType, FamilySymbol) derive from Element. Provides access to universal properties: Id, Name, Category, Parameters, Geometry, BoundingBox, Level, and dependent elements.</div>
+
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Core Properties</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ElementId</span> <span class="v">Id</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the unique integer identifier of this element within the document. ElementId values are stable for the lifetime of the element in the document but can change after detach/reattach operations. Use UniqueId (GUID string) for cross-document identification.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">Name</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div>
+      <div class="member-desc">Gets or sets the element's name. For instances this is typically empty; for types (WallType, FamilySymbol) this is the type name. Setting Name requires an open Transaction.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Category</span> <span class="v">Category</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the Revit category this element belongs to. The Category.Id.IntegerValue can be cast to BuiltInCategory for comparison. May be null for some element types.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">UniqueId</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the globally unique identifier (GUID string) for this element. Unlike Id (integer), UniqueId is stable across documents and is used for IFC GUID mapping and cross-document element tracking.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ParameterSet</span> <span class="v">Parameters</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the complete set of all parameters available on this element (both instance and type parameters accessible through the instance). Iterate to discover all parameters or use get_Parameter() for direct access.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ElementId</span> <span class="v">LevelId</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the ElementId of the Level this element is associated with. Returns ElementId.InvalidElementId if the element has no level association (e.g. level elements themselves, or model-level elements).</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">Pinned</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div>
+      <div class="member-desc">Gets or sets whether this element is pinned (locked from movement). Setting to true prevents the element from being moved, rotated, or deleted by the user. Setting requires an open Transaction.</div>
+    </div>
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Parameter</span> <span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span> <span class="pm">parameterId</span>)</span></div>
+      <div class="member-desc">Retrieves a parameter by its built-in parameter identifier. Returns null if the parameter is not present on this element. This is the fastest and most reliable way to access parameters — language-independent and always consistent.</div>
+      <div class="member-params">
+        <table class="param-table">
+          <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          <tr><td>parameterId</td><td>BuiltInParameter</td><td>The enum value identifying the built-in parameter to retrieve.</td></tr>
+        </table>
+      </div>
+      <div class="returns-row">Returns: <span>Parameter</span> — The parameter object, or null if not available on this element.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Parameter</span> <span class="fn">get_Parameter</span>(<span class="tp">Guid</span> <span class="pm">guid</span>)</span></div>
+      <div class="member-desc">Retrieves a shared parameter by its GUID. GUIDs are defined in the shared parameter file and are stable across documents and Revit versions — use this for shared parameters in production add-ins.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Parameter</span> <span class="fn">LookupParameter</span>(<span class="tp">string</span> <span class="pm">name</span>)</span></div>
+      <div class="member-desc">Finds a parameter by name. Fragile — breaks if parameter names are translated or renamed. Use get_Parameter(BuiltInParameter) or get_Parameter(Guid) when possible. Returns null if not found.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">GeometryElement</span> <span class="fn">get_Geometry</span>(<span class="tp">Options</span> <span class="pm">options</span>)</span></div>
+      <div class="member-desc">Returns the geometric representation of the element. The Options object controls: which view controls visibility, whether references are computed (required for dimensioning), and whether invisible objects are included.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Extracting geometry from an element</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Element</span> elem = ...;
+
+<span class="cm">// Configure options</span>
+<span class="k">var</span> opts = <span class="k">new</span> <span class="tp">Options</span>()
+{
+    ComputeReferences       = <span class="k">true</span>,    <span class="cm">// REQUIRED for dimensioning</span>
+    IncludeNonVisibleObjects = <span class="k">false</span>,
+    View                    = doc.ActiveView
+};
+
+<span class="tp">GeometryElement</span> geomElem = elem.<span class="fn">get_Geometry</span>(opts);
+<span class="k">double</span> totalVolume = <span class="n">0</span>;
+
+<span class="k">foreach</span> (<span class="tp">GeometryObject</span> obj <span class="k">in</span> geomElem)
+{
+    <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">Solid</span> solid &amp;&amp; solid.Volume > <span class="n">1e-9</span>)
+    {
+        totalVolume += solid.Volume;
+
+        <span class="k">foreach</span> (<span class="tp">Face</span> face <span class="k">in</span> solid.Faces)
+        {
+            <span class="tp">Reference</span> faceRef = face.Reference;   <span class="cm">// for dimensions</span>
+            <span class="tp">XYZ</span> normal = face.<span class="fn">ComputeNormal</span>(<span class="k">new</span> <span class="tp">UV</span>(.5, .5));
+        }
+    }
+    <span class="k">else if</span> (obj <span class="k">is</span> <span class="tp">GeometryInstance</span> gi)
+    {
+        <span class="cm">// FamilyInstance geometry is inside GeometryInstance</span>
+        <span class="k">foreach</span> (<span class="tp">GeometryObject</span> instObj <span class="k">in</span> gi.<span class="fn">GetInstanceGeometry</span>())
+        {
+            <span class="k">if</span> (instObj <span class="k">is</span> <span class="tp">Solid</span> s &amp;&amp; s.Volume > <span class="n">1e-9</span>)
+                totalVolume += s.Volume;
+        }
+    }
+}
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Volume"</span>,
+    <span class="s">$"{totalVolume * 0.0283168:F4} m³"</span>);</pre>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">BoundingBoxXYZ</span> <span class="fn">get_BoundingBox</span>(<span class="tp">View</span> <span class="pm">view</span>)</span></div>
+      <div class="member-desc">Gets the bounding box of this element. Pass null to get the model extents (not clipped by any view). Pass a View to get the bounding box as visible in that view. Returns null if the element has no geometry.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ElementId</span> <span class="fn">GetTypeId</span>()</span></div>
+      <div class="member-desc">Returns the ElementId of the element's type (e.g. for a Wall instance, returns the WallType ID). Use doc.GetElement() on this ID and cast to the appropriate type class.</div>
+      <div class="returns-row">Returns: <span>ElementId</span> — The ID of the element's type, or InvalidElementId if it has no type.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">GetDependentElements</span>(<span class="tp">ElementFilter</span> <span class="pm">filter</span>)</span></div>
+      <div class="member-desc">Returns IDs of all elements that are dependent on (owned by, hosted by, or constrained to) this element. Pass null to get all dependents, or pass a filter to narrow the results. Useful for finding doors/windows in a wall, tags on an element etc.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — Get all elements dependent on a wall (doors, windows, tags)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="tp">Wall</span> wall = ...;
+
+<span class="cm">// Get all dependents (doors, windows, wall tags, dimension references)</span>
+<span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; depIds = wall.<span class="fn">GetDependentElements</span>(<span class="k">null</span>);
+
+<span class="cm">// Get only doors and windows (filtered)</span>
+<span class="k">var</span> openingFilter = <span class="k">new</span> <span class="tp">ElementMulticategoryFilter</span>(
+    <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">BuiltInCategory</span>&gt;
+    {
+        <span class="tp">BuiltInCategory</span>.OST_Doors,
+        <span class="tp">BuiltInCategory</span>.OST_Windows
+    });
+
+<span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; openingIds = wall.<span class="fn">GetDependentElements</span>(openingFilter);
+
+<span class="k">foreach</span> (<span class="k">var</span> id <span class="k">in</span> openingIds)
+{
+    <span class="tp">FamilyInstance</span> fi = doc.<span class="fn">GetElement</span>(id) <span class="k">as</span> <span class="tp">FamilyInstance</span>;
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"{fi?.Symbol.Family.Name}: {fi?.Symbol.Name}"</span>);
+}</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- /Element -->
+
+<!-- ══════════ CLASS: ElementId ══════════ -->
+<div class="class-block" id="cls-elementid">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">ElementId</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>System.Object</span></div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents the unique integer identifier of an element within a Revit document. ElementIds are used throughout the API to reference elements, categories, parameters, and other objects. The special value ElementId.InvalidElementId (-1) indicates no element or an invalid reference.</div>
+
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ElementId</span>(<span class="tp">int</span> <span class="pm">value</span>)</span></div>
+      <div class="member-desc">Creates an ElementId from an integer value. The value should be a valid element ID from the document, or a BuiltInCategory/BuiltInParameter cast to int. Creating an ElementId with an arbitrary integer does not guarantee the element exists.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — ElementId usage patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// 1. From a known element ID (e.g. stored externally)</span>
+<span class="tp">ElementId</span> id = <span class="k">new</span> <span class="tp">ElementId</span>(<span class="n">123456</span>);
+<span class="tp">Element</span> elem = doc.<span class="fn">GetElement</span>(id);   <span class="cm">// returns null if not found</span>
+
+<span class="cm">// 2. From a BuiltInCategory (for category-based operations)</span>
+<span class="tp">ElementId</span> wallCatId = <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInCategory</span>.OST_Walls);
+
+<span class="cm">// 3. Check for invalid ID</span>
+<span class="k">if</span> (elem?.LevelId == <span class="tp">ElementId</span>.InvalidElementId)
+    System.Diagnostics.Debug.WriteLine(<span class="s">"Element has no level"</span>);
+
+<span class="cm">// 4. Compare element IDs</span>
+<span class="tp">ElementId</span> id1 = elem1.Id;
+<span class="tp">ElementId</span> id2 = elem2.Id;
+<span class="k">bool</span> same = id1 == id2;          <span class="cm">// operator overload</span>
+<span class="k">bool</span> same2 = id1.Equals(id2);   <span class="cm">// or Equals()</span>
+
+<span class="cm">// 5. Integer value for external storage</span>
+<span class="k">int</span> intVal = elem.Id.IntegerValue;
+<span class="cm">// Store intVal in database, read back with: new ElementId(intVal)</span>
+
+<span class="cm">// 6. Get all element IDs from a collector (fast — no element objects loaded)</span>
+<span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; allWallIds = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">ToElementIds</span>();
+
+System.Diagnostics.Debug.WriteLine(<span class="s">$"Wall count: {allWallIds.Count}"</span>);</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Properties</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">int</span> <span class="v">IntegerValue</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the integer value of this ElementId. Use this to store element IDs in external databases or compare with BuiltInCategory/BuiltInParameter integer values.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ElementId</span> <span class="v">InvalidElementId</span> { <span class="kw">get</span>; }</span></div>
+      <div class="member-desc">Gets the singleton invalid ElementId (integer value -1). Used as a sentinel value throughout the API to indicate "no element", "not set", or "invalid reference". Always compare against this constant rather than constructing new ElementId(-1).</div>
+    </div>
+  </div>
+</div><!-- /ElementId -->
+
+<!-- ══════════ CLASS: FilteredElementCollector ══════════ -->
+<div class="class-block" id="cls-fec">
+  <div class="class-header">
+    <div>
+      <div class="class-title-row">
+        <span class="class-type-badge ctb-class">Class</span>
+        <span class="class-name">FilteredElementCollector</span>
+      </div>
+      <div class="class-inherit">Inherits: <span>APIObject · IEnumerable&lt;Element&gt; · IEnumerable&lt;ElementId&gt;</span></div>
+    </div>
+  </div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">The primary query engine for retrieving elements from a Revit document. Supports both quick (native) filters that run in Revit's engine with near-zero overhead, and slow (LINQ) filters that iterate element by element. Always apply quick filters first, then LINQ filters. The collector is lazy — elements are retrieved when the result is enumerated.</div>
+
+  <div class="callout c-tip" style="margin:12px 24px 0;">
+    <strong>// Performance Tip</strong>
+    Chain quick filters in this order for maximum performance: OfClass() → OfCategory() → WhereElementIsNotElementType() → WherePasses(nativeFilter). Apply LINQ .Where() only after all native filters. Use .ToElementIds() when you only need IDs — it avoids loading full element objects.
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FilteredElementCollector</span>(<span class="tp">Document</span> <span class="pm">document</span>)</span></div>
+      <div class="member-desc">Creates a collector that will search the entire document. This is the most common constructor — it searches all elements in all views and all levels.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FilteredElementCollector</span>(<span class="tp">Document</span> <span class="pm">document</span>, <span class="tp">ElementId</span> <span class="pm">viewId</span>)</span></div>
+      <div class="member-desc">Creates a collector restricted to elements visible in the specified view. Only elements that are visible (not hidden, not in hidden categories) in the view will be returned. This respects crop regions, workset visibility, and view-specific overrides.</div>
+      <div class="code-example">
+        <div class="code-example-hdr"><span class="code-example-label">// Example — FilteredElementCollector patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <pre class="code-ex"><span class="cm">// ── QUICK FILTERS (native, fast) ──</span>
+
+<span class="cm">// By class (fastest)</span>
+<span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// By category — instances only</span>
+<span class="k">var</span> doors = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Doors)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// Types only</span>
+<span class="k">var</span> wallTypes = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">WallType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">WallType</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// In a specific view only</span>
+<span class="k">var</span> visibleWalls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc, doc.ActiveView.Id)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// ── PARAMETER FILTER (native, slower than OfClass but still native) ──</span>
+<span class="k">var</span> markProvider = <span class="k">new</span> <span class="tp">ParameterValueProvider</span>(
+    <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK));
+<span class="k">var</span> rule = <span class="k">new</span> <span class="tp">FilterStringRule</span>(
+    markProvider, <span class="k">new</span> <span class="tp">FilterStringContains</span>(), <span class="s">"EXT"</span>);
+<span class="k">var</span> extWalls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">WherePasses</span>(<span class="k">new</span> <span class="tp">ElementParameterFilter</span>(rule))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// ── MULTIPLE CATEGORIES ──</span>
+<span class="k">var</span> multiFilter = <span class="k">new</span> <span class="tp">ElementMulticategoryFilter</span>(
+    <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">BuiltInCategory</span>&gt;
+    { <span class="tp">BuiltInCategory</span>.OST_Walls, <span class="tp">BuiltInCategory</span>.OST_Floors });
+<span class="k">var</span> structural = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(multiFilter)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// ── ELEMENT IDs ONLY (fast, less memory) ──</span>
+<span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; ids = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">ToElementIds</span>();
+
+<span class="cm">// ── LINQ FILTER (after native filters) ──</span>
+<span class="k">var</span> longWalls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+    .<span class="fn">Where</span>(w => (w.Location <span class="k">as</span> <span class="tp">LocationCurve</span>)?.Curve.Length > <span class="n">10</span>)
+    .<span class="fn">ToList</span>();</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Quick Filter Methods</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FilteredElementCollector</span> <span class="fn">OfClass</span>(<span class="tp">Type</span> <span class="pm">type</span>)</span></div>
+      <div class="member-desc">Restricts the collector to elements of the specified .NET class type. This is the fastest filter available — runs entirely in Revit's native engine. Note: OfClass(typeof(View)) includes all view subtypes; use LINQ to further refine.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FilteredElementCollector</span> <span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span> <span class="pm">category</span>)</span></div>
+      <div class="member-desc">Restricts the collector to elements belonging to the specified built-in category. By default includes both instances and types — chain with WhereElementIsNotElementType() to get instances only.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FilteredElementCollector</span> <span class="fn">WhereElementIsNotElementType</span>()</span></div>
+      <div class="member-desc">Restricts results to instance elements only (excludes WallType, FamilySymbol, etc.). Pair with OfCategory() to get placed instances.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FilteredElementCollector</span> <span class="fn">WhereElementIsElementType</span>()</span></div>
+      <div class="member-desc">Restricts results to type elements only (WallType, FloorType, FamilySymbol, etc.). Use this to collect all types of a category.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FilteredElementCollector</span> <span class="fn">WherePasses</span>(<span class="tp">ElementFilter</span> <span class="pm">filter</span>)</span></div>
+      <div class="member-desc">Applies any ElementFilter to the collector. Use with: ElementParameterFilter, ElementLevelFilter, BoundingBoxIntersectsFilter, ElementMulticategoryFilter, LogicalAndFilter, LogicalOrFilter, and ExclusionFilter.</div>
+    </div>
+  </div>
+
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Retrieval Methods</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IList</span>&lt;<span class="tp">Element</span>&gt; <span class="fn">ToElements</span>()</span></div>
+      <div class="member-desc">Executes the query and returns all matching elements as a list. The most common retrieval method. Returns an empty list (not null) if no elements match.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">ToElementIds</span>()</span></div>
+      <div class="member-desc">Executes the query and returns element IDs only. Significantly faster and less memory-intensive than ToElements() when you only need IDs for deletion, selection, or external storage.</div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Element</span> <span class="fn">FirstElement</span>()</span></div>
+      <div class="member-desc">Returns the first matching element, or null if no elements match. Use when you expect exactly one result (e.g. finding a specific level by name). More efficient than ToElements().FirstOrDefault().</div>
+    </div>
+  </div>
+</div><!-- /FilteredElementCollector -->
+
+</div><!-- /ns-block -->
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function toggleNs(groupId, el) {
+  const grp = document.getElementById(groupId);
+  grp.classList.toggle('open');
+  el.classList.toggle('active');
+}
+function copyCode(btn) {
+  const pre = btn.closest('.code-example').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(() => {
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 1800);
+  });
+}
+function sbSearch(q) {
+  const lq = q.toLowerCase();
+  document.querySelectorAll('.class-block').forEach(b => {
+    const txt = b.textContent.toLowerCase();
+    b.style.display = (!q || txt.includes(lq)) ? '' : 'none';
+  });
+}
+
+// Active sidebar tracking
+const sections = ['cls-addInId','cls-arc','cls-boundingbox','cls-builtincategory','cls-builtinparameter','cls-color','cls-curveloop','cls-element','cls-elementid','cls-fec'];
+window.addEventListener('scroll', () => {
+  let cur = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 140) cur = id;
+  });
+  document.querySelectorAll('.sb-ns-child').forEach(c => {
+    c.classList.toggle('active', c.getAttribute('onclick')?.includes(cur));
+  });
+}, { passive: true });
+</script>
+</body>
+</html>

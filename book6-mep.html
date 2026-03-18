@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Handbook — Book 6: MEP Systems</title>
+<link rel="stylesheet" href="style.css"/></head>
+<body><div class="layout">
+<nav class="sidebar">
+  <div class="sb-logo"><div class="sb-eyebrow">// Revit API</div><div class="sb-title">Developer<br/>Handbook</div><div class="sb-version">C# · 2024+ · Complete Guide</div></div>
+  <div class="sb-nav">
+    <div class="sb-section"><div class="sb-sec-label">This Book</div>
+      <a class="sb-link active" onclick="nav(this,'s1')"><span class="ni">01</span>MEP Overview</a>
+      <a class="sb-link" onclick="nav(this,'s2')"><span class="ni">02</span>Pipes &amp; Plumbing</a>
+      <a class="sb-link" onclick="nav(this,'s3')"><span class="ni">03</span>Ducts &amp; Mechanical</a>
+      <a class="sb-link" onclick="nav(this,'s4')"><span class="ni">04</span>Electrical &amp; Cable Trays</a>
+      <a class="sb-link" onclick="nav(this,'s5')"><span class="ni">05</span>Connectors</a>
+      <a class="sb-link" onclick="nav(this,'s6')"><span class="ni">06</span>MEP Systems</a>
+      <a class="sb-link" onclick="nav(this,'s7')"><span class="ni">07</span>Rooms &amp; Spaces</a>
+    </div>
+  </div>
+  <div class="sb-files"><div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link current" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+<main class="main">
+  <div class="hero">
+    <div class="hero-label">// Book 06 of 13 — MEP Systems</div>
+    <h1>Pipes, Ducts, Electrical<br/>&amp; MEP Connectors</h1>
+    <p>Create and connect MEP elements — pipes, ducts, conduits, cable trays — and work with system connectors, MEP systems and spaces.</p>
+    <div class="hero-chips">
+      <span class="chip c-or">Pipe.Create()</span><span class="chip c-bl">Duct.Create()</span><span class="chip c-gr">Connector</span><span class="chip c-ye">MEPSystem</span>
+    </div>
+  </div>
+  <div class="content">
+
+  <div class="section" id="s1">
+    <div class="sec-num">// 01</div><h2>MEP Overview</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Class</th><th>Category</th><th>System</th></tr>
+      <tr><td>Pipe</td><td>OST_PipeCurves</td><td>Plumbing — domestic water, fire protection</td></tr>
+      <tr><td>PipeFitting</td><td>OST_PipeFitting</td><td>Elbows, tees, reducers for pipes</td></tr>
+      <tr><td>Duct</td><td>OST_DuctCurves</td><td>HVAC — supply, return, exhaust air</td></tr>
+      <tr><td>DuctFitting</td><td>OST_DuctFitting</td><td>Elbows, tees, transitions for ducts</td></tr>
+      <tr><td>Conduit</td><td>OST_Conduit</td><td>Electrical — wire protection</td></tr>
+      <tr><td>CableTray</td><td>OST_CableTray</td><td>Electrical — cable support trays</td></tr>
+      <tr><td>WireConduit</td><td>OST_Wire</td><td>Electrical wiring</td></tr>
+      <tr><td>MechanicalEquipment</td><td>OST_MechanicalEquipment</td><td>Chillers, AHUs, fans</td></tr>
+    </table></div>
+
+    <div class="callout ca-bl">
+      <strong>// MEP Key Concept</strong>
+      All MEP elements connect through <strong>Connectors</strong>. A Pipe end has a Connector; a fitting has Connectors. Use <code>ConnectorManager</code> to navigate and connect MEP elements together.
+    </div>
+  </div>
+
+  <div class="section" id="s2">
+    <div class="sec-num">// 02</div><h2>Pipes &amp; Plumbing</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get pipe type and system type</span>
+<span class="cls">PipeType</span> pipeType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">PipeType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">PipeType</span>&gt;().<span class="fn">First</span>();
+
+<span class="cls">PipingSystemType</span> sysType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">PipingSystemType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">PipingSystemType</span>&gt;().<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Pipe"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cmt">// Create a straight pipe segment</span>
+    <span class="cls">Pipe</span> pipe = <span class="cls">Pipe</span>.<span class="fn">Create</span>(
+        doc,
+        sysType.Id,          <span class="cmt">// system type</span>
+        pipeType.Id,         <span class="cmt">// pipe type</span>
+        level.Id,            <span class="cmt">// reference level</span>
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">3</span>),     <span class="cmt">// start point</span>
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>,<span class="num">0</span>,<span class="num">3</span>));    <span class="cmt">// end point</span>
+
+    <span class="cmt">// Set diameter</span>
+    pipe.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.RBS_PIPE_DIAMETER_PARAM)
+        .<span class="fn">Set</span>(<span class="cls">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="num">100</span>, <span class="cls">UnitTypeId</span>.Millimeters));
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Read pipe properties</span>
+<span class="cls">Pipe</span> p = ...;
+<span class="kw">double</span> diameter  = p.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.RBS_PIPE_DIAMETER_PARAM).<span class="fn">AsDouble</span>();
+<span class="kw">double</span> length    = p.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.CURVE_ELEM_LENGTH).<span class="fn">AsDouble</span>();
+<span class="cls">XYZ</span>    direction = (p.Location <span class="kw">as</span> <span class="cls">LocationCurve</span>).Curve.<span class="fn">GetEndPoint</span>(<span class="num">1</span>)
+                 - (p.Location <span class="kw">as</span> <span class="cls">LocationCurve</span>).Curve.<span class="fn">GetEndPoint</span>(<span class="num">0</span>);</pre></div>
+  </div>
+
+  <div class="section" id="s3">
+    <div class="sec-num">// 03</div><h2>Ducts &amp; Mechanical</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cls">DuctType</span> ductType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">DuctType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">DuctType</span>&gt;().<span class="fn">First</span>();
+
+<span class="cls">MechanicalSystemType</span> mSysType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">MechanicalSystemType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">MechanicalSystemType</span>&gt;().<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Duct"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cls">Duct</span> duct = <span class="cls">Duct</span>.<span class="fn">Create</span>(
+        doc,
+        mSysType.Id,
+        ductType.Id,
+        level.Id,
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">3</span>),
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>,<span class="num">0</span>,<span class="num">3</span>));
+
+    <span class="cmt">// Set width and height (rectangular duct)</span>
+    duct.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.RBS_CURVE_WIDTH_PARAM)
+        .<span class="fn">Set</span>(<span class="cls">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="num">400</span>, <span class="cls">UnitTypeId</span>.Millimeters));
+    duct.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.RBS_CURVE_HEIGHT_PARAM)
+        .<span class="fn">Set</span>(<span class="cls">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="num">200</span>, <span class="cls">UnitTypeId</span>.Millimeters));
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s4">
+    <div class="sec-num">// 04</div><h2>Electrical &amp; Cable Trays</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Cable Tray</span>
+<span class="cls">CableTrayType</span> ctType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">CableTrayType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">CableTrayType</span>&gt;().<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create CableTray"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">CableTray</span> ct = <span class="cls">CableTray</span>.<span class="fn">Create</span>(
+        doc, ctType.Id, level.Id,
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">3</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">5</span>,<span class="num">0</span>,<span class="num">3</span>));
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Conduit</span>
+<span class="cls">ConduitType</span> conduitType = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ConduitType</span>)).<span class="fn">Cast</span>&lt;<span class="cls">ConduitType</span>&gt;().<span class="fn">First</span>();
+
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Conduit"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Conduit</span> conduit = <span class="cls">Conduit</span>.<span class="fn">Create</span>(
+        doc, conduitType.Id, level.Id,
+        <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">0</span>,<span class="num">0</span>,<span class="num">2.5</span>), <span class="kw">new</span> <span class="cls">XYZ</span>(<span class="num">3</span>,<span class="num">0</span>,<span class="num">2.5</span>));
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Get all electrical equipment</span>
+<span class="kw">var</span> panels = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_ElectricalEquipment)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">FamilyInstance</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">FamilyInstance</span>&gt;()
+    .<span class="fn">ToList</span>();</pre></div>
+  </div>
+
+  <div class="section" id="s5">
+    <div class="sec-num">// 05</div><h2>Connectors</h2>
+    <p>Connectors are the endpoints of MEP elements. Connect two elements by linking their connectors.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get connectors from a pipe</span>
+<span class="cls">ConnectorManager</span> cm   = pipe.ConnectorManager;
+<span class="cls">ConnectorSet</span>     cons = cm.Connectors;
+
+<span class="cls">Connector</span> start = <span class="kw">null</span>, end = <span class="kw">null</span>;
+<span class="kw">foreach</span> (<span class="cls">Connector</span> c <span class="kw">in</span> cons)
+{
+    <span class="kw">if</span> (c.ConnectorType == <span class="cls">ConnectorType</span>.End)
+    {
+        <span class="kw">if</span> (start == <span class="kw">null</span>) start = c;
+        <span class="kw">else</span>               end   = c;
+    }
+}
+
+<span class="cmt">// Check connector properties</span>
+<span class="cls">XYZ</span>    origin   = start.Origin;
+<span class="kw">double</span> diameter = start.Radius * <span class="num">2</span>;
+<span class="kw">bool</span>   isConnected = start.IsConnected;
+
+<span class="cmt">// Connect two pipes end-to-end</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Connect Pipes"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cls">Connector</span> c1 = <span class="fn">GetConnectorAt</span>(pipe1, pipe2.GetEndPoint(<span class="num">0</span>));
+    <span class="cls">Connector</span> c2 = <span class="fn">GetConnectorAt</span>(pipe2, pipe1.GetEndPoint(<span class="num">1</span>));
+
+    <span class="kw">if</span> (c1 != <span class="kw">null</span> &amp;&amp; c2 != <span class="kw">null</span>)
+        c1.<span class="fn">ConnectTo</span>(c2);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Helper: find closest connector to a point</span>
+<span class="cls">Connector</span> <span class="fn">GetConnectorAt</span>(<span class="cls">Element</span> elem, <span class="cls">XYZ</span> pt, <span class="kw">double</span> tol = <span class="num">0.001</span>)
+{
+    <span class="kw">foreach</span> (<span class="cls">Connector</span> c <span class="kw">in</span> elem.GetMEPModel().ConnectorManager.Connectors)
+        <span class="kw">if</span> (c.Origin.<span class="fn">DistanceTo</span>(pt) &lt; tol) <span class="kw">return</span> c;
+    <span class="kw">return null</span>;
+}</pre></div>
+  </div>
+
+  <div class="section" id="s6">
+    <div class="sec-num">// 06</div><h2>MEP Systems</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get all piping systems</span>
+<span class="kw">var</span> pipingSystems = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">PipingSystem</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">PipingSystem</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="kw">foreach</span> (<span class="kw">var</span> sys <span class="kw">in</span> pipingSystems)
+{
+    <span class="kw">string</span> name     = sys.Name;
+    <span class="kw">double</span> flow     = sys.GetFlow();
+
+    <span class="cmt">// Get all elements in the system</span>
+    <span class="cls">ConnectorSet</span> sysElems = sys.ConnectorManager.Connectors;
+}
+
+<span class="cmt">// Mechanical systems</span>
+<span class="kw">var</span> mechSystems = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">MechanicalSystem</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">MechanicalSystem</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// Electrical systems</span>
+<span class="kw">var</span> elecSystems = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">ElectricalSystem</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">ElectricalSystem</span>&gt;()
+    .<span class="fn">ToList</span>();</pre></div>
+  </div>
+
+  <div class="section" id="s7">
+    <div class="sec-num">// 07</div><h2>Rooms &amp; Spaces</h2>
+    <p>Spaces are MEP-specific versions of Rooms — they carry load calculations and HVAC data.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Get MEP Spaces (different from architectural Rooms!)</span>
+<span class="kw">var</span> spaces = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_MEPSpaces)
+    .<span class="fn">Cast</span>&lt;<span class="cls">Space</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="kw">foreach</span> (<span class="kw">var</span> space <span class="kw">in</span> spaces)
+{
+    <span class="kw">string</span> name   = space.Name;
+    <span class="kw">double</span> area   = space.Area;          <span class="cmt">// sq ft</span>
+    <span class="kw">double</span> volume = space.Volume;        <span class="cmt">// cubic ft</span>
+
+    <span class="cmt">// HVAC loads</span>
+    <span class="kw">double</span> coolingLoad = space.<span class="fn">get_Parameter</span>(
+        <span class="cls">BuiltInParameter</span>.ROOM_ACTUAL_COOLING_LOAD_PARAM)
+        ?.AsDouble() ?? <span class="num">0</span>;
+
+    <span class="cmt">// Check space/room relationship</span>
+    <span class="cls">Room</span> linkedRoom = space.Room;
+    <span class="kw">if</span> (linkedRoom != <span class="kw">null</span>)
+    {
+        <span class="kw">string</span> roomName = linkedRoom.Name;
+    }
+}
+
+<span class="cmt">// Create a Space</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Create Space"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cls">Space</span> newSpace = doc.Create.<span class="fn">NewSpace</span>(
+        level,
+        <span class="kw">new</span> <span class="cls">UV</span>(<span class="num">5</span>, <span class="num">5</span>));    <span class="cmt">// location as UV on the level</span>
+    newSpace.Name = <span class="str">"Office 101"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  </div>
+</main>
+</div>
+<script>
+function nav(el,id){document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));el.classList.add('active');document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+const sections=['s1','s2','s3','s4','s5','s6','s7'];
+window.addEventListener('scroll',()=>{let cur=sections[0];sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<130)cur=id;});document.querySelectorAll('.sb-link').forEach((l,i)=>l.classList.toggle('active',sections[i]===cur));},{passive:true});
+</script>
+</body></html>

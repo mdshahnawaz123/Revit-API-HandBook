@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Developer Handbook — Complete Guide</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px; }
+.book-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; text-decoration: none; transition: all 0.2s; position: relative; overflow: hidden; }
+.book-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--c1) 0%, transparent 60%); opacity: 0; transition: opacity 0.2s; }
+.book-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.book-card:hover::before { opacity: 1; }
+.book-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent); margin-bottom: 8px; }
+.book-card h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.book-card p { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 16px; }
+.topic-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.topic { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 3px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--muted); }
+.arrow { position: absolute; bottom: 20px; right: 20px; font-size: 20px; color: var(--border); transition: all 0.2s; }
+.book-card:hover .arrow { color: var(--accent); transform: translateX(4px); }
+.quickref { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; }
+.qr { background: var(--surface2); border-radius: 6px; padding: 14px; border: 1px solid var(--border); }
+.qr-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent3); margin-bottom: 6px; }
+.qr code { font-size: 11px; color: var(--accent2); background: none; border: none; padding: 0; }
+</style>
+</head>
+<body>
+<div style="max-width:1100px;margin:0 auto;padding:56px 40px 80px;">
+  <div style="margin-bottom:48px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent);margin-bottom:12px;text-transform:uppercase;">// Revit API · C# · 2024+ · Complete Developer Guide</div>
+    <h1 style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1.05;margin-bottom:16px;color:var(--text);">Revit API<br/>Developer Handbook</h1>
+    <p style="color:var(--muted);font-size:16px;max-width:600px;font-weight:300;">A complete reference from beginner to advanced. Every major API surface covered — from elements and parameters to events, modeless dialogs, DMU and MEP systems.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;">
+      <span class="chip c-or">13 Books</span>
+      <span class="chip c-bl">70+ Sections</span>
+      <span class="chip c-gr">1100+ Challenges</span>
+      <span class="chip c-ye">Complete Reference</span>
+    </div>
+  </div>
+
+  <div class="index-grid">
+    <a class="book-card" href="book1-fundamentals.html" style="--c1: rgba(224,90,43,0.06);">
+      <div class="book-num">// Book 01</div>
+      <h3>Fundamentals</h3>
+      <p>Application hierarchy, Elements, Parameters, Filtering, Selection and Transactions. The foundation of every add-in.</p>
+      <div class="topic-list">
+        <span class="topic">UIApplication</span><span class="topic">Document</span><span class="topic">Parameters</span>
+        <span class="topic">FilteredElementCollector</span><span class="topic">Transactions</span><span class="topic">Units</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book2-geometry.html" style="--c1: rgba(77,158,247,0.06);">
+      <div class="book-num">// Book 02</div>
+      <h3>Geometry Elements</h3>
+      <p>XYZ and Transforms, Walls, Floors, Roofs, Levels, Grids, Rooms, Family Instances and geometry extraction.</p>
+      <div class="topic-list">
+        <span class="topic">XYZ / Transform</span><span class="topic">Wall.Create()</span><span class="topic">Floor.Create()</span>
+        <span class="topic">FamilyInstance</span><span class="topic">Solid / Face</span><span class="topic">CompoundStructure</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book3-views.html" style="--c1: rgba(62,207,142,0.06);">
+      <div class="book-num">// Book 03</div>
+      <h3>Views &amp; Annotations</h3>
+      <p>Floor plans, sections, sheets, viewports, view filters, dimensions, text notes, tags and detail lines.</p>
+      <div class="topic-list">
+        <span class="topic">ViewPlan.Create()</span><span class="topic">ViewSection</span><span class="topic">ViewSheet</span>
+        <span class="topic">OverrideGraphicSettings</span><span class="topic">Dimension</span><span class="topic">IndependentTag</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book4-events.html" style="--c1: rgba(247,201,77,0.06);">
+      <div class="book-num">// Book 04</div>
+      <h3>Events &amp; Automation</h3>
+      <p>Application and document events, IExternalEventHandler, modeless dialogs, DMU (IUpdater), failure handling and the Idling event.</p>
+      <div class="topic-list">
+        <span class="topic">IExternalEventHandler</span><span class="topic">ExternalEvent.Raise()</span>
+        <span class="topic">IUpdater (DMU)</span><span class="topic">DocumentChanged</span><span class="topic">IFailuresPreprocessor</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book5-families.html" style="--c1: rgba(196,122,247,0.06);">
+      <div class="book-num">// Book 05</div>
+      <h3>Families &amp; Conceptual Design</h3>
+      <p>Load and place families, edit family documents, manage types and parameters, create geometry and work with materials.</p>
+      <div class="topic-list">
+        <span class="topic">Family / Symbol / Instance</span><span class="topic">FamilyManager</span>
+        <span class="topic">Extrusion</span><span class="topic">IFamilyLoadOptions</span><span class="topic">Material</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book6-mep.html" style="--c1: rgba(62,207,142,0.06);">
+      <div class="book-num">// Book 06</div>
+      <h3>MEP Systems</h3>
+      <p>Pipes, ducts, conduits, cable trays, connectors, MEP system traversal and MEP spaces with HVAC loads.</p>
+      <div class="topic-list">
+        <span class="topic">Pipe.Create()</span><span class="topic">Duct.Create()</span><span class="topic">Connector</span>
+        <span class="topic">PipingSystem</span><span class="topic">MechanicalSystem</span><span class="topic">Space</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book7-challenges.html" style="--c1: rgba(224,90,43,0.06);">
+      <div class="book-num">// Book 07</div>
+      <h3>Plugin Challenges Vol.1</h3>
+      <p>320+ tiered challenges covering the first six books. Test your knowledge with real-world plugin development scenarios.</p>
+      <div class="topic-list">
+        <span class="topic">320+ Tasks</span><span class="topic">Tiered Difficulty</span><span class="topic">Logic Logic</span>
+        <span class="topic">Elements</span><span class="topic">Geometry</span><span class="topic">Events</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book8-challenges2.html" style="--c1: rgba(77,158,247,0.06);">
+      <div class="book-num">// Book 08</div>
+      <h3>Plugin Challenges Vol.2</h3>
+      <p>Another 320+ advanced challenges focusing on Ribbon UI, Worksharing, MEP, Cloud, and full capstone projects.</p>
+      <div class="topic-list">
+        <span class="topic">320+ Tasks</span><span class="topic">Ribbon UI</span><span class="topic">Worksharing</span>
+        <span class="topic">MEP</span><span class="topic">Cloud APIs</span><span class="topic">Capstone</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book9-api-ref-db.html" style="--c1: rgba(77,158,247,0.06);">
+      <div class="book-num">// Book 09</div>
+      <h3>Namespace Reference Vol. 1</h3>
+      <p>Complete class, constructor, property, method and enum reference for Autodesk.Revit.DB (A–E) with detailed C# code examples.</p>
+      <div class="topic-list">
+        <span class="topic">DB Namespace</span><span class="topic">Classes A-E</span><span class="topic">Constructors</span>
+        <span class="topic">Methods</span><span class="topic">Properties</span><span class="topic">Examples</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book10-api-ref-db2.html" style="--c1: rgba(196,122,247,0.06);">
+      <div class="book-num">// Book 10</div>
+      <h3>Namespace Reference Vol. 2</h3>
+      <p>Complete class reference for Autodesk.Revit.DB (F–Z), full UI namespace, document and application events, and failure handling.</p>
+      <div class="topic-list">
+        <span class="topic">DB F-Z</span><span class="topic">UI Namespace</span><span class="topic">Events</span>
+        <span class="topic">Failures</span><span class="topic">IExternalCommand</span><span class="topic">Ribbon</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book11-api-ref-mep.html" style="--c1: rgba(62,207,142,0.06);">
+      <div class="book-num">// Book 11</div>
+      <h3>MEP, Architecture<br/>&amp; Structure Reference</h3>
+      <p>Complete class reference for all MEP namespaces, Architecture, Structure, ExtensibleStorage, DMU, and advanced View classes.</p>
+      <div class="topic-list">
+        <span class="topic">MEP</span><span class="topic">Architecture</span><span class="topic">Structure</span>
+        <span class="topic">DMU</span><span class="topic">Storage</span><span class="topic">Views</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book12-api-ref-family.html" style="--c1: rgba(196,122,247,0.06);">
+      <div class="book-num">// Book 12</div>
+      <h3>Family, Print<br/>&amp; Utility Reference</h3>
+      <p>Reference for Family API (FamilyManager), Print &amp; Export (PDF, DWG, IFC), Worksharing, Analysis, and various utility classes.</p>
+      <div class="topic-list">
+        <span class="topic">Family API</span><span class="topic">Print/Export</span><span class="topic">Worksharing</span>
+        <span class="topic">Analysis</span><span class="topic">Utilities</span><span class="topic">Filters</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book13-api-ref-final.html" style="--c1: rgba(77,158,247,0.06);">
+      <div class="book-num">// Book 13</div>
+      <h3>Final Reference<br/>Volume &amp; Best Practices</h3>
+      <p>ApplicationServices, DB.Creation, IFC namespace, .addin Manifests, Selection filters, Exceptions, and Best Practice patterns.</p>
+      <div class="topic-list">
+        <span class="topic">AppServices</span><span class="topic">Creation</span><span class="topic">Manifests</span>
+        <span class="topic">Selection</span><span class="topic">Exceptions</span><span class="topic">Best Practices</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div style="margin-top:56px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:16px;">// QUICK REFERENCE</div>
+    <div class="quickref">
+      <div class="qr"><div class="qr-label">Get Document</div><code>commandData.Application.ActiveUIDocument.Document</code></div>
+      <div class="qr"><div class="qr-label">Filter Walls</div><code>new FilteredElementCollector(doc).OfClass(typeof(Wall))</code></div>
+      <div class="qr"><div class="qr-label">Transaction</div><code>using(var tx = new Transaction(doc, "name")) { tx.Start(); ... tx.Commit(); }</code></div>
+      <div class="qr"><div class="qr-label">Read Parameter</div><code>elem.get_Parameter(BuiltInParameter.ALL_MODEL_MARK).AsString()</code></div>
+      <div class="qr"><div class="qr-label">Unit Convert</div><code>UnitUtils.ConvertToInternalUnits(3000, UnitTypeId.Millimeters)</code></div>
+      <div class="qr"><div class="qr-label">External Event</div><code>ExternalEvent.Create(handler); event.Raise();</code></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

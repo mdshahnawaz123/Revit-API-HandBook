@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Handbook — Book 4: Events & Automation</title>
+<link rel="stylesheet" href="style.css"/></head>
+<body><div class="layout">
+<nav class="sidebar">
+  <div class="sb-logo"><div class="sb-eyebrow">// Revit API</div><div class="sb-title">Developer<br/>Handbook</div><div class="sb-version">C# · 2024+ · Complete Guide</div></div>
+  <div class="sb-nav">
+    <div class="sb-section"><div class="sb-sec-label">This Book</div>
+      <a class="sb-link active" onclick="nav(this,'s1')"><span class="ni">01</span>Events Overview</a>
+      <a class="sb-link" onclick="nav(this,'s2')"><span class="ni">02</span>Application Events</a>
+      <a class="sb-link" onclick="nav(this,'s3')"><span class="ni">03</span>Document Events</a>
+      <a class="sb-link" onclick="nav(this,'s4')"><span class="ni">04</span>UI Events</a>
+      <a class="sb-link" onclick="nav(this,'s5')"><span class="ni">05</span>External Events</a>
+      <a class="sb-link" onclick="nav(this,'s6')"><span class="ni">06</span>IExternalEventHandler</a>
+      <a class="sb-link" onclick="nav(this,'s7')"><span class="ni">07</span>Modeless Dialog Pattern</a>
+      <a class="sb-link" onclick="nav(this,'s8')"><span class="ni">08</span>Dynamic Model Update</a>
+      <a class="sb-link" onclick="nav(this,'s9')"><span class="ni">09</span>Failure Handling</a>
+      <a class="sb-link" onclick="nav(this,'s10')"><span class="ni">10</span>Idling Event</a>
+    </div>
+  </div>
+  <div class="sb-files"><div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link current" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+<main class="main">
+  <div class="hero">
+    <div class="hero-label">// Book 04 of 13 — Events &amp; Automation</div>
+    <h1>Events, External Handlers,<br/>DMU &amp; Failures</h1>
+    <p>React to Revit actions, drive the model from modeless dialogs, implement dynamic model updates, and handle failures gracefully.</p>
+    <div class="hero-chips">
+      <span class="chip c-or">IExternalEventHandler</span><span class="chip c-bl">ExternalEvent</span><span class="chip c-gr">IUpdater (DMU)</span><span class="chip c-ye">DocumentChanged</span><span class="chip c-pu">IFailuresPreprocessor</span>
+    </div>
+  </div>
+  <div class="content">
+
+  <div class="section" id="s1">
+    <div class="sec-num">// 01</div><h2>Events Overview</h2>
+    <p>Revit exposes events at three levels. Subscribe in <code>OnStartup()</code>, unsubscribe in <code>OnShutdown()</code>.</p>
+    <div class="table-wrap"><table>
+      <tr><th>Level</th><th>Object</th><th>Examples</th></tr>
+      <tr><td>Application</td><td>app.ControlledApplication</td><td>DocumentOpened, DocumentSaving, DocumentCreated, DocumentClosed</td></tr>
+      <tr><td>UI</td><td>uiapp (UIControlledApplication)</td><td>ViewActivated, SelectionChanged, Idling, ApplicationInitialized</td></tr>
+      <tr><td>Element</td><td>app.ControlledApplication</td><td>DocumentChanged (read-only), use DMU for write reactions</td></tr>
+    </table></div>
+
+    <div class="callout ca-or">
+      <strong>// Golden Rule</strong>
+      You CANNOT call Revit API from outside threads (background tasks, modeless dialogs, timers). The only safe bridges are: <strong>Idling event</strong> and <strong>ExternalEvent + IExternalEventHandler</strong>. Use ExternalEvent — it's more efficient.
+    </div>
+  </div>
+
+  <div class="section" id="s2">
+    <div class="sec-num">// 02</div><h2>Application Events</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C# — IExternalApplication</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">public class</span> <span class="cls">MyApp</span> : <span class="cls">IExternalApplication</span>
+{
+    <span class="kw">public</span> <span class="cls">Result</span> <span class="fn">OnStartup</span>(<span class="cls">UIControlledApplication</span> app)
+    {
+        <span class="kw">var</span> cApp = app.ControlledApplication;
+
+        <span class="cmt">// Document lifecycle events</span>
+        cApp.DocumentOpened   += <span class="fn">OnDocumentOpened</span>;
+        cApp.DocumentCreated  += <span class="fn">OnDocumentCreated</span>;
+        cApp.DocumentClosing  += <span class="fn">OnDocumentClosing</span>;
+        cApp.DocumentSaving   += <span class="fn">OnDocumentSaving</span>;
+        cApp.DocumentSaved    += <span class="fn">OnDocumentSaved</span>;
+
+        <span class="cmt">// Changed event (read-only, fires after every tx commit/undo/redo)</span>
+        cApp.DocumentChanged  += <span class="fn">OnDocumentChanged</span>;
+
+        <span class="cmt">// UI events</span>
+        app.ViewActivated     += <span class="fn">OnViewActivated</span>;
+        app.Idling            += <span class="fn">OnIdling</span>;
+        app.ApplicationInitialized += <span class="fn">OnAppInit</span>;
+
+        <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+    }
+
+    <span class="kw">public</span> <span class="cls">Result</span> <span class="fn">OnShutdown</span>(<span class="cls">UIControlledApplication</span> app)
+    {
+        <span class="cmt">// Always unsubscribe to prevent memory leaks!</span>
+        app.ControlledApplication.DocumentOpened  -= <span class="fn">OnDocumentOpened</span>;
+        app.ControlledApplication.DocumentSaving  -= <span class="fn">OnDocumentSaving</span>;
+        app.ControlledApplication.DocumentChanged -= <span class="fn">OnDocumentChanged</span>;
+        app.ViewActivated                         -= <span class="fn">OnViewActivated</span>;
+        app.Idling                                -= <span class="fn">OnIdling</span>;
+        <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+    }
+}</pre></div>
+  </div>
+
+  <div class="section" id="s3">
+    <div class="sec-num">// 03</div><h2>Document Events — Implementations</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">private void</span> <span class="fn">OnDocumentOpened</span>(<span class="kw">object</span> sender, <span class="cls">DocumentOpenedEventArgs</span> e)
+{
+    <span class="cls">Document</span> doc = e.Document;
+    <span class="cls">TaskDialog</span>.<span class="fn">Show</span>(<span class="str">"Opened"</span>, <span class="str">$"Document opened: {doc.Title}"</span>);
+    <span class="cmt">// e.IsCancelled — check if open was cancelled</span>
+    <span class="cmt">// e.Status — TransactionStatus</span>
+}
+
+<span class="kw">private void</span> <span class="fn">OnDocumentSaving</span>(<span class="kw">object</span> sender, <span class="cls">DocumentSavingEventArgs</span> e)
+{
+    <span class="cmt">// Fires BEFORE saving — can cancel!</span>
+    <span class="cls">Document</span> doc = e.Document;
+
+    <span class="cmt">// Optional: cancel the save</span>
+    <span class="cmt">// e.Cancel(); // uncomment to prevent saving</span>
+}
+
+<span class="kw">private void</span> <span class="fn">OnDocumentChanged</span>(<span class="kw">object</span> sender, <span class="cls">DocumentChangedEventArgs</span> e)
+{
+    <span class="cmt">// READ-ONLY context — cannot modify the document here!</span>
+    <span class="cmt">// Use DMU (IUpdater) for write reactions instead.</span>
+
+    <span class="cls">ICollection</span>&lt;<span class="cls">ElementId</span>&gt; added    = e.<span class="fn">GetAddedElementIds</span>();
+    <span class="cls">ICollection</span>&lt;<span class="cls">ElementId</span>&gt; deleted  = e.<span class="fn">GetDeletedElementIds</span>();
+    <span class="cls">ICollection</span>&lt;<span class="cls">ElementId</span>&gt; modified = e.<span class="fn">GetModifiedElementIds</span>();
+
+    <span class="kw">foreach</span> (<span class="kw">var</span> id <span class="kw">in</span> added)
+    {
+        <span class="cls">Element</span> elem = e.GetDocument().<span class="fn">GetElement</span>(id);
+        <span class="cmt">// sync to external DB, log changes etc.</span>
+    }
+}
+
+<span class="kw">private void</span> <span class="fn">OnViewActivated</span>(<span class="kw">object</span> sender, <span class="cls">ViewActivatedEventArgs</span> e)
+{
+    <span class="cls">View</span> current  = e.CurrentActiveView;
+    <span class="cls">View</span> previous = e.PreviousActiveView;
+    <span class="cmt">// Update UI based on active view type</span>
+}</pre></div>
+
+    <h3>All Document Event Args</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Event</th><th>Args Class</th><th>Key Properties</th></tr>
+      <tr><td>DocumentOpened</td><td>DocumentOpenedEventArgs</td><td>.Document, .IsCancelled</td></tr>
+      <tr><td>DocumentCreated</td><td>DocumentCreatedEventArgs</td><td>.Document</td></tr>
+      <tr><td>DocumentSaving</td><td>DocumentSavingEventArgs</td><td>.Document, .Cancel()</td></tr>
+      <tr><td>DocumentSaved</td><td>DocumentSavedEventArgs</td><td>.Document, .Status</td></tr>
+      <tr><td>DocumentClosing</td><td>DocumentClosingEventArgs</td><td>.DocumentId, .Cancel()</td></tr>
+      <tr><td>DocumentChanged</td><td>DocumentChangedEventArgs</td><td>GetAddedElementIds(), GetDeletedElementIds(), GetModifiedElementIds()</td></tr>
+      <tr><td>ViewActivated</td><td>ViewActivatedEventArgs</td><td>.CurrentActiveView, .PreviousActiveView</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section" id="s4">
+    <div class="sec-num">// 04</div><h2>UI Events</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">private void</span> <span class="fn">OnAppInit</span>(<span class="kw">object</span> sender, <span class="cls">ApplicationInitializedEventArgs</span> e)
+{
+    <span class="cmt">// Safe place to do one-time startup work</span>
+    <span class="cmt">// Revit is fully loaded at this point</span>
+    <span class="cls">UIApplication</span> uiapp = <span class="kw">new</span> <span class="cls">UIApplication</span>(
+        sender <span class="kw">as</span> <span class="cls">Autodesk.Revit.ApplicationServices.Application</span>);
+}
+
+<span class="kw">private void</span> <span class="fn">OnIdling</span>(<span class="kw">object</span> sender, <span class="cls">IdlingEventArgs</span> e)
+{
+    <span class="cmt">// Fires during idle time — valid API context</span>
+    <span class="cmt">// WARNING: will hog CPU if you don't manage frequency!</span>
+
+    <span class="cmt">// Set frequency to reduce CPU load</span>
+    e.<span class="fn">SetRaiseWithoutDelay</span>(<span class="kw">false</span>);  <span class="cmt">// slower, kinder to CPU</span>
+
+    <span class="cls">UIApplication</span> uiapp = sender <span class="kw">as</span> <span class="cls">UIApplication</span>;
+    <span class="kw">if</span> (uiapp?.ActiveUIDocument == <span class="kw">null</span>) <span class="kw">return</span>;
+    <span class="cmt">// ... do periodic work ...</span>
+}</pre></div>
+  </div>
+
+  <div class="section" id="s5">
+    <div class="sec-num">// 05</div><h2>External Events — The Bridge Pattern</h2>
+    <p>External Events are the <strong>correct</strong> way to call Revit API from a modeless window, background task, or any non-API thread. Idling works but consumes CPU — use ExternalEvent instead.</p>
+
+    <div class="table-wrap"><table>
+      <tr><th>Approach</th><th>When to Use</th><th>CPU Impact</th></tr>
+      <tr><td>ExternalEvent + IExternalEventHandler</td><td>Modeless dialogs, async workflows, WPF forms</td><td>Low — fires only when Raise() called</td></tr>
+      <tr><td>Idling Event</td><td>Periodic polling, simple animations</td><td>High — fires constantly</td></tr>
+      <tr><td>Direct call</td><td>From IExternalCommand.Execute() only</td><td>N/A — synchronous</td></tr>
+    </table></div>
+
+    <div class="callout ca-bl">
+      <strong>// How it works</strong>
+      1. Create a class implementing <code>IExternalEventHandler</code>. 2. Register it with <code>ExternalEvent.Create(handler)</code> in OnStartup or Execute. 3. From your WPF button: call <code>externalEvent.Raise()</code>. 4. Revit calls <code>handler.Execute(uiapp)</code> at the next idle cycle in a valid API context.
+    </div>
+  </div>
+
+  <div class="section" id="s6">
+    <div class="sec-num">// 06</div><h2>IExternalEventHandler — Full Implementation</h2>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C# — Step 1: The Handler</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Step 1: Implement the handler</span>
+<span class="kw">public class</span> <span class="cls">MyEventHandler</span> : <span class="cls">IExternalEventHandler</span>
+{
+    <span class="cmt">// Thread-safe data passing via public properties</span>
+    <span class="kw">public string</span> ParameterName  { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public string</span> ParameterValue { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public bool</span>   Success        { <span class="kw">get</span>; <span class="kw">private</span> <span class="kw">set</span>; }
+
+    <span class="cmt">// Execute is called by Revit in a valid API context</span>
+    <span class="kw">public void</span> <span class="fn">Execute</span>(<span class="cls">UIApplication</span> uiapp)
+    {
+        <span class="kw">try</span>
+        {
+            <span class="cls">UIDocument</span> uidoc = uiapp.ActiveUIDocument;
+            <span class="kw">if</span> (uidoc == <span class="kw">null</span>) { Success = <span class="kw">false</span>; <span class="kw">return</span>; }
+
+            <span class="cls">Document</span> doc = uidoc.Document;
+
+            <span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"External Event Action"</span>))
+            {
+                tx.<span class="fn">Start</span>();
+
+                <span class="cmt">// Use the data passed via properties</span>
+                <span class="kw">var</span> walls = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+                    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="cls">Wall</span>&gt;().<span class="fn">ToList</span>();
+
+                <span class="kw">foreach</span> (<span class="kw">var</span> wall <span class="kw">in</span> walls)
+                {
+                    <span class="kw">var</span> p = wall.<span class="fn">LookupParameter</span>(ParameterName);
+                    <span class="kw">if</span> (p != <span class="kw">null</span> &amp;&amp; !p.IsReadOnly)
+                        p.<span class="fn">Set</span>(ParameterValue);
+                }
+
+                tx.<span class="fn">Commit</span>();
+                Success = <span class="kw">true</span>;
+            }
+        }
+        <span class="kw">catch</span> (<span class="cls">Exception</span> ex)
+        {
+            Success = <span class="kw">false</span>;
+            <span class="cls">TaskDialog</span>.<span class="fn">Show</span>(<span class="str">"Error"</span>, ex.Message);
+        }
+    }
+
+    <span class="kw">public string</span> <span class="fn">GetName</span>() => <span class="str">"My External Event Handler"</span>;
+}</pre></div>
+
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C# — Step 2: Register in OnStartup</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">public class</span> <span class="cls">MyApplication</span> : <span class="cls">IExternalApplication</span>
+{
+    <span class="cmt">// Static so WPF window can access it</span>
+    <span class="kw">public static</span> <span class="cls">ExternalEvent</span>   MyExternalEvent  { <span class="kw">get</span>; <span class="kw">private</span> <span class="kw">set</span>; }
+    <span class="kw">public static</span> <span class="cls">MyEventHandler</span>  MyHandler        { <span class="kw">get</span>; <span class="kw">private</span> <span class="kw">set</span>; }
+
+    <span class="kw">public</span> <span class="cls">Result</span> <span class="fn">OnStartup</span>(<span class="cls">UIControlledApplication</span> app)
+    {
+        <span class="cmt">// Create handler and register it</span>
+        MyHandler       = <span class="kw">new</span> <span class="cls">MyEventHandler</span>();
+        MyExternalEvent = <span class="cls">ExternalEvent</span>.<span class="fn">Create</span>(MyHandler);
+
+        <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+    }
+
+    <span class="kw">public</span> <span class="cls">Result</span> <span class="fn">OnShutdown</span>(<span class="cls">UIControlledApplication</span> app)
+    {
+        MyExternalEvent.<span class="fn">Dispose</span>();
+        <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+    }
+}</pre></div>
+
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C# — Step 3: Raise from WPF button</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Inside your WPF window button click handler:</span>
+<span class="kw">private void</span> <span class="fn">BtnApply_Click</span>(<span class="kw">object</span> sender, <span class="cls">RoutedEventArgs</span> e)
+{
+    <span class="cmt">// Pass data to the handler via properties</span>
+    <span class="cls">MyApplication</span>.MyHandler.ParameterName  = txtParamName.Text;
+    <span class="cls">MyApplication</span>.MyHandler.ParameterValue = txtValue.Text;
+
+    <span class="cmt">// Raise the event — Revit will call Execute() at next idle cycle</span>
+    <span class="cls">ExternalEventRequest</span> req = <span class="cls">MyApplication</span>.MyExternalEvent.<span class="fn">Raise</span>();
+
+    <span class="cmt">// Check that the request was accepted</span>
+    <span class="kw">if</span> (req == <span class="cls">ExternalEventRequest</span>.Accepted)
+        lblStatus.Content = <span class="str">"Request queued..."</span>;
+    <span class="kw">else</span>
+        lblStatus.Content = <span class="str">$"Request failed: {req}"</span>;
+}</pre></div>
+
+    <h3>ExternalEventRequest Status Values</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Status</th><th>Meaning</th></tr>
+      <tr><td>Accepted</td><td>Revit accepted and queued the request ✅</td></tr>
+      <tr><td>Pending</td><td>A previous raise is still pending — wait</td></tr>
+      <tr><td>Denied</td><td>Revit is busy (modal dialog open, not in idle state)</td></tr>
+      <tr><td>TimedOut</td><td>Revit did not process the event in time</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section" id="s7">
+    <div class="sec-num">// 07</div><h2>Modeless Dialog — Complete Pattern</h2>
+    <p>The full pattern for a WPF modeless window that interacts with Revit.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C# — Full modeless pattern</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// The modeless WPF window</span>
+<span class="kw">public partial class</span> <span class="cls">MyModelessWindow</span> : <span class="cls">Window</span>
+{
+    <span class="kw">private readonly</span> <span class="cls">ExternalEvent</span>  _event;
+    <span class="kw">private readonly</span> <span class="cls">MyEventHandler</span> _handler;
+
+    <span class="kw">public</span> <span class="fn">MyModelessWindow</span>(
+        <span class="cls">ExternalEvent</span> ev, <span class="cls">MyEventHandler</span> handler)
+    {
+        <span class="fn">InitializeComponent</span>();
+        _event   = ev;
+        _handler = handler;
+    }
+
+    <span class="kw">private void</span> <span class="fn">BtnRename_Click</span>(<span class="kw">object</span> sender, <span class="cls">RoutedEventArgs</span> e)
+    {
+        _handler.ParameterName  = <span class="str">"Mark"</span>;
+        _handler.ParameterValue = txtNewValue.Text;
+
+        <span class="kw">var</span> result = _event.<span class="fn">Raise</span>();
+
+        lblStatus.Content = result == <span class="cls">ExternalEventRequest</span>.Accepted
+            ? <span class="str">"Queued ✔"</span>
+            : <span class="str">$"Failed: {result}"</span>;
+    }
+
+    <span class="cmt">// Important: don't close, just hide when user clicks X</span>
+    <span class="kw">protected override void</span> <span class="fn">OnClosing</span>(<span class="cls">CancelEventArgs</span> e)
+    {
+        e.Cancel = <span class="kw">true</span>;
+        <span class="fn">Hide</span>();
+    }
+}
+
+<span class="cmt">// Launch from an IExternalCommand</span>
+[<span class="cls">Transaction</span>(<span class="cls">TransactionMode</span>.Manual)]
+<span class="kw">public class</span> <span class="cls">ShowWindowCommand</span> : <span class="cls">IExternalCommand</span>
+{
+    <span class="kw">private static</span> <span class="cls">MyModelessWindow</span> _window;
+
+    <span class="kw">public</span> <span class="cls">Result</span> <span class="fn">Execute</span>(<span class="cls">ExternalCommandData</span> cd,
+        <span class="kw">ref string</span> msg, <span class="cls">ElementSet</span> els)
+    {
+        <span class="kw">if</span> (_window == <span class="kw">null</span> || !_window.IsLoaded)
+        {
+            _window = <span class="kw">new</span> <span class="cls">MyModelessWindow</span>(
+                <span class="cls">MyApplication</span>.MyExternalEvent,
+                <span class="cls">MyApplication</span>.MyHandler);
+        }
+        _window.<span class="fn">Show</span>();
+        <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+    }
+}</pre></div>
+  </div>
+
+  <div class="section" id="s8">
+    <div class="sec-num">// 08</div><h2>Dynamic Model Update (DMU)</h2>
+    <p>DMU lets you <strong>modify the model in response to changes</strong> — unlike DocumentChanged which is read-only. Implement <code>IUpdater</code> and register triggers.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C# — IUpdater Implementation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">public class</span> <span class="cls">WallTagUpdater</span> : <span class="cls">IUpdater</span>
+{
+    <span class="kw">private static</span> <span class="cls">AddInId</span>   _appId;
+    <span class="kw">private static</span> <span class="cls">UpdaterId</span> _updaterId;
+
+    <span class="kw">public</span> <span class="fn">WallTagUpdater</span>(<span class="cls">AddInId</span> appId)
+    {
+        _appId     = appId;
+        _updaterId = <span class="kw">new</span> <span class="cls">UpdaterId</span>(appId,
+            <span class="kw">new</span> <span class="cls">Guid</span>(<span class="str">"12345678-1234-1234-1234-123456789abc"</span>));
+    }
+
+    <span class="cmt">// Called when a watched element changes</span>
+    <span class="kw">public void</span> <span class="fn">Execute</span>(<span class="cls">UpdaterData</span> data)
+    {
+        <span class="cls">Document</span> doc = data.GetDocument();
+
+        <span class="kw">foreach</span> (<span class="cls">ElementId</span> id <span class="kw">in</span> data.<span class="fn">GetModifiedElementIds</span>())
+        {
+            <span class="cls">Wall</span> wall = doc.<span class="fn">GetElement</span>(id) <span class="kw">as</span> <span class="cls">Wall</span>;
+            <span class="kw">if</span> (wall == <span class="kw">null</span>) <span class="kw">continue</span>;
+
+            <span class="cmt">// Example: auto-update wall mark when wall moves</span>
+            <span class="cls">Parameter</span> mark = wall.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.ALL_MODEL_MARK);
+            <span class="kw">if</span> (mark != <span class="kw">null</span> &amp;&amp; !mark.IsReadOnly)
+                mark.<span class="fn">Set</span>(<span class="str">$"W-{wall.Id.IntegerValue}"</span>);
+        }
+    }
+
+    <span class="kw">public string</span>    <span class="fn">GetUpdaterName</span>()    => <span class="str">"Wall Tag Updater"</span>;
+    <span class="kw">public string</span>    <span class="fn">GetAdditionalInformation</span>() => <span class="str">"Auto-tags walls on change"</span>;
+    <span class="kw">public</span> <span class="cls">ChangePriority</span> <span class="fn">GetChangePriority</span>() => <span class="cls">ChangePriority</span>.MEPFixtures;
+    <span class="kw">public</span> <span class="cls">UpdaterId</span> <span class="fn">GetUpdaterId</span>()      => _updaterId;
+}
+
+<span class="cmt">// Register the updater in OnStartup:</span>
+<span class="kw">public</span> <span class="cls">Result</span> <span class="fn">OnStartup</span>(<span class="cls">UIControlledApplication</span> app)
+{
+    <span class="kw">var</span> updater = <span class="kw">new</span> <span class="cls">WallTagUpdater</span>(app.ActiveAddInId);
+    <span class="cls">UpdaterRegistry</span>.<span class="fn">RegisterUpdater</span>(updater);
+
+    <span class="cmt">// Add trigger: fire on geometry change of any wall</span>
+    <span class="cls">ElementClassFilter</span> wallFilter = <span class="kw">new</span> <span class="cls">ElementClassFilter</span>(<span class="kw">typeof</span>(<span class="cls">Wall</span>));
+    <span class="cls">UpdaterRegistry</span>.<span class="fn">AddTrigger</span>(
+        updater.<span class="fn">GetUpdaterId</span>(),
+        wallFilter,
+        <span class="cls">Element</span>.GetChangeTypeGeometry());
+
+    <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+}
+
+<span class="cmt">// Unregister in OnShutdown:</span>
+<span class="kw">public</span> <span class="cls">Result</span> <span class="fn">OnShutdown</span>(<span class="cls">UIControlledApplication</span> app)
+{
+    <span class="cls">UpdaterRegistry</span>.<span class="fn">UnregisterUpdater</span>(_updater.<span class="fn">GetUpdaterId</span>());
+    <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+}</pre></div>
+
+    <h3>Change Types for DMU Triggers</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Change Type</th><th>Fires When</th></tr>
+      <tr><td>Element.GetChangeTypeGeometry()</td><td>Element geometry changes (move, resize)</td></tr>
+      <tr><td>Element.GetChangeTypeParameter(param)</td><td>A specific parameter value changes</td></tr>
+      <tr><td>Element.GetChangeTypeAny()</td><td>Any change to the element</td></tr>
+      <tr><td>Element.GetChangeTypeElementAddition()</td><td>Element is added to the document</td></tr>
+      <tr><td>Element.GetChangeTypeElementDeletion()</td><td>Element is deleted</td></tr>
+    </table></div>
+  </div>
+
+  <div class="section" id="s9">
+    <div class="sec-num">// 09</div><h2>Failure Handling</h2>
+    <p>Implement <code>IFailuresPreprocessor</code> to suppress or handle Revit warnings and errors that occur during a transaction.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Suppress all warnings silently</span>
+<span class="kw">public class</span> <span class="cls">SuppressWarnings</span> : <span class="cls">IFailuresPreprocessor</span>
+{
+    <span class="kw">public</span> <span class="cls">FailureProcessingResult</span> <span class="fn">PreprocessFailures</span>(
+        <span class="cls">FailuresAccessor</span> accessor)
+    {
+        <span class="kw">var</span> failures = accessor.<span class="fn">GetFailureMessages</span>();
+
+        <span class="kw">foreach</span> (<span class="kw">var</span> failure <span class="kw">in</span> failures)
+        {
+            <span class="kw">if</span> (failure.GetSeverity() == <span class="cls">FailureSeverity</span>.Warning)
+                accessor.<span class="fn">DeleteWarning</span>(failure);   <span class="cmt">// suppress warnings</span>
+            <span class="kw">else</span>
+                <span class="kw">return</span> <span class="cls">FailureProcessingResult</span>.ProceedWithRollBack; <span class="cmt">// errors → rollback</span>
+        }
+
+        <span class="kw">return</span> <span class="cls">FailureProcessingResult</span>.Continue;
+    }
+}
+
+<span class="cmt">// Use it in a transaction:</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Safe Create"</span>))
+{
+    <span class="cls">FailureHandlingOptions</span> opts = tx.<span class="fn">GetFailureHandlingOptions</span>();
+    opts.<span class="fn">SetFailuresPreprocessor</span>(<span class="kw">new</span> <span class="cls">SuppressWarnings</span>());
+    tx.<span class="fn">SetFailureHandlingOptions</span>(opts);
+
+    tx.<span class="fn">Start</span>();
+    <span class="cmt">// ... work that might cause warnings ...</span>
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+  </div>
+
+  <div class="section" id="s10">
+    <div class="sec-num">// 10</div><h2>Idling Event</h2>
+    <p>The Idling event fires between user interactions. Use it for periodic tasks but prefer ExternalEvent for modeless dialogs.</p>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">private int</span> _idleCount = <span class="num">0</span>;
+
+<span class="kw">private void</span> <span class="fn">OnIdling</span>(<span class="kw">object</span> sender, <span class="cls">IdlingEventArgs</span> e)
+{
+    <span class="cls">UIApplication</span> uiapp = sender <span class="kw">as</span> <span class="cls">UIApplication</span>;
+    <span class="kw">if</span> (uiapp?.ActiveUIDocument == <span class="kw">null</span>) <span class="kw">return</span>;
+
+    _idleCount++;
+
+    <span class="cmt">// Only run every 100 idle cycles to save performance</span>
+    <span class="kw">if</span> (_idleCount % <span class="num">100</span> != <span class="num">0</span>) <span class="kw">return</span>;
+
+    <span class="cmt">// Valid API context — can make changes</span>
+    <span class="cls">Document</span> doc = uiapp.ActiveUIDocument.Document;
+
+    <span class="cmt">// Tell Revit not to call this as fast as possible</span>
+    e.<span class="fn">SetRaiseWithoutDelay</span>(<span class="kw">false</span>);
+
+    <span class="cmt">// Use ExternalEvent instead of Idling when possible!</span>
+}</pre></div>
+
+    <div class="callout ca-ye">
+      <strong>// Recommendation</strong>
+      Prefer <code>ExternalEvent</code> over <code>Idling</code> for modeless dialog interactions. Idling fires constantly and degrades performance. ExternalEvent only fires when you explicitly call <code>Raise()</code>, giving Revit full control.
+    </div>
+  </div>
+
+  </div>
+</main>
+</div>
+<script>
+function nav(el,id){document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));el.classList.add('active');document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+const sections=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+window.addEventListener('scroll',()=>{let cur=sections[0];sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<130)cur=id;});document.querySelectorAll('.sb-link').forEach((l,i)=>l.classList.toggle('active',sections[i]===cur));},{passive:true});
+</script>
+</body></html>

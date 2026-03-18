@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Reference — Book 12: Family · Schedules · Print · Worksets · Analysis</title>
+<link rel="stylesheet" href="api-style.css"/>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Namespace<br/>Reference</div>
+    <div class="sb-sub">Book 12 · Family · Print · Worksets</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search class or method…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav">
+
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>Family API<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-family')"><span class="type-badge tb-class">CLS</span>Family</div>
+        <div class="sb-ns-child" onclick="go('cls-familymanager')"><span class="type-badge tb-class">CLS</span>FamilyManager</div>
+        <div class="sb-ns-child" onclick="go('cls-familyparameter')"><span class="type-badge tb-class">CLS</span>FamilyParameter</div>
+        <div class="sb-ns-child" onclick="go('cls-familytype')"><span class="type-badge tb-class">CLS</span>FamilyType</div>
+        <div class="sb-ns-child" onclick="go('cls-ifamilyloadoptions')"><span class="type-badge tb-iface">INT</span>IFamilyLoadOptions</div>
+        <div class="sb-ns-child" onclick="go('cls-sketchplane')"><span class="type-badge tb-class">CLS</span>SketchPlane</div>
+        <div class="sb-ns-child" onclick="go('cls-extrusion')"><span class="type-badge tb-class">CLS</span>Extrusion</div>
+        <div class="sb-ns-child" onclick="go('cls-directshape')"><span class="type-badge tb-class">CLS</span>DirectShape</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>Print &amp; Export<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-printmanager')"><span class="type-badge tb-class">CLS</span>PrintManager</div>
+        <div class="sb-ns-child" onclick="go('cls-printsetup')"><span class="type-badge tb-class">CLS</span>PrintSetup</div>
+        <div class="sb-ns-child" onclick="go('cls-pdfexportopts')"><span class="type-badge tb-class">CLS</span>PDFExportOptions</div>
+        <div class="sb-ns-child" onclick="go('cls-dwgexportopts')"><span class="type-badge tb-class">CLS</span>DWGExportOptions</div>
+        <div class="sb-ns-child" onclick="go('cls-imageexportopts')"><span class="type-badge tb-class">CLS</span>ImageExportOptions</div>
+        <div class="sb-ns-child" onclick="go('cls-ifcexportopts')"><span class="type-badge tb-class">CLS</span>IFCExportOptions</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>Worksharing<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-worksharingutils')"><span class="type-badge tb-class">CLS</span>WorksharingUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-workset')"><span class="type-badge tb-class">CLS</span>Workset</div>
+        <div class="sb-ns-child" onclick="go('cls-worksettable')"><span class="type-badge tb-class">CLS</span>WorksetTable</div>
+        <div class="sb-ns-child" onclick="go('cls-checkoutstatus')"><span class="type-badge tb-enum">ENUM</span>CheckoutStatus</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>Analysis<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-spatialfieldmgr')"><span class="type-badge tb-class">CLS</span>SpatialFieldManager</div>
+        <div class="sb-ns-child" onclick="go('cls-analysisresultschema')"><span class="type-badge tb-class">CLS</span>AnalysisResultSchema</div>
+        <div class="sb-ns-child" onclick="go('cls-booleanopsutils')"><span class="type-badge tb-class">CLS</span>BooleanOperationsUtils</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng5">
+      <div class="sb-ns-header" onclick="tog('ng5',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>Utility Classes<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-revitlinkinstance')"><span class="type-badge tb-class">CLS</span>RevitLinkInstance</div>
+        <div class="sb-ns-child" onclick="go('cls-revitlinktype')"><span class="type-badge tb-class">CLS</span>RevitLinkType</div>
+        <div class="sb-ns-child" onclick="go('cls-partutils')"><span class="type-badge tb-class">CLS</span>PartUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-assemblyinstance')"><span class="type-badge tb-class">CLS</span>AssemblyInstance</div>
+        <div class="sb-ns-child" onclick="go('cls-viewportutils')"><span class="type-badge tb-class">CLS</span>AssemblyViewUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-compoundstructurelayer')"><span class="type-badge tb-class">CLS</span>CompoundStructureLayer</div>
+        <div class="sb-ns-child" onclick="go('cls-fillpatternelement')"><span class="type-badge tb-class">CLS</span>FillPatternElement</div>
+        <div class="sb-ns-child" onclick="go('cls-projectinfo')"><span class="type-badge tb-class">CLS</span>ProjectInfo</div>
+        <div class="sb-ns-child" onclick="go('cls-sunshadowsettings')"><span class="type-badge tb-class">CLS</span>SunAndShadowSettings</div>
+        <div class="sb-ns-child" onclick="go('cls-dimension2')"><span class="type-badge tb-class">CLS</span>Dimension</div>
+        <div class="sb-ns-child" onclick="go('cls-independenttag')"><span class="type-badge tb-class">CLS</span>IndependentTag</div>
+        <div class="sb-ns-child" onclick="go('cls-textnote')"><span class="type-badge tb-class">CLS</span>TextNote</div>
+        <div class="sb-ns-child" onclick="go('cls-filledregion')"><span class="type-badge tb-class">CLS</span>FilledRegion</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng6">
+      <div class="sb-ns-header" onclick="tog('ng6',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>Filters Reference<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-elementlevelfilter')"><span class="type-badge tb-class">CLS</span>ElementLevelFilter</div>
+        <div class="sb-ns-child" onclick="go('cls-elementparamfilter')"><span class="type-badge tb-class">CLS</span>ElementParameterFilter</div>
+        <div class="sb-ns-child" onclick="go('cls-bboxfilter')"><span class="type-badge tb-class">CLS</span>BoundingBoxIntersectsFilter</div>
+        <div class="sb-ns-child" onclick="go('cls-logicalandfilter')"><span class="type-badge tb-class">CLS</span>LogicalAndFilter</div>
+        <div class="sb-ns-child" onclick="go('cls-exclusionfilter')"><span class="type-badge tb-class">CLS</span>ExclusionFilter</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="sb-files">
+    <div class="sb-files-label">All Reference Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link current" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 12 of 13 — Family API · Print · Export · Worksets · Analysis · Utilities</div>
+  <h1>Family, Print<br/><span>&amp; Utility Reference</span></h1>
+  <p>Complete reference for the Family API (FamilyManager, FamilyParameter, DirectShape, Extrusion), Print &amp; Export (PDF, DWG, IFC, Image), Worksharing, Analysis display, and all remaining utility classes including Filters, Dimension, Tags, TextNote, and ProjectInfo.</p>
+  <div class="hero-chips">
+    <span class="chip c-pu">Family API</span>
+    <span class="chip c-bl">Print &amp; Export</span>
+    <span class="chip c-gr">Worksharing</span>
+    <span class="chip c-ye">Filters Reference</span>
+    <span class="chip c-or">Utility Classes</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════
+     FAMILY API
+═══════════════════════════ -->
+<div class="ns-block" id="ns-family">
+  <div class="ns-header">
+    <div class="ns-icon">🧩</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Family API</div>
+      <h2>Family · FamilyManager · DirectShape</h2>
+      <p>Create, edit, and manage Revit families programmatically — types, parameters, geometry.</p>
+    </div>
+  </div>
+
+<!-- Family -->
+<div class="class-block" id="cls-family">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Family</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a loaded family in the project. A Family is the container for one or more FamilySymbol types. It provides access to all symbols, indicates whether it's an in-place family, and its category. Use EditFamily() to open the family for editing, or LoadFamily() to load it back after changes.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsInPlace</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">True if this is an in-place family (created within the project rather than loaded from a .rfa file). In-place families cannot be directly converted to loadable families through the API.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsEditable</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">True if the family document can be opened for editing. System families (walls, floors etc.) are not editable.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Category</span> <span class="v">FamilyCategory</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the category of this family (Doors, Windows, Furniture, etc.).</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ISet</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">GetFamilySymbolIds</span>()</span></div>
+      <div class="member-desc">Returns the ElementIds of all FamilySymbol types within this family. Iterate and cast each to FamilySymbol to access type parameters.</div>
+      <div class="returns-row">Returns: <span>ISet&lt;ElementId&gt;</span> — Set of FamilySymbol IDs.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Family inventory and editing workflow</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Inventory all families ──</span>
+<span class="k">var</span> families = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Family</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Family</span>&gt;()
+    .<span class="fn">OrderBy</span>(f => f.Name)
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> fam <span class="k">in</span> families)
+{
+    <span class="k">int</span>    typeCount = fam.<span class="fn">GetFamilySymbolIds</span>().Count;
+    <span class="k">bool</span>   inPlace  = fam.IsInPlace;
+    <span class="k">string</span> cat      = fam.FamilyCategory?.Name ?? <span class="s">"Unknown"</span>;
+
+    <span class="cm">// Count placed instances of this family</span>
+    <span class="k">int</span> instances = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilyInstance</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+        .<span class="fn">Count</span>(fi => fi.Symbol?.Family?.Id == fam.Id);
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"{fam.Name} [{cat}] Types:{typeCount} Instances:{instances} InPlace:{inPlace}"</span>);
+}
+
+<span class="cm">// ── Load a .rfa file ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Load Family"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Family</span> loaded;
+    <span class="k">bool</span> ok = doc.<span class="fn">LoadFamily</span>(
+        <span class="s">@"C:\Revit\Families\SingleFlushDoor.rfa"</span>,
+        <span class="k">new</span> <span class="tp">FamilyLoadOverwriteOptions</span>(),
+        <span class="k">out</span> loaded);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Open family for editing ──</span>
+<span class="tp">Family</span> doorFamily = families.<span class="fn">First</span>(f => f.Name.Contains(<span class="s">"Door"</span>));
+<span class="k">if</span> (doorFamily.IsEditable)
+{
+    <span class="tp">Document</span> famDoc = doc.<span class="fn">EditFamily</span>(doorFamily);
+    <span class="cm">// ... edit famDoc ...</span>
+    famDoc.<span class="fn">LoadFamily</span>(doc, <span class="k">new</span> <span class="tp">FamilyLoadOverwriteOptions</span>());
+    famDoc.<span class="fn">Close</span>(<span class="k">false</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- FamilyManager -->
+<div class="class-block" id="cls-familymanager">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">FamilyManager</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · only in family documents</div>
+  <div class="class-desc">Manages family types and parameters within an open family document. Access via famDoc.FamilyManager. Lets you create/delete/rename types, add/remove/modify parameters, set parameter values, and define formulas. Only available when the active document is a .rfa family document.</div>
+  <div class="callout c-warn" style="margin:12px 24px 0;"><strong>// Family Document Only</strong>FamilyManager is only valid inside a family document (doc.IsFamilyDocument == true). Calling it on a project document throws an exception. Always check before use.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FamilyType</span> <span class="v">CurrentType</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the currently active type. Parameter values read/written via FamilyManager apply to this type. Set this before calling Get/Set to target a specific type.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FamilyTypeSet</span> <span class="v">Types</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets all FamilyType objects in this family. Enumerate to iterate over all types.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FamilyParameterSet</span> <span class="v">Parameters</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets all FamilyParameter definitions in this family.</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FamilyType</span> <span class="fn">NewType</span>(<span class="tp">string</span> <span class="pm">name</span>)</span></div>
+      <div class="member-desc">Creates a new family type with the given name. The new type becomes CurrentType. Parameter values are copied from the previous current type. Must be inside a Transaction.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FamilyParameter</span> <span class="fn">AddParameter</span>(<span class="tp">string</span> <span class="pm">parameterName</span>, <span class="tp">ForgeTypeId</span> <span class="pm">groupTypeId</span>, <span class="tp">ForgeTypeId</span> <span class="pm">specTypeId</span>, <span class="tp">bool</span> <span class="pm">isInstance</span>)</span></div>
+      <div class="member-desc">Adds a new family parameter. groupTypeId controls which group it appears under in properties (GroupTypeId.Dimensions, GroupTypeId.Data, etc.). specTypeId is the data type (SpecTypeId.Length, SpecTypeId.Boolean, SpecTypeId.String, etc.).</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">Set</span>(<span class="tp">FamilyParameter</span> <span class="pm">familyParameter</span>, <span class="tp">double</span> <span class="pm">value</span>)</span></div>
+      <div class="member-desc">Sets a parameter value for the CurrentType. Also has overloads for Set(param, int), Set(param, string), Set(param, ElementId). Value must be in internal units for double parameters.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">SetFormula</span>(<span class="tp">FamilyParameter</span> <span class="pm">familyParameter</span>, <span class="tp">string</span> <span class="pm">formula</span>)</span></div>
+      <div class="member-desc">Sets a parameter formula (e.g. "Width * 2"). The formula string uses other parameter names and arithmetic operators. Pass null or empty string to remove the formula.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete FamilyManager workflow</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Open a family document</span>
+<span class="tp">Document</span> famDoc = doc.<span class="fn">EditFamily</span>(doorFamily);
+<span class="tp">FamilyManager</span> mgr = famDoc.FamilyManager;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(famDoc, <span class="s">"Edit Family"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Add a new Length parameter</span>
+    <span class="tp">FamilyParameter</span> frameWidth = mgr.<span class="fn">AddParameter</span>(
+        <span class="s">"FrameWidth"</span>,
+        <span class="tp">GroupTypeId</span>.Dimensions,
+        <span class="tp">SpecTypeId</span>.Length,
+        <span class="k">false</span>);  <span class="cm">// false = type parameter</span>
+
+    <span class="cm">// Add a Yes/No instance parameter</span>
+    <span class="tp">FamilyParameter</span> hasGlass = mgr.<span class="fn">AddParameter</span>(
+        <span class="s">"HasGlassPanel"</span>,
+        <span class="tp">GroupTypeId</span>.General,
+        <span class="tp">SpecTypeId</span>.Boolean.YesNo,
+        <span class="k">true</span>);   <span class="cm">// true = instance parameter</span>
+
+    <span class="cm">// Set formula: FrameWidth = Width / 10</span>
+    <span class="tp">FamilyParameter</span> width = mgr.Parameters.<span class="fn">Cast</span>&lt;<span class="tp">FamilyParameter</span>&gt;()
+        .<span class="fn">FirstOrDefault</span>(p => p.Definition.Name == <span class="s">"Width"</span>);
+    <span class="k">if</span> (width != <span class="k">null</span>)
+        mgr.<span class="fn">SetFormula</span>(frameWidth, <span class="s">"Width / 10"</span>);
+
+    <span class="cm">// Create new types from a data table</span>
+    <span class="k">var</span> typeSizes = <span class="k">new</span> (string name, double widthMm, double heightMm)[]
+    {
+        (<span class="s">"900x2100"</span>, <span class="n">900</span>, <span class="n">2100</span>),
+        (<span class="s">"1000x2100"</span>, <span class="n">1000</span>, <span class="n">2100</span>),
+        (<span class="s">"1200x2400"</span>, <span class="n">1200</span>, <span class="n">2400</span>),
+    };
+
+    <span class="k">foreach</span> (<span class="k">var</span> (name, wMm, hMm) <span class="k">in</span> typeSizes)
+    {
+        mgr.<span class="fn">NewType</span>(name);   <span class="cm">// creates and makes current</span>
+
+        <span class="k">var</span> wParam = mgr.Parameters.<span class="fn">Cast</span>&lt;<span class="tp">FamilyParameter</span>&gt;()
+            .<span class="fn">First</span>(p => p.Definition.Name == <span class="s">"Width"</span>);
+        <span class="k">var</span> hParam = mgr.Parameters.<span class="fn">Cast</span>&lt;<span class="tp">FamilyParameter</span>&gt;()
+            .<span class="fn">First</span>(p => p.Definition.Name == <span class="s">"Height"</span>);
+
+        mgr.<span class="fn">Set</span>(wParam, <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(wMm, <span class="tp">UnitTypeId</span>.Millimeters));
+        mgr.<span class="fn">Set</span>(hParam, <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(hMm, <span class="tp">UnitTypeId</span>.Millimeters));
+    }
+
+    <span class="cm">// List all types with their parameter values</span>
+    <span class="k">foreach</span> (<span class="tp">FamilyType</span> ft <span class="k">in</span> mgr.Types)
+    {
+        mgr.CurrentType = ft;
+        System.Diagnostics.Debug.WriteLine(<span class="s">$"Type: {ft.Name}"</span>);
+        <span class="k">foreach</span> (<span class="tp">FamilyParameter</span> fp <span class="k">in</span> mgr.Parameters)
+        {
+            <span class="tp">Parameter</span> val = mgr.<span class="fn">GetValue</span>(fp);
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"  {fp.Definition.Name} = {val?.AsValueString()}"</span>);
+        }
+    }
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Load modified family back into project</span>
+famDoc.<span class="fn">LoadFamily</span>(doc, <span class="k">new</span> <span class="tp">FamilyLoadOverwriteOptions</span>());
+famDoc.<span class="fn">Close</span>(<span class="k">false</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- IFamilyLoadOptions -->
+<div class="class-block" id="cls-ifamilyloadoptions">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IFamilyLoadOptions</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Controls behaviour when loading a family that already exists in the project. Implement this interface to silently overwrite existing families without showing a confirmation dialog.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Implementation Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Silent overwrite implementation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Implement IFamilyLoadOptions to always overwrite</span>
+<span class="k">public class</span> <span class="tp">FamilyLoadOverwriteOptions</span> : <span class="tp">IFamilyLoadOptions</span>
+{
+    <span class="cm">// Called when a family with the same name already exists</span>
+    <span class="k">public bool</span> <span class="fn">OnFamilyFound</span>(<span class="k">bool</span> familyInUse,
+        <span class="k">out bool</span> overwriteParamValues)
+    {
+        overwriteParamValues = <span class="k">true</span>;  <span class="cm">// overwrite parameter values too</span>
+        <span class="k">return true</span>;                  <span class="cm">// true = proceed with load</span>
+    }
+
+    <span class="cm">// Called when a shared family is found</span>
+    <span class="k">public bool</span> <span class="fn">OnSharedFamilyFound</span>(<span class="tp">Family</span> sharedFamily,
+        <span class="k">bool</span> familyInUse,
+        <span class="k">out</span> <span class="tp">FamilySource</span> source,
+        <span class="k">out bool</span> overwriteParamValues)
+    {
+        source = <span class="tp">FamilySource</span>.Family;  <span class="cm">// use the file version</span>
+        overwriteParamValues = <span class="k">true</span>;
+        <span class="k">return true</span>;
+    }
+}
+
+<span class="cm">// Usage</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Reload Family"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Family</span> result;
+    doc.<span class="fn">LoadFamily</span>(path, <span class="k">new</span> <span class="tp">FamilyLoadOverwriteOptions</span>(), <span class="k">out</span> result);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- DirectShape -->
+<div class="class-block" id="cls-directshape">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">DirectShape</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">A lightweight element that displays custom geometry without requiring a full family document. DirectShapes are created from Solid, Mesh, or TessellatedShapeBuilder geometry. They're ideal for visualisation, IFC import, analysis overlays, and temporary geometry. DirectShapes appear in views but cannot host other elements.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Usage</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">DirectShape</span> <span class="fn">CreateElement</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">categoryId</span>)</span></div>
+      <div class="member-desc">Creates an empty DirectShape element assigned to the given category. After creation, call SetShape() to assign geometry. The categoryId determines how the shape appears in schedules and visibility filters.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — DirectShape from solid + from tessellated builder</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"DirectShape"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// ── Method 1: From an existing Solid ──</span>
+    <span class="tp">Solid</span> sourceSolid = <span class="fn">GetSolid</span>(someElement);  <span class="cm">// your helper</span>
+    <span class="k">if</span> (sourceSolid != <span class="k">null</span>)
+    {
+        <span class="tp">DirectShape</span> ds = <span class="tp">DirectShape</span>.<span class="fn">CreateElement</span>(doc,
+            <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInCategory</span>.OST_GenericModel));
+        ds.<span class="fn">SetShape</span>(<span class="k">new</span> <span class="tp">GeometryObject</span>[] { sourceSolid });
+        ds.Name = <span class="s">"Clash Volume"</span>;
+    }
+
+    <span class="cm">// ── Method 2: From TessellatedShapeBuilder (arbitrary mesh) ──</span>
+    <span class="k">var</span> builder = <span class="k">new</span> <span class="tp">TessellatedShapeBuilder</span>();
+    builder.<span class="fn">OpenConnectedFaceSet</span>(<span class="k">true</span>);  <span class="cm">// true = closed solid</span>
+
+    <span class="cm">// Add 4 triangular faces of a tetrahedron</span>
+    <span class="tp">XYZ</span>[] verts = {
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>,<span class="n">0</span>,<span class="n">0</span>),
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">5</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">5</span>)
+    };
+    builder.<span class="fn">AddFace</span>(<span class="k">new</span> <span class="tp">TessellatedFace</span>(
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">XYZ</span>&gt; { verts[<span class="n">0</span>], verts[<span class="n">1</span>], verts[<span class="n">2</span>] },
+        <span class="tp">ElementId</span>.InvalidElementId));
+    builder.<span class="fn">AddFace</span>(<span class="k">new</span> <span class="tp">TessellatedFace</span>(
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">XYZ</span>&gt; { verts[<span class="n">0</span>], verts[<span class="n">1</span>], verts[<span class="n">3</span>] },
+        <span class="tp">ElementId</span>.InvalidElementId));
+    builder.<span class="fn">AddFace</span>(<span class="k">new</span> <span class="tp">TessellatedFace</span>(
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">XYZ</span>&gt; { verts[<span class="n">0</span>], verts[<span class="n">2</span>], verts[<span class="n">3</span>] },
+        <span class="tp">ElementId</span>.InvalidElementId));
+    builder.<span class="fn">AddFace</span>(<span class="k">new</span> <span class="tp">TessellatedFace</span>(
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">XYZ</span>&gt; { verts[<span class="n">1</span>], verts[<span class="n">2</span>], verts[<span class="n">3</span>] },
+        <span class="tp">ElementId</span>.InvalidElementId));
+
+    builder.<span class="fn">CloseConnectedFaceSet</span>();
+    builder.<span class="fn">Build</span>();
+    <span class="tp">TessellatedShapeBuilderResult</span> result = builder.GetBuildResult();
+
+    <span class="tp">DirectShape</span> ds2 = <span class="tp">DirectShape</span>.<span class="fn">CreateElement</span>(doc,
+        <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInCategory</span>.OST_GenericModel));
+    ds2.<span class="fn">SetShape</span>(result.GetGeometricalObjects());
+    ds2.Name = <span class="s">"Tetrahedron"</span>;
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- SketchPlane + Extrusion -->
+<div class="class-block" id="cls-sketchplane">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">SketchPlane</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Family documents only</div>
+  <div class="class-desc">A reference plane used as the base for sketching family geometry. Required for creating extrusions, blends, revolves and sweeps in family documents. Created from a Plane using SketchPlane.Create().</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Factory + Extrusion Pattern</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">SketchPlane</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">Plane</span> <span class="pm">geometryPlane</span>)</span></div>
+      <div class="member-desc">Creates a SketchPlane from a geometric Plane. The SketchPlane defines the drawing plane for family geometry (extrusions, sweeps, revolves).</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create extrusion in family document</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Must be in a family document</span>
+<span class="k">if</span> (!famDoc.IsFamilyDocument) <span class="k">return</span>;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(famDoc, <span class="s">"Create Extrusion"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// 1. Create sketch plane (XY plane at Z=0)</span>
+    <span class="tp">Plane</span>       plane      = <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisZ, <span class="tp">XYZ</span>.Zero);
+    <span class="tp">SketchPlane</span> sketchPln  = <span class="tp">SketchPlane</span>.<span class="fn">Create</span>(famDoc, plane);
+
+    <span class="cm">// 2. Create profile as CurveArrArray</span>
+    <span class="k">double</span> wFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">600</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="k">double</span> hFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">400</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+    <span class="k">var</span> loop = <span class="k">new</span> <span class="tp">CurveArray</span>();
+    loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(wFt,<span class="n">0</span>,<span class="n">0</span>)));
+    loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(wFt,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(wFt,hFt,<span class="n">0</span>)));
+    loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(wFt,hFt,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,hFt,<span class="n">0</span>)));
+    loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,hFt,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>)));
+
+    <span class="k">var</span> profile = <span class="k">new</span> <span class="tp">CurveArrArray</span>();
+    profile.<span class="fn">Append</span>(loop);
+
+    <span class="cm">// 3. Create the extrusion</span>
+    <span class="k">double</span> depth = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">2100</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="tp">Extrusion</span> extr = famDoc.FamilyCreate.<span class="fn">NewExtrusion</span>(
+        <span class="k">true</span>,       <span class="cm">// isSolid</span>
+        profile,
+        sketchPln,
+        depth);
+
+    <span class="cm">// 4. Assign material</span>
+    <span class="tp">ElementId</span> matId = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(famDoc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Material</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Material</span>&gt;()
+        .<span class="fn">First</span>(m => m.Name.Contains(<span class="s">"Wood"</span>)).Id;
+    extr.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.MATERIAL_ID_PARAM).<span class="fn">Set</span>(matId);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-family -->
+
+<!-- ═══════════════════════════
+     PRINT & EXPORT
+═══════════════════════════ -->
+<div class="ns-block" id="ns-print" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🖨️</div>
+    <div class="ns-meta"><div class="ns-label">// Print &amp; Export</div><h2>Print · PDF · DWG · IFC · Image Export</h2><p>Export sheets and views to all standard formats programmatically.</p></div>
+  </div>
+
+<!-- PrintManager -->
+<div class="class-block" id="cls-printmanager">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PrintManager</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Manages print operations for a document. Allows setting the printer, paper size, print range (all sheets, selection, or current view), and submitting print jobs. Access via doc.PrintManager.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Usage Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Print all sheets to a printer</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">PrintManager</span> pm = doc.PrintManager;
+
+<span class="cm">// Set printer name</span>
+pm.SelectNewPrintDriver(<span class="s">"Microsoft Print to PDF"</span>);
+
+<span class="cm">// Configure print setup</span>
+pm.PrintRange = <span class="tp">PrintRange</span>.Select;
+pm.CombinedFile = <span class="k">false</span>;   <span class="cm">// one file per sheet</span>
+
+<span class="cm">// Build view set of all sheets</span>
+<span class="tp">ViewSet</span> viewSet = pm.ViewSheetSetting.CurrentViewSheetSet.Views;
+<span class="k">var</span> sheets = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewSheet</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">ViewSheet</span>&gt;()
+    .<span class="fn">OrderBy</span>(s => s.SheetNumber)
+    .<span class="fn">ToList</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Print"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">var</span> viewSheetSet = pm.ViewSheetSetting.CurrentViewSheetSet;
+    viewSheetSet.Views = <span class="k">new</span> <span class="tp">ViewSet</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> s <span class="k">in</span> sheets) viewSheetSet.Views.<span class="fn">Insert</span>(s);
+    pm.ViewSheetSetting.<span class="fn">SaveAs</span>(<span class="s">"All Sheets"</span>);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Submit print job (shows print dialog unless InSession=true)</span>
+pm.<span class="fn">SubmitPrint</span>();
+System.Diagnostics.Debug.WriteLine(<span class="s">$"Sent {sheets.Count} sheets to printer"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- PDFExportOptions -->
+<div class="class-block" id="cls-pdfexportopts">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PDFExportOptions</span></div><div class="class-inherit">Inherits: <span>ExportOptions</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Options for exporting views or sheets to PDF format. Introduced in Revit 2022 as a native PDF export (replacing the virtual printer workaround). Supports individual files per sheet or combined multi-page PDF.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 PDF Export Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Export all sheets as individual PDFs</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Build list of sheet view IDs</span>
+<span class="k">var</span> sheetIds = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewSheet</span>))
+    .<span class="fn">ToElementIds</span>()
+    .<span class="fn">ToList</span>();
+
+<span class="k">var</span> opts = <span class="k">new</span> <span class="tp">PDFExportOptions</span>
+{
+    FileName                    = <span class="s">"Project Drawings"</span>,
+    Combine                     = <span class="k">false</span>,   <span class="cm">// false = one PDF per sheet</span>
+    ExportQuality               = <span class="tp">PDFExportQualityType</span>.DPI300,
+    ColorDepth                  = <span class="tp">ColorDepthType</span>.Color,
+    RasterQuality               = <span class="tp">RasterQualityType</span>.High,
+    HideScopeBoxes              = <span class="k">true</span>,
+    HideReferencePlanes         = <span class="k">true</span>,
+    HideUnreferencedViewTags    = <span class="k">true</span>
+};
+
+<span class="cm">// Set naming rule: sheet number + sheet name</span>
+opts.<span class="fn">SetNamingRule</span>(<span class="s">"{Sheet Number}-{Sheet Name}"</span>);
+
+<span class="cm">// Export</span>
+<span class="k">bool</span> success = doc.<span class="fn">Export</span>(
+    <span class="s">@"C:\Output\PDFs"</span>,   <span class="cm">// folder</span>
+    sheetIds,
+    opts);
+
+System.Diagnostics.Debug.WriteLine(
+    success ? <span class="s">$"Exported {sheetIds.Count} PDFs"</span> : <span class="s">"Export failed"</span>);
+
+<span class="cm">// Combined single PDF</span>
+opts.Combine  = <span class="k">true</span>;
+opts.FileName = <span class="s">"All_Sheets_Combined"</span>;
+doc.<span class="fn">Export</span>(<span class="s">@"C:\Output"</span>, sheetIds, opts);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- DWGExportOptions -->
+<div class="class-block" id="cls-dwgexportopts">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">DWGExportOptions</span></div><div class="class-inherit">Inherits: <span>ExportOptions</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Options for exporting to AutoCAD DWG format. Allows controlling DWG version, layer settings, linetype scaling, coordinate system, and whether to merge views into one file.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 DWG Export Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Export floor plans as DWG files</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> floorPlanIds = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewPlan</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">ViewPlan</span>&gt;()
+    .<span class="fn">Where</span>(v => !v.IsTemplate)
+    .<span class="fn">Select</span>(v => v.Id)
+    .<span class="fn">ToList</span>();
+
+<span class="k">var</span> dwgOpts = <span class="k">new</span> <span class="tp">DWGExportOptions</span>
+{
+    FileVersion         = <span class="tp">ACADVersion</span>.R2018,     <span class="cm">// DWG 2018 format</span>
+    ExportingAreas      = <span class="k">false</span>,
+    MergedViews         = <span class="k">false</span>,   <span class="cm">// one DWG per view</span>
+    SharedCoords        = <span class="k">true</span>,    <span class="cm">// use shared coordinates</span>
+    HideUnreferenced    = <span class="k">true</span>
+};
+
+<span class="k">bool</span> ok = doc.<span class="fn">Export</span>(<span class="s">@"C:\DWG_Output"</span>, floorPlanIds, dwgOpts);
+System.Diagnostics.Debug.WriteLine(ok ? <span class="s">"DWG export OK"</span> : <span class="s">"DWG export failed"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ImageExportOptions -->
+<div class="class-block" id="cls-imageexportopts">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ImageExportOptions</span></div><div class="class-inherit">Inherits: <span>ExportOptions</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Options for exporting views as raster image files (PNG, JPEG, TIFF, BMP). Allows setting resolution (DPI), pixel size, zoom, and view range. Each view exports to a separate image file.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Image Export Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Export 3D view as 300 DPI PNG</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">View3D</span> v3d = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">View3D</span>)).<span class="fn">Cast</span>&lt;<span class="tp">View3D</span>&gt;()
+    .<span class="fn">First</span>(v => !v.IsTemplate);
+
+<span class="k">var</span> imgOpts = <span class="k">new</span> <span class="tp">ImageExportOptions</span>
+{
+    ExportRange          = <span class="tp">ExportRange</span>.SetOfViews,
+    FilePath             = <span class="s">@"C:\Images\3D_View.png"</span>,
+    HLRandWFViewsFileType = <span class="tp">ImageFileType</span>.PNG,
+    ImageResolution      = <span class="tp">ImageResolution</span>.DPI_300,
+    PixelSize            = <span class="n">1920</span>,   <span class="cm">// width in pixels</span>
+    ShadowViewsFileType  = <span class="tp">ImageFileType</span>.PNG,
+    ZoomType             = <span class="tp">ZoomFitType</span>.FitToPage
+};
+imgOpts.<span class="fn">SetViewsAndSheets</span>(<span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt; { v3d.Id });
+
+doc.<span class="fn">ExportImage</span>(imgOpts);
+System.Diagnostics.Debug.WriteLine(<span class="s">"Image exported"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- IFCExportOptions -->
+<div class="class-block" id="cls-ifcexportopts">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">IFCExportOptions</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Options for exporting the model to IFC format. Supports IFC2x3, IFC4, and various coordination view configurations. Allows setting property sets, geometric representation, and coordinate systems.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 IFC Export Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Export to IFC2x3 Coordination View</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> ifcOpts = <span class="k">new</span> <span class="tp">IFCExportOptions</span>();
+ifcOpts.FileVersion           = <span class="tp">IFCVersion</span>.IFC2x3CV2;   <span class="cm">// IFC2x3 Coordination View</span>
+ifcOpts.ExportBaseQuantities  = <span class="k">true</span>;                    <span class="cm">// include quantities</span>
+ifcOpts.SpaceBoundaryLevel    = <span class="n">2</span>;                        <span class="cm">// space boundary LOD</span>
+ifcOpts.AddOption(<span class="s">"ExportInternalRevitPropertySets"</span>, <span class="s">"true"</span>);
+ifcOpts.AddOption(<span class="s">"ExportIFCCommonPropertySets"</span>,     <span class="s">"true"</span>);
+ifcOpts.AddOption(<span class="s">"Export2DElements"</span>,                <span class="s">"false"</span>);
+ifcOpts.AddOption(<span class="s">"ExportPartsAsBuildingElementParts"</span>, <span class="s">"false"</span>);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"IFC Export"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    doc.<span class="fn">Export</span>(<span class="s">@"C:\IFC_Output"</span>, <span class="s">"Building_Model.ifc"</span>, ifcOpts);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// IFC version options:</span>
+<span class="cm">// IFCVersion.IFC2x3         — basic IFC2x3</span>
+<span class="cm">// IFCVersion.IFC2x3CV2      — IFC2x3 Coordination View 2.0 (most common)</span>
+<span class="cm">// IFCVersion.IFC2x3BFM      — BIM Collaboration Format</span>
+<span class="cm">// IFCVersion.IFC4           — IFC4 (latest)</span>
+<span class="cm">// IFCVersion.IFC4DTV        — IFC4 Design Transfer View</span>
+<span class="cm">// IFCVersion.IFC4RV         — IFC4 Reference View</span></pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-print -->
+
+<!-- ═══════════════════════════
+     WORKSHARING
+═══════════════════════════ -->
+<div class="ns-block" id="ns-workset" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">☁️</div>
+    <div class="ns-meta"><div class="ns-label">// Worksharing</div><h2>WorksharingUtils · Workset · WorksetTable</h2><p>Query workset ownership, move elements between worksets, check out elements.</p></div>
+  </div>
+
+<!-- WorksharingUtils -->
+<div class="class-block" id="cls-worksharingutils">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">WorksharingUtils</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Static utility class for workshared document operations — checking out elements, querying ownership status, and getting checkout information. Only meaningful for workshared (central file) models.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Static Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">CheckoutStatus</span> <span class="fn">GetCheckoutStatus</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">elementId</span>)</span></div>
+      <div class="member-desc">Returns the checkout/ownership status of the specified element. Check this before attempting to modify elements in a workshared model.</div>
+      <div class="returns-row">Returns: <span>CheckoutStatus</span> — OwnedByCurrentUser, OwnedByOtherUser, NotOwned, or Unknown.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">CheckoutElements</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="pm">elementIds</span>)</span></div>
+      <div class="member-desc">Attempts to check out (borrow) the specified elements. Returns the IDs of elements that were successfully checked out. Elements owned by other users are silently skipped.</div>
+      <div class="returns-row">Returns: <span>ICollection&lt;ElementId&gt;</span> — IDs of successfully checked-out elements.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">WorksharingTooltipInfo</span> <span class="fn">GetWorksharingTooltipInfo</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">elementId</span>)</span></div>
+      <div class="member-desc">Returns detailed ownership information including owner name, last changed by, and last changed on date. Use for building ownership audit reports.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Worksharing audit</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">if</span> (!doc.IsWorkshared) <span class="k">return</span>;
+
+<span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">ToElementIds</span>();
+
+<span class="k">var</span> ownedByOthers = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt;();
+<span class="k">var</span> ownedByMe     = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt;();
+
+<span class="k">foreach</span> (<span class="k">var</span> id <span class="k">in</span> walls)
+{
+    <span class="tp">CheckoutStatus</span> status =
+        <span class="tp">WorksharingUtils</span>.<span class="fn">GetCheckoutStatus</span>(doc, id);
+
+    <span class="k">switch</span> (status)
+    {
+        <span class="k">case</span> <span class="tp">CheckoutStatus</span>.OwnedByCurrentUser:
+            ownedByMe.<span class="fn">Add</span>(id); <span class="k">break</span>;
+        <span class="k">case</span> <span class="tp">CheckoutStatus</span>.OwnedByOtherUser:
+            ownedByOthers.<span class="fn">Add</span>(id);
+            <span class="cm">// Get owner name</span>
+            <span class="k">var</span> info = <span class="tp">WorksharingUtils</span>
+                .<span class="fn">GetWorksharingTooltipInfo</span>(doc, id);
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"Owned by: {info.Owner} | Last changed: {info.LastChangedBy}"</span>);
+            <span class="k">break</span>;
+    }
+}
+
+<span class="cm">// Try to check out un-owned elements</span>
+<span class="k">var</span> unowned = walls.<span class="fn">Where</span>(id =>
+    <span class="tp">WorksharingUtils</span>.<span class="fn">GetCheckoutStatus</span>(doc, id)
+        == <span class="tp">CheckoutStatus</span>.NotOwned).<span class="fn">ToList</span>();
+
+<span class="k">var</span> checkedOut = <span class="tp">WorksharingUtils</span>.<span class="fn">CheckoutElements</span>(doc, unowned);
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Checked out {checkedOut.Count} of {unowned.Count} requested"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Workset -->
+<div class="class-block" id="cls-workset">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Workset</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a single workset in a workshared model. Provides the workset name, ID, kind, and whether it's currently open. Worksets are managed via WorksetTable obtained from doc.GetWorksetTable().</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Properties + WorksetTable Usage</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">WorksetId</span> <span class="v">Id</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the workset's unique identifier. Use this ID to assign elements to a workset via ELEM_PARTITION_PARAM.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">Name</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the display name of the workset.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">WorksetKind</span> <span class="v">Kind</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the workset kind: UserCreated, FamilyWorkset, ViewWorkset, or StandardWorkset.</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Workset operations</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">if</span> (!doc.IsWorkshared) <span class="k">return</span>;
+
+<span class="tp">WorksetTable</span> wt = doc.<span class="fn">GetWorksetTable</span>();
+
+<span class="cm">// List all user-created worksets</span>
+<span class="tp">IList</span>&lt;<span class="tp">Workset</span>&gt; worksets =
+    <span class="tp">WorksetTable</span>.<span class="fn">GetWorksets</span>(doc, <span class="tp">WorksetKind</span>.UserCreated);
+
+<span class="k">foreach</span> (<span class="k">var</span> ws <span class="k">in</span> worksets)
+{
+    <span class="cm">// Count elements on this workset</span>
+    <span class="k">int</span> count = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">WherePasses</span>(<span class="k">new</span> <span class="tp">ElementWorksetFilter</span>(ws.Id))
+        .<span class="fn">GetElementCount</span>();
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Workset: {ws.Name} | Elements: {count} | Kind: {ws.Kind}"</span>);
+}
+
+<span class="cm">// Move a wall to a specific workset</span>
+<span class="tp">Workset</span> targetWs = worksets.<span class="fn">First</span>(w => w.Name == <span class="s">"Architecture"</span>);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Move to Workset"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    wall.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ELEM_PARTITION_PARAM)
+        .<span class="fn">Set</span>(targetWs.Id.IntegerValue);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Create a new workset</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"New Workset"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Workset</span>.<span class="fn">Create</span>(doc, <span class="s">"MEP Systems"</span>);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-workset -->
+
+<!-- ═══════════════════════════
+     UTILITY CLASSES
+═══════════════════════════ -->
+<div class="ns-block" id="ns-utility" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔧</div>
+    <div class="ns-meta"><div class="ns-label">// Utility Classes</div><h2>ProjectInfo · Dimension · Tags · TextNote · Linked Files · Parts</h2><p>Essential utility classes used across all add-in workflows.</p></div>
+  </div>
+
+<!-- ProjectInfo -->
+<div class="class-block" id="cls-projectinfo">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ProjectInfo</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Stores project-level information: name, number, address, client name, author, issue date and project status. Access via doc.ProjectInformation. Parameters are the same as in Manage → Project Information.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Usage Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Read and write project information</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">ProjectInfo</span> pi = doc.ProjectInformation;
+
+<span class="cm">// Read project info</span>
+<span class="k">string</span> projName   = pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_NAME)?.AsString();
+<span class="k">string</span> projNumber = pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_NUMBER)?.AsString();
+<span class="k">string</span> projStatus = pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_STATUS)?.AsString();
+<span class="k">string</span> clientName = pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.CLIENT_NAME)?.AsString();
+<span class="k">string</span> author     = pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_AUTHOR)?.AsString();
+<span class="k">string</span> issueDate  = pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_ISSUE_DATE)?.AsString();
+<span class="k">string</span> address    = pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_ADDRESS)?.AsString();
+<span class="k">string</span> buildingName = pi.BuildingName;    <span class="cm">// direct property</span>
+<span class="k">string</span> orgName    = pi.OrganizationName;  <span class="cm">// direct property</span>
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Project: {projName} | Number: {projNumber} | Client: {clientName}"</span>);
+
+<span class="cm">// Write project info</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Update Project Info"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_NAME)  .<span class="fn">Set</span>(<span class="s">"Office Building A"</span>);
+    pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_NUMBER).<span class="fn">Set</span>(<span class="s">"2024-001"</span>);
+    pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.CLIENT_NAME)   .<span class="fn">Set</span>(<span class="s">"Acme Corporation"</span>);
+    pi.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PROJECT_STATUS).<span class="fn">Set</span>(<span class="s">"Construction Documents"</span>);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Also accessible as doc.Application.Username for current user</span>
+<span class="k">string</span> user = doc.Application.Username;</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Dimension -->
+<div class="class-block" id="cls-dimension2">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Dimension</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a dimension annotation in a view. Dimensions are created using doc.Create.NewDimension() with a ReferenceArray and a dimension line. They can be single-segment or multi-segment. Dimension values are read-only (derived from geometry) but text can be overridden.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Properties + Creation</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span>? <span class="v">Value</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the dimension value in internal units (feet) for single-segment dimensions. Returns null for multi-segment dimensions (use Segments instead).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">DimensionSegmentArray</span> <span class="v">Segments</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the individual segments of a multi-segment dimension string. Each segment has its own Value and optional text override.</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create dimension between wall faces</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── REFERENCE TYPES SUMMARY ──
+// Wall face:      face.Reference (from get_Geometry with ComputeReferences=true)
+// Grid:           new Reference(grid)
+// Curve endpoint: curve.GetEndPointReference(0 or 1)
+// FamilyInstance: fi.GetReferences(FamilyInstanceReferenceType.Left)
+</span>
+<span class="tp">Options</span> opts = <span class="k">new</span> <span class="tp">Options</span> { ComputeReferences = <span class="k">true</span> };
+<span class="tp">GeometryElement</span> geom = wall.<span class="fn">get_Geometry</span>(opts);
+<span class="tp">Reference</span> face1 = <span class="k">null</span>, face2 = <span class="k">null</span>;
+
+<span class="k">foreach</span> (<span class="tp">GeometryObject</span> obj <span class="k">in</span> geom)
+{
+    <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">Solid</span> s)
+        <span class="k">foreach</span> (<span class="tp">Face</span> f <span class="k">in</span> s.Faces)
+        {
+            <span class="tp">XYZ</span> n = f.<span class="fn">ComputeNormal</span>(<span class="k">new</span> <span class="tp">UV</span>(.5,.5));
+            <span class="k">if</span>      (n.X >  <span class="n">0.9</span>) face1 = f.Reference;  <span class="cm">// exterior face</span>
+            <span class="k">else if</span> (n.X &lt; -<span class="n">0.9</span>) face2 = f.Reference;  <span class="cm">// interior face</span>
+        }
+}
+
+<span class="k">if</span> (face1 == <span class="k">null</span> || face2 == <span class="k">null</span>) <span class="k">return</span>;
+
+<span class="tp">ReferenceArray</span> refs = <span class="k">new</span> <span class="tp">ReferenceArray</span>();
+refs.<span class="fn">Append</span>(face1);
+refs.<span class="fn">Append</span>(face2);
+
+<span class="tp">XYZ</span> p1     = (wall.Location <span class="k">as</span> <span class="tp">LocationCurve</span>).Curve.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+<span class="tp">Line</span> dimLn = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+    p1 + <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">3</span>, <span class="n">0</span>),
+    p1 + <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">3</span>, <span class="n">0</span>));
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Dimension"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Dimension</span> dim = doc.Create.<span class="fn">NewDimension</span>(doc.ActiveView, dimLn, refs);
+    tx.<span class="fn">Commit</span>();
+
+    <span class="cm">// Read value</span>
+    <span class="k">if</span> (dim.Value.HasValue)
+    {
+        <span class="k">double</span> mm = dim.Value.Value * <span class="n">304.8</span>;
+        System.Diagnostics.Debug.WriteLine(<span class="s">$"Wall thickness: {mm:F0}mm"</span>);
+    }
+}
+
+<span class="cm">// Multi-segment: read each segment</span>
+<span class="tp">Dimension</span> multiDim = ...;
+<span class="k">foreach</span> (<span class="tp">DimensionSegment</span> seg <span class="k">in</span> multiDim.Segments)
+{
+    <span class="k">double</span> segMm = (seg.Value ?? <span class="n">0</span>) * <span class="n">304.8</span>;
+    <span class="k">string</span> ovr  = seg.ValueOverride ?? <span class="s">"(none)"</span>;
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Seg: {segMm:F0}mm override={ovr}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- IndependentTag -->
+<div class="class-block" id="cls-independenttag">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">IndependentTag</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a tag annotation attached to an element in a view. Tags display parameter values from the tagged element. Created with IndependentTag.Create() and associated with a specific element via Reference.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Usage</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">IndependentTag</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">viewId</span>, <span class="tp">Reference</span> <span class="pm">reference</span>, <span class="tp">bool</span> <span class="pm">addLeader</span>, <span class="tp">TagMode</span> <span class="pm">tagMode</span>, <span class="tp">TagOrientation</span> <span class="pm">orientation</span>, <span class="tp">XYZ</span> <span class="pm">point</span>)</span></div>
+      <div class="member-desc">Creates a tag in the specified view for the element identified by reference. The point is where the tag head is placed. addLeader controls whether a leader line is shown.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Batch tag all untagged walls</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">View</span> activeView = doc.ActiveView;
+
+<span class="cm">// Get all walls visible in this view</span>
+<span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc, activeView.Id)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;().<span class="fn">ToList</span>();
+
+<span class="cm">// Find already-tagged element IDs</span>
+<span class="k">var</span> taggedIds = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc, activeView.Id)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">IndependentTag</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">IndependentTag</span>&gt;()
+    .<span class="fn">Where</span>(t => t.<span class="fn">GetTaggedLocalElement</span>() != <span class="k">null</span>)
+    .<span class="fn">Select</span>(t => t.<span class="fn">GetTaggedLocalElement</span>().Id)
+    .<span class="fn">ToHashSet</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Tag Walls"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> walls)
+    {
+        <span class="k">if</span> (taggedIds.<span class="fn">Contains</span>(wall.Id)) <span class="k">continue</span>;  <span class="cm">// skip tagged</span>
+
+        <span class="cm">// Place tag at wall midpoint + offset</span>
+        <span class="tp">LocationCurve</span> lc  = wall.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+        <span class="tp">XYZ</span>           mid = lc.Curve.<span class="fn">Evaluate</span>(<span class="n">0.5</span>, <span class="k">true</span>);
+        <span class="tp">XYZ</span>           pos = mid + <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">1</span>, <span class="n">0</span>);  <span class="cm">// 300mm offset</span>
+
+        <span class="tp">IndependentTag</span>.<span class="fn">Create</span>(
+            doc,
+            activeView.Id,
+            <span class="k">new</span> <span class="tp">Reference</span>(wall),
+            <span class="k">false</span>,                              <span class="cm">// no leader</span>
+            <span class="tp">TagMode</span>.TM_ADDBY_CATEGORY,
+            <span class="tp">TagOrientation</span>.Horizontal,
+            pos);
+    }
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- TextNote -->
+<div class="class-block" id="cls-textnote">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">TextNote</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a text annotation in a view. TextNotes are view-specific and have a TextNoteType controlling font, size, and style. Used for drawing notes, callout labels, and automated annotation.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Edit</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">TextNote</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">viewId</span>, <span class="tp">XYZ</span> <span class="pm">origin</span>, <span class="tp">string</span> <span class="pm">text</span>, <span class="tp">ElementId</span> <span class="pm">typeId</span>)</span></div>
+      <div class="member-desc">Creates a text note at the specified position in the specified view. The typeId must be a TextNoteType element ID.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Text note creation and styling</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get or find a TextNoteType</span>
+<span class="tp">TextNoteType</span> tnt = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">TextNoteType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">TextNoteType</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(t => t.Name.Contains(<span class="s">"3mm"</span>))
+    ?? <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">TextNoteType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">TextNoteType</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Text Note"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Simple text note</span>
+    <span class="tp">TextNote</span> note = <span class="tp">TextNote</span>.<span class="fn">Create</span>(
+        doc,
+        doc.ActiveView.Id,
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">5</span>, <span class="n">0</span>),
+        <span class="s">"NOTE: All dimensions in mm unless stated"</span>,
+        tnt.Id);
+
+    <span class="cm">// Text note with formatting options</span>
+    <span class="k">var</span> opts = <span class="k">new</span> <span class="tp">TextNoteOptions</span>(tnt.Id)
+    {
+        HorizontalAlignment = <span class="tp">HorizontalTextAlignment</span>.Left,
+        Rotation            = <span class="n">0</span>              <span class="cm">// angle in radians</span>
+    };
+    <span class="tp">TextNote</span> note2 = <span class="tp">TextNote</span>.<span class="fn">Create</span>(
+        doc, doc.ActiveView.Id,
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">3</span>, <span class="n">0</span>),
+        <span class="s">"TYPICAL DETAIL - SEE SHEET A-401"</span>,
+        opts);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Edit existing text note</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Update Note"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    note.Text = <span class="s">"REVISED NOTE: Metric units apply throughout"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- FilledRegion -->
+<div class="class-block" id="cls-filledregion">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">FilledRegion</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a filled region in a view — a 2D hatched or coloured closed boundary used for legends, masking, or drawing annotation. Created from CurveLoops with a FilledRegionType that defines the fill pattern and colour.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">FilledRegion</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">filledRegionTypeId</span>, <span class="tp">ElementId</span> <span class="pm">viewId</span>, <span class="tp">IList</span>&lt;<span class="tp">CurveLoop</span>&gt; <span class="pm">boundaries</span>)</span></div>
+      <div class="member-desc">Creates a filled region in the specified view from CurveLoops. Index 0 is the outer boundary; subsequent loops are holes inside the region.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create filled region legend item</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">FilledRegionType</span> frt = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FilledRegionType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">FilledRegionType</span>&gt;().<span class="fn">First</span>();
+
+<span class="cm">// Build a small rectangular boundary (legend swatch)</span>
+<span class="k">double</span> w = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">20</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> h = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">10</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="tp">XYZ</span> origin = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0.5</span>, <span class="n">0.5</span>, <span class="n">0</span>);
+
+<span class="k">var</span> boundary = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(origin, origin + <span class="k">new</span> <span class="tp">XYZ</span>(w,<span class="n">0</span>,<span class="n">0</span>)));
+boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(origin + <span class="k">new</span> <span class="tp">XYZ</span>(w,<span class="n">0</span>,<span class="n">0</span>), origin + <span class="k">new</span> <span class="tp">XYZ</span>(w,h,<span class="n">0</span>)));
+boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(origin + <span class="k">new</span> <span class="tp">XYZ</span>(w,h,<span class="n">0</span>), origin + <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,h,<span class="n">0</span>)));
+boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(origin + <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,h,<span class="n">0</span>), origin));
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Filled Region"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">FilledRegion</span> fr = <span class="tp">FilledRegion</span>.<span class="fn">Create</span>(
+        doc, frt.Id,
+        doc.ActiveView.Id,
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { boundary });
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- RevitLinkInstance -->
+<div class="class-block" id="cls-revitlinkinstance">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">RevitLinkInstance</span></div><div class="class-inherit">Inherits: <span>Instance → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a Revit link instance placed in the host document. Provides access to the linked document, transformation from link coordinates to host coordinates, and load/unload operations.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Properties + Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Navigate linked models</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> links = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RevitLinkInstance</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">RevitLinkInstance</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> link <span class="k">in</span> links)
+{
+    <span class="tp">Document</span>  linkDoc   = link.<span class="fn">GetLinkDocument</span>();
+    <span class="tp">Transform</span> linkTrans = link.<span class="fn">GetTotalTransform</span>();
+    <span class="tp">string</span>    linkName  = link.Name;
+
+    <span class="k">if</span> (linkDoc == <span class="k">null</span>)
+    {
+        System.Diagnostics.Debug.WriteLine(<span class="s">$"{linkName}: NOT LOADED"</span>);
+        <span class="k">continue</span>;
+    }
+
+    <span class="cm">// Access elements in the linked model</span>
+    <span class="k">int</span> wallCount = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(linkDoc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">GetElementCount</span>();
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Link: {linkName} | Walls: {wallCount}"</span>);
+
+    <span class="cm">// Transform a point from link space to host space</span>
+    <span class="tp">XYZ</span> linkPt   = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>);
+    <span class="tp">XYZ</span> worldPt  = linkTrans.<span class="fn">OfPoint</span>(linkPt);
+}
+
+<span class="cm">// Reload all unloaded links</span>
+<span class="k">var</span> linkTypes = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RevitLinkType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">RevitLinkType</span>&gt;()
+    .<span class="fn">Where</span>(lt => !lt.<span class="fn">IsLoaded</span>(doc, lt.Id))
+    .<span class="fn">ToList</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Reload Links"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> lt <span class="k">in</span> linkTypes)
+        lt.<span class="fn">Load</span>();
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- PartUtils -->
+<div class="class-block" id="cls-partutils">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PartUtils</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Static utility class for creating and dividing Part elements from host elements (walls, floors, roofs). Parts allow the model to be divided into construction pieces (precast panels, formwork sections). Each Part represents a portion of its source host element.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Static Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">CreateParts</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">IList</span>&lt;<span class="tp">ElementId</span>&gt; <span class="pm">elementIds</span>)</span></div>
+      <div class="member-desc">Creates Part elements from the specified host elements. Each host element layer becomes a separate Part. The original elements remain but Parts are now visible when Show Parts is enabled in the view.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">DivideParts</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">IList</span>&lt;<span class="tp">ElementId</span>&gt; <span class="pm">partIds</span>, <span class="tp">IList</span>&lt;<span class="tp">ElementId</span>&gt; <span class="pm">intersectingReferenceIds</span>, <span class="tp">IList</span>&lt;<span class="tp">Curve</span>&gt; <span class="pm">curves</span>, <span class="tp">SketchPlane</span> <span class="pm">sketchPlane</span>)</span></div>
+      <div class="member-desc">Divides existing Parts using cutting curves on a sketch plane. Used to split floor slabs into precast panels or wall parts into construction blocks.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create and divide floor parts</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Floor</span> floor = ...;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Parts"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Step 1: Create parts from floor</span>
+    <span class="k">if</span> (<span class="tp">PartUtils</span>.<span class="fn">AreElementsValidForCreateParts</span>(doc,
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt; { floor.Id }))
+    {
+        <span class="tp">PartUtils</span>.<span class="fn">CreateParts</span>(doc,
+            <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt; { floor.Id });
+    }
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Get the created parts</span>
+<span class="k">var</span> parts = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Part</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Part</span>&gt;()
+    .<span class="fn">Where</span>(p => p.<span class="fn">GetSourceElementIds</span>().<span class="fn">Any</span>(
+        sid => sid.HostElementId == floor.Id))
+    .<span class="fn">Select</span>(p => p.Id)
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// Step 2: Divide parts with cutting lines at panel spacing</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Divide Parts"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Plane</span>       divPlane  = <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisZ, <span class="tp">XYZ</span>.Zero);
+    <span class="tp">SketchPlane</span> skPln     = <span class="tp">SketchPlane</span>.<span class="fn">Create</span>(doc, divPlane);
+
+    <span class="cm">// Vertical cut lines every 1200mm</span>
+    <span class="k">double</span> spacing = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">1200</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="k">var</span> cutLines = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt;();
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">1</span>; i &lt; <span class="n">5</span>; i++)
+        cutLines.<span class="fn">Add</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+            <span class="k">new</span> <span class="tp">XYZ</span>(i * spacing, -<span class="n">20</span>, <span class="n">0</span>),
+            <span class="k">new</span> <span class="tp">XYZ</span>(i * spacing,  <span class="n">20</span>, <span class="n">0</span>)));
+
+    <span class="tp">PartUtils</span>.<span class="fn">DivideParts</span>(doc, parts,
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt;(), cutLines, skPln);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-utility -->
+
+<!-- ═══════════════════════════
+     FILTERS REFERENCE
+═══════════════════════════ -->
+<div class="ns-block" id="ns-filters" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔍</div>
+    <div class="ns-meta"><div class="ns-label">// Filters Reference</div><h2>ElementFilter Subclasses</h2><p>All native (quick) filters for FilteredElementCollector — run in Revit's native engine with near-zero overhead.</p></div>
+  </div>
+
+<div class="class-block" id="cls-elementlevelfilter">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ElementLevelFilter</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Quick filter that restricts results to elements at a specific level. Pass the Level's ElementId to the constructor.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — All filters in one reference</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── ElementLevelFilter ──</span>
+<span class="k">var</span> lvlFilter = <span class="k">new</span> <span class="tp">ElementLevelFilter</span>(level.Id);
+<span class="k">var</span> onLevel = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Walls)
+    .<span class="fn">WherePasses</span>(lvlFilter).<span class="fn">ToList</span>();
+
+<span class="cm">// ── BoundingBoxIntersectsFilter ──</span>
+<span class="k">var</span> outline = <span class="k">new</span> <span class="tp">Outline</span>(
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">10</span>, <span class="n">10</span>));
+<span class="k">var</span> bboxFilter = <span class="k">new</span> <span class="tp">BoundingBoxIntersectsFilter</span>(outline);
+<span class="k">var</span> inBox = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(bboxFilter).<span class="fn">ToList</span>();
+
+<span class="cm">// ── ElementParameterFilter ──</span>
+<span class="k">var</span> provider   = <span class="k">new</span> <span class="tp">ParameterValueProvider</span>(
+    <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK));
+<span class="k">var</span> evaluator  = <span class="k">new</span> <span class="tp">FilterStringEquals</span>();
+<span class="k">var</span> rule       = <span class="k">new</span> <span class="tp">FilterStringRule</span>(provider, evaluator, <span class="s">"W-001"</span>);
+<span class="k">var</span> paramFilt  = <span class="k">new</span> <span class="tp">ElementParameterFilter</span>(rule);
+<span class="k">var</span> marked     = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">WherePasses</span>(paramFilt).<span class="fn">ToList</span>();
+
+<span class="cm">// ── LogicalAndFilter — combine two filters ──</span>
+<span class="k">var</span> andFilt = <span class="k">new</span> <span class="tp">LogicalAndFilter</span>(lvlFilter, bboxFilter);
+<span class="k">var</span> both    = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(andFilt).<span class="fn">ToList</span>();
+
+<span class="cm">// ── LogicalOrFilter ──</span>
+<span class="k">var</span> wallFilter  = <span class="k">new</span> <span class="tp">ElementClassFilter</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>));
+<span class="k">var</span> floorFilter = <span class="k">new</span> <span class="tp">ElementClassFilter</span>(<span class="k">typeof</span>(<span class="tp">Floor</span>));
+<span class="k">var</span> orFilt      = <span class="k">new</span> <span class="tp">LogicalOrFilter</span>(wallFilter, floorFilter);
+<span class="k">var</span> either      = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(orFilt).<span class="fn">ToList</span>();
+
+<span class="cm">// ── ExclusionFilter — exclude specific IDs ──</span>
+<span class="k">var</span> toExclude  = walls.<span class="fn">Take</span>(<span class="n">5</span>).<span class="fn">Select</span>(w => w.Id).<span class="fn">ToList</span>();
+<span class="k">var</span> exclFilter = <span class="k">new</span> <span class="tp">ExclusionFilter</span>(toExclude);
+<span class="k">var</span> remaining  = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">WherePasses</span>(exclFilter).<span class="fn">ToList</span>();
+
+<span class="cm">// ── ElementWorksetFilter (workshared models) ──</span>
+<span class="k">var</span> wsFilter = <span class="k">new</span> <span class="tp">ElementWorksetFilter</span>(worksetId);
+<span class="k">var</span> onWS     = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(wsFilter).<span class="fn">ToList</span>();
+
+<span class="cm">// ── ExtensibleStorageFilter ──</span>
+<span class="k">var</span> esFilter = <span class="k">new</span> <span class="tp">ExtensibleStorageFilter</span>(schemaGuid);
+<span class="k">var</span> withData = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(esFilter).<span class="fn">ToList</span>();
+
+<span class="cm">// ── String rule evaluators (FilterStringRule) ──</span>
+<span class="cm">// FilterStringEquals       — exact match</span>
+<span class="cm">// FilterStringContains     — substring match</span>
+<span class="cm">// FilterStringBeginsWith   — prefix match</span>
+<span class="cm">// FilterStringEndsWith     — suffix match</span>
+<span class="cm">// FilterStringGreater      — alphabetic greater</span>
+<span class="cm">// FilterStringLess         — alphabetic less</span>
+
+<span class="cm">// ── Numeric rule evaluators (FilterDoubleRule / FilterIntegerRule) ──</span>
+<span class="cm">// FilterNumericEquals      — exact double equality (with tolerance)</span>
+<span class="cm">// FilterNumericGreater     — greater than</span>
+<span class="cm">// FilterNumericGreaterOrEqual</span>
+<span class="cm">// FilterNumericLess        — less than</span>
+<span class="cm">// FilterNumericLessOrEqual</span>
+
+<span class="cm">// Example: walls taller than 3000mm</span>
+<span class="k">var</span> hProvider = <span class="k">new</span> <span class="tp">ParameterValueProvider</span>(
+    <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInParameter</span>.WALL_USER_HEIGHT_PARAM));
+<span class="k">double</span> minH  = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">3000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">var</span> hRule     = <span class="k">new</span> <span class="tp">FilterDoubleRule</span>(hProvider,
+    <span class="k">new</span> <span class="tp">FilterNumericGreater</span>(), minH, <span class="n">1e-6</span>);
+<span class="k">var</span> tallWalls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">WherePasses</span>(<span class="k">new</span> <span class="tp">ElementParameterFilter</span>(hRule))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;().<span class="fn">ToList</span>();</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- SunAndShadowSettings -->
+<div class="class-block" id="cls-sunshadowsettings">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">SunAndShadowSettings</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Controls sun position and shadow settings for a view. Access via view.GetSunAndShadowSettings(). Set sun path date, time, ground plane, and whether shadows are displayed.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Set sun position for summer solstice</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">View3D</span> view3D = ...;
+<span class="tp">SunAndShadowSettings</span> sun = view3D.<span class="fn">GetSunAndShadowSettings</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Sun Settings"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Set to single-frame sun study mode</span>
+    sun.SunAndShadowType = <span class="tp">SunStudyType</span>.StillImage;
+
+    <span class="cm">// Set date and time (summer solstice at noon)</span>
+    sun.ActiveFrameTime = <span class="k">new</span> DateTime(<span class="n">2024</span>, <span class="n">6</span>, <span class="n">21</span>, <span class="n">12</span>, <span class="n">0</span>, <span class="n">0</span>);
+
+    <span class="cm">// Enable shadows in this view</span>
+    view3D.AreAnalyticalModelCategoriesHidden = <span class="k">false</span>;
+
+    <span class="cm">// Sun altitude and azimuth (read-only — computed from date/location)</span>
+    <span class="k">double</span> azimuth  = sun.GetFrameAzimuth(sun.ActiveFrameTime);
+    <span class="k">double</span> altitude = sun.GetFrameAltitude(sun.ActiveFrameTime);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Sun: Az={azimuth * 180/Math.PI:F1}° Alt={altitude * 180/Math.PI:F1}°"</span>);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- BooleanOperationsUtils -->
+<div class="class-block" id="cls-booleanopsutils">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">BooleanOperationsUtils</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Static utility class for performing Boolean operations (union, intersection, difference) on Solid objects. Used for clash detection, volume calculation of overlapping elements, and custom geometry creation.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Static Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Solid</span> <span class="fn">ExecuteBooleanOperation</span>(<span class="tp">Solid</span> <span class="pm">solidA</span>, <span class="tp">Solid</span> <span class="pm">solidB</span>, <span class="tp">BooleanOperationsType</span> <span class="pm">operationType</span>)</span></div>
+      <div class="member-desc">Performs a Boolean operation between two solids. Returns the result solid, or null if the operation results in empty geometry. Throws if solids are incompatible.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>solidA</td><td>Solid</td><td>First operand solid.</td></tr><tr><td>solidB</td><td>Solid</td><td>Second operand solid.</td></tr><tr><td>operationType</td><td>BooleanOperationsType</td><td>Union, Intersect, or Difference.</td></tr></table></div>
+      <div class="returns-row">Returns: <span>Solid</span> — Result solid, or null if empty result.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — All three Boolean operations</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Solid</span> sA = <span class="fn">GetSolid</span>(wallElem);
+<span class="tp">Solid</span> sB = <span class="fn">GetSolid</span>(columnElem);
+
+<span class="k">if</span> (sA == <span class="k">null</span> || sB == <span class="k">null</span>) <span class="k">return</span>;
+
+<span class="k">try</span>
+{
+    <span class="cm">// Intersection — overlap volume (clash detection)</span>
+    <span class="tp">Solid</span> intersection = <span class="tp">BooleanOperationsUtils</span>
+        .<span class="fn">ExecuteBooleanOperation</span>(sA, sB,
+            <span class="tp">BooleanOperationsType</span>.Intersect);
+
+    <span class="k">if</span> (intersection?.Volume > <span class="n">1e-9</span>)
+    {
+        <span class="k">double</span> clashVol = intersection.Volume * <span class="n">0.0283168</span>;  <span class="cm">// m³</span>
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"CLASH: {clashVol:F6}m³"</span>);
+    }
+
+    <span class="cm">// Union — merged volume</span>
+    <span class="tp">Solid</span> union = <span class="tp">BooleanOperationsUtils</span>
+        .<span class="fn">ExecuteBooleanOperation</span>(sA, sB,
+            <span class="tp">BooleanOperationsType</span>.Union);
+
+    <span class="cm">// Difference — A minus B (cut)</span>
+    <span class="tp">Solid</span> difference = <span class="tp">BooleanOperationsUtils</span>
+        .<span class="fn">ExecuteBooleanOperation</span>(sA, sB,
+            <span class="tp">BooleanOperationsType</span>.Difference);
+}
+<span class="k">catch</span> (<span class="tp">Autodesk.Revit.Exceptions.InvalidOperationException</span>)
+{
+    <span class="cm">// Solids may be incompatible — handle gracefully</span>
+    System.Diagnostics.Debug.WriteLine(<span class="s">"Boolean operation failed - incompatible geometry"</span>);
+}
+
+<span class="cm">// BooleanOperationsType values:</span>
+<span class="cm">// BooleanOperationsType.Union       — A ∪ B</span>
+<span class="cm">// BooleanOperationsType.Intersect   — A ∩ B</span>
+<span class="cm">// BooleanOperationsType.Difference  — A − B</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- CompoundStructureLayer -->
+<div class="class-block" id="cls-compoundstructurelayer">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">CompoundStructureLayer</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a single layer within a CompoundStructure (wall, floor, or roof type). Each layer has a material, thickness, function, and deck profile. Accessed via CompoundStructure.GetLayers().</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Layer Analysis Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Full compound structure analysis</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get compound structure from a wall type</span>
+<span class="k">var</span> wallTypes = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">WallType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">WallType</span>&gt;().<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> wt <span class="k">in</span> wallTypes)
+{
+    <span class="tp">CompoundStructure</span> cs = wt.<span class="fn">GetCompoundStructure</span>();
+    <span class="k">if</span> (cs == <span class="k">null</span>) <span class="k">continue</span>;
+
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"WallType: {wt.Name}"</span>);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"  Total width: {cs.GetWidth() * 304.8:F0}mm"</span>);
+
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; cs.LayerCount; i++)
+    {
+        <span class="k">double</span>  thickness = cs.<span class="fn">GetLayerWidth</span>(i) * <span class="n">304.8</span>;
+        <span class="tp">ElementId</span> matId  = cs.<span class="fn">GetMaterialId</span>(i);
+        <span class="tp">Material</span> mat     = doc.<span class="fn">GetElement</span>(matId) <span class="k">as</span> <span class="tp">Material</span>;
+        <span class="tp">MaterialFunctionAssignment</span> fn = cs.<span class="fn">GetLayerFunction</span>(i);
+
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"  Layer {i}: {fn} | {mat?.Name ?? "No material"} | {thickness:F0}mm"</span>);
+    }
+
+    <span class="cm">// Identify structural layer index</span>
+    <span class="k">int</span> structLayer = cs.StructuralLayerIndex;
+
+    <span class="cm">// Modify layer thickness</span>
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Modify Layer"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        cs.<span class="fn">SetLayerWidth</span>(<span class="n">0</span>,
+            <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">20</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+        wt.<span class="fn">SetCompoundStructure</span>(cs);
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// MaterialFunctionAssignment values:</span>
+<span class="cm">// Structure, Finish1, Finish2, Membrane, Substrate</span>
+<span class="cm">// Insulation, InsulationBelowGrade, etc.</span></pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-filters -->
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+</body>
+</html>

@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Reference — Book 10: DB (F–Z) · UI · Events</title>
+<link rel="stylesheet" href="api-style.css"/>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Namespace<br/>Reference</div>
+    <div class="sb-sub">Book 10 · DB (F–Z) · UI · Events</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search class or method…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav">
+
+    <!-- DB F-Z -->
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>
+        Autodesk.Revit.DB (F–Z)
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-face')"><span class="type-badge tb-class">CLS</span>Face</div>
+        <div class="sb-ns-child" onclick="go('cls-familyinstance')"><span class="type-badge tb-class">CLS</span>FamilyInstance</div>
+        <div class="sb-ns-child" onclick="go('cls-familysymbol')"><span class="type-badge tb-class">CLS</span>FamilySymbol</div>
+        <div class="sb-ns-child" onclick="go('cls-floor')"><span class="type-badge tb-class">CLS</span>Floor</div>
+        <div class="sb-ns-child" onclick="go('cls-grid')"><span class="type-badge tb-class">CLS</span>Grid</div>
+        <div class="sb-ns-child" onclick="go('cls-joingeometryutils')"><span class="type-badge tb-class">CLS</span>JoinGeometryUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-level')"><span class="type-badge tb-class">CLS</span>Level</div>
+        <div class="sb-ns-child" onclick="go('cls-line')"><span class="type-badge tb-class">CLS</span>Line</div>
+        <div class="sb-ns-child" onclick="go('cls-material')"><span class="type-badge tb-class">CLS</span>Material</div>
+        <div class="sb-ns-child" onclick="go('cls-options')"><span class="type-badge tb-class">CLS</span>Options</div>
+        <div class="sb-ns-child" onclick="go('cls-overridegraphicsettings')"><span class="type-badge tb-class">CLS</span>OverrideGraphicSettings</div>
+        <div class="sb-ns-child" onclick="go('cls-parameter')"><span class="type-badge tb-class">CLS</span>Parameter</div>
+        <div class="sb-ns-child" onclick="go('cls-plane')"><span class="type-badge tb-class">CLS</span>Plane</div>
+        <div class="sb-ns-child" onclick="go('cls-referenceintersector')"><span class="type-badge tb-class">CLS</span>ReferenceIntersector</div>
+        <div class="sb-ns-child" onclick="go('cls-solid')"><span class="type-badge tb-class">CLS</span>Solid</div>
+        <div class="sb-ns-child" onclick="go('cls-storagetype')"><span class="type-badge tb-enum">ENUM</span>StorageType</div>
+        <div class="sb-ns-child" onclick="go('cls-transaction')"><span class="type-badge tb-class">CLS</span>Transaction</div>
+        <div class="sb-ns-child" onclick="go('cls-transform')"><span class="type-badge tb-class">CLS</span>Transform</div>
+        <div class="sb-ns-child" onclick="go('cls-unitutils')"><span class="type-badge tb-class">CLS</span>UnitUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-view')"><span class="type-badge tb-class">CLS</span>View</div>
+        <div class="sb-ns-child" onclick="go('cls-viewplan')"><span class="type-badge tb-class">CLS</span>ViewPlan</div>
+        <div class="sb-ns-child" onclick="go('cls-viewsection')"><span class="type-badge tb-class">CLS</span>ViewSection</div>
+        <div class="sb-ns-child" onclick="go('cls-viewsheet')"><span class="type-badge tb-class">CLS</span>ViewSheet</div>
+        <div class="sb-ns-child" onclick="go('cls-wall')"><span class="type-badge tb-class">CLS</span>Wall</div>
+        <div class="sb-ns-child" onclick="go('cls-xyz')"><span class="type-badge tb-class">CLS</span>XYZ</div>
+      </div>
+    </div>
+
+    <!-- UI -->
+    <div class="sb-ns-group" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>
+        Autodesk.Revit.UI
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-uiapplication')"><span class="type-badge tb-class">CLS</span>UIApplication</div>
+        <div class="sb-ns-child" onclick="go('cls-uidocument')"><span class="type-badge tb-class">CLS</span>UIDocument</div>
+        <div class="sb-ns-child" onclick="go('cls-iexternalcommand')"><span class="type-badge tb-iface">INT</span>IExternalCommand</div>
+        <div class="sb-ns-child" onclick="go('cls-iexternalapplication')"><span class="type-badge tb-iface">INT</span>IExternalApplication</div>
+        <div class="sb-ns-child" onclick="go('cls-iexternaleventhandler')"><span class="type-badge tb-iface">INT</span>IExternalEventHandler</div>
+        <div class="sb-ns-child" onclick="go('cls-externalevent')"><span class="type-badge tb-class">CLS</span>ExternalEvent</div>
+        <div class="sb-ns-child" onclick="go('cls-taskdialog')"><span class="type-badge tb-class">CLS</span>TaskDialog</div>
+        <div class="sb-ns-child" onclick="go('cls-selection')"><span class="type-badge tb-class">CLS</span>Selection</div>
+        <div class="sb-ns-child" onclick="go('cls-ribbonpanel')"><span class="type-badge tb-class">CLS</span>RibbonPanel</div>
+      </div>
+    </div>
+
+    <!-- DB.Events -->
+    <div class="sb-ns-group" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>
+        Autodesk.Revit.DB.Events
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-docchanged')"><span class="type-badge tb-class">CLS</span>DocumentChangedEventArgs</div>
+        <div class="sb-ns-child" onclick="go('cls-docopened')"><span class="type-badge tb-class">CLS</span>DocumentOpenedEventArgs</div>
+        <div class="sb-ns-child" onclick="go('cls-docsaving')"><span class="type-badge tb-class">CLS</span>DocumentSavingEventArgs</div>
+        <div class="sb-ns-child" onclick="go('cls-docclosing')"><span class="type-badge tb-class">CLS</span>DocumentClosingEventArgs</div>
+        <div class="sb-ns-child" onclick="go('cls-viewactivated')"><span class="type-badge tb-class">CLS</span>ViewActivatedEventArgs</div>
+        <div class="sb-ns-child" onclick="go('cls-idlingeventargs')"><span class="type-badge tb-class">CLS</span>IdlingEventArgs</div>
+      </div>
+    </div>
+
+    <!-- Failure -->
+    <div class="sb-ns-group" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>
+        Failure Handling
+        <span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-ifailurespreprocessor')"><span class="type-badge tb-iface">INT</span>IFailuresPreprocessor</div>
+        <div class="sb-ns-child" onclick="go('cls-failuresaccessor')"><span class="type-badge tb-class">CLS</span>FailuresAccessor</div>
+        <div class="sb-ns-child" onclick="go('cls-failuremessage')"><span class="type-badge tb-class">CLS</span>FailureMessage</div>
+      </div>
+    </div>
+
+  </div><!-- /sb-nav -->
+
+  <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link current" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 10 of 13 — API Reference · DB (F–Z) · UI · Events · Failures</div>
+  <h1>Namespace Reference<br/><span>Volume 2</span></h1>
+  <p>Complete class reference for Autodesk.Revit.DB (F–Z), the full UI namespace including IExternalCommand, IExternalEventHandler, ExternalEvent, TaskDialog, Selection, and RibbonPanel, plus all document and application event argument classes.</p>
+  <div class="hero-chips">
+    <span class="chip c-bl">DB · F → Z</span>
+    <span class="chip c-pu">Autodesk.Revit.UI</span>
+    <span class="chip c-or">DB.Events</span>
+    <span class="chip c-gr">Failure Handling</span>
+    <span class="chip c-ye">Full Code Examples</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════ FACE ═══════ -->
+<div class="class-block" id="cls-face">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Face</span></div><div class="class-inherit">Inherits: <span>GeometryObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a face (surface) on a Revit solid. Faces can be planar (PlanarFace), cylindrical (CylindricalFace), conical, ruled, or Nurbs. Each Face provides access to its normal, area, UV parameters, edge loops, and a Reference for dimensioning. Always obtain faces through a Solid — Face cannot be instantiated directly.</div>
+  <div class="callout c-note" style="margin:12px 24px 0;"><strong>// Note</strong>Face.Reference is only valid when Options.ComputeReferences = true was set during get_Geometry(). Without this, Reference will be null and cannot be used for dimensioning.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Reference</span> <span class="v">Reference</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets a Reference to this face that can be used for dimensioning with doc.Create.NewDimension(). Only valid when Options.ComputeReferences = true was set.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Area</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the surface area of this face in internal units (square feet). Convert to m² by multiplying by 0.092903.</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="fn">ComputeNormal</span>(<span class="tp">UV</span> <span class="pm">uv</span>)</span></div>
+      <div class="member-desc">Computes the outward normal vector of this face at the given UV parameter position. For a PlanarFace the normal is constant across the entire face. For curved faces the normal varies.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>uv</td><td>UV</td><td>The UV parameter at which to compute the normal. Use (0.5, 0.5) for the face centre.</td></tr></table></div>
+      <div class="returns-row">Returns: <span>XYZ</span> — Unit normal vector pointing outward from the solid.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Face normal and area extraction</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Options</span> opts = <span class="k">new</span> <span class="tp">Options</span> { ComputeReferences = <span class="k">true</span> };
+<span class="tp">GeometryElement</span> geom = wall.<span class="fn">get_Geometry</span>(opts);
+
+<span class="k">foreach</span> (<span class="tp">GeometryObject</span> obj <span class="k">in</span> geom)
+{
+    <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">Solid</span> solid &amp;&amp; solid.Volume > <span class="n">0</span>)
+    {
+        <span class="k">foreach</span> (<span class="tp">Face</span> face <span class="k">in</span> solid.Faces)
+        {
+            <span class="tp">XYZ</span>    normal  = face.<span class="fn">ComputeNormal</span>(<span class="k">new</span> <span class="tp">UV</span>(<span class="n">.5</span>, <span class="n">.5</span>));
+            <span class="k">double</span> areaSqM = face.Area * <span class="n">0.092903</span>;
+            <span class="tp">Reference</span> fRef = face.Reference;  <span class="cm">// for dimensions</span>
+
+            <span class="cm">// Classify face direction</span>
+            <span class="k">if</span> (Math.Abs(normal.Z) > <span class="n">0.9</span>)
+                System.Diagnostics.Debug.WriteLine(<span class="s">$"Horizontal face: {areaSqM:F2}m²"</span>);
+            <span class="k">else</span>
+                System.Diagnostics.Debug.WriteLine(<span class="s">$"Vertical face: {areaSqM:F2}m²"</span>);
+        }
+    }
+}</pre></div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Mesh</span> <span class="fn">Triangulate</span>()</span></div>
+      <div class="member-desc">Returns a triangulated mesh approximation of this face. Used for custom geometry export, rendering, area calculations, and 3D printing workflows.</div>
+      <div class="returns-row">Returns: <span>Mesh</span> — Triangulated mesh with Vertices and Triangles collections.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Triangulate a face for OBJ export</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Face</span> face = ...;
+<span class="tp">Mesh</span> mesh = face.<span class="fn">Triangulate</span>();
+
+<span class="tp">IList</span>&lt;<span class="tp">XYZ</span>&gt;   verts     = mesh.Vertices;
+<span class="k">int</span>          numTris  = mesh.NumTriangles;
+
+<span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numTris; i++)
+{
+    <span class="tp">MeshTriangle</span> tri = mesh.<span class="fn">get_Triangle</span>(i);
+    <span class="tp">XYZ</span> v0 = tri.<span class="fn">get_Vertex</span>(<span class="n">0</span>);
+    <span class="tp">XYZ</span> v1 = tri.<span class="fn">get_Vertex</span>(<span class="n">1</span>);
+    <span class="tp">XYZ</span> v2 = tri.<span class="fn">get_Vertex</span>(<span class="n">2</span>);
+    <span class="cm">// Write "f i0 i1 i2" to OBJ file</span>
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"f {tri.get_Index(0)} {tri.get_Index(1)} {tri.get_Index(2)}"</span>);
+}</pre></div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IList</span>&lt;<span class="tp">CurveLoop</span>&gt; <span class="fn">GetEdgesAsCurveLoops</span>()</span></div>
+      <div class="member-desc">Returns the boundary of this face as a list of CurveLoops — one outer loop and any inner loops (holes). Used for extracting face profiles for re-use as floor/ceiling boundaries or for computing perimeter.</div>
+      <div class="returns-row">Returns: <span>IList&lt;CurveLoop&gt;</span> — Index 0 = outer boundary; subsequent loops = holes.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IntersectionResultArray</span> <span class="fn">Intersect</span>(<span class="tp">Curve</span> <span class="pm">curve</span>)</span></div>
+      <div class="member-desc">Finds intersections between this face and a curve. Returns each point where the curve crosses the face surface. Used for ray casting, pipe-to-floor intersection detection etc.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ FAMILY INSTANCE ═══════ -->
+<div class="class-block" id="cls-familyinstance">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">FamilyInstance</span></div><div class="class-inherit">Inherits: <span>Instance → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a placed instance of a loaded family in the model — doors, windows, columns, furniture, equipment, light fixtures, mechanical equipment, plumbing fixtures etc. Every FamilyInstance has a FamilySymbol (type) and a Family. FamilyInstance is the most common class in large Revit models.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FamilySymbol</span> <span class="v">Symbol</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the FamilySymbol (type) of this instance. Setting changes the type and requires an open Transaction. The new symbol must be from the same Family.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Element</span> <span class="v">Host</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the host element if this is a hosted family instance (door in wall, window in wall, light in ceiling). Returns null for unhosted (level-based) instances.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">HandFlipped</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets whether this instance has been hand-flipped (mirrored across the hand orientation plane). Relevant for asymmetric families like doors.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">FacingFlipped</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets whether this instance has been facing-flipped (mirrored across the facing orientation plane).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">StructuralType</span> <span class="v">StructuralType</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the structural role of this instance (NonStructural, Beam, Column, Brace, Footing). Used to distinguish structural from non-structural family instances.</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">IList</span>&lt;<span class="tp">Reference</span>&gt; <span class="fn">GetReferences</span>(<span class="tp">FamilyInstanceReferenceType</span> <span class="pm">referenceType</span>)</span></div>
+      <div class="member-desc">Returns references to named reference planes within the family geometry. Used to get dimensionable references to specific planes like Left/Right/Front/Back/CenterLeftRight/CenterFrontBack.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>referenceType</td><td>FamilyInstanceReferenceType</td><td>Left, Right, Front, Back, Top, Bottom, CenterLeftRight, CenterFrontBack, CenterElevation, StrongReference, WeakReference</td></tr></table></div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — FamilyInstance references for dimensioning</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">FamilyInstance</span> door = ...;
+
+<span class="cm">// Get references to the left and right planes of the door</span>
+<span class="tp">IList</span>&lt;<span class="tp">Reference</span>&gt; leftRefs  = door.<span class="fn">GetReferences</span>(<span class="tp">FamilyInstanceReferenceType</span>.Left);
+<span class="tp">IList</span>&lt;<span class="tp">Reference</span>&gt; rightRefs = door.<span class="fn">GetReferences</span>(<span class="tp">FamilyInstanceReferenceType</span>.Right);
+
+<span class="k">if</span> (leftRefs.Count > <span class="n">0</span> &amp;&amp; rightRefs.Count > <span class="n">0</span>)
+{
+    <span class="tp">ReferenceArray</span> refs = <span class="k">new</span> <span class="tp">ReferenceArray</span>();
+    refs.<span class="fn">Append</span>(leftRefs[<span class="n">0</span>]);
+    refs.<span class="fn">Append</span>(rightRefs[<span class="n">0</span>]);
+
+    <span class="tp">LocationPoint</span> lp = door.Location <span class="k">as</span> <span class="tp">LocationPoint</span>;
+    <span class="tp">Line</span> dimLine = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+        lp.Point + <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">2</span>, <span class="n">0</span>),
+        lp.Point + <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">3</span>, <span class="n">2</span>, <span class="n">0</span>));
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Dimension Door"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        doc.Create.<span class="fn">NewDimension</span>(doc.ActiveView, dimLine, refs);
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// Navigate the family hierarchy</span>
+<span class="tp">FamilySymbol</span> sym    = door.Symbol;
+<span class="tp">Family</span>       family = sym.Family;
+<span class="tp">string</span> info = <span class="s">$"Family: {family.Name} | Type: {sym.Name}"</span>;
+
+<span class="cm">// Change the type</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Change Type"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">if</span> (!newSym.IsActive) newSym.<span class="fn">Activate</span>();
+    door.Symbol = newSym;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ FAMILY SYMBOL ═══════ -->
+<div class="class-block" id="cls-familysymbol">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">FamilySymbol</span></div><div class="class-inherit">Inherits: <span>ElementType → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a specific type within a loaded family. For example, a "900×2100 Single Flush" door type is a FamilySymbol within the "Single-Flush" Family. You must call Activate() before placing a FamilySymbol that has never been used in the model.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Family</span> <span class="v">Family</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the Family that this symbol belongs to.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsActive</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets whether this symbol is active (has been loaded into the current session). Must be true before placing. Call Activate() if false.</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="kw">void</span> <span class="fn">Activate</span>()</span></div>
+      <div class="member-desc">Activates this FamilySymbol so it can be placed in the model. Must be called inside a Transaction before the first NewFamilyInstance() call if IsActive is false. Harmless to call even if already active.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Activate and place a family symbol</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">FamilySymbol</span> sym = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Furniture)
+    .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(s => s.Name.Contains(<span class="s">"Desk"</span>));
+
+<span class="k">if</span> (sym == <span class="k">null</span>) <span class="k">return</span> <span class="tp">Result</span>.Failed;
+
+<span class="tp">Level</span> level = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Place Desk"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">if</span> (!sym.IsActive) sym.<span class="fn">Activate</span>();   <span class="cm">// Always check!</span>
+
+    <span class="tp">FamilyInstance</span> desk = doc.Create.<span class="fn">NewFamilyInstance</span>(
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">5</span>, <span class="n">0</span>), sym, level,
+        <span class="tp">StructuralType</span>.NonStructural);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ FLOOR ═══════ -->
+<div class="class-block" id="cls-floor">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Floor</span></div><div class="class-inherit">Inherits: <span>HostObject → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a floor slab element. Floors are created using Floor.Create() with a list of CurveLoops defining the boundary (outer loop + optional inner holes). Access the compound structure layers via FloorType.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Floor</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">IList</span>&lt;<span class="tp">CurveLoop</span>&gt; <span class="pm">profile</span>, <span class="tp">ElementId</span> <span class="pm">floorTypeId</span>, <span class="tp">ElementId</span> <span class="pm">levelId</span>)</span></div>
+      <div class="member-desc">Creates a floor from one or more CurveLoops. The first CurveLoop is the outer boundary; additional loops define holes/openings in the floor. All loops must be planar and co-planar.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>doc</td><td>Document</td><td>The document to create the floor in.</td></tr><tr><td>profile</td><td>IList&lt;CurveLoop&gt;</td><td>Boundary loops. [0] = outer profile, [1..n] = inner holes.</td></tr><tr><td>floorTypeId</td><td>ElementId</td><td>The ElementId of the FloorType to use.</td></tr><tr><td>levelId</td><td>ElementId</td><td>The ElementId of the Level this floor sits on.</td></tr></table></div>
+      <div class="returns-row">Returns: <span>Floor</span> — The newly created Floor element.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Floor with a rectangular hole</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">FloorType</span> ft = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FloorType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">FloorType</span>&gt;().<span class="fn">First</span>();
+<span class="tp">Level</span> lv = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+<span class="cm">// Outer boundary 10×8 metres</span>
+<span class="tp">CurveLoop</span> outer = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+outer.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>),  <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">32.8</span>,<span class="n">0</span>,<span class="n">0</span>)));
+outer.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">32.8</span>,<span class="n">0</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">32.8</span>,<span class="n">26.2</span>,<span class="n">0</span>)));
+outer.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">32.8</span>,<span class="n">26.2</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">26.2</span>,<span class="n">0</span>)));
+outer.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">26.2</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>)));
+
+<span class="cm">// Inner hole 2×2 metres (stairwell opening)</span>
+<span class="tp">CurveLoop</span> hole = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+hole.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">10</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">16.6</span>,<span class="n">10</span>,<span class="n">0</span>)));
+hole.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">16.6</span>,<span class="n">10</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">16.6</span>,<span class="n">16.6</span>,<span class="n">0</span>)));
+hole.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">16.6</span>,<span class="n">16.6</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">16.6</span>,<span class="n">0</span>)));
+hole.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">16.6</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">10</span>,<span class="n">0</span>)));
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Floor"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Floor</span> floor = <span class="tp">Floor</span>.<span class="fn">Create</span>(doc,
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { outer, hole },
+        ft.Id, lv.Id);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ GRID ═══════ -->
+<div class="class-block" id="cls-grid">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Grid</span></div><div class="class-inherit">Inherits: <span>DatumPlane → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a grid datum element. Grids are used as reference lines for structural and architectural coordination. They appear in plan views and can be dimensioned using new Reference(grid) — NOT grid.Curve.Reference.</div>
+  <div class="callout c-crit" style="margin:12px 24px 0;"><strong>// Critical — Grid References</strong>Use <code>new Reference(grid)</code> to get a reference to a grid for dimensioning. Do NOT use <code>grid.Curve.Reference</code> — that returns null for grids.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Grid</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">Line</span> <span class="pm">line</span>)</span></div>
+      <div class="member-desc">Creates a straight grid from a line. The grid is infinite in plan view but clipped to the line endpoints as the default extent.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Grid system creation and dimensioning</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Grids"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">double</span> spacing = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">6000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+    <span class="cm">// Create 4 vertical grids A-D</span>
+    <span class="k">string</span>[] names = { <span class="s">"A"</span>, <span class="s">"B"</span>, <span class="s">"C"</span>, <span class="s">"D"</span> };
+    <span class="tp">List</span>&lt;<span class="tp">Grid</span>&gt; grids = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Grid</span>&gt;();
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; <span class="n">4</span>; i++)
+    {
+        <span class="k">double</span> x = i * spacing;
+        <span class="tp">Line</span> line = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+            <span class="k">new</span> <span class="tp">XYZ</span>(x, -<span class="n">5</span>, <span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(x, <span class="n">25</span>, <span class="n">0</span>));
+        <span class="tp">Grid</span> g = <span class="tp">Grid</span>.<span class="fn">Create</span>(doc, line);
+        g.Name = names[i];
+        grids.<span class="fn">Add</span>(g);
+    }
+
+    <span class="cm">// Dimension between grids using new Reference(grid)</span>
+    <span class="tp">ReferenceArray</span> refs = <span class="k">new</span> <span class="tp">ReferenceArray</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> g <span class="k">in</span> grids)
+        refs.<span class="fn">Append</span>(<span class="k">new</span> <span class="tp">Reference</span>(g));   <span class="cm">// ← CORRECT</span>
+
+    <span class="tp">Line</span> dimLine = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, -<span class="n">8</span>, <span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">3</span> * spacing, -<span class="n">8</span>, <span class="n">0</span>));
+    doc.Create.<span class="fn">NewDimension</span>(doc.ActiveView, dimLine, refs);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Curve</span> <span class="v">Curve</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the curve defining the grid line's position and extent. For straight grids this is a Line; for arc grids this is an Arc.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ JOINGEOMETRYUTILS ═══════ -->
+<div class="class-block" id="cls-joingeometryutils">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">JoinGeometryUtils</span></div><div class="class-inherit">Inherits: <span>System.Object (static utility)</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Static utility class for joining and unjoining element geometry. When elements are joined, Revit cuts the overlapping volume to show a proper geometric union (e.g. wall-to-slab, column-to-beam). Joining and unjoining requires a Transaction.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">JoinGeometry</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">Element</span> <span class="pm">firstElement</span>, <span class="tp">Element</span> <span class="pm">secondElement</span>)</span></div>
+      <div class="member-desc">Joins the geometry of two intersecting elements. After joining, one element's solid is cut by the other based on join order. Both elements must intersect geometrically.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Join wall to floor and check status</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Wall</span>  wall  = ...;
+<span class="tp">Floor</span> floor = ...;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Join"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="k">if</span> (!<span class="tp">JoinGeometryUtils</span>.<span class="fn">AreElementsJoined</span>(doc, wall, floor))
+        <span class="tp">JoinGeometryUtils</span>.<span class="fn">JoinGeometry</span>(doc, wall, floor);
+
+    <span class="cm">// Swap join order so wall wins (cuts floor)</span>
+    <span class="k">if</span> (<span class="tp">JoinGeometryUtils</span>.<span class="fn">GetJoinedElements</span>(doc, wall).Contains(floor.Id))
+        <span class="tp">JoinGeometryUtils</span>.<span class="fn">SwitchJoinOrder</span>(doc, wall, floor);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">bool</span> <span class="fn">AreElementsJoined</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">Element</span> <span class="pm">firstElement</span>, <span class="tp">Element</span> <span class="pm">secondElement</span>)</span></div><div class="member-desc">Returns true if the two elements are currently joined. Use before calling JoinGeometry() to avoid errors on already-joined pairs.</div><div class="returns-row">Returns: <span>bool</span> — true if joined.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">SwitchJoinOrder</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">Element</span> <span class="pm">firstElement</span>, <span class="tp">Element</span> <span class="pm">secondElement</span>)</span></div><div class="member-desc">Reverses which element cuts the other. In a wall-to-column join, if the column is being cut by the wall, switching makes the wall be cut by the column instead.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="kw">void</span> <span class="fn">UnjoinGeometry</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">Element</span> <span class="pm">firstElement</span>, <span class="tp">Element</span> <span class="pm">secondElement</span>)</span></div><div class="member-desc">Removes the join between two elements, restoring their independent geometry.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ LEVEL ═══════ -->
+<div class="class-block" id="cls-level">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Level</span></div><div class="class-inherit">Inherits: <span>DatumPlane → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a horizontal datum plane (floor level) in the Revit model. All model elements are attached to a level. Levels drive floor plan views and define the reference elevation for all associated elements.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Level</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">double</span> <span class="pm">elevation</span>)</span></div><div class="member-desc">Creates a new level at the specified elevation in internal units (feet). The level name defaults to "Level N" but should be set immediately after creation.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create levels from floor heights</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">double</span>[] floorHeightsMM = { <span class="n">0</span>, <span class="n">3500</span>, <span class="n">7000</span>, <span class="n">10500</span>, <span class="n">14000</span> };
+<span class="k">string</span>[] levelNames     = { <span class="s">"Ground"</span>, <span class="s">"Level 1"</span>, <span class="s">"Level 2"</span>, <span class="s">"Level 3"</span>, <span class="s">"Roof"</span> };
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Levels"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; floorHeightsMM.Length; i++)
+    {
+        <span class="k">double</span> elevFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(
+            floorHeightsMM[i], <span class="tp">UnitTypeId</span>.Millimeters);
+        <span class="tp">Level</span> lvl = <span class="tp">Level</span>.<span class="fn">Create</span>(doc, elevFt);
+        lvl.Name = levelNames[i];
+    }
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Elevation</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the level elevation in internal units (feet). Setting this moves all attached elements. Always convert from/to mm using UnitUtils.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ LINE ═══════ -->
+<div class="class-block" id="cls-line">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Line</span></div><div class="class-inherit">Inherits: <span>Curve → APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a straight line in 3D space. The most common curve type — used for walls, CurveLoops, dimensions, grids, model lines, and detail lines. Created via static factory methods.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Line</span> <span class="fn">CreateBound</span>(<span class="tp">XYZ</span> <span class="pm">endpoint0</span>, <span class="tp">XYZ</span> <span class="pm">endpoint1</span>)</span></div>
+      <div class="member-desc">Creates a bounded (finite) line between two points. This is the most commonly used Line factory method. Both endpoints are required; the line has a definite start and end.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Line usage patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Bounded line (has start/end points)</span>
+<span class="tp">Line</span> bounded = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">0</span>, <span class="n">0</span>));
+
+<span class="cm">// Unbound line (infinite — direction only)</span>
+<span class="tp">Line</span> infinite = <span class="tp">Line</span>.<span class="fn">CreateUnbound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="tp">XYZ</span>.BasisX);
+
+<span class="cm">// Line properties</span>
+<span class="tp">XYZ</span>    start  = bounded.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+<span class="tp">XYZ</span>    end    = bounded.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+<span class="k">double</span> length = bounded.Length;
+<span class="tp">XYZ</span>    dir    = bounded.Direction;   <span class="cm">// unit vector start→end</span>
+<span class="tp">XYZ</span>    mid    = bounded.<span class="fn">Evaluate</span>(<span class="n">0.5</span>, <span class="k">true</span>);
+
+<span class="cm">// Project a point onto the line</span>
+<span class="tp">XYZ</span> pt = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">3</span>, <span class="n">0</span>);
+<span class="tp">IntersectionResult</span> proj = bounded.<span class="fn">Project</span>(pt);
+<span class="tp">XYZ</span> projected = proj.XYZPoint;
+<span class="k">double</span> dist = proj.Distance;</pre></div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Line</span> <span class="fn">CreateUnbound</span>(<span class="tp">XYZ</span> <span class="pm">origin</span>, <span class="tp">XYZ</span> <span class="pm">direction</span>)</span></div><div class="member-desc">Creates an unbounded (infinite) line through origin in the given direction. Used for infinite geometry operations like plane intersections. IsBound = false.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">Direction</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the unit direction vector from start to end point. Always normalised to length 1.0.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ MATERIAL ═══════ -->
+<div class="class-block" id="cls-material">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Material</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a Revit material definition including surface graphics, cut graphics, render appearance, physical properties, and thermal properties. Materials are referenced by CompoundStructure layers and by element geometry parameters.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Properties + Methods</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ElementId</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">string</span> <span class="pm">name</span>)</span></div><div class="member-desc">Creates a new material with the given name. Returns the ElementId of the new material. The material starts with default white colour and no patterns.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create and configure a material</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Material"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">ElementId</span> matId = <span class="tp">Material</span>.<span class="fn">Create</span>(doc, <span class="s">"Concrete - Exposed"</span>);
+    <span class="tp">Material</span>  mat   = doc.<span class="fn">GetElement</span>(matId) <span class="k">as</span> <span class="tp">Material</span>;
+
+    mat.Color            = <span class="k">new</span> <span class="tp">Color</span>(<span class="n">180</span>, <span class="n">175</span>, <span class="n">170</span>);
+    mat.Transparency     = <span class="n">0</span>;    <span class="cm">// 0–100</span>
+    mat.Shininess        = <span class="n">20</span>;   <span class="cm">// 0–128</span>
+    mat.SmoothnessFactor = <span class="n">50</span>;
+    mat.MaterialClass    = <span class="s">"Concrete"</span>;
+
+    <span class="cm">// Set cut fill colour</span>
+    mat.CutForegroundPatternColor = <span class="k">new</span> <span class="tp">Color</span>(<span class="n">100</span>, <span class="n">100</span>, <span class="n">100</span>);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Find material by name</span>
+<span class="tp">Material</span> concrete = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Material</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">Material</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(m => m.Name.Contains(<span class="s">"Concrete"</span>));</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ OPTIONS ═══════ -->
+<div class="class-block" id="cls-options">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Options</span></div><div class="class-inherit">Inherits: <span>System.Object</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Controls how geometry is retrieved via Element.get_Geometry(). Three key settings: View (which view's visibility rules apply), ComputeReferences (needed for dimensioning), and IncludeNonVisibleObjects.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">View</span> <span class="v">View</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">The view whose visibility settings are applied during geometry retrieval. Pass null for model geometry without view filtering. Setting a view may return different geometry (e.g. symbolic representation in plan views).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">ComputeReferences</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">When true, Face.Reference and Edge.Reference are populated, enabling dimensioning. Setting this to true is slower but required for any workflow involving NewDimension().</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IncludeNonVisibleObjects</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">When true, geometry from invisible lines, reference planes and symbolic lines is included. Usually set to false for solid geometry extraction.</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Options configurations</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// For solid extraction (volume, area calculations)</span>
+<span class="k">var</span> solidOpts = <span class="k">new</span> <span class="tp">Options</span>
+{
+    ComputeReferences        = <span class="k">false</span>,
+    IncludeNonVisibleObjects = <span class="k">false</span>
+};
+
+<span class="cm">// For dimensioning (must have references)</span>
+<span class="k">var</span> dimOpts = <span class="k">new</span> <span class="tp">Options</span>
+{
+    ComputeReferences        = <span class="k">true</span>,
+    View                     = doc.ActiveView,
+    IncludeNonVisibleObjects = <span class="k">false</span>
+};
+
+<span class="cm">// For symbolic geometry in plan view</span>
+<span class="k">var</span> symOpts = <span class="k">new</span> <span class="tp">Options</span>
+{
+    View                     = doc.ActiveView,
+    IncludeNonVisibleObjects = <span class="k">true</span>
+};</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ OVERRIDE GRAPHIC SETTINGS ═══════ -->
+<div class="class-block" id="cls-overridegraphicsettings">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">OverrideGraphicSettings</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Defines graphic overrides applied to elements or categories in a view. Used with View.SetElementOverrides() (per element) or ParameterFilterElement + View.SetFilterOverrides() (per rule). Controls colour, line weight, pattern, transparency, and halftone for projection and cut representations.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Full override workflow</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> ogs = <span class="k">new</span> <span class="tp">OverrideGraphicSettings</span>();
+
+<span class="cm">// Projection (visible faces) settings</span>
+ogs.<span class="fn">SetProjectionLineColor</span>(<span class="k">new</span> <span class="tp">Color</span>(<span class="n">255</span>, <span class="n">0</span>, <span class="n">0</span>));
+ogs.<span class="fn">SetProjectionLineWeight</span>(<span class="n">6</span>);        <span class="cm">// 1–16</span>
+ogs.<span class="fn">SetSurfaceTransparency</span>(<span class="n">30</span>);        <span class="cm">// 0–100</span>
+ogs.<span class="fn">SetSurfaceForegroundPatternColor</span>(<span class="k">new</span> <span class="tp">Color</span>(<span class="n">255</span>, <span class="n">200</span>, <span class="n">200</span>));
+ogs.<span class="fn">SetIsHalftone</span>(<span class="k">false</span>);
+
+<span class="cm">// Cut (section cut) settings</span>
+ogs.<span class="fn">SetCutLineColor</span>(<span class="k">new</span> <span class="tp">Color</span>(<span class="n">200</span>, <span class="n">0</span>, <span class="n">0</span>));
+ogs.<span class="fn">SetCutLineWeight</span>(<span class="n">8</span>);
+ogs.<span class="fn">SetCutFillColor</span>(<span class="k">new</span> <span class="tp">Color</span>(<span class="n">255</span>, <span class="n">200</span>, <span class="n">200</span>));
+
+<span class="cm">// Apply to specific elements</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Override"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> walls)
+        doc.ActiveView.<span class="fn">SetElementOverrides</span>(wall.Id, ogs);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Clear overrides — pass a new empty OverrideGraphicSettings</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Clear"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    doc.ActiveView.<span class="fn">SetElementOverrides</span>(wall.Id,
+        <span class="k">new</span> <span class="tp">OverrideGraphicSettings</span>());  <span class="cm">// empty = reset to default</span>
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PARAMETER ═══════ -->
+<div class="class-block" id="cls-parameter">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Parameter</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a single parameter on an element. Provides typed access to the parameter's value (AsString, AsDouble, AsInteger, AsElementId) and metadata (StorageType, IsReadOnly, Definition). All writes require an open Transaction.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">StorageType</span> <span class="v">StorageType</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets how the value is stored internally: String, Double, Integer, or ElementId. Always check StorageType before calling the read methods.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsReadOnly</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">True if the parameter cannot be written. Computed parameters (like Host Area Computed) are always read-only. Always check before calling Set().</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Definition</span> <span class="v">Definition</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the definition of this parameter, including its name, parameter type, and group. Cast to InternalDefinition for built-in parameters or ExternalDefinition for shared parameters.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsShared</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">True if this is a shared parameter (defined in a shared parameter file with a GUID). Shared parameters are accessible by GUID via elem.get_Parameter(Guid).</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Read Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="fn">AsString</span>()</span></div>
+      <div class="member-desc">Returns the value as a string. Only valid when StorageType == StorageType.String. Returns null for other types.</div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="fn">AsDouble</span>()</span></div><div class="member-desc">Returns the value as a double in internal units (feet for lengths, sq.ft for areas etc.). Only valid when StorageType == StorageType.Double. Always convert with UnitUtils.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">int</span> <span class="fn">AsInteger</span>()</span></div><div class="member-desc">Returns the value as an integer. Valid for StorageType.Integer. Used for enums, Yes/No (1/0), and integer counts.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ElementId</span> <span class="fn">AsElementId</span>()</span></div><div class="member-desc">Returns the value as an ElementId. Valid for StorageType.ElementId. Used for material parameters, level parameters, phase parameters etc.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="fn">AsValueString</span>()</span></div><div class="member-desc">Returns the value as a user-facing formatted string regardless of StorageType. For length doubles this returns "4500mm" rather than a raw number. Useful for display purposes only.</div></div>
+  </div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Write Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="fn">Set</span>(<span class="tp">string</span> <span class="pm">value</span>) <span class="cm">// also: Set(double), Set(int), Set(ElementId)</span></span></div>
+      <div class="member-desc">Sets the parameter value. Must match the parameter's StorageType — call the correct overload. Returns true if set successfully. Must be inside an open Transaction. Check IsReadOnly before calling.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete parameter read/write pattern</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Element</span> elem = ...;
+<span class="tp">Parameter</span> p  = elem.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK);
+
+<span class="k">if</span> (p == <span class="k">null</span>) <span class="k">return</span>;
+
+<span class="cm">// Read based on StorageType</span>
+<span class="k">switch</span> (p.StorageType)
+{
+    <span class="k">case</span> <span class="tp">StorageType</span>.String:
+        <span class="k">string</span> s = p.<span class="fn">AsString</span>();                 <span class="k">break</span>;
+    <span class="k">case</span> <span class="tp">StorageType</span>.Double:
+        <span class="k">double</span> mm = p.<span class="fn">AsDouble</span>() * <span class="n">304.8</span>;        <span class="k">break</span>;
+    <span class="k">case</span> <span class="tp">StorageType</span>.Integer:
+        <span class="k">int</span>    n  = p.<span class="fn">AsInteger</span>();               <span class="k">break</span>;
+    <span class="k">case</span> <span class="tp">StorageType</span>.ElementId:
+        <span class="tp">ElementId</span> eid = p.<span class="fn">AsElementId</span>();         <span class="k">break</span>;
+}
+
+<span class="cm">// Write (inside a transaction)</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Set Param"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">if</span> (!p.IsReadOnly)
+    {
+        <span class="k">bool</span> ok = p.<span class="fn">Set</span>(<span class="s">"W-001"</span>);   <span class="cm">// string overload</span>
+        <span class="cm">// p.Set(3.281);              // double overload (feet)</span>
+        <span class="cm">// p.Set(1);                  // int overload</span>
+        <span class="cm">// p.Set(new ElementId(x));   // ElementId overload</span>
+    }
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PLANE ═══════ -->
+<div class="class-block" id="cls-plane">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Plane</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents an infinite 2D plane in 3D space, defined by an origin and a normal vector. Used to create SketchPlanes, to project points, and to define arc orientations. Plane is immutable — create a new one rather than modifying an existing one.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Plane</span> <span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span> <span class="pm">normal</span>, <span class="tp">XYZ</span> <span class="pm">origin</span>)</span></div>
+      <div class="member-desc">Creates a plane from a normal vector and an origin point. The most common factory method. The normal defines which direction is "up" for the plane.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Plane creation patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// XY plane at Z=0 (horizontal)</span>
+<span class="tp">Plane</span> xy = <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisZ, <span class="tp">XYZ</span>.Zero);
+
+<span class="cm">// Vertical plane along X-axis</span>
+<span class="tp">Plane</span> xz = <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisY, <span class="tp">XYZ</span>.Zero);
+
+<span class="cm">// Plane from 3 points</span>
+<span class="tp">Plane</span> p3 = <span class="tp">Plane</span>.<span class="fn">CreateByThreePoints</span>(
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">1</span>,<span class="n">0</span>,<span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">1</span>,<span class="n">0</span>));
+
+<span class="cm">// Create a SketchPlane from a Plane (needed for family geometry)</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"SketchPlane"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">SketchPlane</span> sp = <span class="tp">SketchPlane</span>.<span class="fn">Create</span>(doc, xy);
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ REFERENCE INTERSECTOR ═══════ -->
+<div class="class-block" id="cls-referenceintersector">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ReferenceIntersector</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Performs ray casting against element geometry in a 3D view. Given a ray (origin + direction), ReferenceIntersector finds all elements that the ray hits. Used for proximity detection, height finding, automatic pipe-to-floor opening creation, and sight-line analysis.</div>
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ReferenceIntersector</span>(<span class="tp">View3D</span> <span class="pm">view</span>)</span></div>
+      <div class="member-desc">Creates a ReferenceIntersector that tests against all geometry visible in the given 3D view. The view must be a View3D — the ray casting works in the 3D view's coordinate space.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Ray cast downward to find floor elevation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get or create a 3D view for ray casting</span>
+<span class="tp">View3D</span> view3D = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">View3D</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">View3D</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(v => !v.IsTemplate);
+
+<span class="k">if</span> (view3D == <span class="k">null</span>) <span class="k">return</span> <span class="tp">Result</span>.Failed;
+
+<span class="cm">// Create ray caster — filter for floors only</span>
+<span class="k">var</span> floorFilter = <span class="k">new</span> <span class="tp">ElementClassFilter</span>(<span class="k">typeof</span>(<span class="tp">Floor</span>));
+<span class="k">var</span> ri = <span class="k">new</span> <span class="tp">ReferenceIntersector</span>(floorFilter,
+    <span class="tp">FindReferenceTarget</span>.Face, view3D)
+{
+    FindReferencesInRevitLinks = <span class="k">false</span>
+};
+
+<span class="cm">// Cast a ray downward from a point at ceiling height</span>
+<span class="tp">XYZ</span> origin    = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">10</span>, <span class="n">20</span>);   <span class="cm">// high up</span>
+<span class="tp">XYZ</span> direction = -<span class="tp">XYZ</span>.BasisZ;            <span class="cm">// straight down</span>
+
+<span class="tp">ReferenceWithContext</span> nearest = ri.<span class="fn">FindNearest</span>(origin, direction);
+<span class="k">if</span> (nearest != <span class="k">null</span>)
+{
+    <span class="k">double</span> floorZ = origin.Z - nearest.Proximity;
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Floor Z"</span>,
+        <span class="s">$"Floor elevation: {floorZ * 304.8:F0}mm"</span>);
+}
+
+<span class="cm">// Find ALL hits along the ray</span>
+<span class="tp">IList</span>&lt;<span class="tp">ReferenceWithContext</span>&gt; allHits = ri.<span class="fn">Find</span>(origin, direction);
+<span class="k">foreach</span> (<span class="k">var</span> hit <span class="k">in</span> allHits.<span class="fn">OrderBy</span>(h => h.Proximity))
+{
+    <span class="tp">Element</span> elem = doc.<span class="fn">GetElement</span>(hit.GetReference());
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Hit: {elem.Category.Name} at {hit.Proximity * 304.8:F0}mm"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SOLID ═══════ -->
+<div class="class-block" id="cls-solid">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Solid</span></div><div class="class-inherit">Inherits: <span>GeometryObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a 3D solid body in Revit geometry. Solids have Faces, Edges, Volume, and SurfaceArea. They are retrieved from Element.get_Geometry() and used for volume calculations, boolean operations, and clash detection. Solids cannot be created directly — they come from element geometry.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">Volume</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the volume of the solid in internal units (cubic feet). Multiply by 0.0283168 to get m³. A volume of 0 or near-zero indicates an empty/degenerate solid.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">double</span> <span class="v">SurfaceArea</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the total surface area of all faces in internal units (sq.ft). Multiply by 0.092903 for m².</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FaceArray</span> <span class="v">Faces</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets all the Face objects that bound this solid. Enumerate with foreach to access each face's area, normal, and geometry.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">EdgeArray</span> <span class="v">Edges</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets all Edge objects of this solid. Each edge is bounded by two faces and provides a curve.</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Extract solid and perform Boolean intersection</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Helper: extract first valid solid from element</span>
+<span class="tp">Solid</span> <span class="fn">GetSolid</span>(<span class="tp">Element</span> e)
+{
+    <span class="k">var</span> opts = <span class="k">new</span> <span class="tp">Options</span> { ComputeReferences = <span class="k">false</span> };
+    <span class="k">foreach</span> (<span class="tp">GeometryObject</span> obj <span class="k">in</span> e.<span class="fn">get_Geometry</span>(opts))
+    {
+        <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">Solid</span> s &amp;&amp; s.Volume > <span class="n">1e-9</span>) <span class="k">return</span> s;
+        <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">GeometryInstance</span> gi)
+            <span class="k">foreach</span> (<span class="tp">GeometryObject</span> o <span class="k">in</span> gi.<span class="fn">GetInstanceGeometry</span>())
+                <span class="k">if</span> (o <span class="k">is</span> <span class="tp">Solid</span> s2 &amp;&amp; s2.Volume > <span class="n">1e-9</span>) <span class="k">return</span> s2;
+    }
+    <span class="k">return null</span>;
+}
+
+<span class="cm">// Boolean intersection between two solids</span>
+<span class="tp">Solid</span> sa = <span class="fn">GetSolid</span>(elem1);
+<span class="tp">Solid</span> sb = <span class="fn">GetSolid</span>(elem2);
+
+<span class="k">if</span> (sa != <span class="k">null</span> &amp;&amp; sb != <span class="k">null</span>)
+{
+    <span class="tp">Solid</span> intersection = <span class="tp">BooleanOperationsUtils</span>
+        .<span class="fn">ExecuteBooleanOperation</span>(sa, sb,
+            <span class="tp">BooleanOperationsType</span>.Intersect);
+
+    <span class="k">if</span> (intersection?.Volume > <span class="n">1e-9</span>)
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Clash"</span>,
+            <span class="s">$"Clash volume: {intersection.Volume * 0.0283168:F5}m³"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STORAGETYPE ═══════ -->
+<div class="class-block" id="cls-storagetype">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-enum">Enum</span><span class="class-name">StorageType</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Identifies how a parameter's value is stored internally. Always check StorageType before calling AsString/AsDouble/AsInteger/AsElementId to avoid InvalidOperationException.</div>
+  <div class="class-section">
+    <div class="section-title st-enum">🟡 Enum Values</div>
+    <div class="member"><table class="enum-table">
+      <tr><th>Member</th><th>Value</th><th>Read Method</th><th>Write Method</th><th>Notes</th></tr>
+      <tr><td>None</td><td>0</td><td>—</td><td>—</td><td>Unset or invalid parameter</td></tr>
+      <tr><td>Integer</td><td>1</td><td>AsInteger()</td><td>Set(int)</td><td>Also used for Yes/No (1/0) and enum int values</td></tr>
+      <tr><td>Double</td><td>2</td><td>AsDouble()</td><td>Set(double)</td><td>Always in internal units (feet). Must convert!</td></tr>
+      <tr><td>String</td><td>3</td><td>AsString()</td><td>Set(string)</td><td>Text values</td></tr>
+      <tr><td>ElementId</td><td>4</td><td>AsElementId()</td><td>Set(ElementId)</td><td>References to other elements (material, level, etc.)</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- ═══════ TRANSACTION ═══════ -->
+<div class="class-block" id="cls-transaction">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Transaction</span></div><div class="class-inherit">Inherits: <span>APIObject · IDisposable</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Wraps a set of model changes into a single undo/redo step. Every write to the Revit model (creating elements, modifying parameters, deleting) MUST happen inside an open Transaction. Transactions must be Started, then Committed or RolledBack. Use the using() pattern for automatic disposal.</div>
+  <div class="callout c-crit" style="margin:12px 24px 0;"><strong>// Critical Rules</strong>1) Never start a Transaction inside an event handler that fires during a transaction. 2) Never call Revit API from a background thread — use IExternalEventHandler. 3) Always check tx.GetStatus() in critical workflows. 4) Use TransactionGroup to batch multiple Transactions into one undo step.</div>
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructors</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Transaction</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">string</span> <span class="pm">name</span>)</span></div>
+      <div class="member-desc">Creates a Transaction for the given document. The name appears in the Undo history. The transaction is NOT yet started — call Start() before making changes.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>doc</td><td>Document</td><td>The document to create the transaction in.</td></tr><tr><td>name</td><td>string</td><td>Name shown in the Revit Undo/Redo history. Should be descriptive.</td></tr></table></div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — All Transaction patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Pattern 1: Basic (using = auto dispose)</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Wall"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cm">// ... modify model ...</span>
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Pattern 2: With error handling</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Safe Create"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">try</span>
+    {
+        <span class="cm">// ... risky work ...</span>
+        tx.<span class="fn">Commit</span>();
+    }
+    <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+    {
+        tx.<span class="fn">RollBack</span>();
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Error"</span>, ex.Message);
+    }
+}
+
+<span class="cm">// Pattern 3: TransactionGroup — one undo step for multiple transactions</span>
+<span class="k">using</span> (<span class="k">var</span> tg = <span class="k">new</span> <span class="tp">TransactionGroup</span>(doc, <span class="s">"Batch Update"</span>))
+{
+    tg.<span class="fn">Start</span>();
+    <span class="k">using</span> (<span class="k">var</span> tx1 = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Step 1"</span>))
+    { tx1.<span class="fn">Start</span>(); <span class="cm">/* work */</span> tx1.<span class="fn">Commit</span>(); }
+    <span class="k">using</span> (<span class="k">var</span> tx2 = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Step 2"</span>))
+    { tx2.<span class="fn">Start</span>(); <span class="cm">/* work */</span> tx2.<span class="fn">Commit</span>(); }
+    tg.<span class="fn">Assimilate</span>();   <span class="cm">// merge into one undo step</span>
+}
+
+<span class="cm">// Pattern 4: SubTransaction (partial rollback inside a transaction)</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Main"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">using</span> (<span class="k">var</span> sub = <span class="k">new</span> <span class="tp">SubTransaction</span>(doc))
+    {
+        sub.<span class="fn">Start</span>();
+        <span class="k">try</span> { <span class="cm">/* risky work */</span> sub.<span class="fn">Commit</span>(); }
+        <span class="k">catch</span> { sub.<span class="fn">RollBack</span>(); }   <span class="cm">// main tx continues</span>
+    }
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Pattern 5: Suppress warnings</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"No Warnings"</span>))
+{
+    <span class="tp">FailureHandlingOptions</span> opts = tx.<span class="fn">GetFailureHandlingOptions</span>();
+    opts.<span class="fn">SetFailuresPreprocessor</span>(<span class="k">new</span> <span class="tp">SuppressWarningsPreprocessor</span>());
+    tx.<span class="fn">SetFailureHandlingOptions</span>(opts);
+    tx.<span class="fn">Start</span>();
+    <span class="cm">/* work that might produce warnings */</span>
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TRANSFORM ═══════ -->
+<div class="class-block" id="cls-transform">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Transform</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents an affine transformation: a combination of translation, rotation, and scaling. The transform is defined by an origin (translation) and three basis vectors (BasisX, BasisY, BasisZ) that define the local coordinate frame's orientation. Used extensively for section view creation, element placement, and coordinate system conversions.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties + Static Factory</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Transform</span> <span class="v">Identity</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the identity transform (no translation, no rotation, scale=1). The BasisX=X, BasisY=Y, BasisZ=Z, Origin=(0,0,0).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">Origin</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the translation vector (origin of the local coordinate system in world space).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">BasisX</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the X-axis of the local coordinate frame (horizontal direction for sections).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">BasisY</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the Y-axis of the local coordinate frame (vertical direction for sections).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span> <span class="v">BasisZ</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the Z-axis (camera/view direction for sections). Must form a right-handed coordinate system with BasisX and BasisY.</div></div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Transform</span> <span class="fn">CreateRotation</span>(<span class="tp">XYZ</span> <span class="pm">axis</span>, <span class="tp">double</span> <span class="pm">angle</span>)</span></div>
+      <div class="member-desc">Creates a rotation transform around the given axis by the given angle in radians. The rotation is about the world origin — combine with a translation if you need to rotate around a specific point.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Transform for section view and element rotation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Build a Transform for a section view cut perpendicular to Y-axis</span>
+<span class="tp">Transform</span> t = <span class="tp">Transform</span>.Identity;
+t.Origin = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">0</span>, <span class="n">3</span>);       <span class="cm">// where the section cuts</span>
+t.BasisX = <span class="tp">XYZ</span>.BasisX;              <span class="cm">// horizontal = X</span>
+t.BasisY = <span class="tp">XYZ</span>.BasisZ;              <span class="cm">// vertical = Z (up)</span>
+t.BasisZ = <span class="tp">XYZ</span>.BasisY;              <span class="cm">// into screen = Y</span>
+
+<span class="cm">// Rotate 45° around Z-axis</span>
+<span class="tp">Transform</span> rot45 = <span class="tp">Transform</span>.<span class="fn">CreateRotation</span>(<span class="tp">XYZ</span>.BasisZ, Math.PI / <span class="n">4</span>);
+
+<span class="cm">// Translate by (5, 0, 0)</span>
+<span class="tp">Transform</span> move = <span class="tp">Transform</span>.<span class="fn">CreateTranslation</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">0</span>, <span class="n">0</span>));
+
+<span class="cm">// Combine: first rotate, then translate</span>
+<span class="tp">Transform</span> combined = move.<span class="fn">Multiply</span>(rot45);
+
+<span class="cm">// Transform a point</span>
+<span class="tp">XYZ</span> worldPt = combined.<span class="fn">OfPoint</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">1</span>, <span class="n">0</span>, <span class="n">0</span>));
+
+<span class="cm">// Transform a vector (ignores translation)</span>
+<span class="tp">XYZ</span> worldVec = combined.<span class="fn">OfVector</span>(<span class="tp">XYZ</span>.BasisX);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ UNITUTILS ═══════ -->
+<div class="class-block" id="cls-unitutils">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">UnitUtils</span></div><div class="class-inherit">Inherits: <span>System.Object (static utility)</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Static utility class for converting between Revit's internal units (always decimal feet) and any display unit. Every parameter of type Double is stored in internal units. Always use UnitUtils to convert — never hardcode conversion factors for units other than feet↔mm (×304.8).</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">double</span> <span class="fn">ConvertToInternalUnits</span>(<span class="tp">double</span> <span class="pm">value</span>, <span class="tp">ForgeTypeId</span> <span class="pm">unitTypeId</span>)</span></div>
+      <div class="member-desc">Converts a value FROM the specified unit TO internal units (feet for lengths). Use this before passing any measurement to the API (wall height, pipe diameter, etc.).</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete unit conversion reference</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// TO internal units (for writing to API)</span>
+<span class="k">double</span> heightFt  = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">3000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> widthFt   = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">4.5</span>,  <span class="tp">UnitTypeId</span>.Meters);
+<span class="k">double</span> areaFt2   = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">25.5</span>, <span class="tp">UnitTypeId</span>.SquareMeters);
+<span class="k">double</span> volFt3    = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">100</span>,  <span class="tp">UnitTypeId</span>.CubicMeters);
+<span class="k">double</span> angleFt   = <span class="tp">UnitUtils</span>.<span class class="fn">ConvertToInternalUnits</span>(<span class="n">30</span>,   <span class="tp">UnitTypeId</span>.Degrees);
+
+<span class="cm">// FROM internal units (for reading from API / displaying to user)</span>
+<span class="k">double</span> wallH = wall.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.WALL_USER_HEIGHT_PARAM)
+    .<span class="fn">AsDouble</span>();
+<span class="k">double</span> wallH_mm = <span class="tp">UnitUtils</span>.<span class="fn">ConvertFromInternalUnits</span>(wallH, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> wallH_m  = <span class="tp">UnitUtils</span>.<span class="fn">ConvertFromInternalUnits</span>(wallH, <span class="tp">UnitTypeId</span>.Meters);
+
+<span class="cm">// Common UnitTypeId values:</span>
+<span class="cm">// Length:  Millimeters, Meters, Feet, Inches</span>
+<span class="cm">// Area:    SquareMillimeters, SquareMeters, SquareFeet</span>
+<span class="cm">// Volume:  CubicMeters, CubicFeet, Liters</span>
+<span class="cm">// Angle:   Degrees, Radians</span>
+<span class="cm">// Force:   Kilonewtons, PoundsForce</span>
+<span class="cm">// Temp:    Celsius, Fahrenheit, Kelvin</span></pre></div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">double</span> <span class="fn">ConvertFromInternalUnits</span>(<span class="tp">double</span> <span class="pm">value</span>, <span class="tp">ForgeTypeId</span> <span class="pm">unitTypeId</span>)</span></div><div class="member-desc">Converts a value FROM internal units TO the specified display unit. Use this when reading a parameter value to display to the user.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ WALL ═══════ -->
+<div class="class-block" id="cls-wall">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Wall</span></div><div class="class-inherit">Inherits: <span>HostObject → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents a wall element. Walls are created using Wall.Create() overloads. A wall has a WallType (defines compound layers), a location curve (its centerline or face line), height, and can host doors/windows. The most commonly created host element in the Revit API.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Wall</span> <span class="fn">Create</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">Curve</span> <span class="pm">curve</span>, <span class="tp">ElementId</span> <span class="pm">wallTypeId</span>, <span class="tp">ElementId</span> <span class="pm">levelId</span>, <span class="tp">double</span> <span class="pm">height</span>, <span class="tp">double</span> <span class="pm">offset</span>, <span class="tp">bool</span> <span class="pm">flip</span>, <span class="tp">bool</span> <span class="pm">structural</span>)</span></div>
+      <div class="member-desc">Creates a wall from a curve. The most common overload. Height and offset are in internal units (feet). Set structural=true for walls that contribute to the structural model.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>doc</td><td>Document</td><td>Target document</td></tr><tr><td>curve</td><td>Curve</td><td>Location curve (Line or Arc). Wall follows this curve.</td></tr><tr><td>wallTypeId</td><td>ElementId</td><td>WallType to use (determines layer thickness and materials)</td></tr><tr><td>levelId</td><td>ElementId</td><td>Base level — wall's base is at this level</td></tr><tr><td>height</td><td>double</td><td>Unconnected height in feet. 0 = top connected to next level</td></tr><tr><td>offset</td><td>double</td><td>Base offset from level in feet. Usually 0.</td></tr><tr><td>flip</td><td>bool</td><td>Flips exterior/interior face orientation</td></tr><tr><td>structural</td><td>bool</td><td>true = structural wall (contributes to analytical model)</td></tr></table></div>
+      <div class="returns-row">Returns: <span>Wall</span> — The created wall element.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create a wall and read its properties</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get first WallType and Level</span>
+<span class="tp">WallType</span> wt = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">WallType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">WallType</span>&gt;().<span class="fn">First</span>();
+<span class="tp">Level</span> lv = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">double</span> heightFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">3000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="tp">Line</span>   curve    = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">0</span>,<span class="n">0</span>));
+
+<span class="tp">Wall</span> wall;
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Wall"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    wall = <span class="tp">Wall</span>.<span class="fn">Create</span>(doc, curve, wt.Id, lv.Id,
+        heightFt, <span class="n">0.0</span>, <span class="k">false</span>, <span class="k">false</span>);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Read wall properties</span>
+<span class="tp">WallKind</span>      kind     = wall.WallType.Kind;          <span class="cm">// Basic/Stacked/Curtain</span>
+<span class="k">bool</span>           flipped  = wall.Flipped;
+<span class="k">double</span>         widthFt  = wall.Width;                  <span class="cm">// thickness in feet</span>
+<span class="k">double</span>         widthMm  = widthFt * <span class="n">304.8</span>;
+<span class="tp">LocationCurve</span>  lc       = wall.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+<span class="k">double</span>         lengthFt = lc.Curve.Length;
+<span class="tp">XYZ</span>            start    = lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+<span class="tp">XYZ</span>            end      = lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+
+<span class="cm">// Flip the wall (swap exterior/interior)</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Flip Wall"</span>))
+{ tx.<span class="fn">Start</span>(); wall.<span class="fn">flip</span>(); tx.<span class="fn">Commit</span>(); }</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ XYZ ═══════ -->
+<div class="class-block" id="cls-xyz">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">XYZ</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Represents both a 3D point and a 3D vector. XYZ is immutable — all operations return new XYZ instances. Used for everything: element placement, geometry, normals, axes, force vectors, and coordinate transformations.</div>
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructor + Static Members</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">XYZ</span>(<span class="tp">double</span> <span class="pm">x</span>, <span class="tp">double</span> <span class="pm">y</span>, <span class="tp">double</span> <span class="pm">z</span>)</span></div>
+      <div class="member-desc">Creates a new XYZ with the given X, Y, Z coordinates in internal units (feet for positions). Also serves as a vector constructor.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>x</td><td>double</td><td>X coordinate (feet for positions, unitless for vectors)</td></tr><tr><td>y</td><td>double</td><td>Y coordinate</td></tr><tr><td>z</td><td>double</td><td>Z coordinate</td></tr></table></div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete XYZ operations reference</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Static constants</span>
+<span class="tp">XYZ</span> origin = <span class="tp">XYZ</span>.Zero;      <span class="cm">// (0,0,0)</span>
+<span class="tp">XYZ</span> bx     = <span class="tp">XYZ</span>.BasisX;    <span class="cm">// (1,0,0)</span>
+<span class="tp">XYZ</span> by     = <span class="tp">XYZ</span>.BasisY;    <span class="cm">// (0,1,0)</span>
+<span class="tp">XYZ</span> bz     = <span class="tp">XYZ</span>.BasisZ;    <span class="cm">// (0,0,1)</span>
+
+<span class="cm">// Arithmetic (operator overloads)</span>
+<span class="tp">XYZ</span> a = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">3</span>, <span class="n">0</span>, <span class="n">0</span>);
+<span class="tp">XYZ</span> b = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">4</span>, <span class="n">0</span>);
+<span class="tp">XYZ</span> sum  = a + b;         <span class="cm">// (3,4,0)</span>
+<span class="tp">XYZ</span> diff = a - b;         <span class="cm">// (3,-4,0)</span>
+<span class="tp">XYZ</span> neg  = -a;            <span class="cm">// (-3,0,0)</span>
+<span class="tp">XYZ</span> scl  = a * <span class="n">2.5</span>;      <span class="cm">// (7.5,0,0)</span>
+
+<span class="cm">// Vector operations</span>
+<span class="k">double</span> dot   = a.<span class="fn">DotProduct</span>(b);     <span class="cm">// scalar</span>
+<span class="tp">XYZ</span>    cross = a.<span class="fn">CrossProduct</span>(b);   <span class="cm">// perpendicular vector (0,0,12)</span>
+<span class="tp">XYZ</span>    norm  = a.<span class="fn">Normalize</span>();       <span class="cm">// unit vector (1,0,0)</span>
+<span class="k">double</span> len   = a.<span class="fn">GetLength</span>();       <span class="cm">// 3.0</span>
+<span class="k">double</span> dist  = a.<span class="fn">DistanceTo</span>(b);    <span class="cm">// 5.0</span>
+
+<span class="cm">// Angle between vectors (radians)</span>
+<span class="k">double</span> angle = a.<span class="fn">AngleTo</span>(b);       <span class="cm">// Math.PI/2 = 90°</span>
+<span class="k">double</span> angleDeg = angle * (<span class="n">180</span> / Math.PI);
+
+<span class="cm">// Signed angle (in a plane)</span>
+<span class="k">double</span> signedAngle = a.<span class="fn">AngleOnPlaneTo</span>(b, <span class="tp">XYZ</span>.BasisZ);
+
+<span class="cm">// Component access</span>
+<span class="k">double</span> x = a.X;   <span class="cm">// 3.0</span>
+<span class="k">double</span> y = a.Y;   <span class="cm">// 0.0</span>
+<span class="k">double</span> z = a.Z;   <span class="cm">// 0.0</span>
+
+<span class="cm">// Equality (within tolerance)</span>
+<span class="k">bool</span> eq = a.<span class="fn">IsAlmostEqualTo</span>(b);         <span class="cm">// false</span>
+<span class="k">bool</span> eq2 = a.<span class="fn">IsAlmostEqualTo</span>(b, <span class="n">0.001</span>); <span class="cm">// with custom tolerance</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════════════ -->
+<!-- NAMESPACE: Autodesk.Revit.UI               -->
+<!-- ═════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-ui" style="padding-top:56px;border-top:2px solid var(--border2);margin-top:40px;">
+  <div class="ns-header">
+    <div class="ns-icon">🖥️</div>
+    <div class="ns-meta"><div class="ns-label">// Namespace</div><h2>Autodesk.Revit.UI</h2><p>UI-level objects: application, document, commands, events, dialogs, ribbon, and the external event bridge for modeless dialogs.</p></div>
+  </div>
+
+<!-- ═══════ IEXTERNALCOMMAND ═══════ -->
+<div class="class-block" id="cls-iexternalcommand">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IExternalCommand</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span> · Assembly: RevitAPIUI.dll</div>
+  <div class="class-desc">The entry point interface for every Revit add-in command. Any class decorated with [Transaction(TransactionMode.Manual)] or .Automatic and implementing this interface becomes a Revit command that can be triggered from the ribbon, keyboard shortcuts, or PostCommand.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Required Method</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(<span class="tp">ExternalCommandData</span> <span class="pm">commandData</span>, <span class="kw">ref</span> <span class="tp">string</span> <span class="pm">message</span>, <span class="tp">ElementSet</span> <span class="pm">elements</span>)</span></div>
+      <div class="member-desc">The method called by Revit when the command runs. Return Result.Succeeded, Result.Failed (sets message), or Result.Cancelled. The message and elements parameters are used to report errors to the user.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>commandData</td><td>ExternalCommandData</td><td>Provides access to UIApplication, UIDocument, and the active view.</td></tr><tr><td>message</td><td>ref string</td><td>Set this to an error description if returning Result.Failed.</td></tr><tr><td>elements</td><td>ElementSet</td><td>Populate with elements related to the failure for Revit to highlight them.</td></tr></table></div>
+      <div class="returns-row">Returns: <span>Result</span> — Succeeded, Failed, or Cancelled.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete IExternalCommand implementation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex">[<span class="tp">Transaction</span>(<span class="tp">TransactionMode</span>.Manual)]
+[<span class="tp">Regeneration</span>(<span class="tp">RegenerationOption</span>.Manual)]
+<span class="k">public class</span> <span class="tp">WallCountCommand</span> : <span class="tp">IExternalCommand</span>
+{
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(
+        <span class="tp">ExternalCommandData</span> commandData,
+        <span class="k">ref</span> <span class="k">string</span> message,
+        <span class="tp">ElementSet</span> elements)
+    {
+        <span class="k">try</span>
+        {
+            <span class="cm">// Access document</span>
+            <span class="tp">UIApplication</span> uiapp = commandData.Application;
+            <span class="tp">UIDocument</span>    uidoc = uiapp.ActiveUIDocument;
+            <span class="tp">Document</span>      doc   = uidoc.Document;
+
+            <span class="cm">// Null check</span>
+            <span class="k">if</span> (doc == <span class="k">null</span>)
+            {
+                message = <span class="s">"No active document."</span>;
+                <span class="k">return</span> <span class="tp">Result</span>.Failed;
+            }
+
+            <span class="cm">// Do work</span>
+            <span class="k">int</span> count = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+                .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+                .<span class="fn">GetElementCount</span>();
+
+            <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Wall Count"</span>, <span class="s">$"Found {count} walls"</span>);
+            <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            message = ex.Message;
+            <span class="k">return</span> <span class="tp">Result</span>.Failed;
+        }
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ IEXTERNALAPPLICATION ═══════ -->
+<div class="class-block" id="cls-iexternalapplication">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IExternalApplication</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span> · Assembly: RevitAPIUI.dll</div>
+  <div class="class-desc">The lifecycle interface for Revit add-ins. OnStartup fires when Revit loads the add-in — use it to subscribe to events, create ribbon panels, and register ExternalEvents and DMU updaters. OnShutdown fires when Revit closes — always unsubscribe events and dispose ExternalEvents here.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Required Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> <span class="pm">application</span>)</span></div>
+      <div class="member-desc">Called once when Revit loads the add-in. Set up all persistent infrastructure here: ribbon UI, event subscriptions, ExternalEvent registration, DMU updater registration.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete IExternalApplication implementation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public class</span> <span class="tp">MyApplication</span> : <span class="tp">IExternalApplication</span>
+{
+    <span class="k">public static</span> <span class="tp">ExternalEvent</span>   MyEvent    { <span class="k">get</span>; <span class="k">private set</span>; }
+    <span class="k">public static</span> <span class="tp">MyEventHandler</span>  MyHandler  { <span class="k">get</span>; <span class="k">private set</span>; }
+
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+    {
+        <span class="cm">// 1. Create ribbon</span>
+        <span class="tp">RibbonPanel</span> panel = app.<span class="fn">CreateRibbonPanel</span>(<span class="s">"Studio Tools"</span>);
+        <span class="k">var</span> btnData = <span class="k">new</span> <span class="tp">PushButtonData</span>(
+            <span class="s">"WallCount"</span>, <span class="s">"Count\nWalls"</span>,
+            System.Reflection.Assembly.GetExecutingAssembly().Location,
+            <span class="s">"MyPlugin.WallCountCommand"</span>);
+        panel.<span class="fn">AddItem</span>(btnData);
+
+        <span class="cm">// 2. Register ExternalEvent</span>
+        MyHandler = <span class="k">new</span> <span class="tp">MyEventHandler</span>();
+        MyEvent   = <span class="tp">ExternalEvent</span>.<span class="fn">Create</span>(MyHandler);
+
+        <span class="cm">// 3. Subscribe to document events</span>
+        app.ControlledApplication.DocumentOpened  += <span class="fn">OnDocOpened</span>;
+        app.ControlledApplication.DocumentChanged += <span class="fn">OnDocChanged</span>;
+        app.ViewActivated                          += <span class="fn">OnViewActivated</span>;
+
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnShutdown</span>(<span class="tp">UIControlledApplication</span> app)
+    {
+        <span class="cm">// Always unsubscribe — prevents memory leaks</span>
+        app.ControlledApplication.DocumentOpened  -= <span class="fn">OnDocOpened</span>;
+        app.ControlledApplication.DocumentChanged -= <span class="fn">OnDocChanged</span>;
+        app.ViewActivated                          -= <span class="fn">OnViewActivated</span>;
+        MyEvent.<span class="fn">Dispose</span>();
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+
+    <span class="k">private void</span> <span class="fn">OnDocOpened</span>(<span class="k">object</span> s, <span class="tp">DocumentOpenedEventArgs</span> e) { }
+    <span class="k">private void</span> <span class="fn">OnDocChanged</span>(<span class="k">object</span> s, <span class="tp">DocumentChangedEventArgs</span> e) { }
+    <span class="k">private void</span> <span class="fn">OnViewActivated</span>(<span class="k">object</span> s, <span class="tp">ViewActivatedEventArgs</span> e) { }
+}</pre></div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Result</span> <span class="fn">OnShutdown</span>(<span class="tp">UIControlledApplication</span> <span class="pm">application</span>)</span></div><div class="member-desc">Called when Revit is closing or the add-in is unloaded. ALWAYS unsubscribe all events and dispose all ExternalEvent instances here to prevent memory leaks and crashes.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ IEXTERNALEVENTHANDLER ═══════ -->
+<div class="class-block" id="cls-iexternaleventhandler">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IExternalEventHandler</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span> · Assembly: RevitAPIUI.dll</div>
+  <div class="class-desc">The bridge between background threads/WPF windows and the Revit API. Because the Revit API cannot be called from background threads, implement this interface to queue work that will be executed in the main Revit thread at the next idle cycle when ExternalEvent.Raise() is called.</div>
+  <div class="callout c-tip" style="margin:12px 24px 0;"><strong>// The Bridge Pattern</strong>Background thread → sets data on handler properties → calls ExternalEvent.Raise() → Revit calls Execute(uiapp) on the main thread → reads data → calls API. This is thread-safe because all API calls happen on the main thread.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Required Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">Execute</span>(<span class="tp">UIApplication</span> <span class="pm">app</span>)</span></div>
+      <div class="member-desc">Called by Revit on the main thread when ExternalEvent.Raise() has been called. This runs in a valid Revit API context — you can start transactions, modify elements, etc. Use public properties on the handler to pass data from the background thread.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete IExternalEventHandler + ExternalEvent pattern</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Step 1: Implement the handler</span>
+<span class="k">public class</span> <span class="tp">SetMarkHandler</span> : <span class="tp">IExternalEventHandler</span>
+{
+    <span class="cm">// Thread-safe data transfer via properties</span>
+    <span class="k">public</span> <span class="tp">ElementId</span> TargetId    { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public</span> <span class="k">string</span>    MarkValue   { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public</span> <span class="k">bool</span>      Success     { <span class="k">get</span>; <span class="k">private set</span>; }
+
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="tp">UIApplication</span> app)
+    {
+        <span class="k">try</span>
+        {
+            <span class="tp">Document</span> doc = app.ActiveUIDocument?.Document;
+            <span class="k">if</span> (doc == <span class="k">null</span>) { Success = <span class="k">false</span>; <span class="k">return</span>; }
+
+            <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Set Mark"</span>))
+            {
+                tx.<span class="fn">Start</span>();
+                <span class="tp">Element</span>   elem = doc.<span class="fn">GetElement</span>(TargetId);
+                <span class="tp">Parameter</span> mark = elem?.<span class="fn">get_Parameter</span>(
+                    <span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK);
+                <span class="k">if</span> (mark != <span class="k">null</span> &amp;&amp; !mark.IsReadOnly)
+                    mark.<span class="fn">Set</span>(MarkValue);
+                tx.<span class="fn">Commit</span>();
+                Success = <span class="k">true</span>;
+            }
+        }
+        <span class="k">catch</span> { Success = <span class="k">false</span>; }
+    }
+
+    <span class="k">public string</span> <span class="fn">GetName</span>() => <span class="s">"Set Mark Handler"</span>;
+}
+
+<span class="cm">// Step 2: Register in OnStartup</span>
+<span class="k">var</span> handler = <span class="k">new</span> <span class="tp">SetMarkHandler</span>();
+<span class="k">var</span> extEvent = <span class="tp">ExternalEvent</span>.<span class="fn">Create</span>(handler);
+
+<span class="cm">// Step 3: Raise from WPF button click</span>
+<span class="k">private void</span> <span class="fn">BtnApply_Click</span>(<span class="k">object</span> sender, <span class="tp">RoutedEventArgs</span> e)
+{
+    handler.TargetId  = selectedElementId;
+    handler.MarkValue = txtMark.Text;
+
+    <span class="tp">ExternalEventRequest</span> req = extEvent.<span class="fn">Raise</span>();
+
+    <span class="k">switch</span> (req)
+    {
+        <span class="k">case</span> <span class="tp">ExternalEventRequest</span>.Accepted:
+            lblStatus.Content = <span class="s">"Queued ✔"</span>; <span class="k">break</span>;
+        <span class="k">case</span> <span class="tp">ExternalEventRequest</span>.Pending:
+            lblStatus.Content = <span class="s">"Previous request still pending"</span>; <span class="k">break</span>;
+        <span class="k">default</span>:
+            lblStatus.Content = <span class="s">$"Request {req}"</span>; <span class="k">break</span>;
+    }
+}</pre></div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public string</span> <span class="fn">GetName</span>()</span></div><div class="member-desc">Returns a display name for this handler. Used in Revit's UI and debug logs. Should be a short, descriptive string like "Set Mark Handler".</div></div>
+  </div>
+</div>
+
+<!-- ═══════ EXTERNALEVENT ═══════ -->
+<div class="class-block" id="cls-externalevent">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ExternalEvent</span></div><div class="class-inherit">Inherits: <span>IDisposable</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span> · Assembly: RevitAPIUI.dll</div>
+  <div class="class-desc">The event object that bridges background threads to the Revit API. Created from an IExternalEventHandler, it accepts Raise() calls from any thread and causes Revit to execute the handler's Execute() method on the main thread at the next idle cycle.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Factory + Key Methods</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ExternalEvent</span> <span class="fn">Create</span>(<span class="tp">IExternalEventHandler</span> <span class="pm">handler</span>)</span></div><div class="member-desc">Creates an ExternalEvent from the given handler. Must be called during OnStartup() or Execute() — not from background threads. Store the result as a static field for access from WPF windows.</div><div class="returns-row">Returns: <span>ExternalEvent</span> — The registered event object. Keep this reference alive for the add-in's lifetime.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ExternalEventRequest</span> <span class="fn">Raise</span>()</span></div><div class="member-desc">Requests that Revit execute the handler at the next available idle cycle. Can be called from any thread. Returns the request status — check for Accepted before assuming success.</div><div class="returns-row">Returns: <span>ExternalEventRequest</span> — Accepted (queued), Pending (previous still running), or Denied (Revit busy).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsPending</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">True if a previous Raise() is still queued and has not been executed yet. Check this before calling Raise() again to avoid queuing duplicate requests.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ TASKDIALOG ═══════ -->
+<div class="class-block" id="cls-taskdialog">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">TaskDialog</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span> · Assembly: RevitAPIUI.dll</div>
+  <div class="class-desc">Revit's built-in modal dialog. Provides a Revit-styled dialog with optional command links, radio buttons, and expanded content. Use for simple notifications, confirmations, and option selection. For complex UI use WPF windows instead.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Static Show + Instance Usage</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">TaskDialogResult</span> <span class="fn">Show</span>(<span class="tp">string</span> <span class="pm">title</span>, <span class="tp">string</span> <span class="pm">content</span>)</span></div>
+      <div class="member-desc">Shows a simple notification dialog with title and content text. Blocks until the user closes it. Returns TaskDialogResult.Ok.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — TaskDialog patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Simple notification</span>
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Wall Count"</span>, <span class="s">$"Found {count} walls"</span>);
+
+<span class="cm">// Yes/No confirmation</span>
+<span class="tp">TaskDialog</span> dlg = <span class="k">new</span> <span class="tp">TaskDialog</span>(<span class="s">"Confirm Delete"</span>);
+dlg.MainInstruction = <span class="s">"Delete all unused views?"</span>;
+dlg.MainContent = <span class="s">$"This will permanently delete {count} views."</span>;
+dlg.CommonButtons = <span class="tp">TaskDialogCommonButtons</span>.Yes | <span class="tp">TaskDialogCommonButtons</span>.No;
+dlg.DefaultButton = <span class="tp">TaskDialogResult</span>.No;
+
+<span class="tp">TaskDialogResult</span> result = dlg.<span class="fn">Show</span>();
+<span class="k">if</span> (result == <span class="tp">TaskDialogResult</span>.Yes)
+{
+    <span class="cm">// proceed with deletion</span>
+}
+
+<span class="cm">// Dialog with command links</span>
+<span class="tp">TaskDialog</span> td = <span class="k">new</span> <span class="tp">TaskDialog</span>(<span class="s">"Choose Action"</span>);
+td.MainInstruction = <span class="s">"Select operation:"</span>;
+td.<span class="fn">AddCommandLink</span>(<span class="tp">TaskDialogCommandLinkId</span>.CommandLink1, <span class="s">"Create floor plans"</span>);
+td.<span class="fn">AddCommandLink</span>(<span class="tp">TaskDialogCommandLinkId</span>.CommandLink2, <span class="s">"Create sections"</span>);
+td.<span class="fn">AddCommandLink</span>(<span class="tp">TaskDialogCommandLinkId</span>.CommandLink3, <span class="s">"Create both"</span>);
+
+<span class="tp">TaskDialogResult</span> chosen = td.<span class="fn">Show</span>();
+<span class="k">switch</span> (chosen)
+{
+    <span class="k">case</span> <span class="tp">TaskDialogResult</span>.CommandLink1: <span class="cm">/* plans */</span>  <span class="k">break</span>;
+    <span class="k">case</span> <span class="tp">TaskDialogResult</span>.CommandLink2: <span class="cm">/* sections */</span><span class="k">break</span>;
+    <span class="k">case</span> <span class="tp">TaskDialogResult</span>.CommandLink3: <span class="cm">/* both */</span>    <span class="k">break</span>;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SELECTION ═══════ -->
+<div class="class-block" id="cls-selection">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Selection</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI.Selection</span> · Assembly: RevitAPIUI.dll</div>
+  <div class="class-desc">Manages the user selection in the active document. Provides methods to get currently selected elements, prompt the user to pick elements, pick points in the model, and programmatically set the selection. Access via UIDocument.Selection.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">GetElementIds</span>()</span></div>
+      <div class="member-desc">Gets the IDs of all currently selected elements. Returns an empty collection (not null) if nothing is selected.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Reference</span> <span class="fn">PickObject</span>(<span class="tp">ObjectType</span> <span class="pm">objectType</span>, <span class="tp">string</span> <span class="pm">statusPrompt</span>)</span></div>
+      <div class="member-desc">Prompts the user to pick a single element or sub-element (face, edge, point). Blocks execution until the user picks or presses Escape (which throws OperationCanceledException).</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — All Selection patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Selection</span> sel = uidoc.Selection;
+
+<span class="cm">// Get current selection</span>
+<span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; ids = sel.<span class="fn">GetElementIds</span>();
+
+<span class="cm">// Pick one element</span>
+<span class="k">try</span>
+{
+    <span class="tp">Reference</span> ref1 = sel.<span class="fn">PickObject</span>(
+        <span class="tp">ObjectType</span>.Element, <span class="s">"Select any element"</span>);
+    <span class="tp">Element</span> picked = doc.<span class="fn">GetElement</span>(ref1);
+}
+<span class="k">catch</span> (<span class="tp">OperationCanceledException</span>) { <span class="k">return</span> <span class="tp">Result</span>.Cancelled; }
+
+<span class="cm">// Pick with filter (walls only)</span>
+<span class="k">try</span>
+{
+    <span class="tp">Reference</span> wallRef = sel.<span class="fn">PickObject</span>(
+        <span class="tp">ObjectType</span>.Element,
+        <span class="k">new</span> <span class="tp">WallOnlyFilter</span>(),
+        <span class="s">"Select a wall"</span>);
+}
+<span class="k">catch</span> (<span class="tp">OperationCanceledException</span>) { }
+
+<span class="cm">// Pick multiple elements</span>
+<span class="tp">IList</span>&lt;<span class="tp">Reference</span>&gt; refs = sel.<span class="fn">PickObjects</span>(
+    <span class="tp">ObjectType</span>.Element, <span class="s">"Select multiple elements"</span>);
+
+<span class="cm">// Pick a point</span>
+<span class="tp">XYZ</span> pt = sel.<span class="fn">PickPoint</span>(<span class="s">"Click a point in the model"</span>);
+
+<span class="cm">// Set selection programmatically</span>
+<span class="k">var</span> toSelect = walls.<span class="fn">Select</span>(w => w.Id).<span class="fn">ToList</span>();
+sel.<span class="fn">SetElementIds</span>(toSelect);
+
+<span class="cm">// Custom selection filter</span>
+<span class="k">public class</span> <span class="tp">WallOnlyFilter</span> : <span class="tp">ISelectionFilter</span>
+{
+    <span class="k">public bool</span> <span class="fn">AllowElement</span>(<span class="tp">Element</span> elem) => elem <span class="k">is</span> <span class="tp">Wall</span>;
+    <span class="k">public bool</span> <span class="fn">AllowReference</span>(<span class="tp">Reference</span> r, <span class="tp">XYZ</span> p) => <span class="k">true</span>;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-ui -->
+
+<!-- ═════════════════════════════════════════════ -->
+<!-- NAMESPACE: Autodesk.Revit.DB.Events          -->
+<!-- ═════════════════════════════════════════════ -->
+<div class="ns-block" id="ns-events" style="padding-top:56px;border-top:2px solid var(--border2);margin-top:40px;">
+  <div class="ns-header">
+    <div class="ns-icon">📡</div>
+    <div class="ns-meta"><div class="ns-label">// Namespace</div><h2>Autodesk.Revit.DB.Events</h2><p>Event argument classes for all document and application lifecycle events.</p></div>
+  </div>
+
+<div class="class-block" id="cls-docchanged">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">DocumentChangedEventArgs</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Events</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Event arguments for Application.DocumentChanged. Fires after every transaction commit, undo, or redo. The context is READ-ONLY — you CANNOT modify the document inside this handler. Use DMU (IUpdater) for write reactions.</div>
+  <div class="callout c-crit" style="margin:12px 24px 0;"><strong>// Read-Only Context</strong>DocumentChanged fires in a read-only context. Any attempt to start a Transaction will throw InvalidOperationException. Use IUpdater (DMU) for write reactions, or queue work via ExternalEvent.Raise().</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">GetAddedElementIds</span>()</span></div>
+      <div class="member-desc">Returns IDs of elements added in the transaction that triggered this event.</div>
+    </div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">GetDeletedElementIds</span>()</span></div><div class="member-desc">Returns IDs of elements deleted in the triggering transaction.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">GetModifiedElementIds</span>()</span></div><div class="member-desc">Returns IDs of elements modified (parameter change, geometry change, etc.) in the triggering transaction.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Document</span> <span class="fn">GetDocument</span>()</span></div><div class="member-desc">Returns the document that changed. Use to access elements via doc.GetElement(id).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">string</span>&gt; <span class="fn">GetTransactionNames</span>()</span></div><div class="member-desc">Returns the names of the transactions that caused this change. Useful for detecting undo/redo operations (the transaction name will be the original operation's name).</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — DocumentChanged handler</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">private void</span> <span class="fn">OnDocumentChanged</span>(<span class="k">object</span> sender, <span class="tp">DocumentChangedEventArgs</span> e)
+{
+    <span class="tp">Document</span> doc = e.<span class="fn">GetDocument</span>();
+
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; added    = e.<span class="fn">GetAddedElementIds</span>();
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; deleted  = e.<span class="fn">GetDeletedElementIds</span>();
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; modified = e.<span class="fn">GetModifiedElementIds</span>();
+
+    <span class="cm">// Log new walls only</span>
+    <span class="k">foreach</span> (<span class="k">var</span> id <span class="k">in</span> added)
+    {
+        <span class="tp">Element</span> elem = doc.<span class="fn">GetElement</span>(id);
+        <span class="k">if</span> (elem <span class="k">is</span> <span class="tp">Wall</span> wall)
+        {
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"New wall: {wall.Id} length={wall.Width*304.8:F0}mm"</span>);
+        }
+    }
+
+    <span class="cm">// Detect undo/redo</span>
+    <span class="k">var</span> txNames = e.<span class="fn">GetTransactionNames</span>();
+    <span class="cm">// If names contains previous transaction names → undo/redo happened</span>
+
+    <span class="cm">// CANNOT write to model here — READ-ONLY context!</span>
+    <span class="cm">// Use ExternalEvent.Raise() or IUpdater instead</span>
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block" id="cls-docopened">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">DocumentOpenedEventArgs</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Events</span></div>
+  <div class="class-desc">Event arguments for Application.DocumentOpened. Fires after a document is fully opened and ready. Safe to read all document data here.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties + Example</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">Document</span> <span class="v">Document</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">Gets the Document that was opened.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">IsCancelled</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">True if the open operation was cancelled before completion (rare).</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">private void</span> <span class="fn">OnDocumentOpened</span>(<span class="k">object</span> sender, <span class="tp">DocumentOpenedEventArgs</span> e)
+{
+    <span class="tp">Document</span> doc = e.Document;
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Opened: {doc.Title} at {doc.PathName}"</span>);
+
+    <span class="cm">// Can read the document — cannot write without a transaction</span>
+    <span class="k">int</span> wallCount = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">GetElementCount</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block" id="cls-docsaving">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">DocumentSavingEventArgs</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Events</span></div>
+  <div class="class-desc">Event arguments for Application.DocumentSaving. Fires BEFORE the document is saved, giving you the opportunity to run validation or cancel the save.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Method</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">Cancel</span>()</span></div>
+      <div class="member-desc">Cancels the save operation. Call this when validation fails and you want to prevent the save from completing.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Pre-save validator</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">private void</span> <span class="fn">OnDocumentSaving</span>(<span class="k">object</span> sender, <span class="tp">DocumentSavingEventArgs</span> e)
+{
+    <span class="tp">Document</span> doc = e.Document;
+
+    <span class="cm">// Check for duplicate marks before saving</span>
+    <span class="k">var</span> marks = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+        .<span class="fn">Select</span>(w => w.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)?.AsString())
+        .<span class="fn">Where</span>(m => !string.IsNullOrEmpty(m))
+        .<span class="fn">ToList</span>();
+
+    <span class="k">bool</span> hasDuplicates = marks.Count != marks.<span class="fn">Distinct</span>().<span class="fn">Count</span>();
+    <span class="k">if</span> (hasDuplicates)
+    {
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Save Blocked"</span>, <span class="s">"Duplicate wall marks found! Fix before saving."</span>);
+        e.<span class="fn">Cancel</span>();   <span class="cm">// prevent save</span>
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block" id="cls-viewactivated">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ViewActivatedEventArgs</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI.Events</span></div>
+  <div class="class-desc">Arguments for UIApplication.ViewActivated. Fires whenever the user switches to a different view. Use to update dockable panels, ribbon state, or filter ComboBoxes based on the new active view type.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">View</span> <span class="v">CurrentActiveView</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">The view the user just switched TO.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">View</span> <span class="v">PreviousActiveView</span> { <span class="kw">get</span>; }</span></div><div class="member-desc">The view the user switched FROM. May be null on the first activation.</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Update ribbon based on view type</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">private void</span> <span class="fn">OnViewActivated</span>(<span class="k">object</span> sender, <span class="tp">ViewActivatedEventArgs</span> e)
+{
+    <span class="tp">View</span> cur  = e.CurrentActiveView;
+    <span class="tp">View</span> prev = e.PreviousActiveView;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Switched from {prev?.Name} to {cur.Name} ({cur.ViewType})"</span>);
+
+    <span class="cm">// Enable floor-plan specific tools</span>
+    <span class="k">bool</span> isFloorPlan = cur.ViewType == <span class="tp">ViewType</span>.FloorPlan;
+    <span class="cm">// _myFloorPlanButton.Enabled = isFloorPlan;</span>
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block" id="cls-idlingeventargs">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">IdlingEventArgs</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI.Events</span></div>
+  <div class="class-desc">Arguments for UIApplication.Idling. Fires during Revit idle time — a valid API context. Prefer ExternalEvent over Idling for modeless dialog integration since Idling fires constantly and hurts performance.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Method</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">SetRaiseWithoutDelay</span>(<span class="tp">bool</span> <span class="pm">value</span>)</span></div>
+      <div class="member-desc">Controls how frequently Idling fires. Pass false to allow Revit to delay the next Idling call (kinder to CPU — recommended for polling tasks). Pass true for maximum frequency (use only when immediately needed).</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Idling with CPU management</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">private int</span> _idleTick = <span class="n">0</span>;
+
+<span class="k">private void</span> <span class="fn">OnIdling</span>(<span class="k">object</span> sender, <span class="tp">IdlingEventArgs</span> e)
+{
+    <span class="cm">// Reduce CPU — only act every 50th idle cycle</span>
+    e.<span class="fn">SetRaiseWithoutDelay</span>(<span class="k">false</span>);
+
+    <span class="k">if</span> (++_idleTick % <span class="n">50</span> != <span class="n">0</span>) <span class="k">return</span>;
+
+    <span class="tp">UIApplication</span> uiapp = sender <span class="k">as</span> <span class="tp">UIApplication</span>;
+    <span class="k">if</span> (uiapp?.ActiveUIDocument == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="cm">// Valid API context — can create a transaction here</span>
+    <span class="cm">// But prefer ExternalEvent for modeless dialog integration!</span>
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAILURE HANDLING -->
+<div class="class-block" id="cls-ifailurespreprocessor" style="margin-top:40px;">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IFailuresPreprocessor</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Allows a command to intercept and handle transaction failures (warnings and errors) before Revit shows its default failure dialog. Implement to silently suppress warnings or handle specific error types programmatically.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Required Method</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">FailureProcessingResult</span> <span class="fn">PreprocessFailures</span>(<span class="tp">FailuresAccessor</span> <span class="pm">failuresAccessor</span>)</span></div>
+      <div class="member-desc">Called when failures occur during transaction commit. Inspect failures, delete warnings, or return ProceedWithRollBack to abort. Return Continue to proceed with commit after handling warnings.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Suppress all warnings silently</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public class</span> <span class="tp">SuppressAllWarnings</span> : <span class="tp">IFailuresPreprocessor</span>
+{
+    <span class="k">public</span> <span class="tp">FailureProcessingResult</span> <span class="fn">PreprocessFailures</span>(
+        <span class="tp">FailuresAccessor</span> accessor)
+    {
+        <span class="k">foreach</span> (<span class="k">var</span> failure <span class="k">in</span> accessor.<span class="fn">GetFailureMessages</span>())
+        {
+            <span class="k">if</span> (failure.<span class="fn">GetSeverity</span>() == <span class="tp">FailureSeverity</span>.Warning)
+                accessor.<span class="fn">DeleteWarning</span>(failure);
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="tp">FailureProcessingResult</span>.ProceedWithRollBack;
+        }
+        <span class="k">return</span> <span class="tp">FailureProcessingResult</span>.Continue;
+    }
+}
+
+<span class="cm">// Usage in a transaction</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Safe Op"</span>))
+{
+    <span class="tp">FailureHandlingOptions</span> fho = tx.<span class="fn">GetFailureHandlingOptions</span>();
+    fho.<span class="fn">SetFailuresPreprocessor</span>(<span class="k">new</span> <span class="tp">SuppressAllWarnings</span>());
+    tx.<span class="fn">SetFailureHandlingOptions</span>(fho);
+    tx.<span class="fn">Start</span>();
+    <span class="cm">/* ... */</span>
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-events -->
+</div><!-- /content -->
+</main>
+</div>
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+</body>
+</html>

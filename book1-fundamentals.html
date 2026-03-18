@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Handbook — Book 1: Fundamentals</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-eyebrow">// Revit API</div>
+    <div class="sb-title">Developer<br/>Handbook</div>
+    <div class="sb-version">C# · 2024+ · Complete Guide</div>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-section">
+      <div class="sb-sec-label">This Book</div>
+      <a class="sb-link active" onclick="nav(this,'s1')"><span class="ni">01</span>Application &amp; Document</a>
+      <a class="sb-link" onclick="nav(this,'s2')"><span class="ni">02</span>Element Hierarchy</a>
+      <a class="sb-link" onclick="nav(this,'s3')"><span class="ni">03</span>Parameters</a>
+      <a class="sb-link" onclick="nav(this,'s4')"><span class="ni">04</span>Filtering Elements</a>
+      <a class="sb-link" onclick="nav(this,'s5')"><span class="ni">05</span>Selection</a>
+      <a class="sb-link" onclick="nav(this,'s6')"><span class="ni">06</span>Transactions</a>
+      <a class="sb-link" onclick="nav(this,'s7')"><span class="ni">07</span>Units</a>
+    </div>
+  </div>
+  <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link current" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+  </div>
+</nav>
+<main class="main">
+  <div class="hero">
+    <div class="hero-label">// Book 01 of 13 — Fundamentals</div>
+    <h1>Application, Document,<br/>Elements &amp; Parameters</h1>
+    <p>The foundational layer of every Revit add-in. Master these and everything else becomes straightforward.</p>
+    <div class="hero-chips">
+      <span class="chip c-or">UIApplication</span>
+      <span class="chip c-bl">Document</span>
+      <span class="chip c-gr">Element</span>
+      <span class="chip c-ye">Parameter</span>
+      <span class="chip c-pu">FilteredElementCollector</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+  <!-- S1 APPLICATION -->
+  <div class="section" id="s1">
+    <div class="sec-num">// 01</div>
+    <h2>Application &amp; Document</h2>
+    <p>Every command starts with <code>ExternalCommandData</code>. From it you navigate down to the document and model elements.</p>
+
+    <h3>Object Hierarchy</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">hierarchy</span></div>
+<pre>UIApplication          <span class="cmt">// Revit application + UI layer</span>
+  └── UIDocument       <span class="cmt">// Active open document (with selection)</span>
+        └── Document   <span class="cmt">// The Revit project/family file (.rvt/.rfa)</span>
+              └── Element  <span class="cmt">// Any object in the model</span></pre></div>
+
+    <h3>Getting the Document — Standard Pattern</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">public</span> <span class="cls">Result</span> <span class="fn">Execute</span>(<span class="cls">ExternalCommandData</span> commandData,
+    <span class="kw">ref string</span> message, <span class="cls">ElementSet</span> elements)
+{
+    <span class="cmt">// Application layer</span>
+    <span class="cls">UIApplication</span> uiapp = commandData.Application;
+    <span class="cls">Application</span>   app   = uiapp.Application;
+
+    <span class="cmt">// Document layer</span>
+    <span class="cls">UIDocument</span> uidoc = uiapp.ActiveUIDocument;
+    <span class="cls">Document</span>   doc   = uidoc.Document;
+
+    <span class="cmt">// Document info</span>
+    <span class="kw">string</span> title    = doc.Title;
+    <span class="kw">bool</span>   isFam    = doc.IsFamilyDocument;
+    <span class="kw">string</span> filePath = doc.PathName;
+
+    <span class="kw">return</span> <span class="cls">Result</span>.Succeeded;
+}</pre></div>
+
+    <h3>Key Document Members</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Member</th><th>Type</th><th>Description</th></tr>
+      <tr><td>doc.Title</td><td>string</td><td>File name without extension</td></tr>
+      <tr><td>doc.PathName</td><td>string</td><td>Full file path. Empty if unsaved</td></tr>
+      <tr><td>doc.IsFamilyDocument</td><td>bool</td><td>True if this is a .rfa family file</td></tr>
+      <tr><td>doc.ActiveView</td><td>View</td><td>Currently active view</td></tr>
+      <tr><td>doc.Application</td><td>Application</td><td>The Revit Application object</td></tr>
+      <tr><td>doc.Create</td><td>Creation.Document</td><td>Factory for creating elements</td></tr>
+      <tr><td>doc.FamilyCreate</td><td>Creation.FamilyItemFactory</td><td>Factory for family geometry (family docs only)</td></tr>
+      <tr><td>doc.GetElement(id)</td><td>Element</td><td>Look up element by ElementId</td></tr>
+      <tr><td>doc.Delete(id)</td><td>ICollection&lt;ElementId&gt;</td><td>Delete element, returns all deleted ids</td></tr>
+      <tr><td>doc.Save()</td><td>void</td><td>Save the document</td></tr>
+      <tr><td>doc.IsModified</td><td>bool</td><td>Whether document has unsaved changes</td></tr>
+    </table></div>
+
+    <div class="callout ca-bl">
+      <strong>// Opening Other Documents</strong>
+      Use <code>uiapp.Application.OpenDocumentFile(filePath)</code> to open another .rvt. Use <code>doc.LoadFamily(path, out family)</code> to load a .rfa into the current project.
+    </div>
+  </div>
+
+  <!-- S2 ELEMENT HIERARCHY -->
+  <div class="section" id="s2">
+    <div class="sec-num">// 02</div>
+    <h2>Element Hierarchy</h2>
+    <p>Everything in Revit is an <code>Element</code>. Understanding the type hierarchy is critical for filtering and casting correctly.</p>
+
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">hierarchy</span></div>
+<pre>Element
+  ├── Instance elements    <span class="cmt">// physical objects placed in model</span>
+  │     ├── Wall, Floor, Ceiling, Roof
+  │     ├── FamilyInstance  <span class="cmt">// doors, windows, furniture, columns</span>
+  │     ├── Room, Space, Area
+  │     └── MEP: Pipe, Duct, CableTray, Conduit
+  ├── Type elements        <span class="cmt">// define the 'blueprint'</span>
+  │     ├── WallType, FloorType, RoofType
+  │     ├── FamilySymbol    <span class="cmt">// a specific size/variant of a family</span>
+  │     └── Family          <span class="cmt">// the family container</span>
+  └── Non-geometric        <span class="cmt">// configuration / meta</span>
+        ├── Level, Grid, ReferencePlane
+        ├── View, ViewSheet, ViewPlan
+        └── Material, LineStyle</pre></div>
+
+    <h3>Accessing Element Properties</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cls">Element</span> elem = doc.<span class="fn">GetElement</span>(<span class="kw">new</span> <span class="cls">ElementId</span>(<span class="num">12345</span>));
+
+<span class="cmt">// Universal properties on every element</span>
+<span class="cls">ElementId</span> id       = elem.Id;
+<span class="kw">string</span>    name     = elem.Name;
+<span class="cls">Category</span>  cat      = elem.Category;
+<span class="cls">ElementId</span> typeId   = elem.GetTypeId();
+<span class="cls">Level</span>     level    = doc.<span class="fn">GetElement</span>(elem.LevelId) <span class="kw">as</span> <span class="cls">Level</span>;
+
+<span class="cmt">// Get the element type</span>
+<span class="cls">ElementType</span> type = doc.<span class="fn">GetElement</span>(elem.GetTypeId()) <span class="kw">as</span> <span class="cls">ElementType</span>;
+
+<span class="cmt">// Check the category</span>
+<span class="kw">if</span> (elem.Category.Id.IntegerValue == (<span class="kw">int</span>)<span class="cls">BuiltInCategory</span>.OST_Walls)
+{
+    <span class="cls">Wall</span> wall = elem <span class="kw">as</span> <span class="cls">Wall</span>;
+}
+
+<span class="cmt">// Bounding box (null if element has no geometry)</span>
+<span class="cls">BoundingBoxXYZ</span> bb = elem.<span class="fn">get_BoundingBox</span>(doc.ActiveView);</pre></div>
+
+    <div class="callout ca-or">
+      <strong>// Instance vs Type</strong>
+      Instance elements are placed in the model. Type elements define their template. A <code>FamilyInstance</code> (door) references a <code>FamilySymbol</code> (door type) which belongs to a <code>Family</code> (door family). Always check both instance AND type parameters.
+    </div>
+  </div>
+
+  <!-- S3 PARAMETERS -->
+  <div class="section" id="s3">
+    <div class="sec-num">// 03</div>
+    <h2>Parameters</h2>
+    <p>Parameters are the data attached to elements. There are four types and five ways to access them.</p>
+
+    <div class="cards">
+      <div class="card"><div class="card-icon">🔧</div><div class="card-title">Built-in</div><div class="card-desc">Hardcoded by Autodesk. Most reliable. Use BuiltInParameter enum.</div><span class="card-tag">BuiltInParameter</span></div>
+      <div class="card"><div class="card-icon">📋</div><div class="card-title">Project</div><div class="card-desc">Created by user in project. Access by name or GUID.</div><span class="card-tag">LookupParameter()</span></div>
+      <div class="card"><div class="card-icon">🔗</div><div class="card-title">Shared</div><div class="card-desc">Defined in external .txt file. Access by GUID (most stable).</div><span class="card-tag">get_Parameter(Guid)</span></div>
+      <div class="card"><div class="card-icon">🌐</div><div class="card-title">Global</div><div class="card-desc">Document-level parameters not attached to a category.</div><span class="card-tag">GlobalParametersManager</span></div>
+    </div>
+
+    <h3>Reading Parameters</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cls">Element</span> elem = ...;
+
+<span class="cmt">// Method 1: BuiltIn (BEST — language independent, fast)</span>
+<span class="cls">Parameter</span> p1 = elem.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.ALL_MODEL_MARK);
+
+<span class="cmt">// Method 2: By Name (fragile — breaks with language change)</span>
+<span class="cls">Parameter</span> p2 = elem.<span class="fn">LookupParameter</span>(<span class="str">"Mark"</span>);
+
+<span class="cmt">// Method 3: By GUID (shared params — very stable)</span>
+<span class="cls">Parameter</span> p3 = elem.<span class="fn">get_Parameter</span>(<span class="kw">new</span> <span class="cls">Guid</span>(<span class="str">"your-guid-here"</span>));
+
+<span class="cmt">// Method 4: Get all parameters</span>
+<span class="cls">ParameterSet</span> allParams = elem.Parameters;
+
+<span class="cmt">// Reading values — check StorageType first!</span>
+<span class="kw">if</span> (p1 != <span class="kw">null</span>)
+{
+    <span class="kw">switch</span> (p1.StorageType)
+    {
+        <span class="kw">case</span> <span class="cls">StorageType</span>.String:
+            <span class="kw">string</span> val = p1.<span class="fn">AsString</span>();          <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="cls">StorageType</span>.Double:
+            <span class="kw">double</span> dbl = p1.<span class="fn">AsDouble</span>();          <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="cls">StorageType</span>.Integer:
+            <span class="kw">int</span>    num = p1.<span class="fn">AsInteger</span>();         <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="cls">StorageType</span>.ElementId:
+            <span class="cls">ElementId</span> eid = p1.<span class="fn">AsElementId</span>();   <span class="kw">break</span>;
+    }
+
+    <span class="cmt">// AsValueString() always returns a human-readable string</span>
+    <span class="kw">string</span> display = p1.<span class="fn">AsValueString</span>();
+}</pre></div>
+
+    <h3>Setting Parameters</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Always inside a Transaction!</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Set Parameter"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cls">Parameter</span> p = wall.<span class="fn">get_Parameter</span>(<span class="cls">BuiltInParameter</span>.ALL_MODEL_MARK);
+
+    <span class="kw">if</span> (p != <span class="kw">null</span> &amp;&amp; !p.IsReadOnly)
+    {
+        p.<span class="fn">Set</span>(<span class="str">"W-001"</span>);         <span class="cmt">// string</span>
+        <span class="cmt">// p.Set(3.5);           // double (internal units = feet)</span>
+        <span class="cmt">// p.Set(1);             // integer (or enum int value)</span>
+        <span class="cmt">// p.Set(new ElementId(x)); // ElementId</span>
+    }
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+
+    <h3>Parameter StorageType Reference</h3>
+    <div class="table-wrap"><table>
+      <tr><th>StorageType</th><th>Read Method</th><th>Set Method</th><th>Notes</th></tr>
+      <tr><td>String</td><td>AsString()</td><td>Set(string)</td><td>Text values. AsValueString() also works.</td></tr>
+      <tr><td>Double</td><td>AsDouble()</td><td>Set(double)</td><td>Always in internal units (feet). Convert with UnitUtils.</td></tr>
+      <tr><td>Integer</td><td>AsInteger()</td><td>Set(int)</td><td>Also used for Yes/No (1/0) and enums.</td></tr>
+      <tr><td>ElementId</td><td>AsElementId()</td><td>Set(ElementId)</td><td>References to other elements (material, level, etc).</td></tr>
+    </table></div>
+
+    <div class="callout ca-ye">
+      <strong>// Unit Conversion</strong>
+      All double parameters are stored in internal units (feet). To set 3000mm: <code>p.Set(UnitUtils.ConvertToInternalUnits(3000, UnitTypeId.Millimeters))</code>. To read in mm: <code>UnitUtils.ConvertFromInternalUnits(p.AsDouble(), UnitTypeId.Millimeters)</code>.
+    </div>
+  </div>
+
+  <!-- S4 FILTERING -->
+  <div class="section" id="s4">
+    <div class="sec-num">// 04</div>
+    <h2>Filtering Elements</h2>
+    <p><code>FilteredElementCollector</code> is the main query engine. Always filter with native (quick) filters first, LINQ second.</p>
+
+    <h3>Quick Filters (Fast — run in Revit's native engine)</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// By Class (fastest — use when possible)</span>
+<span class="kw">var</span> walls = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Wall</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">Wall</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// By Category</span>
+<span class="kw">var</span> doors = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_Doors)
+    .<span class="fn">WhereElementIsNotElementType</span>()   <span class="cmt">// instances only</span>
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// Element Types only (families, wall types etc.)</span>
+<span class="kw">var</span> wallTypes = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">WallType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="cls">WallType</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// In a specific view (only elements visible in that view)</span>
+<span class="kw">var</span> inView = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc, doc.ActiveView.Id)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_Walls)
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// At a specific level</span>
+<span class="kw">var</span> levelFilter = <span class="kw">new</span> <span class="cls">ElementLevelFilter</span>(level.Id);
+<span class="kw">var</span> onLevel = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(levelFilter)
+    .<span class="fn">OfCategory</span>(<span class="cls">BuiltInCategory</span>.OST_Walls)
+    .<span class="fn">ToList</span>();
+
+<span class="cmt">// Multiple categories at once</span>
+<span class="kw">var</span> cats = <span class="kw">new</span> <span class="cls">List</span>&lt;<span class="cls">BuiltInCategory</span>&gt;
+    { <span class="cls">BuiltInCategory</span>.OST_Walls, <span class="cls">BuiltInCategory</span>.OST_Floors };
+<span class="kw">var</span> multiCat = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">WherePasses</span>(<span class="kw">new</span> <span class="cls">ElementMulticategoryFilter</span>(cats))
+    .<span class="fn">ToList</span>();</pre></div>
+
+    <h3>Parameter Filters (Slow — but powerful)</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Filter walls where Mark contains "EXT"</span>
+<span class="kw">var</span> provider  = <span class="kw">new</span> <span class="cls">ParameterValueProvider</span>(
+    <span class="kw">new</span> <span class="cls">ElementId</span>(<span class="cls">BuiltInParameter</span>.ALL_MODEL_MARK));
+<span class="kw">var</span> evaluator = <span class="kw">new</span> <span class="cls">FilterStringContains</span>();
+<span class="kw">var</span> rule      = <span class="kw">new</span> <span class="cls">FilterStringRule</span>(provider, evaluator, <span class="str">"EXT"</span>);
+
+<span class="kw">var</span> paramFilter = <span class="kw">new</span> <span class="cls">ElementParameterFilter</span>(rule);
+
+<span class="kw">var</span> extWalls = <span class="kw">new</span> <span class="cls">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="kw">typeof</span>(<span class="cls">Wall</span>))
+    .<span class="fn">WherePasses</span>(paramFilter)
+    .<span class="fn">Cast</span>&lt;<span class="cls">Wall</span>&gt;()
+    .<span class="fn">ToList</span>();</pre></div>
+
+    <h3>Retrieval Methods</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Method</th><th>Returns</th><th>Use When</th></tr>
+      <tr><td>.ToElements()</td><td>IList&lt;Element&gt;</td><td>You need the elements themselves (most common)</td></tr>
+      <tr><td>.ToElementIds()</td><td>ICollection&lt;ElementId&gt;</td><td>You only need IDs (faster, less memory)</td></tr>
+      <tr><td>.FirstElement()</td><td>Element</td><td>You only need one result</td></tr>
+      <tr><td>.FirstOrDefault()</td><td>Element</td><td>LINQ — first or null</td></tr>
+      <tr><td>.Cast&lt;T&gt;()</td><td>IEnumerable&lt;T&gt;</td><td>After OfClass() — gives typed results</td></tr>
+      <tr><td>.Count()</td><td>int</td><td>Just count — don't load elements</td></tr>
+    </table></div>
+
+    <div class="callout ca-gr">
+      <strong>// Performance Rule</strong>
+      Chain quick filters first: <code>.OfClass() → .OfCategory() → .WhereElementIsNotElementType()</code> then apply LINQ <code>.Where()</code> last. Never call <code>.ToList()</code> mid-chain before all native filters are applied.
+    </div>
+  </div>
+
+  <!-- S5 SELECTION -->
+  <div class="section" id="s5">
+    <div class="sec-num">// 05</div>
+    <h2>Selection</h2>
+    <p>Get elements the user has selected, or prompt them to pick elements interactively.</p>
+
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cls">Selection</span> sel = uidoc.Selection;
+
+<span class="cmt">// 1. Get currently selected elements</span>
+<span class="cls">ICollection</span>&lt;<span class="cls">ElementId</span>&gt; selectedIds = sel.<span class="fn">GetElementIds</span>();
+<span class="kw">foreach</span> (<span class="kw">var</span> id <span class="kw">in</span> selectedIds)
+{
+    <span class="cls">Element</span> e = doc.<span class="fn">GetElement</span>(id);
+}
+
+<span class="cmt">// 2. Pick a single element</span>
+<span class="cls">Reference</span> pickedRef = sel.<span class="fn">PickObject</span>(
+    <span class="cls">ObjectType</span>.Element, <span class="str">"Select an element"</span>);
+<span class="cls">Element</span> picked = doc.<span class="fn">GetElement</span>(pickedRef);
+
+<span class="cmt">// 3. Pick a specific type (e.g. Wall only)</span>
+<span class="cls">Reference</span> wallRef = sel.<span class="fn">PickObject</span>(
+    <span class="cls">ObjectType</span>.Element,
+    <span class="kw">new</span> <span class="cls">WallSelectionFilter</span>(),   <span class="cmt">// custom ISelectionFilter</span>
+    <span class="str">"Select a wall"</span>);
+
+<span class="cmt">// 4. Pick multiple elements</span>
+<span class="cls">IList</span>&lt;<span class="cls">Reference</span>&gt; multiRefs = sel.<span class="fn">PickObjects</span>(
+    <span class="cls">ObjectType</span>.Element, <span class="str">"Select walls"</span>);
+
+<span class="cmt">// 5. Pick a point in the model</span>
+<span class="cls">XYZ</span> pt = sel.<span class="fn">PickPoint</span>(<span class="str">"Click a point"</span>);
+
+<span class="cmt">// 6. Set selection programmatically</span>
+<span class="kw">var</span> idsToSelect = walls.<span class="fn">Select</span>(w => w.Id).<span class="fn">ToList</span>();
+sel.<span class="fn">SetElementIds</span>(idsToSelect);</pre></div>
+
+    <h3>Custom Selection Filter</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Implement ISelectionFilter to restrict what the user can pick</span>
+<span class="kw">public class</span> <span class="cls">WallSelectionFilter</span> : <span class="cls">ISelectionFilter</span>
+{
+    <span class="kw">public bool</span> <span class="fn">AllowElement</span>(<span class="cls">Element</span> elem)
+        => elem <span class="kw">is</span> <span class="cls">Wall</span>;    <span class="cmt">// only walls can be picked</span>
+
+    <span class="kw">public bool</span> <span class="fn">AllowReference</span>(<span class="cls">Reference</span> reference, <span class="cls">XYZ</span> position)
+        => <span class="kw">true</span>;
+}</pre></div>
+  </div>
+
+  <!-- S6 TRANSACTIONS -->
+  <div class="section" id="s6">
+    <div class="sec-num">// 06</div>
+    <h2>Transactions</h2>
+    <p>Any modification to the Revit model MUST happen inside a Transaction. This is non-negotiable.</p>
+
+    <h3>Transaction Types</h3>
+    <div class="cards">
+      <div class="card"><div class="card-icon">📝</div><div class="card-title">Transaction</div><div class="card-desc">Single operation. Start → do work → Commit or RollBack.</div><span class="card-tag">most common</span></div>
+      <div class="card"><div class="card-icon">📦</div><div class="card-title">TransactionGroup</div><div class="card-desc">Wraps multiple Transactions into one undo step for the user.</div><span class="card-tag">batch operations</span></div>
+      <div class="card"><div class="card-icon">🔄</div><div class="card-title">SubTransaction</div><div class="card-desc">Nested within an open Transaction. Can be rolled back independently.</div><span class="card-tag">partial rollback</span></div>
+    </div>
+
+    <h3>Transaction Patterns</h3>
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="cmt">// Pattern 1: Basic (using = auto-dispose)</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"My Operation"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cmt">// ... modify elements ...</span>
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cmt">// Pattern 2: With error handling</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Safe Operation"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="kw">try</span>
+    {
+        <span class="cmt">// ... work ...</span>
+        tx.<span class="fn">Commit</span>();
+    }
+    <span class="kw">catch</span> (<span class="cls">Exception</span> ex)
+    {
+        tx.<span class="fn">RollBack</span>();
+        <span class="cls">TaskDialog</span>.<span class="fn">Show</span>(<span class="str">"Error"</span>, ex.Message);
+    }
+}
+
+<span class="cmt">// Pattern 3: TransactionGroup (one undo step)</span>
+<span class="kw">using</span> (<span class="kw">var</span> tg = <span class="kw">new</span> <span class="cls">TransactionGroup</span>(doc, <span class="str">"Batch Update"</span>))
+{
+    tg.<span class="fn">Start</span>();
+
+    <span class="kw">using</span> (<span class="kw">var</span> tx1 = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Step 1"</span>))
+    { tx1.<span class="fn">Start</span>(); <span class="cmt">/* ... */</span> tx1.<span class="fn">Commit</span>(); }
+
+    <span class="kw">using</span> (<span class="kw">var</span> tx2 = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Step 2"</span>))
+    { tx2.<span class="fn">Start</span>(); <span class="cmt">/* ... */</span> tx2.<span class="fn">Commit</span>(); }
+
+    tg.<span class="fn">Assimilate</span>();  <span class="cmt">// merges all into one undo step</span>
+}
+
+<span class="cmt">// Pattern 4: SubTransaction (partial rollback)</span>
+<span class="kw">using</span> (<span class="kw">var</span> tx = <span class="kw">new</span> <span class="cls">Transaction</span>(doc, <span class="str">"Main"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="kw">using</span> (<span class="kw">var</span> sub = <span class="kw">new</span> <span class="cls">SubTransaction</span>(doc))
+    {
+        sub.<span class="fn">Start</span>();
+        <span class="kw">try</span> { <span class="cmt">/* risky work */</span> sub.<span class="fn">Commit</span>(); }
+        <span class="kw">catch</span> { sub.<span class="fn">RollBack</span>(); <span class="cmt">/* main tx continues */</span> }
+    }
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+
+    <h3>Transaction Status</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Status</th><th>Meaning</th></tr>
+      <tr><td>TransactionStatus.Started</td><td>Transaction is open and ready</td></tr>
+      <tr><td>TransactionStatus.Committed</td><td>Changes saved to model</td></tr>
+      <tr><td>TransactionStatus.RolledBack</td><td>Changes discarded</td></tr>
+      <tr><td>TransactionStatus.Error</td><td>Something went wrong — check exceptions</td></tr>
+    </table></div>
+
+    <div class="callout ca-or">
+      <strong>// Golden Rules</strong>
+      1) Never start a Transaction inside an event handler that fires during a transaction. 2) Never use a Transaction from a background thread — use IExternalEventHandler instead. 3) Always check TransactionStatus after Commit() in critical flows.
+    </div>
+  </div>
+
+  <!-- S7 UNITS -->
+  <div class="section" id="s7">
+    <div class="sec-num">// 07</div>
+    <h2>Units</h2>
+    <p>Revit stores ALL distances in decimal feet internally. You must convert when reading/writing length parameters.</p>
+
+    <div class="code-block"><div class="code-hdr"><span class="code-lang">C#</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre><span class="kw">using</span> Autodesk.Revit.DB;
+
+<span class="cmt">// Convert FROM internal (feet) TO display unit</span>
+<span class="kw">double</span> internalValue = wall.<span class="fn">get_Parameter</span>(
+    <span class="cls">BuiltInParameter</span>.WALL_USER_HEIGHT_PARAM).<span class="fn">AsDouble</span>();
+
+<span class="kw">double</span> mm      = <span class="cls">UnitUtils</span>.<span class="fn">ConvertFromInternalUnits</span>(
+    internalValue, <span class="cls">UnitTypeId</span>.Millimeters);
+<span class="kw">double</span> meters  = <span class="cls">UnitUtils</span>.<span class="fn">ConvertFromInternalUnits</span>(
+    internalValue, <span class="cls">UnitTypeId</span>.Meters);
+
+<span class="cmt">// Convert TO internal (feet) FROM display unit</span>
+<span class="kw">double</span> feet = <span class="cls">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="num">3000</span>, <span class="cls">UnitTypeId</span>.Millimeters);
+
+<span class="cmt">// Simple manual conversion (legacy approach)</span>
+<span class="kw">double</span> mmVal    = internalValue * <span class="num">304.8</span>;
+<span class="kw">double</span> feetVal  = mmVal / <span class="num">304.8</span>;</pre></div>
+
+    <h3>Common UnitTypeId Values</h3>
+    <div class="table-wrap"><table>
+      <tr><th>UnitTypeId</th><th>Use For</th></tr>
+      <tr><td>UnitTypeId.Millimeters</td><td>Length in mm (most common in metric)</td></tr>
+      <tr><td>UnitTypeId.Meters</td><td>Length in metres</td></tr>
+      <tr><td>UnitTypeId.Feet</td><td>Length in feet (imperial)</td></tr>
+      <tr><td>UnitTypeId.SquareMeters</td><td>Area</td></tr>
+      <tr><td>UnitTypeId.CubicMeters</td><td>Volume</td></tr>
+      <tr><td>UnitTypeId.Degrees</td><td>Angles</td></tr>
+    </table></div>
+  </div>
+
+  </div><!-- /content -->
+</main>
+</div>
+
+<script>
+function nav(el, id) {
+  document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(() => {
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 1800);
+  });
+}
+const sections = ['s1','s2','s3','s4','s5','s6','s7'];
+window.addEventListener('scroll', () => {
+  let cur = sections[0];
+  sections.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < 130) cur = id; });
+  document.querySelectorAll('.sb-link').forEach((l, i) => l.classList.toggle('active', sections[i] === cur));
+}, { passive: true });
+</script>
+</body>
+</html>
