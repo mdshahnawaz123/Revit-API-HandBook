@@ -64,6 +64,17 @@ const Sidebar = () => {
           </Link>
         ))}
       </div>
+      
+      <div style={{ padding: '20px', borderTop: '1px solid var(--border)' }}>
+        <button 
+          onClick={() => { localStorage.removeItem('handbook_user'); window.location.href='/'; window.location.reload(); }}
+          style={{ width: '100%', padding: '10px', background: 'transparent', border: '1px solid var(--border)', color: 'var(--muted)', cursor: 'pointer', borderRadius: '4px', fontFamily: 'IBM Plex Mono' }}
+          onMouseOver={(e) => { e.target.style.color = 'var(--text)'; e.target.style.borderColor = 'var(--accent)'; }}
+          onMouseOut={(e) => { e.target.style.color = 'var(--muted)'; e.target.style.borderColor = 'var(--border)'; }}
+        >
+          Sign Out
+        </button>
+      </div>
     </nav>
   );
 };
