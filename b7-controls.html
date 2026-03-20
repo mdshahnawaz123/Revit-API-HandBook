@@ -1,0 +1,21 @@
+<div class="challenge-controls"><div class="stats-bar">
+    <div class="stat"><div class="stat-num" id="total-count">312</div><div class="stat-lbl">Total Challenges</div></div>
+    <div class="stat"><div class="stat-num" id="done-count">0</div><div class="stat-lbl">Completed</div></div>
+    <div class="stat"><div class="stat-num" id="easy-count">98</div><div class="stat-lbl">Beginner</div></div>
+    <div class="stat"><div class="stat-num" id="med-count">112</div><div class="stat-lbl">Intermediate</div></div>
+    <div class="stat"><div class="stat-num" id="hard-count">72</div><div class="stat-lbl">Advanced</div></div>
+    <div class="stat"><div class="stat-num" id="exp-count">30</div><div class="stat-lbl">Expert</div></div>
+  </div><div class="progress-wrap">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;">PROGRESS</span>
+    <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    <span class="progress-text" id="prog-text">0 / 312</span>
+  </div><div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterDiff('all',this)">All</button>
+    <button class="filter-btn" onclick="filterDiff('easy',this)">Beginner</button>
+    <button class="filter-btn" onclick="filterDiff('medium',this)">Intermediate</button>
+    <button class="filter-btn" onclick="filterDiff('hard',this)">Advanced</button>
+    <button class="filter-btn" onclick="filterDiff('expert',this)">Expert</button>
+    <button class="filter-btn" onclick="filterDiff('done',this)">✓ Done</button>
+    <input class="search-box" id="search" placeholder="Search challenges..." oninput="doSearch(this.value)">
+  </div></div>

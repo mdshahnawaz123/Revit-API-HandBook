@@ -1,0 +1,85 @@
+
+/* ── CHALLENGE PAGE SPECIFIC ── */
+.filter-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(12,12,16,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.filter-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-right: 4px; }
+.filter-btn {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  padding: 5px 12px; border-radius: 4px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--text); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.search-box {
+  margin-left: auto;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 12px; color: var(--text);
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  outline: none; width: 200px; transition: border-color 0.15s;
+}
+.search-box:focus { border-color: var(--accent2); }
+.search-box::placeholder { color: var(--muted); }
+
+.stats-bar {
+  display: flex; gap: 24px; padding: 18px 60px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--text); }
+.stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+
+/* CHAPTER */
+.chapter { padding: 44px 60px 8px; }
+.chapter-hdr { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.chapter-icon { font-size: 28px; }
+.chapter-info .ch-num { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--accent); }
+.chapter-info h2 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; }
+.chapter-info p { font-size: 13px; color: var(--muted); margin: 0; }
+.ch-count { margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; }
+
+/* CHALLENGE GRID */
+.challenge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; padding: 0 60px 36px; }
+
+/* CHALLENGE CARD */
+.ccard {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px; cursor: pointer;
+  transition: all 0.15s; position: relative;
+}
+.ccard:hover { border-color: var(--accent); background: var(--surface2); }
+.ccard.hidden { display: none; }
+.ccard-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.cnum { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); }
+.diff { font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 2px 7px; border-radius: 3px; letter-spacing: 1px; }
+.d-easy   { background: rgba(62,207,142,0.12);  color: var(--accent3); border: 1px solid rgba(62,207,142,0.25); }
+.d-medium { background: rgba(247,201,77,0.12);  color: var(--accent4); border: 1px solid rgba(247,201,77,0.25); }
+.d-hard   { background: rgba(224,90,43,0.12);   color: var(--accent);  border: 1px solid rgba(224,90,43,0.25); }
+.d-expert { background: rgba(196,122,247,0.12); color: var(--accent5); border: 1px solid rgba(196,122,247,0.25); }
+
+.ccard h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+.ctask { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+.cexpect-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1.5px; color: var(--accent2); text-transform: uppercase; margin-bottom: 4px; }
+.cexpect { font-size: 12px; color: #8ba4d4; line-height: 1.5; }
+.ctags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+.ctag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 1px 6px; border-radius: 2px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--muted); }
+
+.chapter-divider { border: none; border-top: 1px solid var(--border); margin: 0 60px; }
+
+/* PROGRESS TRACKER */
+.ccard.done { border-color: var(--accent3); }
+.ccard.done::after { content: '✓'; position: absolute; top: 12px; right: 14px; color: var(--accent3); font-size: 14px; font-weight: 700; }
+.done-btn { display: block; margin-top: 10px; width: 100%; padding: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; background: transparent; border: 1px dashed var(--border); border-radius: 4px; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.done-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+.ccard.done .done-btn { background: rgba(62,207,142,0.08); border-color: var(--accent3); color: var(--accent3); border-style: solid; }
+
+.progress-wrap { padding: 12px 60px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+.progress-track { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent3), var(--accent2)); border-radius: 2px; transition: width 0.3s; }
+.progress-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); min-width: 60px; }

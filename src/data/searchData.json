@@ -1,0 +1,3964 @@
+[
+  {
+    "name": "Accessing Element Properties",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Common UnitTypeId Values",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Custom Selection Filter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Getting the Document — Standard Pattern",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Key Document Members",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Object Hierarchy",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Parameter Filters (Slow — but powerful)",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Parameter StorageType Reference",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Quick Filters (Fast — run in Revit's native engine)",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Reading Parameters",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Retrieval Methods",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Setting Parameters",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Transaction Patterns",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Transaction Status",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Transaction Types",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "01",
+    "route": "/book/1"
+  },
+  {
+    "name": "Compound Structure",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "02",
+    "route": "/book/2"
+  },
+  {
+    "name": "Rotate a Section View 90°",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "03",
+    "route": "/book/3"
+  },
+  {
+    "name": "All Document Event Args",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "04",
+    "route": "/book/4"
+  },
+  {
+    "name": "Change Types for DMU Triggers",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "04",
+    "route": "/book/4"
+  },
+  {
+    "name": "ExternalEventRequest Status Values",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "04",
+    "route": "/book/4"
+  },
+  {
+    "name": "Accessibility Compliance Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Adaptive Component Array",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Adjacent Room Finder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Analytical Model Validator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Application Startup Greeter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Arc Wall Radius Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Area Tag Auto-Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "As-Built Documentation Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Assembly Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Async Room Tagger",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Auto Callout Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Auto Wall Mark Updater",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Auto-Dimension All Walls",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Auto-Number Walls",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Auto-Save on Document Change",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Automatic Drawing Package Builder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Automatic Section Callout Dimensioner",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Background Sync Handler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Batch Floor Plan Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Beam Grid Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "BIM Coordination Report Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "BIM Dashboard Panel",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "BOQ Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Bounding Box Inspector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Building Footprint Outline",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Building Grid System Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Bulk Parameter Copy",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Cable Tray Fill Calculator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Calculated Parameter in Schedule",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Carbon Calculator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Category Visibility Snapshot",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Ceiling Height Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Clash Detection Engine",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Clash Detector (BBox)",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Column Cap Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Columns-Not-On-Grid Detector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Computed Parameter Writer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Construction Sequence Simulator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Cross-Document DMU Mirror",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Curtain Wall Panel Family Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Curtain Wall Panel Inspector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Custom Selection Filter — Structural Only",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Dependent View Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Design Option Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Detail Component Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Detail Line to Model Line Converter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Digital Twin Data Connector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Dimension Value Override Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Direct Shape IFC Importer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Document Close Backup",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Document Modified Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Document Open Logger",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Door Host Wall Validator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Door Schedule Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Door Tag Auto-Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Duct Clash with Structure",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Duct Pressure Zone Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Duplicate Mark Detector &amp; Fixer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Electrical Panel Load Calculator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Element Counter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Element Distance Calculator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Element Genealogy Tracker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Element Geometry to JSON",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Element Override by Level",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Element Rotator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Embedded Curtain Wall Replacer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Exclusion Filter Chain",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Exterior Wall Highlighter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Face Normal Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Failure Resolution Handler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Family Audit Report",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Family Geometry Validator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Family Instance Substitutor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Family Parameter Formula Setter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Family Reload Batch Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Family Type Creator from CSV",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Fill Pattern Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Filled Region Hatch Style Changer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Floor Area by Material",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Floor Drain Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Floor Opening Auto-Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Footing Size from Column Load",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Foundation Wall Under Column",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Four Elevation Views Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Full Add-In Framework",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Full Drawing Set Annotator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Furniture Layout Assistant",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Geometry Mesh Extractor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Global Parameter Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Grid Dimension String",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Grid Section Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Hidden Category Toggler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "HVAC Load to Space Writer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "IFC Property Set Writer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "In-Place Family Converter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Isometric 3D View Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Keynote Audit Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Legend Creator from Categories",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Level Element Lister",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Level Elevation Label Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Level Elevation Sync",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Line Style Creator and Applier",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Linked File Element Inspector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Live Wall Counter Dock",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Locked Element Handler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Material Colour Standardiser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Material Usage Report",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "MEP Clearance Zone Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "MEP Space to Room Linker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Missing Family Loader",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Model Health Check Suite",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Modeless Parameter Editor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Multi-Category Collector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Multi-Category Quantity Schedule",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Multi-Command Queue",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Multi-Level Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Multi-Segment Dimension Editor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Nested Family Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "New Element Alert",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "NLP-Powered Command Interface",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "North Arrow Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Opening Geometry Validator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Orphaned Tag Cleaner",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Overall Building Dimension",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Parameter Filter — Fire Rating",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Parameter Rename Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Parametric Cost Estimator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Parametric Facade Panel System",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Parametric Railing Auto-Updater",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Phase View Set Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Phase-Aware Element Filter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Photorealistic Render Queue",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Pipe Auto-Router",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Pipe Insulation Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Pipe Network Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Pipe Slope Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Point-in-Room Finder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Point-on-Curve Projection",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Pre-Save Validator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Profiled Wall Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Programmatic Family Builder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Project Base Point Inspector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Ray Cast Hit Test",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Real-Time Collaboration Bridge",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Real-Time Element Picker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Rebar Cover Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Rectangular Room of Walls",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Reference Plane Grid Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Render Appearance Batch Setter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Revision Cloud Auto-Tagger",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room Area Calculator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room Area to Parameter Propagator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room Color Scheme Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room Interior Perspective Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room Section Box",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room Tag Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room-Cropped View Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Room-to-Floor Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Safe Batch Deleter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Schedule Comparison Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Schedule Data Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Schedule Totals Row",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Scope Box Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Selection Parameter Editor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Shared Parameter Adder to Families",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Shared Parameter Reader",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Sheet Set Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Simple Hip Roof Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Slab Edge Profile Extractor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Sloped Slab Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Smart Sheet Layout Engine",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Solid Boolean Intersection",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Solid Volume Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Space Efficiency Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Specification Writer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Spot Elevation on Slabs",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Stacked Wall Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Stair Riser Counter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Structural Beam Annotation",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Structural Connection Auto-Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Structural Load Assigner",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Symbol Placer — North Arrow Grid",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Symbol Scale Adjuster",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Text Style Standardiser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Title Block Parameter Auto-Filler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Top-of-Wall Elevation Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Toposurface Grader",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Total Wall Run Length",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Transaction Status Monitor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Type Catalog Viewer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Type Mark Auto-Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Type vs Instance Parameter Detector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Undo-Friendly Multi-Step Operation",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Undo/Redo Monitor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Universal Parameter Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Unused Type Purger",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Unused Views Cleanup",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "View Activation Logger",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "View Filter Manager",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "View Naming Convention Enforcer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "View Template Applier",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "View to Image Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Viewport Scale Standardiser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Area Take-Off",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Join Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Layer Thickness Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Mark Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Midpoint Marker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Offset Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Splitter at Point",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wall Type Swapper",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Warning Suppressor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Wayfinding Network Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Window Opening Dimensioner",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "Workset Element Counter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "07",
+    "route": "/book/7"
+  },
+  {
+    "name": "3D Convex Hull from Element Centroids",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "About &amp; Update Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "ACC Issue Creator from Clash",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "AI-Assisted Room Layout Optimiser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Alignment Constraint Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Assembly Clash Finder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Assembly Drawing Set",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Assembly Inventory",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Async Pre-loader",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Auto Sync Before Close",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Automated Project Setup Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Automatic Stirrup Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Batch Renderer Settings",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Beam Centreline Graph",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "BIM 360 / ACC Data Bridge",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "BIM Execution Plan Auto-Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "BIM Manager Toolkit",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Borrow Elements Batch Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Building Pad Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Camera Path Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Central File Path Detector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Cloud Model Property Fetcher",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Code Compliance Engine",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Collector Benchmark Suite",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Command Error Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Command History Macro Recorder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Construction Safety Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Context-Sensitive Button Availability",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Contour Line Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "CSV Round-Trip Parameter Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Custom IFC Property Set Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Custom OBJ Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Cut and Fill Volume Calculator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Daylight Analysis Simulation",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Dependency Graph Builder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Design Option Comparer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Design Option Inventory",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Design Option to Model Merger",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Detail Group Stamp Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Digital Twin Operations Platform",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Drag-and-Drop Element Panel",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Drawing Issue Register",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "DWG Batch Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "DWG Layer to Revit Category Mapper",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Dynamic Ribbon Button Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Dynamo Player Automator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Element Cache Builder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Element Ownership Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Element Pin/Unpin Manager",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Excel Parameter Importer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Exploded View Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Fabric Sheet Auto-Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Full MEP Design Automation",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Full Plugin Marketplace",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "GBXML Energy Model Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Generative Design Bridge",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Geometry Extraction Profiler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "GraphQL BIM Server",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Group Exploder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Group Version Control",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Hello Ribbon Button",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "IFC Export Configurator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Image Export – All Elevations",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Isoline Extractor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Join Geometry Auditor",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Keyboard Shortcut Registrar",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Lighting Fixture Zone Assigner",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Linked DWG Manager",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Linked Revit File Manager",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Live Dashboard from Cloud Model",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Live Sensor Data Overlay",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Macro-to-Command Converter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Minimum Bounding Rectangle",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Mirrored Element Detector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Model Complexity Profiler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Model Group Placer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Model History Diff Tool",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Model Thumbnail Uploader",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Multi-Discipline Coordination Checker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Multi-Language Ribbon",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Net Zero Carbon Tracker",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "NWC Clash Export Prep",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Parametric Tower Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Part Creator from Walls",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "PDF Sheet Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Plugin Settings GUI with Persistence",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Plugin Telemetry System",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Point Cloud Import Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Polygon Area Calculator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Polygon Offset (Inset/Outset)",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "PostCommand Caller",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Precast Panel Splitter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Print Preview Generator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Print Settings Reader",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Progress Bar Dialog",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Project Handover Package Builder",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Python Script Runner",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Quick Access Toolbar Item",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "RadioButtonGroup Panel",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Rebar Cover Zone Visualiser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Rebar Hook Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Rebar Quantity Takeoff",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Rebar Shape Reporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Recent Commands History",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "REST API Element Sync",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Revision Issue Printer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Revit Server File Browser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Ribbon Button State Indicator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Ribbon ComboBox Filter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Ribbon Panel Tooltip Gallery",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Ribbon Tab Show/Hide Toggle",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Ribbon TextBox Live Search",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Ribbon Visibility by Project Type",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "SAT/STEP Geometry Exporter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Sheet Set Print Manager",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Shortest Path Through Rooms",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Site Component Placement Grid",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Slab Rebar Mesh Creator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Slope Analysis Colour Map",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Smart Print Scheduler",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Specification Compliance Tagger",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "SplitButton Family",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "SQLite Parameter Database",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Stacked Items Panel",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Structural Steel Estimator",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Sun Path Analyser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Topo Sub-Region Splitter",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Topo Surface Point Inspector",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Transaction Batch Optimiser",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Voronoi Room Partitioner",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Wall Join Order Fixer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Webhook Event Broadcaster",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Workset Assigner by Category",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Workset Audit Report",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Workset Colour Coding",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Workset Template Applier",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "Workset Visibility Manager",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "XML Project Data Importer",
+    "type": "Topic",
+    "book": "Revit API Handbook",
+    "bookNum": "08",
+    "route": "/book/8"
+  },
+  {
+    "name": "AddInId",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-addInId"
+  },
+  {
+    "name": "Arc",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-arc"
+  },
+  {
+    "name": "BoundingBoxXYZ",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-boundingbox"
+  },
+  {
+    "name": "BuiltInCategory",
+    "type": "Enum",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-builtincategory"
+  },
+  {
+    "name": "BuiltInParameter",
+    "type": "Enum",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-builtinparameter"
+  },
+  {
+    "name": "Color",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-color"
+  },
+  {
+    "name": "CurveLoop",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-curveloop"
+  },
+  {
+    "name": "Element",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-element"
+  },
+  {
+    "name": "ElementId",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-elementid"
+  },
+  {
+    "name": "FilteredElementCollector",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "09",
+    "route": "/book/9#cls-fec"
+  },
+  {
+    "name": "DocumentChangedEventArgs",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-docchanged"
+  },
+  {
+    "name": "DocumentOpenedEventArgs",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-docopened"
+  },
+  {
+    "name": "DocumentSavingEventArgs",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-docsaving"
+  },
+  {
+    "name": "ExternalEvent",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-externalevent"
+  },
+  {
+    "name": "Face",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-face"
+  },
+  {
+    "name": "FamilyInstance",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-familyinstance"
+  },
+  {
+    "name": "FamilySymbol",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-familysymbol"
+  },
+  {
+    "name": "Floor",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-floor"
+  },
+  {
+    "name": "Grid",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-grid"
+  },
+  {
+    "name": "IdlingEventArgs",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-idlingeventargs"
+  },
+  {
+    "name": "IExternalApplication",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-iexternalapplication"
+  },
+  {
+    "name": "IExternalCommand",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-iexternalcommand"
+  },
+  {
+    "name": "IExternalEventHandler",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-iexternaleventhandler"
+  },
+  {
+    "name": "IFailuresPreprocessor",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-ifailurespreprocessor"
+  },
+  {
+    "name": "JoinGeometryUtils",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-joingeometryutils"
+  },
+  {
+    "name": "Level",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-level"
+  },
+  {
+    "name": "Line",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-line"
+  },
+  {
+    "name": "Material",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-material"
+  },
+  {
+    "name": "Options",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-options"
+  },
+  {
+    "name": "OverrideGraphicSettings",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-overridegraphicsettings"
+  },
+  {
+    "name": "Parameter",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-parameter"
+  },
+  {
+    "name": "Plane",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-plane"
+  },
+  {
+    "name": "ReferenceIntersector",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-referenceintersector"
+  },
+  {
+    "name": "Selection",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-selection"
+  },
+  {
+    "name": "Solid",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-solid"
+  },
+  {
+    "name": "StorageType",
+    "type": "Enum",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-storagetype"
+  },
+  {
+    "name": "TaskDialog",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-taskdialog"
+  },
+  {
+    "name": "Transaction",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-transaction"
+  },
+  {
+    "name": "Transform",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-transform"
+  },
+  {
+    "name": "UnitUtils",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-unitutils"
+  },
+  {
+    "name": "ViewActivatedEventArgs",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-viewactivated"
+  },
+  {
+    "name": "Wall",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-wall"
+  },
+  {
+    "name": "XYZ",
+    "type": "Class",
+    "book": "API Reference",
+    "bookNum": "10",
+    "route": "/book/10#cls-xyz"
+  },
+  {
+    "name": "CableTray",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-cabletray"
+  },
+  {
+    "name": "Conduit",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-conduit"
+  },
+  {
+    "name": "Connector",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-connector"
+  },
+  {
+    "name": "ConnectorManager",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-connectormanager"
+  },
+  {
+    "name": "Duct",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-duct"
+  },
+  {
+    "name": "ElectricalSystem",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-electricalsystem"
+  },
+  {
+    "name": "IUpdater",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-iupdater"
+  },
+  {
+    "name": "Pipe",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-pipe"
+  },
+  {
+    "name": "PipingSystem",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-pipingsystem"
+  },
+  {
+    "name": "Rebar",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-rebar"
+  },
+  {
+    "name": "Room",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-room"
+  },
+  {
+    "name": "Schema",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-schema"
+  },
+  {
+    "name": "SchemaBuilder",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-schemabuilder"
+  },
+  {
+    "name": "Space",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-space"
+  },
+  {
+    "name": "Stairs",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-stairs"
+  },
+  {
+    "name": "TopographySurface",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-topography"
+  },
+  {
+    "name": "UpdaterRegistry",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-updaterregistry"
+  },
+  {
+    "name": "View3D",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-view3d"
+  },
+  {
+    "name": "ViewFamilyType",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-viewfamilytype"
+  },
+  {
+    "name": "Viewport",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-viewport"
+  },
+  {
+    "name": "ViewSchedule",
+    "type": "Class",
+    "book": "MEP",
+    "bookNum": "11",
+    "route": "/book/11#cls-viewschedule"
+  },
+  {
+    "name": "BooleanOperationsUtils",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-booleanopsutils"
+  },
+  {
+    "name": "CompoundStructureLayer",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-compoundstructurelayer"
+  },
+  {
+    "name": "Dimension",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-dimension2"
+  },
+  {
+    "name": "DirectShape",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-directshape"
+  },
+  {
+    "name": "DWGExportOptions",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-dwgexportopts"
+  },
+  {
+    "name": "ElementLevelFilter",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-elementlevelfilter"
+  },
+  {
+    "name": "Family",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-family"
+  },
+  {
+    "name": "FamilyManager",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-familymanager"
+  },
+  {
+    "name": "FilledRegion",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-filledregion"
+  },
+  {
+    "name": "IFamilyLoadOptions",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-ifamilyloadoptions"
+  },
+  {
+    "name": "IFCExportOptions",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-ifcexportopts"
+  },
+  {
+    "name": "ImageExportOptions",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-imageexportopts"
+  },
+  {
+    "name": "IndependentTag",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-independenttag"
+  },
+  {
+    "name": "PartUtils",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-partutils"
+  },
+  {
+    "name": "PDFExportOptions",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-pdfexportopts"
+  },
+  {
+    "name": "PrintManager",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-printmanager"
+  },
+  {
+    "name": "ProjectInfo",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-projectinfo"
+  },
+  {
+    "name": "RevitLinkInstance",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-revitlinkinstance"
+  },
+  {
+    "name": "SketchPlane",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-sketchplane"
+  },
+  {
+    "name": "SunAndShadowSettings",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-sunshadowsettings"
+  },
+  {
+    "name": "TextNote",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-textnote"
+  },
+  {
+    "name": "Workset",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-workset"
+  },
+  {
+    "name": "WorksharingUtils",
+    "type": "Class",
+    "book": "Family API",
+    "bookNum": "12",
+    "route": "/book/12#cls-worksharingutils"
+  },
+  {
+    "name": "All Exception Types",
+    "type": "Class",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#cls-exceptions"
+  },
+  {
+    "name": "Application",
+    "type": "Class",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#cls-application"
+  },
+  {
+    "name": "Assembly &amp; Project Setup",
+    "type": "Class",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#sec-assembly"
+  },
+  {
+    "name": "ControlledApplication",
+    "type": "Class",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#cls-controlledapp"
+  },
+  {
+    "name": "Creation.Document",
+    "type": "Class",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#cls-creationdoc"
+  },
+  {
+    "name": "Creation.FamilyItemFactory",
+    "type": "Class",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#cls-creationfam"
+  },
+  {
+    "name": "ISelectionFilter",
+    "type": "Class",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#cls-iselectionfilter"
+  },
+  {
+    "name": "ObjectType",
+    "type": "Enum",
+    "book": "Final Volume",
+    "bookNum": "13",
+    "route": "/book/13#cls-objecttype"
+  },
+  {
+    "name": "AddStackedItems",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-stackeditem"
+  },
+  {
+    "name": "All Attribute Types",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-attributes"
+  },
+  {
+    "name": "ComboBox",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-combobox"
+  },
+  {
+    "name": "Contextual Ribbon Tabs",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-contextual-tabs"
+  },
+  {
+    "name": "DirectContext3D Key Classes",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-renderbuffer"
+  },
+  {
+    "name": "IDirectContext3DServer",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-idirectcontext3dserver"
+  },
+  {
+    "name": "IDockablePaneProvider",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-dockablepaneprovider"
+  },
+  {
+    "name": "IExternalCommandAvailability",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-iexternalcommandavailability"
+  },
+  {
+    "name": "PostableCommand",
+    "type": "Enum",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-postablecommand"
+  },
+  {
+    "name": "PulldownButton",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-pulldownbutton"
+  },
+  {
+    "name": "PushButton",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-pushbutton"
+  },
+  {
+    "name": "PushButtonData",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-pushbuttondata"
+  },
+  {
+    "name": "RadioButtonGroup",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-radiobuttongroup"
+  },
+  {
+    "name": "RevitCommandId",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-revitcommandid"
+  },
+  {
+    "name": "SplitButton",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-splitbutton"
+  },
+  {
+    "name": "TextBox",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-textbox"
+  },
+  {
+    "name": "UIControlledApplication",
+    "type": "Class",
+    "book": "Advanced UI",
+    "bookNum": "14",
+    "route": "/book/14#cls-uicontrolledapp"
+  },
+  {
+    "name": "AdaptiveComponentInstanceUtils",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-adaptivecomponentinstanceutils"
+  },
+  {
+    "name": "AssemblyInstance",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-assemblyinstance"
+  },
+  {
+    "name": "ColorFillScheme",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-colorfillscheme"
+  },
+  {
+    "name": "CurtainGrid",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-curtaingrid"
+  },
+  {
+    "name": "DesignOption",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-designoption"
+  },
+  {
+    "name": "ExternalServiceRegistry",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-externalserviceregistry"
+  },
+  {
+    "name": "FabricationPart",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-fabricationpart"
+  },
+  {
+    "name": "IExternalServer",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-iexternalserver"
+  },
+  {
+    "name": "LightSource",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-lightsource"
+  },
+  {
+    "name": "PointCloudInstance",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-pointcloudinstance"
+  },
+  {
+    "name": "SteelElementProperties",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-steelelementproperties"
+  },
+  {
+    "name": "SynchronizeWithCentralOptions",
+    "type": "Class",
+    "book": "Advanced Workflows",
+    "bookNum": "15",
+    "route": "/book/15#cls-syncwithcentraloptions"
+  },
+  {
+    "name": "DefinitionFile (Shared Parameter File)",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-sharedparamfile"
+  },
+  {
+    "name": "ElectricalSetting",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-electricalsetting"
+  },
+  {
+    "name": "ElementTransformUtils",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-etu"
+  },
+  {
+    "name": "ElevationMarker",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-elevationmarker"
+  },
+  {
+    "name": "GeometryCreationUtilities",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-gcu"
+  },
+  {
+    "name": "GlobalParameter",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-globalparameter"
+  },
+  {
+    "name": "PathReinforcement",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-pathreinf"
+  },
+  {
+    "name": "Phase",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-phase"
+  },
+  {
+    "name": "StairsEditScope",
+    "type": "Class",
+    "book": "Final Completion",
+    "bookNum": "16",
+    "route": "/book/16#cls-stairseditscope"
+  },
+  {
+    "name": "Beam reinforcement conventions",
+    "type": "Topic",
+    "book": "Structural Reinforcement",
+    "bookNum": "17",
+    "route": "/book/17"
+  },
+  {
+    "name": "Column reinforcement conventions",
+    "type": "Topic",
+    "book": "Structural Reinforcement",
+    "bookNum": "17",
+    "route": "/book/17"
+  },
+  {
+    "name": "Foundation reinforcement conventions",
+    "type": "Topic",
+    "book": "Structural Reinforcement",
+    "bookNum": "17",
+    "route": "/book/17"
+  },
+  {
+    "name": "Rebar",
+    "type": "Class",
+    "book": "Structural Reinforcement",
+    "bookNum": "17",
+    "route": "/book/17#cls-rebar-fund"
+  },
+  {
+    "name": "Rebar Schedule + Auto Mark + CSV Export",
+    "type": "Class",
+    "book": "Structural Reinforcement",
+    "bookNum": "17",
+    "route": "/book/17#sec-schedule-rebar"
+  },
+  {
+    "name": "Slab reinforcement approach",
+    "type": "Topic",
+    "book": "Structural Reinforcement",
+    "bookNum": "17",
+    "route": "/book/17"
+  },
+  {
+    "name": "🏗️ Structural Specialist Track",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "🏛️ Architecture Specialist Track",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "📊 BIM Data Specialist Track",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "🔌 MEP Specialist Track",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Batch PDF Exporter",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "BIM Health Dashboard",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Ceiling.Create",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-ceiling"
+  },
+  {
+    "name": "Element Data Exporter",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "FabricSheet · FabricSheetType",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-fabricsheet"
+  },
+  {
+    "name": "Family Parameter Sync",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Floor Plan Generator",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "GetBendData · RebarShapeDrivenAccessor · ComputeDrivingCurves",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-rebarbend"
+  },
+  {
+    "name": "Group · GroupType",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-modelgroup"
+  },
+  {
+    "name": "ImportInstance · CAD Linking",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-importinstance"
+  },
+  {
+    "name": "MEP Clash Reporter",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Rebar",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-rebarlayout"
+  },
+  {
+    "name": "RebarCoverType · RebarHostData",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-covertype"
+  },
+  {
+    "name": "Revision · RevisionCloud",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-revision"
+  },
+  {
+    "name": "Room Data Sheet",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Smart Renumber Tool",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "SpatialFieldManager · AnalysisResultSchema",
+    "type": "Class",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18#cls-sfm"
+  },
+  {
+    "name": "Structural Cage Automation",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Template Transfer Tool",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 1 — Environment + First Command",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 10 — WPF + ExternalEvent + DockablePane",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 11 — DMU (Dynamic Model Update) + IUpdater",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 12 — Worksharing + Batch Document Processing",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 13 — Advanced UI: DirectContext3D + PostableCommand",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 14 — Cross-Document Operations + ElementTransformUtils",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 15 — Structural + Reinforcement Workflows",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 16 — Advanced Workflows: CurtainGrid, Adaptive, Assembly",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 2 — Elements, Parameters, Collector",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 3 — Geometry + Creating Elements",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 4 — Views, Selection, Error Handling",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 5 — IExternalApplication + Ribbon + Events",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 6 — Families + Shared Parameters",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 7 — ExtensibleStorage + GlobalParameters + Phases",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 8 — MEP + Export + Schedules",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Week 9 — Geometry Analysis + Boolean Ops",
+    "type": "Topic",
+    "book": "Book 18: Final Gaps + Complete Learning Path",
+    "bookNum": "18",
+    "route": "/book/18"
+  },
+  {
+    "name": "Auto-Update Check on Startup",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-autoupdate"
+  },
+  {
+    "name": "ClosedXML",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-excel"
+  },
+  {
+    "name": "HttpClient",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-httpclient"
+  },
+  {
+    "name": "INotifyPropertyChanged",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-inotify"
+  },
+  {
+    "name": "License Key Validation",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-licensing"
+  },
+  {
+    "name": "Multi-Version .csproj",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-multiversion"
+  },
+  {
+    "name": "MVVM + Revit ExternalEvent Bridge",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-mvvm-revit"
+  },
+  {
+    "name": "MVVM Architecture in a Revit Plugin",
+    "type": "Topic",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19"
+  },
+  {
+    "name": "Per-Version .addin Manifest Files",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-addin-per-version"
+  },
+  {
+    "name": "Progress Reporting + Cancellation for Long Operations",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-progress"
+  },
+  {
+    "name": "RelayCommand",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-relaycommand"
+  },
+  {
+    "name": "RevitTestFramework Project Setup",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-test-setup"
+  },
+  {
+    "name": "Serilog",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-serilog"
+  },
+  {
+    "name": "Settings Persistence",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-settings"
+  },
+  {
+    "name": "SQLite",
+    "type": "Class",
+    "book": "Production-Grade Plugin Development",
+    "bookNum": "19",
+    "route": "/book/19#sec-sqlite"
+  }
+]
