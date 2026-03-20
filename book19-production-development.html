@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API — Book 19: Production-Grade Plugin Development</title>
+<link rel="stylesheet" href="api-style.css"/>
+<style>
+.prod-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-bottom:10px;border:1px solid;}
+.pb-mvvm   {background:rgba(79,158,255,.1);  color:var(--accent);  border-color:rgba(79,158,255,.3);}
+.pb-test   {background:rgba(62,217,160,.1);  color:var(--accent3); border-color:rgba(62,217,160,.3);}
+.pb-deploy {background:rgba(247,200,79,.1);  color:var(--accent4); border-color:rgba(247,200,79,.3);}
+.pb-log    {background:rgba(247,111,79,.1);  color:var(--accent5); border-color:rgba(247,111,79,.3);}
+.pb-rest   {background:rgba(217,124,247,.1); color:var(--accent6); border-color:rgba(217,124,247,.3);}
+.chapter-intro{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:18px 22px;margin-bottom:20px;}
+.ch-icon{font-size:28px;line-height:1;}
+.ch-body h4{font-family:'Fraunces',serif;font-size:16px;color:var(--text);margin-bottom:4px;}
+.ch-body p{font-size:13.5px;color:var(--text2);margin:0;}
+.file-tree{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--code-bg);border:1px solid var(--border2);border-radius:8px;padding:20px;line-height:2.1;color:var(--text2);}
+.file-tree .dir{color:var(--accent2);}
+.file-tree .file{color:var(--text2);}
+.file-tree .comment{color:var(--text3);}
+.nuget-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:12px 0;}
+.nuget-table th{background:var(--surface2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);}
+.nuget-table td{padding:8px 12px;border-bottom:1px solid rgba(37,37,48,.5);color:var(--text2);font-size:12.5px;vertical-align:top;}
+.nuget-table td:first-child{font-family:'JetBrains Mono',monospace;color:var(--accent2);font-size:11.5px;}
+.nuget-table td:nth-child(2){color:var(--accent3);font-size:11px;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Production<br/>Development</div>
+    <div class="sb-sub">Book 19 · Ship Real Plugins</div>
+  </div>
+  <div class="sb-search"><input type="text" id="sbsearch" placeholder="Search…" oninput="sbSearch(this.value)"/></div>
+  <div class="sb-nav">
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>WPF + MVVM<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-mvvm-overview')">MVVM Overview</div>
+        <div class="sb-ns-child" onclick="go('sec-inotify')">INotifyPropertyChanged</div>
+        <div class="sb-ns-child" onclick="go('sec-relaycommand')">RelayCommand</div>
+        <div class="sb-ns-child" onclick="go('sec-observable')">ObservableCollection</div>
+        <div class="sb-ns-child" onclick="go('sec-mvvm-revit')">MVVM + Revit Bridge</div>
+        <div class="sb-ns-child" onclick="go('sec-mvvm-full')">Full MVVM Example</div>
+      </div>
+    </div>
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>Unit Testing<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-test-setup')">RevitTestFramework Setup</div>
+        <div class="sb-ns-child" onclick="go('sec-test-write')">Writing Tests</div>
+        <div class="sb-ns-child" onclick="go('sec-test-mock')">Mock Strategies</div>
+        <div class="sb-ns-child" onclick="go('sec-test-ci')">CI/CD Pipeline</div>
+      </div>
+    </div>
+    <div class="sb-ns-group open" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>Deployment<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-multiversion')">Multi-Version Support</div>
+        <div class="sb-ns-child" onclick="go('sec-installer')">Installer (WiX / Inno)</div>
+        <div class="sb-ns-child" onclick="go('sec-autoupdate')">Auto-Update Check</div>
+        <div class="sb-ns-child" onclick="go('sec-addin-per-version')">Per-Version .addin</div>
+      </div>
+    </div>
+    <div class="sb-ns-group open" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>Logging + Crash Handling<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-serilog')">Serilog Setup</div>
+        <div class="sb-ns-child" onclick="go('sec-crashhandler')">Crash Handler</div>
+        <div class="sb-ns-child" onclick="go('sec-logpatterns')">Log Patterns</div>
+      </div>
+    </div>
+    <div class="sb-ns-group open" id="ng5">
+      <div class="sb-ns-header" onclick="tog('ng5',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>External Data<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-httpclient')">HttpClient + REST API</div>
+        <div class="sb-ns-child" onclick="go('sec-json')">JSON Serialization</div>
+        <div class="sb-ns-child" onclick="go('sec-sqlite')">SQLite Local Cache</div>
+        <div class="sb-ns-child" onclick="go('sec-excel')">Excel Read/Write</div>
+      </div>
+    </div>
+    <div class="sb-ns-group open" id="ng6">
+      <div class="sb-ns-header" onclick="tog('ng6',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>UX Patterns<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-progress')">Progress Bar + Cancel</div>
+        <div class="sb-ns-child" onclick="go('sec-settings')">Settings Persistence</div>
+        <div class="sb-ns-child" onclick="go('sec-licensing')">License Validation</div>
+      </div>
+    </div>
+  </div>
+        <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html" class="current"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html" class="current" class="current"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP � Arch � Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family � Print � Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref � Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI � DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html" class="current" class="current" class="current"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="fn">13</span> Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="fn">14</span> Ribbon · DockPane</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="fn">18</span> Final Gaps + Path</a>
+    <a class="sb-file-link current" href="book19-production-development.html"><span class="fn">19</span> Production Dev</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 19 of 19 — Production-Grade Plugin Development · The Gap Between Learning and Shipping</div>
+  <h1>Production-Grade<br/><span>Plugin Development</span></h1>
+  <p>Everything the Revit API books don't cover but every commercial plugin needs — WPF + MVVM with real DataBinding, unit testing with RevitTestFramework, multi-version deployment with WiX installer, Serilog crash logging, REST API integration, SQLite local cache, Excel read/write, progress bars with cancellation, settings persistence, and license validation. This is what separates a hobbyist script from a shippable product.</p>
+  
+  <!-- GLOBAL SEARCH -->
+  <div style="margin-top:20px;position:relative;max-width:400px;z-index:9999;">
+    <input type="text" id="globalsearch" placeholder="Search Class, Method or Topic..." 
+           style="width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;outline:none;"
+           oninput="globalSearch(this.value)"/>
+    <div id="searchresults" class="search-results-container"></div>
+  </div>
+  <div class="hero-chips">
+    <span class="chip c-bl">WPF + MVVM</span>
+    <span class="chip c-gr">Unit Testing</span>
+    <span class="chip c-ye">Deployment</span>
+    <span class="chip c-or">Logging</span>
+    <span class="chip c-pu">REST + SQLite</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════
+     RECOMMENDED NUGET PACKAGES
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-nuget">
+  <div class="ns-header">
+    <div class="ns-icon">📦</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Before You Start</div>
+      <h2>Essential NuGet Packages for Production Plugins</h2>
+      <p>Install these packages in your .csproj. All are compatible with .NET Framework 4.8 (required by Revit).</p>
+    </div>
+  </div>
+  <div class="callout c-warn" style="margin-bottom:16px;"><strong>// .NET Framework 4.8 Only</strong>Revit requires .NET Framework 4.8 (net48). Do NOT use .NET 5/6/7/8 packages. Always check the NuGet package supports net48 before installing. Use the Package Manager Console or edit .csproj directly.</div>
+  <table class="nuget-table">
+    <tr><th>Package</th><th>Version</th><th>Purpose</th><th>Install Command</th></tr>
+    <tr><td>Serilog</td><td>2.12.0</td><td>Structured logging framework</td><td>Install-Package Serilog -Version 2.12.0</td></tr>
+    <tr><td>Serilog.Sinks.File</td><td>5.0.0</td><td>Log to rolling file</td><td>Install-Package Serilog.Sinks.File</td></tr>
+    <tr><td>Serilog.Sinks.Debug</td><td>2.0.0</td><td>Log to Debug output</td><td>Install-Package Serilog.Sinks.Debug</td></tr>
+    <tr><td>Newtonsoft.Json</td><td>13.0.3</td><td>JSON serialization</td><td>Install-Package Newtonsoft.Json</td></tr>
+    <tr><td>Microsoft.Data.Sqlite</td><td>7.0.0</td><td>SQLite embedded database</td><td>Install-Package Microsoft.Data.Sqlite</td></tr>
+    <tr><td>ClosedXML</td><td>0.102.2</td><td>Excel read/write (.xlsx)</td><td>Install-Package ClosedXML</td></tr>
+    <tr><td>NUnit</td><td>3.13.3</td><td>Unit testing framework</td><td>Install-Package NUnit</td></tr>
+    <tr><td>RevitTestFramework</td><td>3.0.0</td><td>Run NUnit tests inside Revit</td><td>Install-Package RevitTestFramework</td></tr>
+    <tr><td>CommunityToolkit.Mvvm</td><td>8.2.2</td><td>MVVM helpers (ObservableObject, RelayCommand)</td><td>Install-Package CommunityToolkit.Mvvm</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════
+     WPF + MVVM
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-mvvm" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🖥️</div>
+    <div class="ns-meta">
+      <div class="ns-label">// WPF + MVVM</div>
+      <h2>WPF + MVVM for Revit Plugins</h2>
+      <p>The Model-View-ViewModel pattern — the standard architecture for all professional Revit plugin UIs. Separates Revit API logic from WPF UI completely.</p>
+    </div>
+  </div>
+
+  <div class="chapter-intro" id="sec-mvvm-overview">
+    <div class="ch-icon">📐</div>
+    <div class="ch-body">
+      <h4>MVVM Architecture in a Revit Plugin</h4>
+      <p><strong>Model</strong> = Revit data (elements, parameters) accessed via API. <strong>ViewModel</strong> = C# class with properties and commands — completely independent of Revit API. <strong>View</strong> = XAML file — binds to ViewModel properties. The ViewModel never knows about WPF controls; the View never calls the Revit API directly. They communicate via ExternalEvent.</p>
+    </div>
+  </div>
+
+  <div class="file-tree" style="margin-bottom:20px;">
+<span class="dir">StudioTools/</span>
+  ├── <span class="dir">Commands/</span>
+  │   └── <span class="file">OpenPanelCommand.cs</span>       <span class="comment">← IExternalCommand entry point</span>
+  ├── <span class="dir">ViewModels/</span>
+  │   ├── <span class="file">RoomInspectorViewModel.cs</span> <span class="comment">← ViewModel (no Revit refs)</span>
+  │   └── <span class="file">ViewModelBase.cs</span>          <span class="comment">← INotifyPropertyChanged base</span>
+  ├── <span class="dir">Views/</span>
+  │   ├── <span class="file">RoomInspectorPane.xaml</span>    <span class="comment">← WPF UserControl (pure XAML)</span>
+  │   └── <span class="file">RoomInspectorPane.xaml.cs</span> <span class="comment">← Code-behind (minimal)</span>
+  ├── <span class="dir">Models/</span>
+  │   └── <span class="file">RoomData.cs</span>               <span class="comment">← Plain C# data class (no Revit API)</span>
+  ├── <span class="dir">Services/</span>
+  │   ├── <span class="file">RevitDataService.cs</span>       <span class="comment">← Wraps Revit API calls</span>
+  │   └── <span class="file">ExternalEventBridge.cs</span>    <span class="comment">← IExternalEventHandler + ExternalEvent</span>
+  └── <span class="file">Application.cs</span>            <span class="comment">← IExternalApplication</span>
+  </div>
+
+<!-- INotifyPropertyChanged -->
+<div class="class-block" id="sec-inotify">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">INotifyPropertyChanged — ViewModelBase</span></div></div></div>
+  <div class="class-desc">The foundation of WPF data binding. Any property change on the ViewModel automatically updates the bound WPF control. Implement once in a base class, inherit everywhere.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 ViewModelBase + CallerMemberName pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// ViewModelBase.cs — implement once, inherit everywhere</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> System.ComponentModel;
+<span class="k">using</span> System.Runtime.CompilerServices;
+
+<span class="k">namespace</span> StudioTools.ViewModels
+{
+    <span class="cm">/// Base class for all ViewModels.
+    /// Inherit this to get automatic WPF data binding.</span>
+    <span class="k">public abstract class</span> <span class="tp">ViewModelBase</span> : <span class="tp">INotifyPropertyChanged</span>
+    {
+        <span class="k">public event</span> <span class="tp">PropertyChangedEventHandler</span> PropertyChanged;
+
+        <span class="cm">// Call this inside any property setter to notify WPF</span>
+        <span class="k">protected void</span> <span class="fn">OnPropertyChanged</span>(
+            [<span class="tp">CallerMemberName</span>] <span class="k">string</span> name = <span class="k">null</span>)
+            => PropertyChanged?.Invoke(<span class="k">this</span>,
+                <span class="k">new</span> <span class="tp">PropertyChangedEventArgs</span>(name));
+
+        <span class="cm">// Set backing field and raise event in one call</span>
+        <span class="k">protected bool</span> <span class="fn">SetField</span>&lt;T&gt;(<span class="k">ref</span> T field, T value,
+            [<span class="tp">CallerMemberName</span>] <span class="k">string</span> name = <span class="k">null</span>)
+        {
+            <span class="k">if</span> (EqualityComparer&lt;T&gt;.<span class="fn">Default</span>.<span class="fn">Equals</span>(field, value)) <span class="k">return false</span>;
+            field = value;
+            <span class="fn">OnPropertyChanged</span>(name);
+            <span class="k">return true</span>;
+        }
+    }
+}
+
+<span class="cm">// ── Usage in a ViewModel ──</span>
+<span class="k">public class</span> <span class="tp">RoomInspectorViewModel</span> : <span class="tp">ViewModelBase</span>
+{
+    <span class="k">private string</span> _roomName;
+    <span class="k">private double</span> _roomArea;
+    <span class="k">private bool</span>   _isLoading;
+
+    <span class="cm">// WPF binds to these properties</span>
+    <span class="k">public string</span> RoomName
+    {
+        <span class="k">get</span> => _roomName;
+        <span class="k">set</span> => <span class="fn">SetField</span>(<span class="k">ref</span> _roomName, value);  <span class="cm">// auto raises PropertyChanged</span>
+    }
+
+    <span class="k">public double</span> RoomArea
+    {
+        <span class="k">get</span> => _roomArea;
+        <span class="k">set</span> => <span class="fn">SetField</span>(<span class="k">ref</span> _roomArea, value);
+    }
+
+    <span class="k">public bool</span> IsLoading
+    {
+        <span class="k">get</span> => _isLoading;
+        <span class="k">set</span>
+        {
+            <span class="fn">SetField</span>(<span class="k">ref</span> _isLoading, value);
+            <span class="fn">OnPropertyChanged</span>(<span class="k">nameof</span>(LoadingVisibility));  <span class="cm">// update derived</span>
+        }
+    }
+
+    <span class="cm">// Computed property — no backing field, notified manually</span>
+    <span class="k">public</span> System.Windows.<span class="tp">Visibility</span> LoadingVisibility
+        => IsLoading ? System.Windows.<span class="tp">Visibility</span>.Visible
+                     : System.Windows.<span class="tp">Visibility</span>.Collapsed;
+
+    <span class="cm">// Formatted display — recomputed when RoomArea changes</span>
+    <span class="k">public string</span> RoomAreaDisplay => <span class="s">$"{RoomArea:F1} m²"</span>;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- RelayCommand -->
+<div class="class-block" id="sec-relaycommand">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">RelayCommand — ICommand Implementation</span></div></div></div>
+  <div class="class-desc">ICommand implementation that binds WPF buttons to ViewModel methods. RelayCommand wraps an Action (execute) and optional Func&lt;bool&gt; (canExecute). When canExecute returns false, the button is automatically disabled.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 RelayCommand + ViewModel button binding</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// RelayCommand.cs + ViewModel binding + XAML</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── RelayCommand.cs ──</span>
+<span class="k">using</span> System.Windows.Input;
+
+<span class="k">public class</span> <span class="tp">RelayCommand</span> : <span class="tp">ICommand</span>
+{
+    <span class="k">private readonly</span> Action&lt;<span class="k">object</span>&gt;       _execute;
+    <span class="k">private readonly</span> Func&lt;<span class="k">object</span>, <span class="k">bool</span>&gt; _canExecute;
+
+    <span class="k">public</span> <span class="tp">RelayCommand</span>(Action&lt;<span class="k">object</span>&gt; execute,
+        Func&lt;<span class="k">object</span>, <span class="k">bool</span>&gt; canExecute = <span class="k">null</span>)
+    {
+        _execute    = execute    ?? <span class="k">throw new</span> <span class="tp">ArgumentNullException</span>(<span class="k">nameof</span>(execute));
+        _canExecute = canExecute;
+    }
+
+    <span class="k">public event</span> EventHandler CanExecuteChanged
+    {
+        add    => System.Windows.Input.<span class="tp">CommandManager</span>.RequerySuggested += value;
+        remove => System.Windows.Input.<span class="tp">CommandManager</span>.RequerySuggested -= value;
+    }
+
+    <span class="k">public bool</span>   <span class="fn">CanExecute</span>(<span class="k">object</span> p) => _canExecute?.Invoke(p) ?? <span class="k">true</span>;
+    <span class="k">public void</span>   <span class="fn">Execute</span>(<span class="k">object</span> p)    => _execute(p);
+
+    <span class="cm">// Force WPF to recheck CanExecute on all commands</span>
+    <span class="k">public static void</span> <span class="fn">RaiseCanExecuteChanged</span>()
+        => System.Windows.Input.<span class="tp">CommandManager</span>.<span class="fn">InvalidateRequerySuggested</span>();
+}
+
+<span class="cm">// Parameterless shortcut</span>
+<span class="k">public class</span> <span class="tp">RelayCommand</span>&lt;T&gt; : <span class="tp">ICommand</span>
+{
+    <span class="k">private readonly</span> Action&lt;T&gt;       _execute;
+    <span class="k">private readonly</span> Func&lt;T, <span class="k">bool</span>&gt; _canExecute;
+    <span class="k">public</span> event EventHandler CanExecuteChanged
+    {
+        add    => <span class="tp">CommandManager</span>.RequerySuggested += value;
+        remove => <span class="tp">CommandManager</span>.RequerySuggested -= value;
+    }
+    <span class="k">public</span> <span class="tp">RelayCommand</span>(Action&lt;T&gt; exec, Func&lt;T,<span class="k">bool</span>&gt; canExec = <span class="k">null</span>)
+    { _execute = exec; _canExecute = canExec; }
+    <span class="k">public bool</span> <span class="fn">CanExecute</span>(<span class="k">object</span> p)
+        => _canExecute?.Invoke((<span class="tp">T</span>)p) ?? <span class="k">true</span>;
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="k">object</span> p) => _execute((<span class="tp">T</span>)p);
+}
+
+<span class="cm">// ── ViewModel with commands ──</span>
+<span class="k">public class</span> <span class="tp">RoomInspectorViewModel</span> : <span class="tp">ViewModelBase</span>
+{
+    <span class="k">private</span> <span class="tp">ObservableCollection</span>&lt;<span class="tp">RoomData</span>&gt; _rooms
+        = <span class="k">new</span> <span class="tp">ObservableCollection</span>&lt;<span class="tp">RoomData</span>&gt;();
+    <span class="k">private</span> <span class="tp">RoomData</span> _selectedRoom;
+    <span class="k">private bool</span> _hasRooms;
+
+    <span class="k">public</span> <span class="tp">ObservableCollection</span>&lt;<span class="tp">RoomData</span>&gt; Rooms
+    {
+        <span class="k">get</span> => _rooms;
+        <span class="k">set</span> => <span class="fn">SetField</span>(<span class="k">ref</span> _rooms, value);
+    }
+
+    <span class="k">public</span> <span class="tp">RoomData</span> SelectedRoom
+    {
+        <span class="k">get</span> => _selectedRoom;
+        <span class="k">set</span>
+        {
+            <span class="fn">SetField</span>(<span class="k">ref</span> _selectedRoom, value);
+            <span class="cm">// Notify that ExportCommand.CanExecute may have changed</span>
+            <span class="tp">RelayCommand</span>.<span class="fn">RaiseCanExecuteChanged</span>();
+        }
+    }
+
+    <span class="cm">// Commands bound to buttons in XAML</span>
+    <span class="k">public</span> <span class="tp">ICommand</span> RefreshCommand { <span class="k">get</span>; }
+    <span class="k">public</span> <span class="tp">ICommand</span> ExportCommand  { <span class="k">get</span>; }
+    <span class="k">public</span> <span class="tp">ICommand</span> SelectInRevit  { <span class="k">get</span>; }
+
+    <span class="k">public</span> <span class="tp">RoomInspectorViewModel</span>()
+    {
+        RefreshCommand = <span class="k">new</span> <span class="tp">RelayCommand</span>(_ => <span class="fn">OnRefresh</span>());
+        ExportCommand  = <span class="k">new</span> <span class="tp">RelayCommand</span>(
+            _ => <span class="fn">OnExport</span>(),
+            _ => SelectedRoom != <span class="k">null</span>);  <span class="cm">// disabled if nothing selected</span>
+        SelectInRevit  = <span class="k">new</span> <span class="tp">RelayCommand</span>(
+            _ => <span class="fn">OnSelectInRevit</span>(),
+            _ => SelectedRoom != <span class="k">null</span>);
+    }
+
+    <span class="k">private void</span> <span class="fn">OnRefresh</span>()
+    {
+        <span class="cm">// Raise external event to load rooms from Revit on the main thread</span>
+        <span class="tp">StudioApplication</span>.LoadRoomsEvent.<span class="fn">Raise</span>();
+    }
+
+    <span class="k">private void</span> <span class="fn">OnExport</span>()
+    {
+        <span class="cm">// Export selected room data — no Revit API needed</span>
+        System.Windows.<span class="tp">MessageBox</span>.<span class="fn">Show</span>(
+            <span class="s">$"Exporting {SelectedRoom?.Name}"</span>);
+    }
+
+    <span class="k">private void</span> <span class="fn">OnSelectInRevit</span>()
+    {
+        <span class="tp">StudioApplication</span>.SelectElementHandler.ElementId =
+            SelectedRoom?.RevitId;
+        <span class="tp">StudioApplication</span>.SelectElementEvent.<span class="fn">Raise</span>();
+    }
+
+    <span class="cm">// Called by ExternalEventHandler after Revit loads data</span>
+    <span class="k">public void</span> <span class="fn">UpdateRooms</span>(<span class="tp">IEnumerable</span>&lt;<span class="tp">RoomData</span>&gt; rooms)
+    {
+        Rooms.<span class="fn">Clear</span>();
+        <span class="k">foreach</span> (<span class="k">var</span> r <span class="k">in</span> rooms) Rooms.<span class="fn">Add</span>(r);
+    }
+}
+
+<span class="cm">/* ── XAML (RoomInspectorPane.xaml) ──
+&lt;UserControl x:Class="StudioTools.Views.RoomInspectorPane"
+             DataContext="{Binding Source={x:Static vm:ViewModelLocator.RoomInspector}}"&gt;
+    &lt;Grid&gt;
+        &lt;Button Content="Refresh"
+                Command="{Binding RefreshCommand}"/&gt;
+        &lt;ListView ItemsSource="{Binding Rooms}"
+                  SelectedItem="{Binding SelectedRoom, Mode=TwoWay}"&gt;
+            &lt;ListView.ItemTemplate&gt;
+                &lt;DataTemplate&gt;
+                    &lt;StackPanel Orientation="Horizontal"&gt;
+                        &lt;TextBlock Text="{Binding Number}" Width="50"/&gt;
+                        &lt;TextBlock Text="{Binding Name}"   Width="150"/&gt;
+                        &lt;TextBlock Text="{Binding AreaDisplay}"/&gt;
+                    &lt;/StackPanel&gt;
+                &lt;/DataTemplate&gt;
+            &lt;/ListView.ItemTemplate&gt;
+        &lt;/ListView&gt;
+        &lt;Button Content="Export"
+                Command="{Binding ExportCommand}"
+                IsEnabled="{Binding ExportCommand, Converter={...CanExecuteConverter}}"/&gt;
+    &lt;/Grid&gt;
+&lt;/UserControl&gt;
+*/</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- MVVM + Revit Bridge -->
+<div class="class-block" id="sec-mvvm-revit">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">MVVM + Revit ExternalEvent Bridge</span></div></div></div>
+  <div class="class-desc">The complete pattern connecting a WPF ViewModel to Revit's API via ExternalEvents. The ViewModel never touches the Revit API directly — it only calls ExternalEvent.Raise(). The handler reads/writes Revit, then updates the ViewModel on the main WPF thread.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Full MVVM + Revit Bridge</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Complete MVVM bridge — ViewModel → ExternalEvent → Revit → ViewModel</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── RoomData.cs (Model — pure C#, no Revit refs) ──</span>
+<span class="k">public class</span> <span class="tp">RoomData</span>
+{
+    <span class="k">public</span> <span class="tp">ElementId</span>  RevitId    { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public string</span>     Name       { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public string</span>     Number     { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public string</span>     Department { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public double</span>     AreaSqM    { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public string</span>     Level      { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public string</span>     AreaDisplay => <span class="s">$"{AreaSqM:F1} m²"</span>;
+}
+
+<span class="cm">// ── LoadRoomsHandler.cs (IExternalEventHandler) ──</span>
+<span class="k">public class</span> <span class="tp">LoadRoomsHandler</span> : <span class="tp">IExternalEventHandler</span>
+{
+    <span class="k">private readonly</span> <span class="tp">RoomInspectorViewModel</span> _vm;
+
+    <span class="k">public</span> <span class="tp">LoadRoomsHandler</span>(<span class="tp">RoomInspectorViewModel</span> vm) => _vm = vm;
+    <span class="k">public string</span> <span class="fn">GetName</span>() => <span class="s">"Load Rooms"</span>;
+
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="tp">UIApplication</span> uiapp)
+    {
+        <span class="tp">Document</span> doc = uiapp.ActiveUIDocument?.Document;
+        <span class="k">if</span> (doc == <span class="k">null</span>) <span class="k">return</span>;
+
+        <span class="cm">// Query Revit on the main thread</span>
+        <span class="k">var</span> rooms = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rooms)
+            .<span class="fn">Cast</span>&lt;<span class="tp">Room</span>&gt;()
+            .<span class="fn">Where</span>(r => r.Area > <span class="n">0</span>)
+            .<span class="fn">Select</span>(r => <span class="k">new</span> <span class="tp">RoomData</span>
+            {
+                RevitId    = r.Id,
+                Name       = r.Name,
+                Number     = r.Number,
+                Department = r.<span class="fn">get_Parameter</span>(
+                    <span class="tp">BuiltInParameter</span>.ROOM_DEPARTMENT)?.AsString() ?? <span class="s">""</span>,
+                AreaSqM    = r.Area * <span class="n">0.092903</span>,
+                Level      = r.Level?.Name ?? <span class="s">""</span>
+            })
+            .<span class="fn">OrderBy</span>(r => r.Number)
+            .<span class="fn">ToList</span>();
+
+        <span class="cm">// Update ViewModel on the UI dispatcher thread</span>
+        System.Windows.Application.Current?.Dispatcher.<span class="fn">Invoke</span>(() =>
+            _vm.<span class="fn">UpdateRooms</span>(rooms));
+    }
+}
+
+<span class="cm">// ── SelectElementHandler.cs ──</span>
+<span class="k">public class</span> <span class="tp">SelectElementHandler</span> : <span class="tp">IExternalEventHandler</span>
+{
+    <span class="k">public</span> <span class="tp">ElementId</span> ElementId { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public string</span> <span class="fn">GetName</span>() => <span class="s">"Select Element"</span>;
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="tp">UIApplication</span> uiapp)
+    {
+        <span class="k">if</span> (ElementId == <span class="k">null</span>) <span class="k">return</span>;
+        <span class="k">var</span> uidoc = uiapp.ActiveUIDocument;
+        uidoc?.Selection.<span class="fn">SetElementIds</span>(
+            <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt; { ElementId });
+        uidoc?.<span class="fn">ShowElements</span>(ElementId);
+    }
+}
+
+<span class="cm">// ── Application.cs — wire everything up ──</span>
+<span class="k">public class</span> <span class="tp">StudioApplication</span> : <span class="tp">IExternalApplication</span>
+{
+    <span class="k">public static</span> <span class="tp">ExternalEvent</span>         LoadRoomsEvent;
+    <span class="k">public static</span> <span class="tp">ExternalEvent</span>         SelectElementEvent;
+    <span class="k">public static</span> <span class="tp">SelectElementHandler</span>  SelectElementHandler;
+    <span class="k">public static</span> <span class="tp">RoomInspectorViewModel</span> ViewModel;
+
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+    {
+        ViewModel = <span class="k">new</span> <span class="tp">RoomInspectorViewModel</span>();
+
+        <span class="cm">// Create events BEFORE registering pane</span>
+        LoadRoomsEvent     = <span class="tp">ExternalEvent</span>.<span class="fn">Create</span>(<span class="k">new</span> <span class="tp">LoadRoomsHandler</span>(ViewModel));
+        SelectElementHandler = <span class="k">new</span> <span class="tp">SelectElementHandler</span>();
+        SelectElementEvent   = <span class="tp">ExternalEvent</span>.<span class="fn">Create</span>(SelectElementHandler);
+
+        <span class="cm">// Register pane (WPF UserControl uses ViewModel)</span>
+        <span class="k">var</span> paneId = <span class="k">new</span> <span class="tp">DockablePaneId</span>(<span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"AABB1122-3344-5566-ROOM-INSP00000001"</span>));
+        <span class="k">var</span> pane   = <span class="k">new</span> <span class="tp">RoomInspectorPane</span>(ViewModel);
+        app.<span class="fn">RegisterDockablePane</span>(paneId, <span class="s">"Room Inspector"</span>, pane);
+
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnShutdown</span>(<span class="tp">UIControlledApplication</span> app)
+    {
+        LoadRoomsEvent?.<span class="fn">Dispose</span>();
+        SelectElementEvent?.<span class="fn">Dispose</span>();
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-mvvm -->
+
+<!-- ═══════════════════════════════════════
+     UNIT TESTING
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-testing" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🧪</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Unit Testing</div>
+      <h2>Unit Testing Revit Plugins</h2>
+      <p>Run NUnit tests inside a live Revit session using RevitTestFramework — the industry standard for testing Revit plugins.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="sec-test-setup">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Setup</span><span class="class-name">RevitTestFramework Project Setup</span></div></div></div>
+  <div class="class-desc">RevitTestFramework (RTF) runs NUnit tests inside Revit process. Your test DLL is loaded into Revit, and each test method gets a real Document context. Tests can create elements, read parameters, and validate API behaviour against real Revit geometry.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Project setup + writing tests + running</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// StudioTools.Tests.csproj + test fixtures</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">&lt;!-- StudioTools.Tests.csproj --&gt;
+&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;net48&lt;/TargetFramework&gt;
+    &lt;OutputType&gt;Library&lt;/OutputType&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="NUnit" Version="3.13.3"/&gt;
+    &lt;PackageReference Include="RevitTestFramework" Version="3.0.0"/&gt;
+    &lt;Reference Include="RevitAPI"&gt;
+      &lt;HintPath&gt;C:\Program Files\Autodesk\Revit 2024\RevitAPI.dll&lt;/HintPath&gt;
+      &lt;Private&gt;False&lt;/Private&gt;
+    &lt;/Reference&gt;
+    &lt;!-- Reference your main plugin DLL --&gt;
+    &lt;ProjectReference Include="..\StudioTools\StudioTools.csproj"/&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;</span>
+
+<span class="cm">// ── WallCountTests.cs ──</span>
+<span class="k">using</span> NUnit.Framework;
+<span class="k">using</span> Autodesk.Revit.DB;
+<span class="k">using</span> RevitTestFramework;
+
+[<span class="tp">TestFixture</span>]
+<span class="k">public class</span> <span class="tp">WallCountTests</span>
+{
+    <span class="cm">// TestModel attribute loads a specific .rvt file for this test</span>
+    [<span class="tp">Test</span>]
+    [<span class="tp">TestModel</span>(<span class="s">@"TestModels\SampleBuilding.rvt"</span>)]
+    <span class="k">public void</span> <span class="fn">WallCount_SampleBuilding_Returns47Walls</span>()
+    {
+        <span class="cm">// RTF injects the Document via RevitTestFramework.RevitTestBase</span>
+        <span class="tp">Document</span> doc = RevitTestBase.CurrentDocument;
+        <span class="tp">Assert</span>.<span class="fn">IsNotNull</span>(doc);
+
+        <span class="k">int</span> wallCount = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">GetElementCount</span>();
+
+        <span class="tp">Assert</span>.<span class="fn">AreEqual</span>(<span class="n">47</span>, wallCount,
+            <span class="s">"Expected 47 walls in sample building"</span>);
+    }
+
+    [<span class="tp">Test</span>]
+    [<span class="tp">TestModel</span>(<span class="s">@"TestModels\SampleBuilding.rvt"</span>)]
+    <span class="k">public void</span> <span class="fn">ReinforcBeam_CreatesCorrectBarCount</span>()
+    {
+        <span class="tp">Document</span> doc = RevitTestBase.CurrentDocument;
+
+        <span class="cm">// Get the first beam in the test model</span>
+        <span class="tp">FamilyInstance</span> beam = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructuralFraming)
+            .<span class="fn">WhereElementIsNotElementType</span>()
+            .<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+            .<span class="fn">FirstOrDefault</span>(fi => fi.StructuralType == <span class="tp">StructuralType</span>.Beam);
+
+        <span class="tp">Assert</span>.<span class="fn">IsNotNull</span>(beam, <span class="s">"No beam found in test model"</span>);
+
+        <span class="k">int</span> rebarBefore = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar)
+            .<span class="fn">GetElementCount</span>();
+
+        <span class="cm">// Run the reinforcement command</span>
+        <span class="k">var</span> cmd = <span class="k">new</span> <span class="tp">StudioTools.Commands.ReinforcBeamCommand</span>();
+        cmd.<span class="fn">ReinforceSingleBeam</span>(doc, beam);
+
+        <span class="k">int</span> rebarAfter = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar)
+            .<span class="fn">GetElementCount</span>();
+
+        <span class="cm">// Expect: 3 bottom + 2 top + ~10 stirrups = 15 bars minimum</span>
+        <span class="tp">Assert</span>.<span class="fn">Greater</span>(rebarAfter - rebarBefore, <span class="n">14</span>,
+            <span class="s">"Expected at least 15 rebar elements after reinforcing beam"</span>);
+    }
+
+    [<span class="tp">Test</span>]
+    [<span class="tp">TestModel</span>(<span class="s">@"TestModels\Empty.rvt"</span>)]
+    <span class="k">public void</span> <span class="fn">CreateWall_ValidLine_ReturnsWallElement</span>()
+    {
+        <span class="tp">Document</span> doc = RevitTestBase.CurrentDocument;
+
+        <span class="tp">Level</span> level = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+        <span class="tp">Wall</span> wall = <span class="k">null</span>;
+        <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Test Wall"</span>))
+        {
+            tx.<span class="fn">Start</span>();
+            wall = <span class="tp">Wall</span>.<span class="fn">Create</span>(doc,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="tp">XYZ</span>.Zero, <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">0</span>,<span class="n">0</span>)),
+                level.Id, <span class="k">false</span>);
+            tx.<span class="fn">Commit</span>();
+        }
+
+        <span class="tp">Assert</span>.<span class="fn">IsNotNull</span>(wall);
+        <span class="tp">Assert</span>.<span class="fn">AreEqual</span>(<span class="tp">ElementId</span>.InvalidElementId, wall.LevelId == <span class="k">null</span>
+            ? <span class="tp">ElementId</span>.InvalidElementId : level.Id);
+    }
+}
+
+<span class="cm">// ── Unit tests for pure C# logic (no Revit needed) ──</span>
+[<span class="tp">TestFixture</span>]
+<span class="k">public class</span> <span class="tp">ViewModelTests</span>
+{
+    [<span class="tp">Test</span>]
+    <span class="k">public void</span> <span class="fn">ViewModel_UpdateRooms_RaisesPropertyChanged</span>()
+    {
+        <span class="k">var</span> vm = <span class="k">new</span> <span class="tp">RoomInspectorViewModel</span>();
+        <span class="k">bool</span> raised = <span class="k">false</span>;
+        vm.PropertyChanged += (s, e) =>
+        {
+            <span class="k">if</span> (e.PropertyName == <span class="k">nameof</span>(vm.Rooms)) raised = <span class="k">true</span>;
+        };
+
+        vm.<span class="fn">UpdateRooms</span>(<span class="k">new</span>[] {
+            <span class="k">new</span> <span class="tp">RoomData</span> { Name = <span class="s">"Test Room"</span>, AreaSqM = <span class="n">25</span> }
+        });
+
+        <span class="tp">Assert</span>.<span class="fn">IsTrue</span>(raised);
+        <span class="tp">Assert</span>.<span class="fn">AreEqual</span>(<span class="n">1</span>, vm.Rooms.Count);
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-testing -->
+
+<!-- ═══════════════════════════════════════
+     DEPLOYMENT
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-deploy" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🚀</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Deployment</div>
+      <h2>Multi-Version Support + Deployment</h2>
+      <p>Support Revit 2022–2025 from one codebase, build per-version .addin manifests, create an installer, and check for updates on startup.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="sec-multiversion">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">Multi-Version .csproj — One Codebase, Many Revit Versions</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Multi-target .csproj + conditional compilation</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// StudioTools.csproj — build for Revit 2022, 2023, 2024, 2025</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">&lt;!-- Multi-target: builds 4 DLLs, one per Revit version --&gt;
+&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;!-- Semicolon-separated list of target frameworks --&gt;
+    &lt;TargetFrameworks&gt;net48-Revit2022;net48-Revit2023;net48-Revit2024;net48-Revit2025&lt;/TargetFrameworks&gt;
+    &lt;AssemblyName&gt;StudioTools&lt;/AssemblyName&gt;
+    &lt;RootNamespace&gt;StudioTools&lt;/RootNamespace&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;!-- Per-version RevitAPI reference + defines --&gt;
+  &lt;PropertyGroup Condition="$(TargetFramework.Contains('Revit2022'))"&gt;
+    &lt;DefineConstants&gt;REVIT2022&lt;/DefineConstants&gt;
+    &lt;RevitVersion&gt;2022&lt;/RevitVersion&gt;
+    &lt;RevitApiPath&gt;C:\Program Files\Autodesk\Revit 2022&lt;/RevitApiPath&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;PropertyGroup Condition="$(TargetFramework.Contains('Revit2023'))"&gt;
+    &lt;DefineConstants&gt;REVIT2023&lt;/DefineConstants&gt;
+    &lt;RevitVersion&gt;2023&lt;/RevitVersion&gt;
+    &lt;RevitApiPath&gt;C:\Program Files\Autodesk\Revit 2023&lt;/RevitApiPath&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;PropertyGroup Condition="$(TargetFramework.Contains('Revit2024'))"&gt;
+    &lt;DefineConstants&gt;REVIT2024&lt;/DefineConstants&gt;
+    &lt;RevitVersion&gt;2024&lt;/RevitVersion&gt;
+    &lt;RevitApiPath&gt;C:\Program Files\Autodesk\Revit 2024&lt;/RevitApiPath&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;PropertyGroup Condition="$(TargetFramework.Contains('Revit2025'))"&gt;
+    &lt;DefineConstants&gt;REVIT2025&lt;/DefineConstants&gt;
+    &lt;RevitVersion&gt;2025&lt;/RevitVersion&gt;
+    &lt;RevitApiPath&gt;C:\Program Files\Autodesk\Revit 2025&lt;/RevitApiPath&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;Reference Include="RevitAPI"&gt;
+      &lt;HintPath&gt;$(RevitApiPath)\RevitAPI.dll&lt;/HintPath&gt;
+      &lt;Private&gt;False&lt;/Private&gt;
+    &lt;/Reference&gt;
+    &lt;Reference Include="RevitAPIUI"&gt;
+      &lt;HintPath&gt;$(RevitApiPath)\RevitAPIUI.dll&lt;/HintPath&gt;
+      &lt;Private&gt;False&lt;/Private&gt;
+    &lt;/Reference&gt;
+  &lt;/ItemGroup&gt;
+
+  &lt;!-- Output each version to its own folder --&gt;
+  &lt;PropertyGroup&gt;
+    &lt;OutputPath&gt;bin\$(RevitVersion)\&lt;/OutputPath&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</span>
+
+<span class="cm">// ── Use #if in code for version-specific API differences ──</span>
+<span class="k">public void</span> <span class="fn">DoVersionSpecificWork</span>(<span class="tp">Document</span> doc)
+{
+<span class="k">#if</span> REVIT2025
+    <span class="cm">// Revit 2025 has new generic GetElement&lt;T&gt;</span>
+    <span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;();
+<span class="k">#elif</span> REVIT2024
+    <span class="cm">// Revit 2024 specific pattern</span>
+    <span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;();
+<span class="k">#else</span>
+    <span class="cm">// Revit 2022/2023 fallback</span>
+    <span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;();
+<span class="k">#endif</span>
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block" id="sec-addin-per-version">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">Per-Version .addin Manifest Files</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Deploy .addin for each Revit version</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Folder structure for multi-version deployment</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Installation folder structure ──
+// C:\Program Files\StudioTools\
+//   ├── 2022\
+//   │   └── StudioTools.dll        ← built for Revit 2022
+//   ├── 2023\
+//   │   └── StudioTools.dll        ← built for Revit 2023
+//   ├── 2024\
+//   │   └── StudioTools.dll        ← built for Revit 2024
+//   └── 2025\
+//       └── StudioTools.dll        ← built for Revit 2025
+//
+// %AppData%\Autodesk\Revit\Addins\2022\StudioTools.addin
+// %AppData%\Autodesk\Revit\Addins\2023\StudioTools.addin
+// %AppData%\Autodesk\Revit\Addins\2024\StudioTools.addin
+// %AppData%\Autodesk\Revit\Addins\2025\StudioTools.addin</span>
+
+<span class="cm">// ── StudioTools_2024.addin ──</span>
+<span class="cm">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RevitAddIns&gt;
+  &lt;AddIn Type="Application"&gt;
+    &lt;AddInId&gt;AABB1122-3344-5566-7788-CCDD9900AABB&lt;/AddInId&gt;
+    &lt;Name&gt;Studio Tools&lt;/Name&gt;
+    &lt;FullClassName&gt;StudioTools.StudioApplication&lt;/FullClassName&gt;
+    &lt;!-- Version-specific DLL path --&gt;
+    &lt;Assembly&gt;C:\Program Files\StudioTools\2024\StudioTools.dll&lt;/Assembly&gt;
+    &lt;VendorId&gt;STUDIO&lt;/VendorId&gt;
+    &lt;VendorDescription&gt;Studio Architecture, www.studio.com&lt;/VendorDescription&gt;
+  &lt;/AddIn&gt;
+&lt;/RevitAddIns&gt;</span>
+
+<span class="cm">// ── PowerShell script: generate .addin files for all versions ──</span>
+<span class="cm">$versions = @("2022", "2023", "2024", "2025")
+$installRoot = "C:\Program Files\StudioTools"
+$addinRoot = "$env:APPDATA\Autodesk\Revit\Addins"
+$guid = "AABB1122-3344-5566-7788-CCDD9900AABB"
+
+foreach ($ver in $versions) {
+    $dllPath = "$installRoot\$ver\StudioTools.dll"
+    $addinDir = "$addinRoot\$ver"
+    $addinFile = "$addinDir\StudioTools.addin"
+
+    New-Item -ItemType Directory -Force -Path $addinDir | Out-Null
+
+    $content = @"
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RevitAddIns&gt;
+  &lt;AddIn Type="Application"&gt;
+    &lt;AddInId&gt;$guid&lt;/AddInId&gt;
+    &lt;Name&gt;Studio Tools $ver&lt;/Name&gt;
+    &lt;FullClassName&gt;StudioTools.StudioApplication&lt;/FullClassName&gt;
+    &lt;Assembly&gt;$dllPath&lt;/Assembly&gt;
+    &lt;VendorId&gt;STUDIO&lt;/VendorId&gt;
+  &lt;/AddIn&gt;
+&lt;/RevitAddIns&gt;
+"@
+    Set-Content -Path $addinFile -Value $content
+    Write-Host "Created: $addinFile"
+}</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block" id="sec-autoupdate">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">Auto-Update Check on Startup</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Check GitHub releases for new version on startup</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Check latest version from GitHub API + prompt user to update</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public static class</span> <span class="tp">UpdateChecker</span>
+{
+    <span class="k">private const string</span> CURRENT_VERSION    = <span class="s">"2.1.0"</span>;
+    <span class="k">private const string</span> GITHUB_RELEASES_URL =
+        <span class="s">"https://api.github.com/repos/yourstudio/studiotools/releases/latest"</span>;
+
+    <span class="cm">/// Check for updates asynchronously — called from ApplicationInitialized event</span>
+    <span class="k">public static async void</span> <span class="fn">CheckAsync</span>()
+    {
+        <span class="k">try</span>
+        {
+            <span class="k">using var</span> client = <span class="k">new</span> System.Net.<span class="tp">Http</span>.<span class="tp">HttpClient</span>();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(<span class="s">"StudioTools/2.1.0"</span>);
+
+            <span class="k">string</span> json = await client.<span class="fn">GetStringAsync</span>(GITHUB_RELEASES_URL);
+            <span class="k">dynamic</span> release = Newtonsoft.Json.<span class="tp">JsonConvert</span>
+                .<span class="fn">DeserializeObject</span>(json);
+
+            <span class="k">string</span> latestTag = (<span class="k">string</span>)release.tag_name;  <span class="cm">// e.g. "v2.2.0"</span>
+            <span class="k">string</span> latestVer = latestTag.<span class="fn">TrimStart</span>(<span class="s">'v'</span>);
+
+            <span class="k">if</span> (<span class="k">new</span> <span class="tp">Version</span>(latestVer) > <span class="k">new</span> <span class="tp">Version</span>(CURRENT_VERSION))
+            {
+                <span class="k">string</span> notes = (<span class="k">string</span>)release.body ?? <span class="s">""</span>;
+                <span class="k">string</span> url   = (<span class="k">string</span>)release.html_url;
+
+                <span class="cm">// Show on UI thread</span>
+                System.Windows.Application.Current?.Dispatcher.<span class="fn">Invoke</span>(() =>
+                {
+                    <span class="k">var</span> result = System.Windows.<span class="tp">MessageBox</span>.<span class="fn">Show</span>(
+                        <span class="s">$"Studio Tools v{latestVer} is available!\n\n"</span> +
+                        <span class="s">$"You have v{CURRENT_VERSION}.\n\n"</span> +
+                        <span class="s">$"Changes:\n{notes}\n\n"</span> +
+                        <span class="s">"Download now?"</span>,
+                        <span class="s">"Update Available"</span>,
+                        System.Windows.<span class="tp">MessageBoxButton</span>.YesNo,
+                        System.Windows.<span class="tp">MessageBoxImage</span>.Information);
+
+                    <span class="k">if</span> (result == System.Windows.<span class="tp">MessageBoxResult</span>.Yes)
+                        System.Diagnostics.<span class="tp">Process</span>.<span class="fn">Start</span>(url);
+                });
+            }
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            <span class="cm">// Silently ignore — don't crash plugin if network unavailable</span>
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"Update check failed: {ex.Message}"</span>);
+        }
+    }
+}
+
+<span class="cm">// ── Call from OnStartup ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="cm">// Subscribe to ApplicationInitialized (fires after all addins load)</span>
+    app.ControlledApplication.ApplicationInitialized +=
+        (s, e) => <span class="tp">UpdateChecker</span>.<span class="fn">CheckAsync</span>();
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-deploy -->
+
+<!-- ═══════════════════════════════════════
+     ERROR LOGGING
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-logging" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">📋</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Error Logging</div>
+      <h2>Serilog Logging + Crash Handler</h2>
+      <p>Structured rolling log files + global crash handler so you can diagnose client issues without remote access.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="sec-serilog">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Library</span><span class="class-name">Serilog — Structured Logging Setup</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Serilog setup + log patterns + crash handler</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Logger.cs — global logger + crash handler</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Serilog;
+<span class="k">using</span> Serilog.Events;
+
+<span class="k">public static class</span> <span class="tp">PluginLogger</span>
+{
+    <span class="k">public static</span> <span class="tp">ILogger</span> Log { <span class="k">get</span>; <span class="k">private set</span>; }
+
+    <span class="k">public static void</span> <span class="fn">Initialise</span>(<span class="k">string</span> revitVersion)
+    {
+        <span class="k">string</span> logDir = System.IO.<span class="tp">Path</span>.<span class="fn">Combine</span>(
+            System.Environment.<span class="fn">GetFolderPath</span>(
+                System.Environment.SpecialFolder.ApplicationData),
+            <span class="s">"StudioTools"</span>, <span class="s">"Logs"</span>);
+
+        System.IO.<span class="tp">Directory</span>.<span class="fn">CreateDirectory</span>(logDir);
+
+        Log = <span class="k">new</span> <span class="tp">LoggerConfiguration</span>()
+            <span class="cm">// Minimum level</span>
+            .<span class="fn">MinimumLevel</span>.<span class="fn">Information</span>()
+            .<span class="fn">MinimumLevel</span>.<span class="fn">Override</span>(<span class="s">"Microsoft"</span>, <span class="tp">LogEventLevel</span>.Warning)
+
+            <span class="cm">// Add context to every message</span>
+            .<span class="fn">Enrich</span>.<span class="fn">WithProperty</span>(<span class="s">"RevitVersion"</span>, revitVersion)
+            .<span class="fn">Enrich</span>.<span class="fn">WithProperty</span>(<span class="s">"PluginVersion"</span>, <span class="s">"2.1.0"</span>)
+            .<span class="fn">Enrich</span>.<span class="fn">WithProperty</span>(<span class="s">"MachineName"</span>, System.Environment.MachineName)
+
+            <span class="cm">// Rolling file: new file per day, keep 30 days</span>
+            .<span class="fn">WriteTo</span>.<span class="fn">File</span>(
+                path: System.IO.<span class="tp">Path</span>.<span class="fn">Combine</span>(logDir, <span class="s">"StudioTools_.log"</span>),
+                rollingInterval: <span class="tp">RollingInterval</span>.Day,
+                retainedFileCountLimit: <span class="n">30</span>,
+                outputTemplate:
+                    <span class="s">"{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj} {Properties}{NewLine}{Exception}"</span>)
+
+            <span class="cm">// Also write to Debug output in VS</span>
+            .<span class="fn">WriteTo</span>.<span class="fn">Debug</span>()
+            .<span class="fn">CreateLogger</span>();
+
+        Log.<span class="fn">Information</span>(<span class="s">"=== Studio Tools started. Revit {RevitVersion} ==="</span>, revitVersion);
+    }
+
+    <span class="k">public static void</span> <span class="fn">Shutdown</span>()
+    {
+        Log.<span class="fn">Information</span>(<span class="s">"=== Studio Tools shutting down ==="</span>);
+        Serilog.<span class="tp">Log</span>.<span class="fn">CloseAndFlush</span>();
+    }
+}
+
+<span class="cm">// ── Usage in commands ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(<span class="tp">ExternalCommandData</span> cd, <span class="k">ref string</span> msg, <span class="tp">ElementSet</span> els)
+{
+    <span class="tp">PluginLogger</span>.Log.<span class="fn">Information</span>(<span class="s">"ReinforcBeam command started"</span>);
+    <span class="k">try</span>
+    {
+        <span class="cm">// ... work ...</span>
+        <span class="tp">PluginLogger</span>.Log.<span class="fn">Information</span>(
+            <span class="s">"ReinforcBeam completed. Beams reinforced: {Count}"</span>, <span class="n">3</span>);
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+    <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+    {
+        <span class="tp">PluginLogger</span>.Log.<span class="fn">Error</span>(ex,
+            <span class="s">"ReinforcBeam failed. Document: {DocTitle}"</span>,
+            cd.Application.ActiveUIDocument?.Document?.Title);
+        msg = <span class="s">$"Error: {ex.Message}\nCheck log: %AppData%\\StudioTools\\Logs\\"</span>;
+        <span class="k">return</span> <span class="tp">Result</span>.Failed;
+    }
+}
+
+<span class="cm">// ── Global crash handler in Application.OnStartup ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="tp">PluginLogger</span>.<span class="fn">Initialise</span>(app.ControlledApplication.VersionName);
+
+    <span class="cm">// Catch ALL unhandled exceptions — last resort</span>
+    AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+    {
+        <span class="k">var</span> ex = e.ExceptionObject <span class="k">as</span> <span class="tp">Exception</span>;
+        <span class="tp">PluginLogger</span>.Log.<span class="fn">Fatal</span>(ex,
+            <span class="s">"UNHANDLED EXCEPTION. IsTerminating={IsTerminating}"</span>,
+            e.IsTerminating);
+        Serilog.<span class="tp">Log</span>.<span class="fn">CloseAndFlush</span>();
+    };
+
+    <span class="cm">// Catch unhandled exceptions on background threads</span>
+    System.Threading.<span class="tp">Tasks</span>.<span class="tp">TaskScheduler</span>.UnobservedTaskException += (s, e) =>
+    {
+        <span class="tp">PluginLogger</span>.Log.<span class="fn">Error</span>(e.Exception,
+            <span class="s">"Unobserved Task exception"</span>);
+        e.<span class="fn">SetObserved</span>();  <span class="cm">// prevent crash</span>
+    };
+
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}
+
+<span class="cm">// Log levels:
+// Log.Verbose("Very detailed debug info")      — development only
+// Log.Debug("Debug info")                      — development
+// Log.Information("Normal operation event")    — production events
+// Log.Warning("Unexpected but recoverable")    — warnings
+// Log.Error(ex, "Operation failed")            — recoverable errors
+// Log.Fatal(ex, "Crash")                       — unrecoverable</span></pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-logging -->
+
+<!-- ═══════════════════════════════════════
+     EXTERNAL DATA
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-external" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🌐</div>
+    <div class="ns-meta">
+      <div class="ns-label">// External Data</div>
+      <h2>REST API · JSON · SQLite · Excel</h2>
+      <p>Connect your plugin to external systems — POST room data to a web API, read Excel schedules, cache data in SQLite.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="sec-httpclient">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">HttpClient — REST API Integration</span></div></div></div>
+  <div class="class-desc">Call external REST APIs from a Revit plugin. Always use async/await with Task.Run to avoid blocking the Revit UI thread. Bridge back to Revit using ExternalEvent.Raise() after the async operation completes.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 POST room data + GET configuration from REST API</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// ApiService.cs — thread-safe HTTP client singleton</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> System.Net.Http;
+<span class="k">using</span> System.Net.Http.Headers;
+<span class="k">using</span> Newtonsoft.Json;
+
+<span class="cm">// ── Singleton HttpClient (reuse — never new up per request) ──</span>
+<span class="k">public static class</span> <span class="tp">ApiService</span>
+{
+    <span class="k">private static readonly</span> <span class="tp">HttpClient</span> _client;
+    <span class="k">private const string</span> BASE_URL = <span class="s">"https://api.yoursystem.com/v1"</span>;
+
+    <span class="k">static</span> <span class="tp">ApiService</span>()
+    {
+        _client = <span class="k">new</span> <span class="tp">HttpClient</span>();
+        _client.BaseAddress = <span class="k">new</span> Uri(BASE_URL);
+        _client.DefaultRequestHeaders.Accept.<span class="fn">Add</span>(
+            <span class="k">new</span> <span class="tp">MediaTypeWithQualityHeaderValue</span>(<span class="s">"application/json"</span>));
+        _client.Timeout = TimeSpan.<span class="fn">FromSeconds</span>(<span class="n">30</span>);
+    }
+
+    <span class="cm">// ── POST room data to external facilities management system ──</span>
+    <span class="k">public static async</span> Task&lt;<span class="k">bool</span>&gt; <span class="fn">PostRoomsAsync</span>(
+        <span class="tp">IList</span>&lt;<span class="tp">RoomData</span>&gt; rooms, <span class="k">string</span> apiKey)
+    {
+        <span class="k">try</span>
+        {
+            _client.DefaultRequestHeaders.Authorization =
+                <span class="k">new</span> <span class="tp">AuthenticationHeaderValue</span>(<span class="s">"Bearer"</span>, apiKey);
+
+            <span class="k">var</span> payload = <span class="k">new</span>
+            {
+                project  = <span class="s">"Building A"</span>,
+                exported = DateTime.UtcNow,
+                rooms    = rooms.<span class="fn">Select</span>(r => <span class="k">new</span>
+                {
+                    id         = r.RevitId?.IntegerValue,
+                    name       = r.Name,
+                    number     = r.Number,
+                    area_sqm   = r.AreaSqM,
+                    level      = r.Level,
+                    department = r.Department
+                })
+            };
+
+            <span class="k">string</span> json    = <span class="tp">JsonConvert</span>.<span class="fn">SerializeObject</span>(payload);
+            <span class="k">var</span>    content  = <span class="k">new</span> <span class="tp">StringContent</span>(json, Encoding.UTF8, <span class="s">"application/json"</span>);
+            <span class="tp">HttpResponseMessage</span> resp = await _client.<span class="fn">PostAsync</span>(<span class="s">"/rooms"</span>, content);
+
+            resp.<span class="fn">EnsureSuccessStatusCode</span>();
+            <span class="tp">PluginLogger</span>.Log.<span class="fn">Information</span>(
+                <span class="s">"Posted {Count} rooms to API. Status: {Status}"</span>,
+                rooms.Count, resp.StatusCode);
+            <span class="k">return true</span>;
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            <span class="tp">PluginLogger</span>.Log.<span class="fn">Error</span>(ex, <span class="s">"Failed to POST rooms to API"</span>);
+            <span class="k">return false</span>;
+        }
+    }
+
+    <span class="cm">// ── GET config from API ──</span>
+    <span class="k">public static async</span> Task&lt;<span class="tp">PluginConfig</span>&gt; <span class="fn">GetConfigAsync</span>()
+    {
+        <span class="k">try</span>
+        {
+            <span class="k">string</span> json = await _client.<span class="fn">GetStringAsync</span>(<span class="s">"/config/studiotools"</span>);
+            <span class="k">return</span> <span class="tp">JsonConvert</span>.<span class="fn">DeserializeObject</span>&lt;<span class="tp">PluginConfig</span>&gt;(json);
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            <span class="tp">PluginLogger</span>.Log.<span class="fn">Warning</span>(ex, <span class="s">"Could not fetch config from API, using defaults"</span>);
+            <span class="k">return new</span> <span class="tp">PluginConfig</span>();  <span class="cm">// return defaults</span>
+        }
+    }
+}
+
+<span class="cm">// ── Call from a command using ExternalEvent bridge ──</span>
+<span class="k">public class</span> <span class="tp">ExportToApiHandler</span> : <span class="tp">IExternalEventHandler</span>
+{
+    <span class="k">public string</span> <span class="fn">GetName</span>() => <span class="s">"Export to API"</span>;
+
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="tp">UIApplication</span> uiapp)
+    {
+        <span class="tp">Document</span> doc = uiapp.ActiveUIDocument?.Document;
+        <span class="k">if</span> (doc == <span class="k">null</span>) <span class="k">return</span>;
+
+        <span class="cm">// 1. Read room data from Revit (on main thread)</span>
+        <span class="k">var</span> rooms = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rooms)
+            .<span class="fn">Cast</span>&lt;<span class="tp">Room</span>&gt;()
+            .<span class="fn">Where</span>(r => r.Area > <span class="n">0</span>)
+            .<span class="fn">Select</span>(r => <span class="k">new</span> <span class="tp">RoomData</span>
+            {
+                RevitId = r.Id, Name = r.Name,
+                Number = r.Number, AreaSqM = r.Area * <span class="n">0.092903</span>
+            }).<span class="fn">ToList</span>();
+
+        <span class="cm">// 2. POST async on background thread (don't block Revit)</span>
+        Task.<span class="fn">Run</span>(async () =>
+        {
+            <span class="k">bool</span> ok = await <span class="tp">ApiService</span>.<span class="fn">PostRoomsAsync</span>(
+                rooms, <span class="tp">PluginSettings</span>.Current.ApiKey);
+
+            System.Windows.Application.Current?.Dispatcher.<span class="fn">Invoke</span>(() =>
+                System.Windows.<span class="tp">MessageBox</span>.<span class="fn">Show</span>(
+                    ok ? <span class="s">$"Exported {rooms.Count} rooms successfully."</span>
+                       : <span class="s">"Export failed. Check log for details."</span>));
+        });
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- SQLite -->
+<div class="class-block" id="sec-sqlite">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Library</span><span class="class-name">SQLite — Local Data Cache</span></div></div></div>
+  <div class="class-desc">Embed a SQLite database in your plugin for local caching, audit logs, user history, or offline data. Microsoft.Data.Sqlite is lightweight and requires no installation. The .db file lives in %AppData%\YourPlugin\.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 SQLite setup + CRUD operations</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// LocalDatabase.cs — SQLite local cache</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Microsoft.Data.Sqlite;
+
+<span class="k">public class</span> <span class="tp">LocalDatabase</span>
+{
+    <span class="k">private readonly string</span> _connectionString;
+
+    <span class="k">public</span> <span class="tp">LocalDatabase</span>()
+    {
+        <span class="k">string</span> dbDir = System.IO.<span class="tp">Path</span>.<span class="fn">Combine</span>(
+            System.Environment.<span class="fn">GetFolderPath</span>(
+                System.Environment.SpecialFolder.ApplicationData),
+            <span class="s">"StudioTools"</span>);
+        System.IO.<span class="tp">Directory</span>.<span class="fn">CreateDirectory</span>(dbDir);
+
+        <span class="k">string</span> dbPath = System.IO.<span class="tp">Path</span>.<span class="fn">Combine</span>(dbDir, <span class="s">"studiotools.db"</span>);
+        _connectionString = <span class="s">$"Data Source={dbPath}"</span>;
+        <span class="fn">InitialiseSchema</span>();
+    }
+
+    <span class="k">private void</span> <span class="fn">InitialiseSchema</span>()
+    {
+        <span class="k">using var</span> conn = <span class="k">new</span> <span class="tp">SqliteConnection</span>(_connectionString);
+        conn.<span class="fn">Open</span>();
+
+        <span class="cm">// Create tables if they don't exist</span>
+        <span class="k">using var</span> cmd = conn.<span class="fn">CreateCommand</span>();
+        cmd.CommandText = <span class="s">@"
+            CREATE TABLE IF NOT EXISTS ExportHistory (
+                Id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                ProjectName TEXT    NOT NULL,
+                ExportedAt  TEXT    NOT NULL,
+                ItemCount   INTEGER NOT NULL,
+                ExportType  TEXT    NOT NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS RoomCache (
+                RevitId     INTEGER PRIMARY KEY,
+                ProjectPath TEXT    NOT NULL,
+                Name        TEXT,
+                Number      TEXT,
+                AreaSqM     REAL,
+                Department  TEXT,
+                CachedAt    TEXT    NOT NULL
+            );"</span>;
+        cmd.<span class="fn">ExecuteNonQuery</span>();
+    }
+
+    <span class="cm">// ── INSERT export history record ──</span>
+    <span class="k">public void</span> <span class="fn">LogExport</span>(<span class="k">string</span> project, <span class="k">int</span> count, <span class="k">string</span> type)
+    {
+        <span class="k">using var</span> conn = <span class="k">new</span> <span class="tp">SqliteConnection</span>(_connectionString);
+        conn.<span class="fn">Open</span>();
+        <span class="k">using var</span> cmd = conn.<span class="fn">CreateCommand</span>();
+        cmd.CommandText = <span class="s">
+            "INSERT INTO ExportHistory (ProjectName, ExportedAt, ItemCount, ExportType)
+             VALUES (@p, @d, @c, @t)"</span>;
+        cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@p"</span>, project);
+        cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@d"</span>, DateTime.UtcNow.ToString(<span class="s">"o"</span>));
+        cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@c"</span>, count);
+        cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@t"</span>, type);
+        cmd.<span class="fn">ExecuteNonQuery</span>();
+    }
+
+    <span class="cm">// ── SELECT recent export history ──</span>
+    <span class="k">public</span> <span class="tp">List</span>&lt;(<span class="k">string</span> Project, DateTime When, <span class="k">int</span> Count, <span class="k">string</span> Type)&gt;
+        <span class="fn">GetRecentExports</span>(<span class="k">int</span> limit = <span class="n">20</span>)
+    {
+        <span class="k">var</span> result = <span class="k">new</span> <span class="tp">List</span>&lt;(<span class="k">string</span>, DateTime, <span class="k">int</span>, <span class="k">string</span>)&gt;();
+        <span class="k">using var</span> conn = <span class="k">new</span> <span class="tp">SqliteConnection</span>(_connectionString);
+        conn.<span class="fn">Open</span>();
+        <span class="k">using var</span> cmd = conn.<span class="fn">CreateCommand</span>();
+        cmd.CommandText = <span class="s">
+            "SELECT ProjectName, ExportedAt, ItemCount, ExportType
+             FROM ExportHistory ORDER BY Id DESC LIMIT @limit"</span>;
+        cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@limit"</span>, limit);
+
+        <span class="k">using var</span> reader = cmd.<span class="fn">ExecuteReader</span>();
+        <span class="k">while</span> (reader.<span class="fn">Read</span>())
+            result.<span class="fn">Add</span>((
+                reader.<span class="fn">GetString</span>(<span class="n">0</span>),
+                DateTime.<span class="fn">Parse</span>(reader.<span class="fn">GetString</span>(<span class="n">1</span>)),
+                reader.<span class="fn">GetInt32</span>(<span class="n">2</span>),
+                reader.<span class="fn">GetString</span>(<span class="n">3</span>)));
+
+        <span class="k">return</span> result;
+    }
+
+    <span class="cm">// ── Cache rooms from a project ──</span>
+    <span class="k">public void</span> <span class="fn">CacheRooms</span>(<span class="k">string</span> projectPath,
+        <span class="tp">IEnumerable</span>&lt;<span class="tp">RoomData</span>&gt; rooms)
+    {
+        <span class="k">using var</span> conn = <span class="k">new</span> <span class="tp">SqliteConnection</span>(_connectionString);
+        conn.<span class="fn">Open</span>();
+        <span class="k">using var</span> txn = conn.<span class="fn">BeginTransaction</span>();
+
+        <span class="k">foreach</span> (<span class="k">var</span> r <span class="k">in</span> rooms)
+        {
+            <span class="k">using var</span> cmd = conn.<span class="fn">CreateCommand</span>();
+            cmd.Transaction = txn;
+            cmd.CommandText = <span class="s">@"
+                INSERT OR REPLACE INTO RoomCache
+                    (RevitId,ProjectPath,Name,Number,AreaSqM,Department,CachedAt)
+                VALUES (@id,@pp,@n,@nu,@a,@d,@ca)"</span>;
+            cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@id"</span>, r.RevitId?.IntegerValue ?? <span class="n">0</span>);
+            cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@pp"</span>, projectPath);
+            cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@n"</span>,  r.Name ?? <span class="s">""</span>);
+            cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@nu"</span>, r.Number ?? <span class="s">""</span>);
+            cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@a"</span>,  r.AreaSqM);
+            cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@d"</span>,  r.Department ?? <span class="s">""</span>);
+            cmd.Parameters.<span class="fn">AddWithValue</span>(<span class="s">"@ca"</span>, DateTime.UtcNow.ToString(<span class="s">"o"</span>));
+            cmd.<span class="fn">ExecuteNonQuery</span>();
+        }
+        txn.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Excel -->
+<div class="class-block" id="sec-excel">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Library</span><span class="class-name">ClosedXML — Excel Read/Write</span></div></div></div>
+  <div class="class-desc">Read Excel templates (room schedules, specification sheets) and write Revit data to Excel. ClosedXML works with .xlsx files without needing Excel installed. Requires ClosedXML NuGet package.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Read Excel data → write to Revit + Export Revit data → Excel</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// ExcelService.cs — read spec sheet + export room schedule</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> ClosedXML.Excel;
+
+<span class="k">public static class</span> <span class="tp">ExcelService</span>
+{
+    <span class="cm">// ── READ: Import room data from Excel template ──</span>
+    <span class="k">public static</span> <span class="tp">List</span>&lt;<span class="tp">RoomData</span>&gt; <span class="fn">ReadRoomSchedule</span>(<span class="k">string</span> xlsxPath)
+    {
+        <span class="k">var</span> result = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">RoomData</span>&gt;();
+
+        <span class="k">using var</span> wb = <span class="k">new</span> <span class="tp">XLWorkbook</span>(xlsxPath);
+        <span class="k">var</span> ws = wb.Worksheet(<span class="n">1</span>);  <span class="cm">// first sheet</span>
+
+        <span class="cm">// Find header row — look for "Room Number" header</span>
+        <span class="k">int</span> startRow = <span class="n">2</span>;  <span class="cm">// row 1 = headers</span>
+        <span class="k">int</span> lastRow  = ws.LastRowUsed()?.RowNumber() ?? <span class="n">1</span>;
+
+        <span class="k">for</span> (<span class="k">int</span> row = startRow; row &lt;= lastRow; row++)
+        {
+            <span class="k">string</span> number = ws.<span class="fn">Cell</span>(row, <span class="n">1</span>).GetString();
+            <span class="k">if</span> (<span class="k">string</span>.<span class="fn">IsNullOrEmpty</span>(number)) <span class="k">continue</span>;
+
+            result.<span class="fn">Add</span>(<span class="k">new</span> <span class="tp">RoomData</span>
+            {
+                Number     = number,
+                Name       = ws.<span class="fn">Cell</span>(row, <span class="n">2</span>).<span class="fn">GetString</span>(),
+                Department = ws.<span class="fn">Cell</span>(row, <span class="n">3</span>).<span class="fn">GetString</span>(),
+                AreaSqM    = ws.<span class="fn">Cell</span>(row, <span class="n">4</span>).<span class="fn">GetDouble</span>()
+            });
+        }
+
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Read {result.Count} rooms from {xlsxPath}"</span>);
+        <span class="k">return</span> result;
+    }
+
+    <span class="cm">// ── WRITE: Export Revit rooms to formatted Excel ──</span>
+    <span class="k">public static void</span> <span class="fn">ExportRoomSchedule</span>(
+        <span class="tp">IEnumerable</span>&lt;<span class="tp">RoomData</span>&gt; rooms, <span class="k">string</span> outputPath)
+    {
+        <span class="k">using var</span> wb = <span class="k">new</span> <span class="tp">XLWorkbook</span>();
+        <span class="k">var</span> ws = wb.<span class="fn">Worksheets</span>.<span class="fn">Add</span>(<span class="s">"Room Schedule"</span>);
+
+        <span class="cm">// ── Header row ──</span>
+        <span class="k">string</span>[] headers = { <span class="s">"Room No."</span>, <span class="s">"Room Name"</span>, <span class="s">"Department"</span>,
+                              <span class="s">"Level"</span>, <span class="s">"Area (m²)"</span>, <span class="s">"Revit ID"</span> };
+        <span class="k">for</span> (<span class="k">int</span> c = <span class="n">0</span>; c &lt; headers.Length; c++)
+        {
+            <span class="k">var</span> cell = ws.<span class="fn">Cell</span>(<span class="n">1</span>, c + <span class="n">1</span>);
+            cell.Value = headers[c];
+            cell.Style.Font.Bold = <span class="k">true</span>;
+            cell.Style.Fill.<span class="fn">SetBackgroundColor</span>(<span class="tp">XLColor</span>.<span class="fn">FromArgb</span>(<span class="n">68</span>, <span class="n">114</span>, <span class="n">196</span>));
+            cell.Style.Font.<span class="fn">SetFontColor</span>(<span class="tp">XLColor</span>.White);
+        }
+
+        <span class="cm">// ── Data rows ──</span>
+        <span class="k">int</span> row = <span class="n">2</span>;
+        <span class="k">foreach</span> (<span class="k">var</span> r <span class="k">in</span> rooms)
+        {
+            ws.<span class="fn">Cell</span>(row, <span class="n">1</span>).Value = r.Number;
+            ws.<span class="fn">Cell</span>(row, <span class="n">2</span>).Value = r.Name;
+            ws.<span class="fn">Cell</span>(row, <span class="n">3</span>).Value = r.Department;
+            ws.<span class="fn">Cell</span>(row, <span class="n">4</span>).Value = r.Level;
+            ws.<span class="fn">Cell</span>(row, <span class="n">5</span>).Value = r.AreaSqM;
+            ws.<span class="fn">Cell</span>(row, <span class="n">5</span>).Style.NumberFormat.Format = <span class="s">"0.00"</span>;
+            ws.<span class="fn">Cell</span>(row, <span class="n">6</span>).Value = r.RevitId?.IntegerValue ?? <span class="n">0</span>;
+
+            <span class="cm">// Alternate row colour</span>
+            <span class="k">if</span> (row % <span class="n">2</span> == <span class="n">0</span>)
+                ws.<span class="fn">Row</span>(row).Style.Fill.<span class="fn">SetBackgroundColor</span>(
+                    <span class="tp">XLColor</span>.<span class="fn">FromArgb</span>(<span class="n">242</span>, <span class="n">242</span>, <span class="n">242</span>));
+            row++;
+        }
+
+        <span class="cm">// ── Auto-fit columns + freeze header row ──</span>
+        ws.Columns().<span class="fn">AdjustToContents</span>();
+        ws.<span class="fn">SheetView</span>.<span class="fn">FreezeRows</span>(<span class="n">1</span>);
+
+        <span class="cm">// ── Add total row ──</span>
+        ws.<span class="fn">Cell</span>(row, <span class="n">4</span>).Value = <span class="s">"TOTAL"</span>;
+        ws.<span class="fn">Cell</span>(row, <span class="n">4</span>).Style.Font.Bold = <span class="k">true</span>;
+        ws.<span class="fn">Cell</span>(row, <span class="n">5</span>).FormulaA1 = <span class="s">$"=SUM(E2:E{row-1})"</span>;
+        ws.<span class="fn">Cell</span>(row, <span class="n">5</span>).Style.Font.Bold = <span class="k">true</span>;
+
+        wb.<span class="fn">SaveAs</span>(outputPath);
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Exported {row-2} rooms to {outputPath}"</span>);
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-external -->
+
+<!-- ═══════════════════════════════════════
+     UX PATTERNS
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-ux" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🎯</div>
+    <div class="ns-meta">
+      <div class="ns-label">// UX Patterns</div>
+      <h2>Progress Bar · Settings · License</h2>
+      <p>Three production patterns every shipped plugin needs.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="sec-progress">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">Progress Reporting + Cancellation for Long Operations</span></div></div></div>
+  <div class="class-desc">Show a WPF progress bar during batch operations (e.g. reinforcing 200 beams, exporting 100 sheets) with a Cancel button. Uses IProgress&lt;T&gt; for thread-safe progress updates and CancellationToken for clean cancellation.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Progress bar + cancellation + WPF dialog</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// ProgressViewModel.cs + batch operation with cancellation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── ProgressViewModel.cs ──</span>
+<span class="k">public class</span> <span class="tp">ProgressViewModel</span> : <span class="tp">ViewModelBase</span>
+{
+    <span class="k">private int</span>    _value;
+    <span class="k">private int</span>    _max = <span class="n">100</span>;
+    <span class="k">private string</span> _message;
+    <span class="k">private bool</span>   _isCancelled;
+
+    <span class="k">public int</span>    Value     { <span class="k">get</span> => _value;   <span class="k">set</span> => <span class="fn">SetField</span>(<span class="k">ref</span> _value,   value); }
+    <span class="k">public int</span>    Maximum   { <span class="k">get</span> => _max;     <span class="k">set</span> => <span class="fn">SetField</span>(<span class="k">ref</span> _max,     value); }
+    <span class="k">public string</span> Message   { <span class="k">get</span> => _message; <span class="k">set</span> => <span class="fn">SetField</span>(<span class="k">ref</span> _message, value); }
+    <span class="k">public bool</span>   IsCancelled { <span class="k">get</span> => _isCancelled; <span class="k">set</span> => <span class="fn">SetField</span>(<span class="k">ref</span> _isCancelled, value); }
+
+    <span class="k">public string</span> PercentText => <span class="s">$"{(Maximum > 0 ? Value * 100 / Maximum : 0)}%"</span>;
+
+    <span class="k">public</span> <span class="tp">CancellationTokenSource</span> CancelSource { <span class="k">get</span>; } = <span class="k">new</span>();
+    <span class="k">public</span> <span class="tp">ICommand</span> CancelCommand { <span class="k">get</span>; }
+
+    <span class="k">public</span> <span class="tp">ProgressViewModel</span>()
+    {
+        CancelCommand = <span class="k">new</span> <span class="tp">RelayCommand</span>(_ =>
+        {
+            CancelSource.<span class="fn">Cancel</span>();
+            IsCancelled = <span class="k">true</span>;
+            Message = <span class="s">"Cancelling..."</span>;
+        });
+    }
+}
+
+<span class="cm">// ── Batch operation handler with progress ──</span>
+<span class="k">public class</span> <span class="tp">BatchReinforcementHandler</span> : <span class="tp">IExternalEventHandler</span>
+{
+    <span class="k">public</span> <span class="tp">IList</span>&lt;<span class="tp">ElementId</span>&gt;   BeamIds      { <span class="k">get</span>; <span class="k">set</span>; }
+    <span class="k">public</span> <span class="tp">ProgressViewModel</span> ProgressVm   { <span class="k">get</span>; <span class="k">set</span>; }
+
+    <span class="k">public string</span> <span class="fn">GetName</span>() => <span class="s">"Batch Reinforce"</span>;
+
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="tp">UIApplication</span> uiapp)
+    {
+        <span class="tp">Document</span> doc     = uiapp.ActiveUIDocument?.Document;
+        <span class="k">var</span>      ct      = ProgressVm.CancelSource.Token;
+        <span class="k">int</span>      total   = BeamIds.Count;
+        <span class="k">int</span>      done    = <span class="n">0</span>;
+
+        <span class="cm">// Update progress on UI thread</span>
+        <span class="k">void</span> <span class="fn">Report</span>(<span class="k">string</span> msg)
+        {
+            System.Windows.Application.Current?.Dispatcher.<span class="fn">Invoke</span>(() =>
+            {
+                ProgressVm.Value   = done;
+                ProgressVm.Maximum = total;
+                ProgressVm.Message = msg;
+                <span class="fn">OnPropertyChanged</span>(<span class="k">nameof</span>(ProgressVm.PercentText));
+            });
+        }
+
+        <span class="fn">Report</span>(<span class="s">"Starting reinforcement..."</span>);
+
+        <span class="k">foreach</span> (<span class="k">var</span> id <span class="k">in</span> BeamIds)
+        {
+            <span class="cm">// Check cancellation before each beam</span>
+            <span class="k">if</span> (ct.IsCancellationRequested) <span class="k">break</span>;
+
+            <span class="tp">FamilyInstance</span> beam = doc?.<span class="fn">GetElement</span>(id) <span class="k">as</span> <span class="tp">FamilyInstance</span>;
+            <span class="k">if</span> (beam == <span class="k">null</span>) <span class="k">continue</span>;
+
+            <span class="k">try</span>
+            {
+                <span class="fn">Report</span>(<span class="s">$"Reinforcing beam {done+1} of {total}: {beam.Name}"</span>);
+                <span class="cm">// Do the reinforcement (Book 17 methods)</span>
+                <span class="fn">ReinforceSingleBeam</span>(doc, beam);
+            }
+            <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+            {
+                <span class="tp">PluginLogger</span>.Log.<span class="fn">Warning</span>(ex,
+                    <span class="s">"Failed to reinforce beam {Id}"</span>, id);
+            }
+            finally { done++; }
+        }
+
+        System.Windows.Application.Current?.Dispatcher.<span class="fn">Invoke</span>(() =>
+        {
+            ProgressVm.Value   = done;
+            ProgressVm.Message = ProgressVm.IsCancelled
+                ? <span class="s">$"Cancelled after {done} beams"</span>
+                : <span class="s">$"Complete — {done} beams reinforced"</span>;
+        });
+    }
+}
+
+<span class="cm">/* ── ProgressWindow.xaml ──
+&lt;Window Title="Processing..." Height="160" Width="400"&gt;
+    &lt;StackPanel Margin="20"&gt;
+        &lt;TextBlock Text="{Binding Message}" Margin="0,0,0,8"/&gt;
+        &lt;ProgressBar Value="{Binding Value}" Maximum="{Binding Maximum}" Height="20"/&gt;
+        &lt;TextBlock Text="{Binding PercentText}" HorizontalAlignment="Right" FontSize="11"/&gt;
+        &lt;Button Content="Cancel" Command="{Binding CancelCommand}"
+                HorizontalAlignment="Center" Margin="0,12,0,0" Width="80"
+                IsEnabled="{Binding IsCancelled, Converter={...InverseBool}}"/&gt;
+    &lt;/StackPanel&gt;
+&lt;/Window&gt;
+*/</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Settings -->
+<div class="class-block" id="sec-settings">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">Settings Persistence — JSON to %AppData%</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 User settings persisted to JSON file</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// PluginSettings.cs — load/save user preferences</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public class</span> <span class="tp">PluginSettings</span>
+{
+    <span class="cm">// Settings properties with defaults</span>
+    <span class="k">public string</span>   ApiKey          { <span class="k">get</span>; <span class="k">set</span>; } = <span class="s">""</span>;
+    <span class="k">public string</span>   ApiBaseUrl      { <span class="k">get</span>; <span class="k">set</span>; } = <span class="s">"https://api.example.com"</span>;
+    <span class="k">public bool</span>     CheckUpdates    { <span class="k">get</span>; <span class="k">set</span>; } = <span class="k">true</span>;
+    <span class="k">public bool</span>     UseMetric       { <span class="k">get</span>; <span class="k">set</span>; } = <span class="k">true</span>;
+    <span class="k">public double</span>   DefaultCoverMm  { <span class="k">get</span>; <span class="k">set</span>; } = <span class="n">35.0</span>;
+    <span class="k">public string</span>   LastProjectPath { <span class="k">get</span>; <span class="k">set</span>; } = <span class="s">""</span>;
+    <span class="k">public DateTime</span> LastExportDate  { <span class="k">get</span>; <span class="k">set</span>; } = DateTime.MinValue;
+
+    <span class="cm">// Singleton current settings</span>
+    <span class="k">public static</span> <span class="tp">PluginSettings</span> Current { <span class="k">get</span>; <span class="k">private set</span>; } = <span class="k">new</span>();
+
+    <span class="k">private static string</span> <span class="fn">GetSettingsPath</span>() =>
+        System.IO.<span class="tp">Path</span>.<span class="fn">Combine</span>(
+            System.Environment.<span class="fn">GetFolderPath</span>(
+                System.Environment.SpecialFolder.ApplicationData),
+            <span class="s">"StudioTools"</span>, <span class="s">"settings.json"</span>);
+
+    <span class="cm">// Load from disk (call in OnStartup)</span>
+    <span class="k">public static void</span> <span class="fn">Load</span>()
+    {
+        <span class="k">try</span>
+        {
+            <span class="k">string</span> path = <span class="fn">GetSettingsPath</span>();
+            <span class="k">if</span> (!System.IO.<span class="tp">File</span>.<span class="fn">Exists</span>(path))
+            {
+                Current = <span class="k">new</span> <span class="tp">PluginSettings</span>();
+                <span class="fn">Save</span>();  <span class="cm">// create default settings file</span>
+                <span class="k">return</span>;
+            }
+            <span class="k">string</span> json = System.IO.<span class="tp">File</span>.<span class="fn">ReadAllText</span>(path);
+            Current = <span class="tp">JsonConvert</span>.<span class="fn">DeserializeObject</span>&lt;<span class="tp">PluginSettings</span>&gt;(json)
+                   ?? <span class="k">new</span> <span class="tp">PluginSettings</span>();
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            <span class="tp">PluginLogger</span>.Log.<span class="fn">Warning</span>(ex, <span class="s">"Could not load settings, using defaults"</span>);
+            Current = <span class="k">new</span> <span class="tp">PluginSettings</span>();
+        }
+    }
+
+    <span class="cm">// Save to disk (call after any change)</span>
+    <span class="k">public static void</span> <span class="fn">Save</span>()
+    {
+        <span class="k">try</span>
+        {
+            <span class="k">string</span> path = <span class="fn">GetSettingsPath</span>();
+            System.IO.<span class="tp">Directory</span>.<span class="fn">CreateDirectory</span>(
+                System.IO.<span class="tp">Path</span>.<span class="fn">GetDirectoryName</span>(path));
+            <span class="k">string</span> json = <span class="tp">JsonConvert</span>.<span class="fn">SerializeObject</span>(Current, Formatting.Indented);
+            System.IO.<span class="tp">File</span>.<span class="fn">WriteAllText</span>(path, json);
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            <span class="tp">PluginLogger</span>.Log.<span class="fn">Warning</span>(ex, <span class="s">"Could not save settings"</span>);
+        }
+    }
+}
+
+<span class="cm">// ── OnStartup ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="tp">PluginLogger</span>.<span class="fn">Initialise</span>(app.ControlledApplication.VersionName);
+    <span class="tp">PluginSettings</span>.<span class="fn">Load</span>();
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}
+
+<span class="cm">// ── OnShutdown ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnShutdown</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="tp">PluginSettings</span>.<span class="fn">Save</span>();
+    <span class="tp">PluginLogger</span>.<span class="fn">Shutdown</span>();
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- License -->
+<div class="class-block" id="sec-licensing">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">License Key Validation</span></div></div></div>
+  <div class="class-desc">Simple HMAC-based license key validation — no external server needed for offline license checks. For commercial plugins: generate keys tied to machine ID + expiry date, validate on startup.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Machine-locked license validation</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// LicenseManager.cs — offline HMAC license validation</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public static class</span> <span class="tp">LicenseManager</span>
+{
+    <span class="k">private const string</span> SECRET = <span class="s">"your-secret-key-change-this-in-production"</span>;
+
+    <span class="cm">// Get unique machine fingerprint</span>
+    <span class="k">public static string</span> <span class="fn">GetMachineId</span>()
+    {
+        <span class="k">string</span> cpu = System.Environment.<span class="fn">GetEnvironmentVariable</span>(<span class="s">"PROCESSOR_IDENTIFIER"</span>)
+                  ?? System.Environment.MachineName;
+        <span class="k">string</span> user = System.Environment.UserName;
+        <span class="k">string</span> raw  = <span class="s">$"{cpu}|{user}"</span>;
+        <span class="k">using var</span> sha = System.Security.Cryptography.<span class="tp">SHA256</span>.<span class="fn">Create</span>();
+        <span class="k">var</span> hash = sha.<span class="fn">ComputeHash</span>(Encoding.UTF8.<span class="fn">GetBytes</span>(raw));
+        <span class="k">return</span> <span class="tp">Convert</span>.<span class="fn">ToBase64String</span>(hash)[..<span class="n">16</span>];
+    }
+
+    <span class="cm">// Generate a license key (run server-side when customer buys)</span>
+    <span class="k">public static string</span> <span class="fn">GenerateKey</span>(<span class="k">string</span> machineId, DateTime expiry)
+    {
+        <span class="k">string</span> data = <span class="s">$"{machineId}|{expiry:yyyyMMdd}"</span>;
+        <span class="k">using var</span> hmac = <span class="k">new</span> System.Security.Cryptography.<span class="tp">HMACSHA256</span>(
+            Encoding.UTF8.<span class="fn">GetBytes</span>(SECRET));
+        <span class="k">var</span> hash = hmac.<span class="fn">ComputeHash</span>(Encoding.UTF8.<span class="fn">GetBytes</span>(data));
+        <span class="k">string</span> sig = <span class="tp">Convert</span>.<span class="fn">ToBase64String</span>(hash)[..<span class="n">16</span>];
+        <span class="k">return</span> <span class="s">$"{machineId}|{expiry:yyyyMMdd}|{sig}"</span>;
+    }
+
+    <span class="cm">// Validate a license key (run on every startup)</span>
+    <span class="k">public static</span> (<span class="k">bool</span> IsValid, <span class="k">string</span> Reason, DateTime Expiry) <span class="fn">Validate</span>(<span class="k">string</span> licenseKey)
+    {
+        <span class="k">if</span> (<span class="k">string</span>.<span class="fn">IsNullOrWhiteSpace</span>(licenseKey))
+            <span class="k">return</span> (<span class="k">false</span>, <span class="s">"No license key provided"</span>, DateTime.MinValue);
+
+        <span class="k">try</span>
+        {
+            <span class="k">string</span>[] parts = licenseKey.<span class="fn">Split</span>(<span class="s">'|'</span>);
+            <span class="k">if</span> (parts.Length != <span class="n">3</span>)
+                <span class="k">return</span> (<span class="k">false</span>, <span class="s">"Invalid key format"</span>, DateTime.MinValue);
+
+            <span class="k">string</span> keyMachineId = parts[<span class="n">0</span>];
+            <span class="k">string</span> expiryStr    = parts[<span class="n">1</span>];
+            <span class="k">string</span> signature    = parts[<span class="n">2</span>];
+
+            <span class="cm">// Check machine lock</span>
+            <span class="k">string</span> myMachineId = <span class="fn">GetMachineId</span>();
+            <span class="k">if</span> (keyMachineId != myMachineId)
+                <span class="k">return</span> (<span class="k">false</span>, <span class="s">"License is not valid for this machine"</span>, DateTime.MinValue);
+
+            <span class="cm">// Verify HMAC signature</span>
+            <span class="k">string</span> data = <span class="s">$"{keyMachineId}|{expiryStr}"</span>;
+            <span class="k">using var</span> hmac = <span class="k">new</span> System.Security.Cryptography.<span class="tp">HMACSHA256</span>(
+                Encoding.UTF8.<span class="fn">GetBytes</span>(SECRET));
+            <span class="k">var</span>    hash       = hmac.<span class="fn">ComputeHash</span>(Encoding.UTF8.<span class="fn">GetBytes</span>(data));
+            <span class="k">string</span> expectedSig = <span class="tp">Convert</span>.<span class="fn">ToBase64String</span>(hash)[..<span class="n">16</span>];
+            <span class="k">if</span> (signature != expectedSig)
+                <span class="k">return</span> (<span class="k">false</span>, <span class="s">"Invalid license signature"</span>, DateTime.MinValue);
+
+            <span class="cm">// Check expiry</span>
+            DateTime expiry = DateTime.<span class="fn">ParseExact</span>(
+                expiryStr, <span class="s">"yyyyMMdd"</span>, <span class="k">null</span>);
+            <span class="k">if</span> (DateTime.Today > expiry)
+                <span class="k">return</span> (<span class="k">false</span>,
+                    <span class="s">$"License expired on {expiry:dd MMM yyyy}"</span>, expiry);
+
+            <span class="k">return</span> (<span class="k">true</span>,
+                <span class="s">$"Valid until {expiry:dd MMM yyyy}"</span>, expiry);
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            <span class="k">return</span> (<span class="k">false</span>, <span class="s">$"License error: {ex.Message}"</span>, DateTime.MinValue);
+        }
+    }
+}
+
+<span class="cm">// ── Check on startup ──</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="k">var</span> (isValid, reason, expiry) = <span class="tp">LicenseManager</span>.<span class="fn">Validate</span>(
+        <span class="tp">PluginSettings</span>.Current.LicenseKey);
+
+    <span class="k">if</span> (!isValid)
+    {
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Studio Tools — License"</span>,
+            <span class="s">$"License validation failed:\n{reason}\n\n"</span> +
+            <span class="s">"Please contact support@yourstudio.com"</span>);
+        <span class="cm">// Return Succeeded but disable commands via IExternalCommandAvailability</span>
+        <span class="tp">MyApp</span>.IsLicensed = <span class="k">false</span>;
+    }
+    <span class="k">else</span>
+    {
+        <span class="tp">MyApp</span>.IsLicensed = <span class="k">true</span>;
+        <span class="cm">// Warn if expiring within 30 days</span>
+        <span class="k">if</span> ((expiry - DateTime.Today).TotalDays &lt; <span class="n">30</span>)
+            <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"License Expiry"</span>,
+                <span class="s">$"Your license expires in {(expiry-DateTime.Today).Days} days.\n"</span> +
+                <span class="s">"Please renew at https://yourstudio.com/renew"</span>);
+    }
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-ux -->
+</div><!-- /content -->
+</main>
+</div>
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+<script src="search-data.js"></script><script src="search.js"></script>
+</body>
+</html>
+
+
+

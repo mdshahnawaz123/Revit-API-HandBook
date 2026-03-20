@@ -1,0 +1,1646 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Reference — Book 15: ExternalService · CurtainGrid · AdaptiveComponents · DesignOptions · Assembly · PointClouds · Steel · Fabrication · Worksharing · Lighting</title>
+<link rel="stylesheet" href="api-style.css"/>
+<style>
+.workflow-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-bottom:8px;}
+.wb-mep{background:rgba(79,158,255,.12);color:var(--accent);border:1px solid rgba(79,158,255,.3);}
+.wb-arch{background:rgba(247,111,79,.12);color:var(--accent5);border:1px solid rgba(247,111,79,.3);}
+.wb-struct{background:rgba(62,217,160,.12);color:var(--accent3);border:1px solid rgba(62,217,160,.3);}
+.wb-data{background:rgba(247,200,79,.12);color:var(--accent4);border:1px solid rgba(247,200,79,.3);}
+.wb-advanced{background:rgba(217,124,247,.12);color:var(--accent6);border:1px solid rgba(217,124,247,.3);}
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Advanced<br/>Workflows</div>
+    <div class="sb-sub">Book 15 · Final Advanced Volume</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav">
+
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>DB.ExternalService<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-iexternalserver')"><span class="type-badge tb-iface">INT</span>IExternalServer</div>
+        <div class="sb-ns-child" onclick="go('cls-externalserviceregistry')"><span class="type-badge tb-class">CLS</span>ExternalServiceRegistry</div>
+        <div class="sb-ns-child" onclick="go('cls-multiserver')"><span class="type-badge tb-class">CLS</span>MultiServerService</div>
+        <div class="sb-ns-child" onclick="go('cls-builtinservices')"><span class="type-badge tb-class">CLS</span>BuiltInExternalServices</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>Curtain Walls<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-curtaingrid')"><span class="type-badge tb-class">CLS</span>CurtainGrid</div>
+        <div class="sb-ns-child" onclick="go('cls-curtaincell')"><span class="type-badge tb-class">CLS</span>CurtainCell</div>
+        <div class="sb-ns-child" onclick="go('cls-curtaingridline')"><span class="type-badge tb-class">CLS</span>CurtainGridLine</div>
+        <div class="sb-ns-child" onclick="go('cls-curtainpanel')"><span class="type-badge tb-class">CLS</span>Panel (Curtain)</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>Adaptive Components<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-adaptivecomponentinstanceutils')"><span class="type-badge tb-class">CLS</span>AdaptiveComponentInstanceUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-adaptivecomponentfamilyutils')"><span class="type-badge tb-class">CLS</span>AdaptiveComponentFamilyUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-adaptivepointtype')"><span class="type-badge tb-enum">ENUM</span>AdaptivePointType</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>Color Fill &amp; Design Options<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-colorfillscheme')"><span class="type-badge tb-class">CLS</span>ColorFillScheme</div>
+        <div class="sb-ns-child" onclick="go('cls-colorfilllegend')"><span class="type-badge tb-class">CLS</span>ColorFillLegend</div>
+        <div class="sb-ns-child" onclick="go('cls-designoption')"><span class="type-badge tb-class">CLS</span>DesignOption</div>
+        <div class="sb-ns-child" onclick="go('cls-designoptionset')"><span class="type-badge tb-class">CLS</span>DesignOptionSet</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng5">
+      <div class="sb-ns-header" onclick="tog('ng5',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>Assembly &amp; Parts<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-assemblyinstance')"><span class="type-badge tb-class">CLS</span>AssemblyInstance</div>
+        <div class="sb-ns-child" onclick="go('cls-assemblyviewutils')"><span class="type-badge tb-class">CLS</span>AssemblyViewUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-assemblydisplacedposeutils')"><span class="type-badge tb-class">CLS</span>AssemblyDisplacedPoseUtils</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng6">
+      <div class="sb-ns-header" onclick="tog('ng6',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>PointClouds<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-pointcloudinstance')"><span class="type-badge tb-class">CLS</span>PointCloudInstance</div>
+        <div class="sb-ns-child" onclick="go('cls-pointcloudtype')"><span class="type-badge tb-class">CLS</span>PointCloudType</div>
+        <div class="sb-ns-child" onclick="go('cls-pointcloudfilter')"><span class="type-badge tb-class">CLS</span>PointCloudFilter</div>
+        <div class="sb-ns-child" onclick="go('cls-cloudpoint')"><span class="type-badge tb-class">CLS</span>CloudPoint</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng7">
+      <div class="sb-ns-header" onclick="tog('ng7',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>DB.Steel &amp; Fabrication<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-steelelementproperties')"><span class="type-badge tb-class">CLS</span>SteelElementProperties</div>
+        <div class="sb-ns-child" onclick="go('cls-fabricationpart')"><span class="type-badge tb-class">CLS</span>FabricationPart</div>
+        <div class="sb-ns-child" onclick="go('cls-fabricationservice')"><span class="type-badge tb-class">CLS</span>FabricationService</div>
+        <div class="sb-ns-child" onclick="go('cls-fabricationconfiguration')"><span class="type-badge tb-class">CLS</span>FabricationConfiguration</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng8">
+      <div class="sb-ns-header" onclick="tog('ng8',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>Worksharing Deep Dive<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-syncwithcentraloptions')"><span class="type-badge tb-class">CLS</span>SynchronizeWithCentralOptions</div>
+        <div class="sb-ns-child" onclick="go('cls-relinquishoptions')"><span class="type-badge tb-class">CLS</span>RelinquishOptions</div>
+        <div class="sb-ns-child" onclick="go('cls-saveasoptions')"><span class="type-badge tb-class">CLS</span>SaveAsOptions</div>
+        <div class="sb-ns-child" onclick="go('cls-modelpath')"><span class="type-badge tb-class">CLS</span>ModelPath</div>
+        <div class="sb-ns-child" onclick="go('cls-transmittedmodelelements')"><span class="type-badge tb-class">CLS</span>TransmittedModelElements</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng9">
+      <div class="sb-ns-header" onclick="tog('ng9',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>DB.Lighting<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-lightsource')"><span class="type-badge tb-class">CLS</span>LightSource</div>
+        <div class="sb-ns-child" onclick="go('cls-lightfamily')"><span class="type-badge tb-class">CLS</span>LightFamily</div>
+        <div class="sb-ns-child" onclick="go('cls-lightgroupmanager')"><span class="type-badge tb-class">CLS</span>LightGroupManager</div>
+      </div>
+    </div>
+
+  </div>
+              <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html" class="current"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html" class="current" ><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html" class="current"  ><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html" class="current"   ><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html" class="current"    ><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP � Arch � Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family � Print � Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref � Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI � DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html" class="current"     ><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="fn">09</span> DB (A–E)</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="fn">10</span> DB (F–Z) · UI</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="fn">11</span> MEP · Arch · DMU</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="fn">12</span> Family · Print</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="fn">13</span> Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="fn">14</span> Ribbon · DockablePane</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html" class="current"     ><span class="fn">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="fn">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="fn">17</span> Structural Reinforcement</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 15 of 19 — Advanced Workflows · Final Volume
+    
+</div>
+  <h1>Advanced Workflows<br/><span>Complete Reference</span></h1>
+  <p>The final advanced reference — ExternalService framework, CurtainGrid manipulation, Adaptive Components, ColorFillScheme, DesignOptions, AssemblyInstance, PointClouds (scan-to-BIM), DB.Steel, DB.Fabrication, deep Worksharing workflows, and DB.Lighting.</p>
+    <!-- GLOBAL SEARCH -->
+    <div style="margin-top:20px;position:relative;max-width:400px;z-index:9999;">
+      <input type="text" id="globalsearch" placeholder="Search Class, Method or Topic..." 
+             style="width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;outline:none;"
+             oninput="globalSearch(this.value)"/>
+      <div id="searchresults" class="search-results-container"></div>
+    </div>
+    
+  <div class="hero-chips">
+    <span class="chip c-bl">ExternalService</span>
+    <span class="chip c-or">CurtainGrid</span>
+    <span class="chip c-pu">Adaptive</span>
+    <span class="chip c-gr">PointClouds</span>
+    <span class="chip c-ye">Worksharing</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ════════════════════════════════
+     DB.ExternalService
+════════════════════════════════ -->
+<div class="ns-block" id="ns-extsvc">
+  <div class="ns-header">
+    <div class="ns-icon">🔌</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Namespace</div>
+      <h2>Autodesk.Revit.DB.ExternalService</h2>
+      <p>Plug custom server implementations into Revit's extensible service framework — routing preferences, pipe sizing, structural load classification, and DirectContext3D rendering.</p>
+    </div>
+  </div>
+  <div class="callout c-note" style="margin-bottom:20px;"><strong>// What is ExternalService?</strong>Revit's ExternalService framework lets add-ins replace or extend built-in Revit services. For example, you can register a custom routing preference server to control how pipes route around obstacles, or a pipe sizing server to apply your own sizing rules. DirectContext3D (Book 14) also uses this framework.</div>
+
+<!-- IExternalServer -->
+<div class="class-block" id="cls-iexternalserver">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IExternalServer</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.ExternalService</span></div>
+  <div class="class-desc">The base interface for all external servers. Any class that plugs into Revit's service framework must implement IExternalServer (or a sub-interface like IDirectContext3DServer, IRoutingPreferenceServer). Provides the server's identity: GUID, vendor, name, and which service it belongs to.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Required Methods</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Routing Preference Server (MEP pipe routing)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.ExternalService;
+<span class="k">using</span> Autodesk.Revit.DB.Plumbing;
+
+<span class="cm">// ── Custom Routing Preference Server ──
+// Controls how Revit routes pipes: which fittings to prefer,
+// how to handle junctions, what sizes to use.
+</span>
+<span class="k">public class</span> <span class="tp">StudioRoutingPreferenceServer</span> :
+    <span class="tp">IRoutingPreferenceServer</span>  <span class="cm">// sub-interface of IExternalServer</span>
+{
+    <span class="k">private</span> <span class="tp">Guid</span> _id = <span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"11223344-AABB-CCDD-EEFF-001122334455"</span>);
+
+    <span class="cm">// IExternalServer required</span>
+    <span class="k">public</span> <span class="tp">Guid</span>   <span class="fn">GetServiceId</span>()   =>
+        <span class="tp">ExternalServices</span>.BuiltInExternalServices.RoutingPreferenceService;
+    <span class="k">public</span> <span class="tp">Guid</span>   <span class="fn">GetServerId</span>()    => _id;
+    <span class="k">public string</span> <span class="fn">GetVendorId</span>()    => <span class="s">"STUDIO"</span>;
+    <span class="k">public string</span> <span class="fn">GetName</span>()        => <span class="s">"Studio Routing Preferences"</span>;
+    <span class="k">public string</span> <span class="fn">GetDescription</span>() => <span class="s">"Custom pipe routing preference rules"</span>;
+    <span class="k">public string</span> <span class="fn">GetApplicationId</span>() => <span class="s">"StudioTools"</span>;
+
+    <span class="cm">// IRoutingPreferenceServer — return preferred fitting for a junction type</span>
+    <span class="k">public</span> <span class="tp">IList</span>&lt;<span class="tp">RoutingCriteria</span>&gt; <span class="fn">GetPreferences</span>(
+        <span class="tp">RoutingConditions</span> conditions)
+    {
+        <span class="k">var</span> result = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">RoutingCriteria</span>&gt;();
+
+        <span class="cm">// Prefer elbows over mitered connections</span>
+        result.<span class="fn">Add</span>(<span class="k">new</span> <span class="tp">RoutingCriteria</span>
+        {
+            CriteriaName    = <span class="s">"ElbowPreference"</span>,
+            PreferenceType  = <span class="tp">RoutingPreferenceRuleGroupType</span>.Elbows,
+            PriorityLevel   = <span class="n">1</span>
+        });
+
+        <span class="k">return</span> result;
+    }
+}
+
+<span class="cm">// ── Registration in OnStartup ──</span>
+<span class="tp">SingleServerService</span> svc = <span class="tp">ExternalServiceRegistry</span>
+    .<span class="fn">GetService</span>(<span class="tp">ExternalServices</span>.BuiltInExternalServices.RoutingPreferenceService)
+    <span class="k">as</span> <span class="tp">SingleServerService</span>;
+
+<span class="k">var</span> server = <span class="k">new</span> <span class="tp">StudioRoutingPreferenceServer</span>();
+svc?.<span class="fn">AddServer</span>(server);
+svc?.<span class="fn">SetActiveServer</span>(server.<span class="fn">GetServerId</span>());</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ExternalServiceRegistry + BuiltInExternalServices -->
+<div class="class-block" id="cls-externalserviceregistry">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ExternalServiceRegistry</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.ExternalService</span></div>
+  <div class="class-desc">Static registry for all Revit external services. Use GetService() to retrieve a service by its GUID, then add/remove/activate servers in that service.</div>
+  <div class="class-section">
+    <div class="section-title st-enum">🟡 BuiltInExternalServices — Key Service GUIDs</div>
+    <div class="member">
+      <table class="enum-table">
+        <tr><th>Service Property</th><th>Type</th><th>Purpose</th></tr>
+        <tr><td>DirectContext3DService</td><td>MultiServerService</td><td>Custom 3D rendering (IDirectContext3DServer) — Book 14</td></tr>
+        <tr><td>RoutingPreferenceService</td><td>SingleServerService</td><td>MEP pipe/duct routing fitting preferences</td></tr>
+        <tr><td>PipeSizingService</td><td>SingleServerService</td><td>Custom pipe sizing rules (velocity/pressure methods)</td></tr>
+        <tr><td>DuctSizingService</td><td>SingleServerService</td><td>Custom duct sizing rules</td></tr>
+        <tr><td>WireService</td><td>SingleServerService</td><td>Electrical wire calculation server</td></tr>
+        <tr><td>LoadClassificationService</td><td>SingleServerService</td><td>Structural load classification rules</td></tr>
+        <tr><td>AnalyticalSupportService</td><td>SingleServerService</td><td>Analytical model support conditions</td></tr>
+        <tr><td>CableTrayRoutingPreferenceService</td><td>SingleServerService</td><td>Cable tray fitting preferences</td></tr>
+        <tr><td>ConduitRoutingPreferenceService</td><td>SingleServerService</td><td>Conduit fitting preferences</td></tr>
+      </table>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — ExternalServiceRegistry patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get MultiServerService (e.g. DirectContext3D — many servers active)</span>
+<span class="tp">MultiServerService</span> multiSvc = <span class="tp">ExternalServiceRegistry</span>.<span class="fn">GetService</span>(
+    <span class="tp">ExternalServices</span>.BuiltInExternalServices.DirectContext3DService)
+    <span class="k">as</span> <span class="tp">MultiServerService</span>;
+
+multiSvc?.<span class="fn">AddServer</span>(myServer);
+<span class="tp">IList</span>&lt;<span class="tp">Guid</span>&gt; active = multiSvc?.<span class="fn">GetActiveServerIds</span>() ?? <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Guid</span>&gt;();
+active.<span class="fn">Add</span>(myServer.<span class="fn">GetServerId</span>());
+multiSvc?.<span class="fn">SetActiveServers</span>(active);
+
+<span class="cm">// Get SingleServerService (e.g. pipe sizing — only one server active)</span>
+<span class="tp">SingleServerService</span> singleSvc = <span class="tp">ExternalServiceRegistry</span>.<span class="fn">GetService</span>(
+    <span class="tp">ExternalServices</span>.BuiltInExternalServices.PipeSizingService)
+    <span class="k">as</span> <span class="tp">SingleServerService</span>;
+
+singleSvc?.<span class="fn">AddServer</span>(mySizingServer);
+singleSvc?.<span class="fn">SetActiveServer</span>(mySizingServer.<span class="fn">GetServerId</span>());
+
+<span class="cm">// Remove a server on shutdown</span>
+multiSvc?.<span class="fn">RemoveServer</span>(myServer.<span class="fn">GetServerId</span>());
+
+<span class="cm">// List all registered servers in a service</span>
+<span class="k">foreach</span> (<span class="k">var</span> id <span class="k">in</span> multiSvc?.<span class="fn">GetServerIds</span>() ?? <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Guid</span>&gt;())
+{
+    <span class="tp">IExternalServer</span> srv = multiSvc.<span class="fn">GetServer</span>(id);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Server: {srv.GetName()} [{srv.GetVendorId()}]"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-extsvc -->
+
+<!-- ════════════════════════════════
+     CURTAIN WALLS
+════════════════════════════════ -->
+<div class="ns-block" id="ns-curtain" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🏗️</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>Curtain Walls — CurtainGrid · CurtainGridLine · Panel</h2>
+      <p>Read and manipulate curtain wall grids, panels, and mullions programmatically.</p>
+    </div>
+  </div>
+
+<!-- CurtainGrid -->
+<div class="class-block" id="cls-curtaingrid">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">CurtainGrid</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Accessed via Wall.CurtainGrid</div>
+  <div class="class-desc">Represents the grid system of a curtain wall — the system of U (horizontal) and V (vertical) grid lines that divide the wall into panels. Only available on Wall elements whose WallType.Kind == WallKind.Curtain. Provides access to all grid lines, panels (cells), and mullion layouts.</div>
+  <div class="callout c-warn" style="margin:12px 24px 0;"><strong>// Curtain Wall Check</strong>Always check <code>wall.WallType.Kind == WallKind.Curtain</code> before accessing <code>wall.CurtainGrid</code>. For non-curtain walls, CurtainGrid returns null. Modifying the grid (adding/removing lines) requires a Transaction.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="v">GetUGridLineIds</span>()</span></div><div class="member-desc">Returns the IDs of all U-direction (horizontal) grid lines. Cast each to CurtainGridLine.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="v">GetVGridLineIds</span>()</span></div><div class="member-desc">Returns the IDs of all V-direction (vertical) grid lines.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="v">GetPanelIds</span>()</span></div><div class="member-desc">Returns the IDs of all curtain panels (the infill elements — glazing, solid panels etc.) in this grid.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="v">GetMullionIds</span>()</span></div><div class="member-desc">Returns the IDs of all Mullion elements (the structural/decorative framing members between panels).</div></div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete CurtainGrid analysis</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get all curtain walls</span>
+<span class="k">var</span> curtainWalls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+    .<span class="fn">Where</span>(w => w.WallType.Kind == <span class="tp">WallKind</span>.Curtain)
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> cw <span class="k">in</span> curtainWalls)
+{
+    <span class="tp">CurtainGrid</span> grid = cw.CurtainGrid;
+    <span class="k">if</span> (grid == <span class="k">null</span>) <span class="k">continue</span>;
+
+    <span class="cm">// Count grid lines and panels</span>
+    <span class="k">int</span> uLines   = grid.<span class="fn">GetUGridLineIds</span>().Count;
+    <span class="k">int</span> vLines   = grid.<span class="fn">GetVGridLineIds</span>().Count;
+    <span class="k">int</span> panels   = grid.<span class="fn">GetPanelIds</span>().Count;
+    <span class="k">int</span> mullions = grid.<span class="fn">GetMullionIds</span>().Count;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Curtain Wall {cw.Id}: U={uLines} V={vLines} Panels={panels} Mullions={mullions}"</span>);
+
+    <span class="cm">// Analyse each panel</span>
+    <span class="k">foreach</span> (<span class="tp">ElementId</span> panelId <span class="k">in</span> grid.<span class="fn">GetPanelIds</span>())
+    {
+        <span class="tp">Panel</span>      panel    = doc.<span class="fn">GetElement</span>(panelId) <span class="k">as</span> <span class="tp">Panel</span>;
+        <span class="tp">FamilySymbol</span> sym  = panel?.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ELEM_TYPE_PARAM)
+                                 ?.AsValueString() <span class="k">is string</span> typeName
+                                 ? <span class="k">null</span> : <span class="k">null</span>;
+
+        <span class="cm">// Panel bounding box</span>
+        <span class="tp">BoundingBoxXYZ</span> bb = panel?.<span class="fn">get_BoundingBox</span>(<span class="k">null</span>);
+        <span class="k">if</span> (bb != <span class="k">null</span>)
+        {
+            <span class="k">double</span> widthMm  = (bb.Max.X - bb.Min.X) * <span class="n">304.8</span>;
+            <span class="k">double</span> heightMm = (bb.Max.Z - bb.Min.Z) * <span class="n">304.8</span>;
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"  Panel: W={widthMm:F0}mm H={heightMm:F0}mm"</span>);
+        }
+    }
+
+    <span class="cm">// Add a U grid line at a specific elevation</span>
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Add Grid Line"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="tp">ElementId</span> newLineId = grid.<span class="fn">AddGridLine</span>(<span class="k">false</span>, <span class="n">0.5</span>, <span class="k">false</span>);
+        <span class="cm">// AddGridLine(isUGrid, position, lockToNearest)</span>
+        <span class="cm">// position 0.0 = bottom, 1.0 = top, 0.5 = midpoint</span>
+        tx.<span class="fn">Commit</span>();
+    }
+
+    <span class="cm">// Remove an empty grid line</span>
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; uLineIds = grid.<span class="fn">GetUGridLineIds</span>();
+    <span class="k">if</span> (uLineIds.Count > <span class="n">2</span>)
+    {
+        <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Remove Grid Line"</span>))
+        {
+            tx.<span class="fn">Start</span>();
+            <span class="tp">ElementId</span> lineToRemove = uLineIds.<span class="fn">Last</span>();
+            grid.<span class="fn">RemoveGridLine</span>(lineToRemove);
+            tx.<span class="fn">Commit</span>();
+        }
+    }
+}
+
+<span class="cm">// Change panel type for all empty panels</span>
+<span class="tp">FamilySymbol</span> solidPanelType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_CurtainWallPanels)
+    .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(s => s.Name.Contains(<span class="s">"Solid"</span>));
+
+<span class="k">if</span> (solidPanelType != <span class="k">null</span>)
+{
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Change Panels"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="k">foreach</span> (<span class="k">var</span> cw <span class="k">in</span> curtainWalls)
+        {
+            <span class="k">foreach</span> (<span class="tp">ElementId</span> pid <span class="k">in</span> cw.CurtainGrid?.<span class="fn">GetPanelIds</span>()
+                ?? <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt;())
+            {
+                <span class="tp">Panel</span> p = doc.<span class="fn">GetElement</span>(pid) <span class="k">as</span> <span class="tp">Panel</span>;
+                <span class="k">if</span> (p != <span class="k">null</span>)
+                    p.<span class="fn">ChangeTypeId</span>(solidPanelType.Id);
+            }
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-curtain -->
+
+<!-- ════════════════════════════════
+     ADAPTIVE COMPONENTS
+════════════════════════════════ -->
+<div class="ns-block" id="ns-adaptive" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔷</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>Adaptive Components</h2>
+      <p>Place and read adaptive family instances — families with flexible point-driven geometry used for complex parametric structures.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-adaptivecomponentinstanceutils">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">AdaptiveComponentInstanceUtils</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Static utility for placing, querying, and updating adaptive family instances. Adaptive families have "adaptive points" that you position in 3D space — the family geometry deforms to fit. Used for parametric panels, structural connections, and complex facades.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Static Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">bool</span> <span class="fn">IsAdaptiveComponentInstance</span>(<span class="tp">FamilyInstance</span> <span class="pm">instance</span>)</span></div>
+      <div class="member-desc">Returns true if the given FamilyInstance is an adaptive component. Always call this before trying to access adaptive point methods — it prevents exceptions on regular families.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">IList</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">GetInstancePlacementPointElementRefIds</span>(<span class="tp">FamilyInstance</span> <span class="pm">instance</span>)</span></div>
+      <div class="member-desc">Returns the IDs of the ReferencePoint elements that define this instance's adaptive placement. The order matches the adaptive point indices in the family (point 1, 2, 3…).</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">FamilyInstance</span> <span class="fn">PlaceAdaptiveComponentInstance</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">FamilySymbol</span> <span class="pm">symbol</span>)</span></div>
+      <div class="member-desc">Creates a new adaptive component instance without any placement points set. After calling this, use SetInstancePlacementPointElementRefIds() or move the ReferencePoint elements to position the adaptive instance.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Place and position a 4-point adaptive panel</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Find the adaptive family symbol</span>
+<span class="tp">FamilySymbol</span> adaptiveSym = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(s => <span class="tp">AdaptiveComponentFamilyUtils</span>
+        .<span class="fn">IsAdaptiveComponentFamily</span>(s.Family));
+
+<span class="k">if</span> (adaptiveSym == <span class="k">null</span>) <span class="k">return</span> <span class="tp">Result</span>.Failed;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Place Adaptive"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="k">if</span> (!adaptiveSym.IsActive) adaptiveSym.<span class="fn">Activate</span>();
+
+    <span class="cm">// Place the instance (unpositioned)</span>
+    <span class="tp">FamilyInstance</span> instance =
+        <span class="tp">AdaptiveComponentInstanceUtils</span>
+            .<span class="fn">PlaceAdaptiveComponentInstance</span>(doc, adaptiveSym);
+
+    <span class="cm">// Get the adaptive placement point elements</span>
+    <span class="tp">IList</span>&lt;<span class="tp">ElementId</span>&gt; ptIds =
+        <span class="tp">AdaptiveComponentInstanceUtils</span>
+            .<span class="fn">GetInstancePlacementPointElementRefIds</span>(instance);
+
+    <span class="cm">// Position each adaptive point in 3D space</span>
+    <span class="tp">XYZ</span>[] positions = {
+        <span class="k">new</span> <span class="tp">XYZ</span>( <span class="n">0</span>,  <span class="n">0</span>, <span class="n">0</span>),   <span class="cm">// Point 1 — bottom-left</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,  <span class="n">0</span>, <span class="n">0</span>),   <span class="cm">// Point 2 — bottom-right</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>, <span class="n">10</span>, <span class="n">5</span>),   <span class="cm">// Point 3 — top-right (elevated)</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>( <span class="n">0</span>, <span class="n">10</span>, <span class="n">3</span>),   <span class="cm">// Point 4 — top-left (elevated)</span>
+    };
+
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; ptIds.Count &amp;&amp; i &lt; positions.Length; i++)
+    {
+        <span class="tp">ReferencePoint</span> pt = doc.<span class="fn">GetElement</span>(ptIds[i]) <span class="k">as</span> <span class="tp">ReferencePoint</span>;
+        <span class="k">if</span> (pt == <span class="k">null</span>) <span class="k">continue</span>;
+        <span class="cm">// Move the reference point to the target position</span>
+        (<span class="tp">pt</span>.Location <span class="k">as</span> <span class="tp">LocationPoint</span>).Point = positions[i];
+    }
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Read adaptive point positions ──</span>
+<span class="k">var</span> adaptives = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilyInstance</span>)).<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+    .<span class="fn">Where</span>(<span class="tp">AdaptiveComponentInstanceUtils</span>.IsAdaptiveComponentInstance)
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> inst <span class="k">in</span> adaptives)
+{
+    <span class="tp">IList</span>&lt;<span class="tp">ElementId</span>&gt; ptIds =
+        <span class="tp">AdaptiveComponentInstanceUtils</span>
+            .<span class="fn">GetInstancePlacementPointElementRefIds</span>(inst);
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Adaptive instance {inst.Id}: {ptIds.Count} points"</span>);
+
+    <span class="k">foreach</span> (<span class="k">var</span> ptId <span class="k">in</span> ptIds)
+    {
+        <span class="tp">ReferencePoint</span> rp = doc.<span class="fn">GetElement</span>(ptId) <span class="k">as</span> <span class="tp">ReferencePoint</span>;
+        <span class="k">if</span> (rp == <span class="k">null</span>) <span class="k">continue</span>;
+        <span class="tp">XYZ</span> pos = (<span class="tp">rp</span>.Location <span class="k">as</span> <span class="tp">LocationPoint</span>)?.Point;
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"  Point: ({pos?.X * 304.8:F0}, {pos?.Y * 304.8:F0}, {pos?.Z * 304.8:F0})mm"</span>);
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-adaptive -->
+
+<!-- ════════════════════════════════
+     COLOR FILL & DESIGN OPTIONS
+════════════════════════════════ -->
+<div class="ns-block" id="ns-colorfill" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🎨</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>ColorFillScheme · DesignOption</h2>
+      <p>Create colour-fill room/area schemes programmatically and manage design options.</p>
+    </div>
+  </div>
+
+<!-- ColorFillScheme -->
+<div class="class-block" id="cls-colorfillscheme">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ColorFillScheme</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a colour fill scheme — a mapping from room/area parameter values to colours displayed in floor plan views. Each scheme has a category (Rooms, Areas, Spaces), a title parameter, and a list of ColorFillSchemeEntry objects defining the value-to-colour mapping.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create department colour fill scheme for rooms</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Color Fill Scheme"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Create scheme for rooms by department</span>
+    <span class="tp">ColorFillScheme</span> scheme = <span class="tp">ColorFillScheme</span>.<span class="fn">Create</span>(
+        doc,
+        <span class="tp">ColorFillType</span>.Rooms,                             <span class="cm">// category</span>
+        <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInParameter</span>.ROOM_DEPARTMENT)); <span class="cm">// title parameter</span>
+
+    scheme.Title = <span class="s">"Departments"</span>;
+
+    <span class="cm">// Add colour entries for each department value</span>
+    <span class="k">var</span> deptColors = <span class="k">new</span> Dictionary&lt;<span class="k">string</span>, (<span class="k">byte</span> R, <span class="k">byte</span> G, <span class="k">byte</span> B)&gt;
+    {
+        { <span class="s">"Office"</span>,      (<span class="n">100</span>, <span class="n">180</span>, <span class="n">240</span>) },  <span class="cm">// blue</span>
+        { <span class="s">"Meeting"</span>,     ( <span class="n">80</span>, <span class="n">200</span>, <span class="n">130</span>) },  <span class="cm">// green</span>
+        { <span class="s">"Reception"</span>,   (<span class="n">240</span>, <span class="n">200</span>,  <span class="n">80</span>) },  <span class="cm">// yellow</span>
+        { <span class="s">"Circulation"</span>, (<span class="n">200</span>, <span class="n">140</span>,  <span class="n">80</span>) },  <span class="cm">// orange</span>
+        { <span class="s">"WC"</span>,          (<span class="n">180</span>,  <span class="n">80</span>, <span class="n">180</span>) },  <span class="cm">// purple</span>
+        { <span class="s">"Storage"</span>,     (<span class="n">160</span>, <span class="n">160</span>, <span class="n">160</span>) },  <span class="cm">// grey</span>
+    };
+
+    <span class="k">int</span> idx = <span class="n">0</span>;
+    <span class="k">foreach</span> (<span class="k">var</span> kvp <span class="k">in</span> deptColors)
+    {
+        <span class="k">var</span> entry = <span class="k">new</span> <span class="tp">ColorFillSchemeEntry</span>(<span class="tp">StorageType</span>.String)
+        {
+            Color       = <span class="k">new</span> <span class="tp">Color</span>(kvp.Value.R, kvp.Value.G, kvp.Value.B),
+            Caption     = kvp.Key,
+            IsVisible   = <span class="k">true</span>,
+            StorageValue = kvp.Key
+        };
+        scheme.<span class="fn">SetEntry</span>(idx++, entry);
+    }
+
+    <span class="cm">// Apply scheme to active floor plan view</span>
+    <span class="tp">ViewPlan</span> floorPlan = doc.ActiveView <span class="k">as</span> <span class="tp">ViewPlan</span>;
+    <span class="k">if</span> (floorPlan != <span class="k">null</span>)
+        floorPlan.<span class="fn">SetColorFillSchemeId</span>(
+            <span class="tp">BuiltInCategory</span>.OST_Rooms, scheme.Id);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Read existing scheme entries ──</span>
+<span class="k">var</span> existingScheme = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ColorFillScheme</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">ColorFillScheme</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(s => s.Title == <span class="s">"Departments"</span>);
+
+<span class="k">if</span> (existingScheme != <span class="k">null</span>)
+{
+    <span class="k">int</span> count = existingScheme.GetEntryCount();
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; count; i++)
+    {
+        <span class="tp">ColorFillSchemeEntry</span> e = existingScheme.<span class="fn">GetEntry</span>(i);
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"  {e.Caption}: RGB({e.Color.Red},{e.Color.Green},{e.Color.Blue})"</span>);
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- DesignOption -->
+<div class="class-block" id="cls-designoption">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">DesignOption</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a design option — an alternative design variant stored within the same Revit model. Design options are grouped into DesignOptionSets. Elements can be assigned to a specific design option so they only appear when that option is active. Used for presenting multiple design alternatives to clients.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Create + Manage Design Options</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create design option set + options + move elements</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Design Options"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// ── Create DesignOptionSet ──</span>
+    <span class="tp">DesignOptionSet</span> optionSet = <span class="tp">DesignOptionSet</span>.<span class="fn">Create</span>(doc);
+    optionSet.Name = <span class="s">"Facade Design"</span>;
+
+    <span class="cm">// ── Create options within the set ──</span>
+    <span class="cm">// Note: One option is automatically created as primary</span>
+    <span class="cm">// Use DesignOption.Create() to add alternates</span>
+    <span class="tp">DesignOption</span> optA = <span class="tp">DesignOption</span>.<span class="fn">Create</span>(doc, optionSet.Id);
+    optA.Name = <span class="s">"Option A - Glass"</span>;
+
+    <span class="tp">DesignOption</span> optB = <span class="tp">DesignOption</span>.<span class="fn">Create</span>(doc, optionSet.Id);
+    optB.Name = <span class="s">"Option B - Solid"</span>;
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Move elements to a design option ──</span>
+<span class="tp">DesignOption</span> targetOption = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">DesignOption</span>)).<span class="fn">Cast</span>&lt;<span class="tp">DesignOption</span>&gt;()
+    .<span class="fn">FirstOrDefault</span>(o => o.Name == <span class="s">"Option A - Glass"</span>);
+
+<span class="k">if</span> (targetOption != <span class="k">null</span>)
+{
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Assign to Option"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="cm">// Assign selected walls to Option A</span>
+        <span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> selectedWalls)
+        {
+            <span class="tp">Parameter</span> dp = wall.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.DESIGN_OPTION_ID);
+            dp?.<span class="fn">Set</span>(targetOption.Id);
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── Read which option an element belongs to ──</span>
+<span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> walls)
+{
+    <span class="tp">ElementId</span> doId = wall.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.DESIGN_OPTION_ID)
+                          ?.AsElementId();
+    <span class="k">if</span> (doId != <span class="k">null</span> &amp;&amp; doId != <span class="tp">ElementId</span>.InvalidElementId)
+    {
+        <span class="tp">DesignOption</span> opt = doc.<span class="fn">GetElement</span>(doId) <span class="k">as</span> <span class="tp">DesignOption</span>;
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Wall {wall.Id} in: {opt?.Name ?? "Main Model"}"</span>);
+    }
+}
+
+<span class="cm">// ── List all design option sets and options ──</span>
+<span class="k">var</span> optSets = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">DesignOptionSet</span>)).<span class="fn">Cast</span>&lt;<span class="tp">DesignOptionSet</span>&gt;();
+<span class="k">foreach</span> (<span class="k">var</span> os <span class="k">in</span> optSets)
+{
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Set: {os.Name}"</span>);
+    <span class="k">foreach</span> (<span class="tp">ElementId</span> doId <span class="k">in</span> os.<span class="fn">GetDesignOptionIds</span>())
+    {
+        <span class="tp">DesignOption</span> opt = doc.<span class="fn">GetElement</span>(doId) <span class="k">as</span> <span class="tp">DesignOption</span>;
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"  Option: {opt?.Name} Primary={opt?.IsPrimary}"</span>);
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-colorfill -->
+
+<!-- ════════════════════════════════
+     ASSEMBLY INSTANCE
+════════════════════════════════ -->
+<div class="ns-block" id="ns-assembly" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🧱</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>AssemblyInstance · AssemblyViewUtils</h2>
+      <p>Group elements into assemblies (prefabrication packages) and automatically generate assembly views and sheets.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-assemblyinstance">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">AssemblyInstance</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents an assembly — a named group of elements treated as a fabrication unit. Assemblies can have dedicated views, sheets, and assembly codes. Used for precast concrete, steel prefabrication, and MEP coordination packages.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + AssemblyViewUtils</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create assembly from structural beam + generate views + sheet</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Collect elements for the assembly (a beam and its connections)</span>
+<span class="k">var</span> beamIds = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructuralFraming)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">ToElementIds</span>()
+    .<span class="fn">Take</span>(<span class="n">3</span>).<span class="fn">ToList</span>();  <span class="cm">// first 3 beams for demo</span>
+
+<span class="tp">AssemblyInstance</span> assembly;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Assembly"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Validate elements can form an assembly</span>
+    <span class="k">if</span> (!<span class="tp">AssemblyInstance</span>.<span class="fn">AreElementsValidForAssembly</span>(doc, beamIds, <span class="tp">ElementId</span>.InvalidElementId))
+    {
+        tx.<span class="fn">RollBack</span>();
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Error"</span>, <span class="s">"Elements cannot form an assembly"</span>);
+        <span class="k">return</span> <span class="tp">Result</span>.Failed;
+    }
+
+    <span class="cm">// Create the assembly</span>
+    assembly = <span class="tp">AssemblyInstance</span>.<span class="fn">Create</span>(doc, beamIds, beamIds[<span class="n">0</span>]);
+    <span class="cm">// Second param = naming category element ID</span>
+
+    assembly.AssemblyTypeName = <span class="s">"Beam Assembly Type A"</span>;
+
+    <span class="cm">// Set assembly code (for schedules/BOQ)</span>
+    assembly.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ASSEMBLY_CODE)
+        ?.<span class="fn">Set</span>(<span class="s">"BA-001"</span>);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Generate assembly views using AssemblyViewUtils ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Assembly Views"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Get 3D view type for assembly views</span>
+    <span class="tp">ElementId</span> v3dTypeId = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+        .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.ThreeD).Id;
+
+    <span class="cm">// Create a 3D view of the assembly</span>
+    <span class="tp">View3D</span> assemblyView3D =
+        <span class="tp">AssemblyViewUtils</span>.<span class="fn">Create3DOrthographic</span>(doc, assembly.Id, v3dTypeId);
+    assemblyView3D.Name = <span class="s">$"3D - {assembly.AssemblyTypeName}"</span>;
+
+    <span class="cm">// Create detail views (front, back, left, right, top, bottom)</span>
+    <span class="tp">ElementId</span> sectionTypeId = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+        .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.Section).Id;
+
+    <span class="tp">ViewSection</span> frontView =
+        <span class="tp">AssemblyViewUtils</span>.<span class="fn">CreateDetailSection</span>(
+            doc, assembly.Id, sectionTypeId,
+            <span class="tp">AssemblyDetailViewOrientation</span>.ElevationFront,
+            <span class="n">50</span>);   <span class="cm">// view scale 1:50</span>
+
+    <span class="tp">ViewSection</span> sideView =
+        <span class="tp">AssemblyViewUtils</span>.<span class="fn">CreateDetailSection</span>(
+            doc, assembly.Id, sectionTypeId,
+            <span class="tp">AssemblyDetailViewOrientation</span>.ElevationLeft, <span class="n">50</span>);
+
+    <span class="cm">// Create an assembly sheet with all views placed</span>
+    <span class="tp">FamilySymbol</span> titleBlock = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_TitleBlocks)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;().<span class="fn">First</span>();
+
+    <span class="tp">ViewSheet</span> sheet =
+        <span class="tp">AssemblyViewUtils</span>.<span class="fn">CreateSheet</span>(doc, assembly.Id, titleBlock.Id);
+    sheet.SheetNumber = <span class="s">"FA-001"</span>;
+    sheet.Name        = <span class="s">$"Fabrication - {assembly.AssemblyTypeName}"</span>;
+
+    <span class="cm">// Automatically place the views on the sheet</span>
+    <span class="tp">AssemblyViewUtils</span>.<span class="fn">PopulateSheet</span>(sheet, assembly.Id);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-assembly -->
+
+<!-- ════════════════════════════════
+     POINT CLOUDS
+════════════════════════════════ -->
+<div class="ns-block" id="ns-pointcloud" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">☁️</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB.PointClouds</div>
+      <h2>PointClouds — Scan to BIM</h2>
+      <p>Access point cloud data, query scan points, and work with RCP/RCS files for scan-to-BIM workflows.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-pointcloudinstance">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PointCloudInstance</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.PointClouds</span></div>
+  <div class="class-desc">Represents a linked point cloud file (RCP/RCS/PCG) placed in the Revit model. Provides access to point data through filters, the transform from point cloud space to model space, and cloud metadata. The actual point data is retrieved via GetPoints() with an optional PointCloudFilter.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods + Usage</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">PointCollection</span> <span class="fn">GetPoints</span>(<span class="tp">PointCloudFilter</span> <span class="pm">filter</span>, <span class="tp">double</span> <span class="pm">averageDistance</span>, <span class="tp">int</span> <span class="pm">numPoints</span>)</span></div>
+      <div class="member-desc">Returns a collection of CloudPoint objects matching the filter. averageDistance controls the average spacing between returned points (larger = fewer points, faster). numPoints limits the maximum number returned.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>filter</td><td>PointCloudFilter</td><td>Spatial or colour filter. Pass null for no filter.</td></tr><tr><td>averageDistance</td><td>double</td><td>Desired average distance between returned points in feet. Use 0 for max density.</td></tr><tr><td>numPoints</td><td>int</td><td>Maximum number of points to return. Use int.MaxValue for all.</td></tr></table></div>
+      <div class="returns-row">Returns: <span>PointCollection</span> — Collection of CloudPoint (X, Y, Z, Color) values.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Query point cloud within a bounding region</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.PointClouds;
+
+<span class="cm">// Get all loaded point cloud instances</span>
+<span class="k">var</span> pcs = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">PointCloudInstance</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">PointCloudInstance</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> pc <span class="k">in</span> pcs)
+{
+    <span class="cm">// Get the point cloud's transform (cloud space → model space)</span>
+    <span class="tp">Transform</span> xf = pc.<span class="fn">GetTransform</span>();
+
+    <span class="cm">// Create a bounding box filter for a specific room area</span>
+    <span class="tp">BoundingBoxXYZ</span> searchBB = <span class="k">new</span> <span class="tp">BoundingBoxXYZ</span>();
+    searchBB.Min = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>);
+    searchBB.Max = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">20</span>, <span class="n">20</span>, <span class="n">5</span>);
+
+    <span class="cm">// Create axis-aligned bounding box filter in model coordinates</span>
+    <span class="tp">PointCloudFilter</span> filter = <span class="tp">PointCloudFilterFactory</span>
+        .<span class="fn">CreateMultiPlaneFilter</span>(
+            <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Plane</span>&gt;
+            {
+                <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisX, searchBB.Min),
+                <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(-<span class="tp">XYZ</span>.BasisX, searchBB.Max),
+                <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisY, searchBB.Min),
+                <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(-<span class="tp">XYZ</span>.BasisY, searchBB.Max),
+                <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisZ, searchBB.Min),
+                <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(-<span class="tp">XYZ</span>.BasisZ, searchBB.Max)
+            });
+
+    <span class="cm">// Query points at ~50mm spacing, max 10,000 points</span>
+    <span class="k">double</span> spacingFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">50</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="tp">PointCollection</span> points = pc.<span class="fn">GetPoints</span>(filter, spacingFt, <span class="n">10000</span>);
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Point cloud '{pc.Name}': {points.Count} points in search area"</span>);
+
+    <span class="cm">// Iterate points</span>
+    <span class="k">double</span> minZ = <span class="k">double</span>.MaxValue;
+    <span class="k">double</span> maxZ = <span class="k">double</span>.MinValue;
+
+    <span class="k">foreach</span> (<span class="tp">CloudPoint</span> pt <span class="k">in</span> points)
+    {
+        <span class="cm">// CloudPoint has X, Y, Z (in feet) and Color (ARGB)</span>
+        <span class="k">if</span> (pt.Z &lt; minZ) minZ = pt.Z;
+        <span class="k">if</span> (pt.Z > maxZ) maxZ = pt.Z;
+    }
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Z range: {minZ * 304.8:F0}mm to {maxZ * 304.8:F0}mm"</span>);
+
+    <span class="cm">// Transform a point from cloud space to model space</span>
+    <span class="k">if</span> (points.Count > <span class="n">0</span>)
+    {
+        <span class="tp">CloudPoint</span> firstPt     = points[<span class="n">0</span>];
+        <span class="tp">XYZ</span>        cloudPt     = <span class="k">new</span> <span class="tp">XYZ</span>(firstPt.X, firstPt.Y, firstPt.Z);
+        <span class="tp">XYZ</span>        modelPt     = xf.<span class="fn">OfPoint</span>(cloudPt);
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"First point in model coords: {modelPt}"</span>);
+    }
+}
+
+<span class="cm">// ── Check if a PointCloudType is loaded ──</span>
+<span class="k">var</span> pct = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">PointCloudType</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">PointCloudType</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> t <span class="k">in</span> pct)
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Type: {t.Name} | File: {t.get_Parameter(BuiltInParameter.POINTCLOUD_FILENAME)?.AsString()}"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-pointcloud -->
+
+<!-- ════════════════════════════════
+     DB.STEEL + FABRICATION
+════════════════════════════════ -->
+<div class="ns-block" id="ns-steel" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔩</div>
+    <div class="ns-meta">
+      <div class="ns-label">// DB.Steel · DB.Fabrication</div>
+      <h2>Steel · Fabrication Parts</h2>
+      <p>Access steel connection data and MEP fabrication parts programmatically.</p>
+    </div>
+  </div>
+
+<!-- SteelElementProperties -->
+<div class="class-block" id="cls-steelelementproperties">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">SteelElementProperties</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Steel</span></div>
+  <div class="class-desc">Provides access to Advance Steel connection properties attached to Revit structural elements. When elements are connected using Advance Steel, SteelElementProperties holds the connection geometry, bolt patterns, weld data, and manufacturing metadata.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Read Steel element properties</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Steel;
+
+<span class="cm">// Get structural framing elements with steel data</span>
+<span class="k">var</span> beams = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructuralFraming)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> beam <span class="k">in</span> beams)
+{
+    <span class="cm">// Get Steel element properties if available</span>
+    <span class="tp">SteelElementProperties</span> steelProps =
+        <span class="tp">SteelElementProperties</span>.<span class="fn">GetSteelElementProperties</span>(beam);
+
+    <span class="k">if</span> (steelProps == <span class="k">null</span>)
+    {
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Beam {beam.Id}: No Advance Steel data"</span>);
+        <span class="k">continue</span>;
+    }
+
+    <span class="cm">// Access steel-specific data</span>
+    <span class="k">string</span> grade  = steelProps.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STEEL_ELEM_MATERIAL_STEEL_GRADE)
+        ?.AsString() ?? <span class="s">"Unknown"</span>;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Beam {beam.Id}: Grade={grade}"</span>);
+}
+
+<span class="cm">// ── Check if document has Steel integration ──</span>
+<span class="k">bool</span> hasSteelData = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">SteelElementProperties</span>))
+    .<span class="fn">GetElementCount</span>() > <span class="n">0</span>;
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Document has Advance Steel data: {hasSteelData}"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- FabricationPart -->
+<div class="class-block" id="cls-fabricationpart">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">FabricationPart</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Fabrication</span></div>
+  <div class="class-desc">Represents a MEP fabrication part — a manufacturer-specific duct, pipe, or electrical fitting created from fabrication service databases. Fabrication parts have exact manufactured dimensions, part numbers, CID codes, and hanger data. Used for fabrication-level detailing and shop drawing workflows.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Properties + Methods</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Fabrication part data extraction</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Fabrication;
+
+<span class="cm">// Get all fabrication parts</span>
+<span class="k">var</span> fabParts = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FabricationPart</span>))
+    .<span class="fn">Cast</span>&lt;<span class="tp">FabricationPart</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Fabrication parts in model: {fabParts.Count}"</span>);
+
+<span class="k">foreach</span> (<span class="k">var</span> fp <span class="k">in</span> fabParts)
+{
+    <span class="cm">// Part identity</span>
+    <span class="k">string</span> partName  = fp.Name;
+    <span class="k">int</span>    cid        = fp.CID;    <span class="cm">// Content Item Description code</span>
+    <span class="k">string</span> partAlias  = fp.Alias;  <span class="cm">// short description code</span>
+    <span class="k">string</span> itemNumber = fp.ItemNumber;
+    <span class="k">string</span> orderInfo  = fp.OrderInfo;
+
+    <span class="cm">// Service and product list info</span>
+    <span class="k">int</span>    serviceId     = fp.ServiceId;
+    <span class="k">string</span> productList   = fp.ProductList;
+
+    <span class="cm">// Dimensions</span>
+    <span class="k">double</span> lengthMm = fp.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.CURVE_ELEM_LENGTH)
+        ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+
+    <span class="cm">// Hanger count</span>
+    <span class="k">int</span> hangers = fp.<span class="fn">GetPartHangerData</span>()?.Count ?? <span class="n">0</span>;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Part: {partName} CID={cid} L={lengthMm:F0}mm Hangers={hangers}"</span>);
+
+    <span class="cm">// Check if part is a straight segment</span>
+    <span class="k">bool</span> isStraight = fp.IsAStraight();
+    <span class="k">bool</span> isElbow    = fp.IsAElbow();
+    <span class="k">bool</span> isTee      = fp.IsATee();
+    <span class="k">bool</span> isTransition = fp.IsATransition();
+
+    <span class="cm">// Convert fabrication part to equivalent MEP element</span>
+    <span class="cm">// (for workflows that need standard Revit MEP element after fab)</span>
+    <span class="k">if</span> (isStraight)
+        System.Diagnostics.Debug.WriteLine(<span class="s">"  → Straight segment"</span>);
+}
+
+<span class="cm">// ── Check available fabrication services ──</span>
+<span class="tp">FabricationConfiguration</span> config = <span class="tp">FabricationConfiguration</span>.<span class="fn">GetFabricationConfiguration</span>(doc);
+<span class="k">if</span> (config != <span class="k">null</span>)
+{
+    <span class="k">int</span> serviceCount = config.<span class="fn">GetAllLoadedServices</span>().Count;
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Fabrication services loaded: {serviceCount}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-steel -->
+
+<!-- ════════════════════════════════
+     WORKSHARING DEEP DIVE
+════════════════════════════════ -->
+<div class="ns-block" id="ns-worksharing" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🌐</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>Worksharing — Deep Dive</h2>
+      <p>SynchronizeWithCentralOptions, RelinquishOptions, SaveAsOptions, ModelPath, TransmittedModelElements — complete worksharing workflow automation.</p>
+    </div>
+  </div>
+
+<!-- SynchronizeWithCentralOptions -->
+<div class="class-block" id="cls-syncwithcentraloptions">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">SynchronizeWithCentralOptions</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Controls behaviour of the Synchronize with Central operation. Allows configuring which elements to relinquish, whether to compact the file, save local before/after sync, and comment for the sync operation.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Worksharing Automation</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Automated sync + save + model path operations</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">if</span> (!doc.IsWorkshared)
+{
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Error"</span>, <span class="s">"Document is not workshared"</span>);
+    <span class="k">return</span> <span class="tp">Result</span>.Failed;
+}
+
+<span class="cm">// ── Synchronize With Central ──</span>
+<span class="k">var</span> syncOpts = <span class="k">new</span> <span class="tp">SynchronizeWithCentralOptions</span>();
+
+<span class="cm">// Configure relinquish options (what to give back after sync)</span>
+<span class="k">var</span> relinquishOpts = <span class="k">new</span> <span class="tp">RelinquishOptions</span>(<span class="k">true</span>);
+<span class="cm">// true = relinquish all by default</span>
+relinquishOpts.CheckedOutElements        = <span class="k">true</span>;   <span class="cm">// give back borrowed elements</span>
+relinquishOpts.UserWorksets              = <span class="k">true</span>;   <span class="cm">// give back owned worksets</span>
+relinquishOpts.StandardWorksets          = <span class="k">true</span>;   <span class="cm">// give back views, families etc.</span>
+relinquishOpts.FamilyWorksets            = <span class="k">true</span>;
+
+syncOpts.<span class="fn">SetRelinquishOptions</span>(relinquishOpts);
+
+<span class="cm">// Other sync settings</span>
+syncOpts.SaveLocalBefore           = <span class="k">true</span>;   <span class="cm">// save local copy first</span>
+syncOpts.SaveLocalAfter            = <span class="k">true</span>;   <span class="cm">// save local after sync</span>
+syncOpts.Comment                   = <span class="s">$"Auto-sync by StudioTools at {DateTime.Now:HH:mm}"</span>;
+
+<span class="cm">// Perform sync (no dialog shown)</span>
+doc.<span class="fn">SynchronizeWithCentral</span>(
+    <span class="k">new</span> <span class="tp">TransactWithCentralOptions</span>(), syncOpts);
+
+System.Diagnostics.Debug.WriteLine(<span class="s">"Sync complete"</span>);
+
+<span class="cm">// ── Relinquish without sync ──</span>
+<span class="k">var</span> justRelinquish = <span class="k">new</span> <span class="tp">RelinquishOptions</span>(<span class="k">false</span>); <span class="cm">// false = none by default</span>
+justRelinquish.CheckedOutElements = <span class="k">true</span>;   <span class="cm">// only give back borrowed elements</span>
+<span class="tp">WorksharingUtils</span>.<span class="fn">Relinquish</span>(doc,
+    justRelinquish, <span class="k">new</span> <span class="tp">TransactWithCentralOptions</span>());
+
+<span class="cm">// ── Save As with Worksharing options ──</span>
+<span class="k">var</span> saveAsOpts = <span class="k">new</span> <span class="tp">SaveAsOptions</span>();
+saveAsOpts.MaximumBackups = <span class="n">5</span>;
+saveAsOpts.OverwriteExistingFile = <span class="k">true</span>;
+
+<span class="cm">// Convert to Central (create a new central file)</span>
+<span class="k">var</span> wsOpts = <span class="k">new</span> <span class="tp">WorksharingSaveAsOptions</span>();
+wsOpts.SaveAsCentral = <span class="k">true</span>;
+saveAsOpts.<span class="fn">SetWorksharingOptions</span>(wsOpts);
+
+<span class="tp">ModelPath</span> newPath = <span class="tp">ModelPathUtils</span>
+    .<span class="fn">ConvertUserVisiblePathToModelPath</span>(<span class="s">@"C:\Projects\Central_v2.rvt"</span>);
+doc.<span class="fn">SaveAs</span>(newPath, saveAsOpts);
+
+<span class="cm">// ── ModelPath operations ──</span>
+
+<span class="cm">// Get current file path as ModelPath</span>
+<span class="tp">ModelPath</span> currentPath = doc.GetWorksharingCentralModelPath();
+
+<span class="cm">// Convert to user-visible string</span>
+<span class="k">string</span> pathStr = <span class="tp">ModelPathUtils</span>
+    .<span class="fn">ConvertModelPathToUserVisiblePath</span>(currentPath);
+System.Diagnostics.Debug.WriteLine(<span class="s">$"Central: {pathStr}"</span>);
+
+<span class="cm">// ── TransmittedModelElements — strip links/worksets for transmittal ──</span>
+<span class="tp">ModelPath</span> transmitPath = <span class="tp">ModelPathUtils</span>
+    .<span class="fn">ConvertUserVisiblePathToModelPath</span>(<span class="s">@"C:\Transmittal\Project.rvt"</span>);
+
+<span class="tp">TransmittedModelElements</span> tme =
+    <span class="tp">TransmittedModelElements</span>.<span class="fn">GetTransmittedModelElements</span>(doc, transmitPath);
+
+<span class="k">if</span> (tme != <span class="k">null</span>)
+{
+    <span class="k">int</span> missingLinks = tme.<span class="fn">GetMissingFiles</span>().Count;
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Missing linked files: {missingLinks}"</span>);
+}
+
+<span class="cm">// ── Check which elements are borrowed by whom ──</span>
+<span class="k">var</span> allIds = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">WhereElementIsNotElementType</span>().<span class="fn">ToElementIds</span>().<span class="fn">Take</span>(<span class="n">50</span>).<span class="fn">ToList</span>();
+
+<span class="k">var</span> borrowed = allIds.<span class="fn">Where</span>(id =>
+    <span class="tp">WorksharingUtils</span>.<span class="fn">GetCheckoutStatus</span>(doc, id)
+        == <span class="tp">CheckoutStatus</span>.OwnedByOtherUser).<span class="fn">ToList</span>();
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Elements borrowed by others (sample): {borrowed.Count}"</span>);
+
+<span class="k">foreach</span> (<span class="k">var</span> id <span class="k">in</span> borrowed.<span class="fn">Take</span>(<span class="n">5</span>))
+{
+    <span class="tp">WorksharingTooltipInfo</span> info =
+        <span class="tp">WorksharingUtils</span>.<span class="fn">GetWorksharingTooltipInfo</span>(doc, id);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"  Element {id}: owned by {info.Owner}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-worksharing -->
+
+<!-- ════════════════════════════════
+     DB.LIGHTING
+════════════════════════════════ -->
+<div class="ns-block" id="ns-lighting" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">💡</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB.Lighting</div>
+      <h2>DB.Lighting</h2>
+      <p>Access light source data, lamp specifications, and light groups for lighting analysis and documentation workflows.</p>
+    </div>
+  </div>
+
+<!-- LightSource -->
+<div class="class-block" id="cls-lightsource">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">LightSource</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Lighting</span></div>
+  <div class="class-desc">Represents a light source element within a lighting fixture family. Each LightSource defines the photometric data for one lamp within a fixture — its position, initial intensity (lumens), distribution type, colour temperature, and rendering appearance.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Properties + LightGroupManager</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Light audit: extract fixture and lamp data</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Lighting;
+
+<span class="cm">// ── Light inventory ──</span>
+<span class="k">var</span> fixtures = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_LightingFixtures)
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+    .<span class="fn">ToList</span>();
+
+<span class="k">double</span> totalLumens  = <span class="n">0</span>;
+<span class="k">int</span>    totalLamps   = <span class="n">0</span>;
+
+<span class="k">foreach</span> (<span class="k">var</span> fixture <span class="k">in</span> fixtures)
+{
+    <span class="cm">// Get light data from the fixture's family type</span>
+    <span class="tp">FamilySymbol</span> sym = fixture.Symbol;
+
+    <span class="cm">// Lamp parameters (on the type)</span>
+    <span class="k">string</span> lampType   = sym.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.LIGHTING_FIXTURE_LAMP)
+                           ?.AsString() ?? <span class="s">"Unknown"</span>;
+    <span class="k">int</span>    lampCount  = sym.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.LIGHTING_FIXTURE_NUMBER_OF_LAMPS)
+                           ?.AsInteger() ?? <span class="n">1</span>;
+    <span class="k">double</span> wattage    = sym.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.LIGHTING_FIXTURE_WATTAGE)
+                           ?.AsDouble() ?? <span class="n">0</span>;
+    <span class="k">double</span> lumens     = sym.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.LIGHTING_FIXTURE_LUMINOUS_FLUX)
+                           ?.AsDouble() ?? <span class="n">0</span>;
+
+    <span class="cm">// Fixture instance location</span>
+    <span class="tp">XYZ</span> location = (fixture.Location <span class="k">as</span> <span class="tp">LocationPoint</span>)?.Point;
+
+    <span class="cm">// Room the fixture is in</span>
+    <span class="k">var</span> rooms = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rooms)
+        .<span class="fn">Cast</span>&lt;<span class="tp">Room</span>&gt;()
+        .<span class="fn">Where</span>(r => r.Area > <span class="n">0</span> &amp;&amp; location != <span class="k">null</span>
+            &amp;&amp; r.<span class="fn">IsPointInRoom</span>(<span class="k">new</span> <span class="tp">XYZ</span>(location.X, location.Y,
+                r.Level.Elevation + <span class="n">0.5</span>)))
+        .<span class="fn">FirstOrDefault</span>();
+
+    totalLumens += lumens * lampCount;
+    totalLamps  += lampCount;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Fixture: {fixture.Symbol.Name} | Lamp: {lampType} ×{lampCount} | {wattage:F0}W | {lumens:F0}lm | Room: {rooms?.Name ?? "Outside"}"</span>);
+}
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Total: {totalLamps} lamps | {totalLumens:F0} total lumens | {totalLumens / Math.Max(fixtures.Count, 1):F0} avg lm/fixture"</span>);
+
+<span class="cm">// ── LightGroupManager — manage light groups for rendering ──</span>
+<span class="tp">LightGroupManager</span> lgm = <span class="tp">LightGroupManager</span>.<span class="fn">GetLightGroupManager</span>(doc);
+<span class="k">if</span> (lgm != <span class="k">null</span>)
+{
+    <span class="k">int</span> groupCount = lgm.<span class="fn">GetGroupCount</span>();
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Light groups: {groupCount}"</span>);
+
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; groupCount; i++)
+    {
+        <span class="k">string</span> groupName    = lgm.<span class="fn">GetGroupName</span>(i);
+        <span class="k">double</span> dimFactor    = lgm.<span class="fn">GetGroupDimmingFactor</span>(i); <span class="cm">// 0.0–1.0</span>
+        <span class="k">bool</span>   isOn         = lgm.<span class="fn">GetGroupOnOff</span>(i);
+
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Group: {groupName} | Dimmed: {dimFactor:P0} | On: {isOn}"</span>);
+    }
+
+    <span class="cm">// Modify light group settings in transaction</span>
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Light Groups"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="cm">// Dim all groups to 80%</span>
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; groupCount; i++)
+            lgm.<span class="fn">SetGroupDimmingFactor</span>(i, <span class="n">0.8</span>);
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── LightFamily — access IES/photometric file path ──</span>
+<span class="k">var</span> lightFamilies = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Family</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Family</span>&gt;()
+    .<span class="fn">Where</span>(f => f.FamilyCategory?.Id.IntegerValue
+               == (<span class="k">int</span>)<span class="tp">BuiltInCategory</span>.OST_LightingFixtures)
+    .<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> fam <span class="k">in</span> lightFamilies)
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Light family: {fam.Name}"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-lighting -->
+
+<!-- ════════════════════════════════
+     COMPLETE WORKFLOW PATTERNS
+════════════════════════════════ -->
+<div class="ns-block" id="ns-patterns" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">⚙️</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Advanced Patterns</div>
+      <h2>Production Workflow Patterns</h2>
+      <p>Complete end-to-end patterns combining multiple APIs for real-world production add-in scenarios.</p>
+    </div>
+  </div>
+
+<div class="class-block">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern 1</span><span class="class-name">Batch Processing Multiple Documents</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Open → Process → Save → Close Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Batch process all .rvt files in a folder</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Application</span> app = commandData.Application.Application;
+<span class="k">string</span> folder    = <span class="s">@"C:\Projects\Batch"</span>;
+<span class="k">string</span>[] files   = System.IO.<span class="tp">Directory</span>.<span class="fn">GetFiles</span>(folder, <span class="s">"*.rvt"</span>);
+
+<span class="k">var</span> sb = <span class="k">new</span> System.Text.<span class="tp">StringBuilder</span>();
+sb.<span class="fn">AppendLine</span>(<span class="s">$"Batch report — {DateTime.Now:yyyy-MM-dd HH:mm}"</span>);
+
+<span class="k">foreach</span> (<span class="k">var</span> filePath <span class="k">in</span> files)
+{
+    <span class="tp">Document</span> batchDoc = <span class="k">null</span>;
+    <span class="k">try</span>
+    {
+        <span class="cm">// Open with audit, detach from central if workshared</span>
+        <span class="k">var</span> openOpts = <span class="k">new</span> <span class="tp">OpenOptions</span>();
+        openOpts.DetachFromCentralOption =
+            <span class="tp">DetachFromCentralOption</span>.DetachAndPreserveWorksets;
+        openOpts.Audit = <span class="k">false</span>;   <span class="cm">// true for audit pass, slower</span>
+
+        <span class="tp">ModelPath</span> mp = <span class="tp">ModelPathUtils</span>
+            .<span class="fn">ConvertUserVisiblePathToModelPath</span>(filePath);
+        batchDoc = app.<span class="fn">OpenDocumentFile</span>(mp, openOpts);
+
+        <span class="cm">// Process the document</span>
+        <span class="k">int</span> wallCount = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(batchDoc)
+            .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">GetElementCount</span>();
+        <span class="k">int</span> roomCount = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(batchDoc)
+            .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rooms)
+            .<span class="fn">Cast</span>&lt;<span class="tp">Room</span>&gt;().<span class="fn">Count</span>(r => r.Area > <span class="n">0</span>);
+
+        sb.<span class="fn">AppendLine</span>(
+            <span class="s">$"{System.IO.Path.GetFileName(filePath)}: W={wallCount} R={roomCount}"</span>);
+
+        <span class="cm">// Make changes (if needed) — inside transaction</span>
+        <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(batchDoc, <span class="s">"Batch Update"</span>))
+        {
+            tx.<span class="fn">Start</span>();
+            <span class="cm">// ... modifications ...</span>
+            tx.<span class="fn">Commit</span>();
+        }
+
+        <span class="cm">// Save (overwrite)</span>
+        <span class="k">var</span> saveOpts = <span class="k">new</span> <span class="tp">SaveAsOptions</span> { OverwriteExistingFile = <span class="k">true</span> };
+        batchDoc.<span class="fn">SaveAs</span>(filePath, saveOpts);
+    }
+    <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+    {
+        sb.<span class="fn">AppendLine</span>(<span class="s">$"  ERROR: {ex.Message}"</span>);
+    }
+    <span class="k">finally</span>
+    {
+        batchDoc?.<span class="fn">Close</span>(<span class="k">false</span>);   <span class="cm">// always close</span>
+    }
+}
+
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Batch Complete"</span>, sb.ToString());</pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern 2</span><span class="class-name">Complete Clash Detection Workflow</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Structural vs MEP Boolean Intersection Clash Detection</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Find pipe-to-beam clashes using BooleanOperationsUtils</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Helper: get first valid solid from element</span>
+<span class="tp">Solid</span> <span class="fn">GetSolid</span>(<span class="tp">Element</span> e)
+{
+    <span class="k">var</span> opts = <span class="k">new</span> <span class="tp">Options</span> { ComputeReferences = <span class="k">false</span> };
+    <span class="k">foreach</span> (<span class="k">var</span> obj <span class="k">in</span> e.<span class="fn">get_Geometry</span>(opts))
+    {
+        <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">Solid</span> s &amp;&amp; s.Volume > <span class="n">1e-9</span>) <span class="k">return</span> s;
+        <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">GeometryInstance</span> gi)
+            <span class="k">foreach</span> (<span class="k">var</span> o <span class="k">in</span> gi.<span class="fn">GetInstanceGeometry</span>())
+                <span class="k">if</span> (o <span class="k">is</span> <span class="tp">Solid</span> s2 &amp;&amp; s2.Volume > <span class="n">1e-9</span>) <span class="k">return</span> s2;
+    }
+    <span class="k">return null</span>;
+}
+
+<span class="cm">// Collect structural beams and pipes</span>
+<span class="k">var</span> beams = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructuralFraming)
+    .<span class="fn">WhereElementIsNotElementType</span>().<span class="fn">ToList</span>();
+<span class="k">var</span> pipes = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Autodesk.Revit.DB.Plumbing.Pipe</span>))
+    .<span class="fn">ToList</span>();
+
+<span class="k">var</span> clashes = <span class="k">new</span> <span class="tp">List</span>&lt;(<span class="tp">ElementId</span> beamId, <span class="tp">ElementId</span> pipeId, <span class="k">double</span> volumeM3)&gt;();
+
+<span class="k">foreach</span> (<span class="k">var</span> beam <span class="k">in</span> beams)
+{
+    <span class="tp">Solid</span> beamSolid = <span class="fn">GetSolid</span>(beam);
+    <span class="k">if</span> (beamSolid == <span class="k">null</span>) <span class="k">continue</span>;
+
+    <span class="cm">// Pre-filter: only check pipes whose bounding box overlaps</span>
+    <span class="tp">BoundingBoxXYZ</span> beamBB = beam.<span class="fn">get_BoundingBox</span>(<span class="k">null</span>);
+    <span class="k">if</span> (beamBB == <span class="k">null</span>) <span class="k">continue</span>;
+
+    <span class="k">var</span> outline    = <span class="k">new</span> <span class="tp">Outline</span>(beamBB.Min, beamBB.Max);
+    <span class="k">var</span> bboxFilter = <span class="k">new</span> <span class="tp">BoundingBoxIntersectsFilter</span>(outline);
+    <span class="k">var</span> nearbyPipes = pipes
+        .<span class="fn">Where</span>(p => {
+            <span class="k">var</span> pb = p.<span class="fn">get_BoundingBox</span>(<span class="k">null</span>);
+            <span class="k">return</span> pb != <span class="k">null</span>
+                && pb.Max.X >= beamBB.Min.X &amp;&amp; pb.Min.X &lt;= beamBB.Max.X
+                &amp;&amp; pb.Max.Y >= beamBB.Min.Y &amp;&amp; pb.Min.Y &lt;= beamBB.Max.Y
+                &amp;&amp; pb.Max.Z >= beamBB.Min.Z &amp;&amp; pb.Min.Z &lt;= beamBB.Max.Z;
+        }).<span class="fn">ToList</span>();
+
+    <span class="k">foreach</span> (<span class="k">var</span> pipe <span class="k">in</span> nearbyPipes)
+    {
+        <span class="tp">Solid</span> pipeSolid = <span class="fn">GetSolid</span>(pipe);
+        <span class="k">if</span> (pipeSolid == <span class="k">null</span>) <span class="k">continue</span>;
+
+        <span class="k">try</span>
+        {
+            <span class="tp">Solid</span> intersection = <span class="tp">BooleanOperationsUtils</span>
+                .<span class="fn">ExecuteBooleanOperation</span>(beamSolid, pipeSolid,
+                    <span class="tp">BooleanOperationsType</span>.Intersect);
+
+            <span class="k">if</span> (intersection?.Volume > <span class="n">1e-9</span>)
+            {
+                <span class="k">double</span> vol = intersection.Volume * <span class="n">0.0283168</span>;  <span class="cm">// ft³→m³</span>
+                clashes.<span class="fn">Add</span>((beam.Id, pipe.Id, vol));
+            }
+        }
+        <span class="k">catch</span> { <span class="cm">/* incompatible geometry — skip */</span> }
+    }
+}
+
+<span class="cm">// Report results</span>
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Clash Report"</span>,
+    <span class="s">$"Found {clashes.Count} clashes\n"</span> +
+    <span class="k">string</span>.<span class="fn">Join</span>(<span class="s">"\n"</span>,
+        clashes.<span class="fn">Take</span>(<span class="n">10</span>).<span class="fn">Select</span>(c =>
+            <span class="s">$"Beam {c.beamId} ↔ Pipe {c.pipeId}: {c.volumeM3 * 1e6:F1}cm³"</span>)));</pre></div>
+    </div>
+  </div>
+</div>
+
+<div class="class-block">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern 3</span><span class="class-name">Complete BIM Data Extraction to JSON</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Export Room + Wall + MEP data to structured JSON</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Extract all room and fixture data to JSON-ready dictionary</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> output = <span class="k">new</span> <span class="tp">List</span>&lt;Dictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt;&gt;();
+
+<span class="k">var</span> rooms = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rooms)
+    .<span class="fn">Cast</span>&lt;<span class="tp">Room</span>&gt;()
+    .<span class="fn">Where</span>(r => r.Area > <span class="n">0</span>).<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> room <span class="k">in</span> rooms)
+{
+    <span class="k">var</span> roomData = <span class="k">new</span> Dictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt;
+    {
+        [<span class="s">"id"</span>]          = room.Id.IntegerValue,
+        [<span class="s">"uniqueId"</span>]    = room.UniqueId,
+        [<span class="s">"name"</span>]        = room.Name,
+        [<span class="s">"number"</span>]      = room.Number,
+        [<span class="s">"level"</span>]       = room.Level?.Name,
+        [<span class="s">"department"</span>]  = room.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ROOM_DEPARTMENT)
+                              ?.AsString() ?? <span class="s">""</span>,
+        [<span class="s">"areaSqM"</span>]     = Math.<span class="fn">Round</span>(room.Area * <span class="n">0.092903</span>, <span class="n">2</span>),
+        [<span class="s">"perimeterMm"</span>] = Math.<span class="fn">Round</span>(room.<span class="fn">get_Parameter</span>(
+                              <span class="tp">BuiltInParameter</span>.ROOM_PERIMETER)
+                              ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>, <span class="n">0</span>),
+        [<span class="s">"heightMm"</span>]    = Math.<span class="fn">Round</span>(room.<span class="fn">get_Parameter</span>(
+                              <span class="tp">BuiltInParameter</span>.ROOM_HEIGHT)
+                              ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>, <span class="n">0</span>),
+    };
+
+    <span class="cm">// Fixtures in this room</span>
+    <span class="tp">XYZ</span> centre = <span class="k">new</span> <span class="tp">XYZ</span>(
+        room.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ROOM_AREA) != <span class="k">null</span>
+            ? room.Location <span class="k">is</span> <span class="tp">LocationPoint</span> lp ? lp.Point.X : <span class="n">0</span>
+            : <span class="n">0</span>,
+        <span class="n">0</span>, room.Level?.Elevation + <span class="n">1.5</span> ?? <span class="n">1.5</span>);
+
+    <span class="k">var</span> fixtures = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_LightingFixtures)
+        .<span class="fn">WhereElementIsNotElementType</span>()
+        .<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+        .<span class="fn">Where</span>(f => {
+            <span class="k">var</span> pt = (f.Location <span class="k">as</span> <span class="tp">LocationPoint</span>)?.Point;
+            <span class="k">return</span> pt != <span class="k">null</span>
+                &amp;&amp; room.<span class="fn">IsPointInRoom</span>(
+                    <span class="k">new</span> <span class="tp">XYZ</span>(pt.X, pt.Y, room.Level.Elevation + <span class="n">0.5</span>));
+        }).<span class="fn">Count</span>();
+
+    roomData[<span class="s">"fixtureCount"</span>] = fixtures;
+    output.<span class="fn">Add</span>(roomData);
+}
+
+<span class="cm">// Serialize to JSON using Newtonsoft or System.Text.Json</span>
+<span class="k">string</span> json = Newtonsoft.Json.JsonConvert.<span class="fn">SerializeObject</span>(output, Formatting.Indented);
+System.IO.File.<span class="fn">WriteAllText</span>(<span class="s">@"C:\Output\rooms.json"</span>, json);
+
+<span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Export"</span>, <span class="s">$"Exported {output.Count} rooms to JSON"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-patterns -->
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+<script src="search-data.js"></script><script src="search.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

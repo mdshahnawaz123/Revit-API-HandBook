@@ -1,0 +1,1493 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Reference — Book 14: Ribbon · DockablePane · PostableCommand · DirectContext3D</title>
+<link rel="stylesheet" href="api-style.css"/>
+<style>
+/* ── Ribbon diagram ── */
+.ribbon-diagram{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:24px;margin:20px 0;}
+.ribbon-diagram svg text{font-family:'JetBrains Mono',monospace;}
+/* ── Hierarchy tree ── */
+.tree{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--code-bg);border:1px solid var(--border2);border-radius:8px;padding:20px;line-height:2;color:var(--text2);}
+.tree .t-ns{color:var(--accent);}
+.tree .t-cls{color:var(--accent2);}
+.tree .t-method{color:var(--accent3);}
+.tree .t-prop{color:var(--accent4);}
+/* ── Step cards ── */
+.step-list{counter-reset:step;margin:16px 0;}
+.step-card{counter-increment:step;display:flex;gap:16px;margin-bottom:16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:18px 20px;align-items:flex-start;}
+.step-num{width:32px;height:32px;min-width:32px;border-radius:50%;background:var(--accent);color:#fff;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.step-body h4{font-family:'Fraunces',serif;font-size:15px;color:var(--text);margin-bottom:4px;}
+.step-body p{font-size:13px;color:var(--text2);margin:0;}
+/* ── Button type grid ── */
+.btn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:16px 0;}
+.btn-card{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:16px;}
+.btn-card .bc-name{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent2);font-weight:600;margin-bottom:4px;}
+.btn-card .bc-desc{font-size:12.5px;color:var(--text2);}
+/* ── Warning callout variant ── */
+.callout-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Advanced UI<br/>Reference</div>
+    <div class="sb-sub">Book 14 · Ribbon · Panes · DirectContext3D</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search class or method…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav">
+
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>Ribbon API<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-uicontrolledapp')"><span class="type-badge tb-class">CLS</span>UIControlledApplication</div>
+        <div class="sb-ns-child" onclick="go('cls-ribbonpanel')"><span class="type-badge tb-class">CLS</span>RibbonPanel</div>
+        <div class="sb-ns-child" onclick="go('cls-pushbutton')"><span class="type-badge tb-class">CLS</span>PushButton</div>
+        <div class="sb-ns-child" onclick="go('cls-pushbuttondata')"><span class="type-badge tb-class">CLS</span>PushButtonData</div>
+        <div class="sb-ns-child" onclick="go('cls-splitbutton')"><span class="type-badge tb-class">CLS</span>SplitButton</div>
+        <div class="sb-ns-child" onclick="go('cls-pulldownbutton')"><span class="type-badge tb-class">CLS</span>PulldownButton</div>
+        <div class="sb-ns-child" onclick="go('cls-combobox')"><span class="type-badge tb-class">CLS</span>ComboBox</div>
+        <div class="sb-ns-child" onclick="go('cls-textbox')"><span class="type-badge tb-class">CLS</span>TextBox</div>
+        <div class="sb-ns-child" onclick="go('cls-radiobuttongroup')"><span class="type-badge tb-class">CLS</span>RadioButtonGroup</div>
+        <div class="sb-ns-child" onclick="go('cls-slider')"><span class="type-badge tb-class">CLS</span>Slider</div>
+        <div class="sb-ns-child" onclick="go('cls-stackeditem')"><span class="type-badge tb-class">CLS</span>Stacked Items</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>Availability &amp; Commands<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-iexternalcommandavailability')"><span class="type-badge tb-iface">INT</span>IExternalCommandAvailability</div>
+        <div class="sb-ns-child" onclick="go('cls-postablecommand')"><span class="type-badge tb-enum">ENUM</span>PostableCommand</div>
+        <div class="sb-ns-child" onclick="go('cls-revitcommandid')"><span class="type-badge tb-class">CLS</span>RevitCommandId</div>
+        <div class="sb-ns-child" onclick="go('cls-contextual-tabs')"><span class="type-badge tb-class">CLS</span>Contextual Tabs</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>DockablePane<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-dockablepaneprovider')"><span class="type-badge tb-iface">INT</span>IDockablePaneProvider</div>
+        <div class="sb-ns-child" onclick="go('cls-dockablepane')"><span class="type-badge tb-class">CLS</span>DockablePane</div>
+        <div class="sb-ns-child" onclick="go('cls-dockablepaneid')"><span class="type-badge tb-class">CLS</span>DockablePaneId</div>
+        <div class="sb-ns-child" onclick="go('cls-dockablepanestate')"><span class="type-badge tb-enum">ENUM</span>DockablePaneState</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>DirectContext3D<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-idirectcontext3dserver')"><span class="type-badge tb-iface">INT</span>IDirectContext3DServer</div>
+        <div class="sb-ns-child" onclick="go('cls-renderbuffer')"><span class="type-badge tb-class">CLS</span>RenderingPassBufferStorage</div>
+        <div class="sb-ns-child" onclick="go('cls-vertexformat')"><span class="type-badge tb-class">CLS</span>VertexFormatBits</div>
+        <div class="sb-ns-child" onclick="go('cls-primitiveoperations')"><span class="type-badge tb-class">CLS</span>DrawContext Operations</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng5">
+      <div class="sb-ns-header" onclick="tog('ng5',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>Attributes Namespace<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-attributes')"><span class="type-badge tb-class">CLS</span>All Attributes</div>
+      </div>
+    </div>
+
+  </div>
+              <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html" class="current"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html" class="current" ><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html" class="current"  ><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html" class="current"   ><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html" class="current"    ><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP � Arch � Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family � Print � Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref � Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html" class="current"     ><span class="file-num">14</span> Advanced UI � DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="fn">09</span> DB (A–E)</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="fn">10</span> DB (F–Z) · UI</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="fn">11</span> MEP · Arch · DMU</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="fn">12</span> Family · Print</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="fn">13</span> AppServices · Best Practices</a>
+    <a class="sb-file-link current" href="book14-advanced-ui.html" class="current"     ><span class="fn">14</span> Ribbon · DockablePane · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="fn">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="fn">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="fn">17</span> Structural Reinforcement</a>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 14 of 19 — Advanced UI · Ribbon · DockablePane · PostableCommand · DirectContext3D
+    
+</div>
+  <h1>Advanced UI<br/><span>Reference</span></h1>
+  <p>Complete reference for the Ribbon API (all 8 control types), IExternalCommandAvailability, PostableCommand, contextual ribbon tabs, the full DockablePane lifecycle, and DirectContext3D for real-time custom 3D rendering — the APIs used in every professional production add-in.</p>
+    <!-- GLOBAL SEARCH -->
+    <div style="margin-top:20px;position:relative;max-width:400px;z-index:9999;">
+      <input type="text" id="globalsearch" placeholder="Search Class, Method or Topic..." 
+             style="width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;outline:none;"
+             oninput="globalSearch(this.value)"/>
+      <div id="searchresults" class="search-results-container"></div>
+    </div>
+    
+  <div class="hero-chips">
+    <span class="chip c-pu">Ribbon API</span>
+    <span class="chip c-bl">DockablePane</span>
+    <span class="chip c-or">PostableCommand</span>
+    <span class="chip c-gr">DirectContext3D</span>
+    <span class="chip c-ye">Attributes</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ════════════════════════════════════
+     RIBBON API OVERVIEW
+════════════════════════════════════ -->
+<div class="ns-block" id="ns-ribbon">
+  <div class="ns-header">
+    <div class="ns-icon">🎀</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.UI — Ribbon</div>
+      <h2>Ribbon API</h2>
+      <p>Create fully custom ribbon tabs, panels, and all 8 control types — PushButton, SplitButton, PulldownButton, ComboBox, TextBox, RadioButtonGroup, Slider, and Stacked Items.</p>
+    </div>
+  </div>
+
+  <!-- Architecture overview -->
+  <div class="callout c-note" style="margin-bottom:20px;">
+    <strong>// Ribbon Hierarchy</strong>
+    UIControlledApplication → RibbonTab → RibbonPanel → RibbonItem (PushButton, SplitButton, etc.). All ribbon construction must happen in <code>IExternalApplication.OnStartup()</code>. You cannot add ribbon items after startup — only enable/disable/update them at runtime.
+  </div>
+
+  <div class="tree" style="margin-bottom:20px;">
+<span class="t-ns">UIControlledApplication</span>
+  ├── <span class="t-method">CreateRibbonTab</span>(<span class="t-prop">"Tab Name"</span>)           → custom tab
+  ├── <span class="t-method">CreateRibbonPanel</span>(<span class="t-prop">"Panel Name"</span>)       → panel on Add-Ins tab
+  └── <span class="t-method">CreateRibbonPanel</span>(<span class="t-prop">"Tab"</span>, <span class="t-prop">"Panel"</span>)  → panel on specific tab
+
+<span class="t-ns">RibbonPanel</span>
+  ├── <span class="t-method">AddItem</span>(<span class="t-cls">PushButtonData</span>)              → PushButton
+  ├── <span class="t-method">AddItem</span>(<span class="t-cls">SplitButtonData</span>)             → SplitButton
+  ├── <span class="t-method">AddItem</span>(<span class="t-cls">PulldownButtonData</span>)          → PulldownButton
+  ├── <span class="t-method">AddItem</span>(<span class="t-cls">ComboBoxData</span>)               → ComboBox
+  ├── <span class="t-method">AddItem</span>(<span class="t-cls">TextBoxData</span>)                → TextBox
+  ├── <span class="t-method">AddItem</span>(<span class="t-cls">RadioButtonGroupData</span>)        → RadioButtonGroup
+  ├── <span class="t-method">AddItem</span>(<span class="t-cls">SliderData</span>)                  → Slider
+  └── <span class="t-method">AddStackedItems</span>(<span class="t-cls">data1</span>, <span class="t-cls">data2</span>, <span class="t-cls">data3</span>) → 2 or 3 stacked small buttons
+  </div>
+
+<!-- UIControlledApplication -->
+<div class="class-block" id="cls-uicontrolledapp">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">UIControlledApplication</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span> · Available only in IExternalApplication.OnStartup()</div>
+  <div class="class-desc">The entry point for all ribbon construction. Provided as the parameter to IExternalApplication.OnStartup(). Used to create ribbon tabs, panels, register DockablePanes, and subscribe to UI-level events. After OnStartup() completes, the ribbon structure is frozen — you cannot add new tabs or panels at runtime.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Key Methods</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">CreateRibbonTab</span>(<span class="tp">string</span> <span class="pm">tabName</span>)</span></div>
+      <div class="member-desc">Creates a new custom ribbon tab. The tab appears in the Revit ribbon between the standard Revit tabs and the Add-Ins tab. Tab names must be unique — if the tab already exists (e.g. from a previous Revit session), Revit throws. Always wrap in try/catch.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">RibbonPanel</span> <span class="fn">CreateRibbonPanel</span>(<span class="tp">string</span> <span class="pm">tabName</span>, <span class="tp">string</span> <span class="pm">panelName</span>)</span></div>
+      <div class="member-desc">Creates a panel on a specific tab. Use after CreateRibbonTab() for your custom tabs. Panel names must be unique within a tab.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public</span> <span class="tp">RibbonPanel</span> <span class="fn">CreateRibbonPanel</span>(<span class="tp">string</span> <span class="pm">panelName</span>)</span></div>
+      <div class="member-desc">Creates a panel on the built-in "Add-Ins" tab. Quick option when you don't need a custom tab.</div>
+    </div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public void</span> <span class="fn">RegisterDockablePane</span>(<span class="tp">DockablePaneId</span> <span class="pm">id</span>, <span class="tp">string</span> <span class="pm">title</span>, <span class="tp">IDockablePaneProvider</span> <span class="pm">provider</span>)</span></div>
+      <div class="member-desc">Registers a dockable pane. Must be called in OnStartup() before any pane operations. The provider creates the WPF content. See DockablePane section for the full lifecycle.</div>
+    </div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete tab + panel construction in OnStartup</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="cm">// ── Step 1: Create custom tab ──</span>
+    <span class="k">const string</span> TAB   = <span class="s">"Studio Tools"</span>;
+    <span class="k">const string</span> DLL   = System.Reflection.Assembly
+        .<span class="fn">GetExecutingAssembly</span>().Location;
+
+    <span class="k">try</span> { app.<span class="fn">CreateRibbonTab</span>(TAB); }
+    <span class="k">catch</span> { <span class="cm">/* tab already exists — ignore */</span> }
+
+    <span class="cm">// ── Step 2: Create panels on the tab ──</span>
+    <span class="tp">RibbonPanel</span> panelModel = app.<span class="fn">CreateRibbonPanel</span>(TAB, <span class="s">"Model Tools"</span>);
+    <span class="tp">RibbonPanel</span> panelView  = app.<span class="fn">CreateRibbonPanel</span>(TAB, <span class="s">"View Tools"</span>);
+    <span class="tp">RibbonPanel</span> panelData  = app.<span class="fn">CreateRibbonPanel</span>(TAB, <span class="s">"Data Tools"</span>);
+
+    <span class="cm">// ── Step 3: Add buttons to panels ──</span>
+    <span class="fn">BuildModelPanel</span>(panelModel, DLL);
+    <span class="fn">BuildViewPanel</span>(panelView, DLL);
+    <span class="fn">BuildDataPanel</span>(panelData, DLL);
+
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- PushButton + PushButtonData -->
+<div class="class-block" id="cls-pushbutton">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PushButton</span></div><div class="class-inherit">Inherits: <span>RibbonButton → RibbonItem</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">A standard clickable button that triggers one IExternalCommand. The most common ribbon control. Created via panel.AddItem(PushButtonData). After creation you can update its text, image, tooltip, and availability class at any time.</div>
+  <div class="class-section">
+    <div class="section-title st-prop">🟠 Key Properties (runtime update)</div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">ItemText</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Gets or sets the button label. Can be updated at runtime — e.g. changing "Show Panel" to "Hide Panel".</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ImageSource</span> <span class="v">LargeImage</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">32×32 button image (shown when panel is wide). Set with BitmapImage or BitmapFrame from WPF.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">ImageSource</span> <span class="v">Image</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">16×16 small button image (shown in stacked items or narrow panels).</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">ToolTip</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Short tooltip text shown on hover. Keep under 50 characters.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">string</span> <span class="v">LongDescription</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Expanded tooltip shown after 1 second hover. Use to explain what the button does in detail.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">Enabled</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Enables or disables the button at runtime. Disabled buttons are greyed out. Prefer IExternalCommandAvailability for context-sensitive enabling.</div></div>
+    <div class="member"><div class="member-sig"><span class="member-icon">🟠</span><span class="sig-text"><span class="kw">public</span> <span class="tp">bool</span> <span class="v">Visible</span> { <span class="kw">get</span>; <span class="kw">set</span>; }</span></div><div class="member-desc">Shows or hides the button. Hidden buttons don't occupy ribbon space.</div></div>
+  </div>
+</div>
+
+<!-- PushButtonData -->
+<div class="class-block" id="cls-pushbuttondata">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PushButtonData</span></div><div class="class-inherit">Inherits: <span>ButtonData → RibbonItemData</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">Data class used to configure a PushButton before adding it to a panel. Contains the command class name, assembly path, and all display properties. Create PushButtonData, configure it, then pass to panel.AddItem().</div>
+  <div class="class-section">
+    <div class="section-title st-ctor">🟣 Constructor</div>
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟣</span><span class="sig-text"><span class="kw">public</span> <span class="tp">PushButtonData</span>(<span class="tp">string</span> <span class="pm">name</span>, <span class="tp">string</span> <span class="pm">text</span>, <span class="tp">string</span> <span class="pm">assemblyName</span>, <span class="tp">string</span> <span class="pm">className</span>)</span></div>
+      <div class="member-desc">Creates button data. name = internal unique ID (no spaces), text = display label, assemblyName = full DLL path, className = fully qualified class name of the IExternalCommand.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>name</td><td>string</td><td>Internal unique name. No spaces. Used as the button's programmatic ID.</td></tr><tr><td>text</td><td>string</td><td>Display label on the button. Use \n to force a line break.</td></tr><tr><td>assemblyName</td><td>string</td><td>Full absolute path to the .dll containing the command class.</td></tr><tr><td>className</td><td>string</td><td>Fully qualified class name: "Namespace.ClassName"</td></tr></table></div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete PushButton with all properties</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">string</span> dll = System.Reflection.Assembly.<span class="fn">GetExecutingAssembly</span>().Location;
+
+<span class="cm">// Helper: load image from embedded resource</span>
+System.Windows.Media.ImageSource <span class="fn">LoadImg</span>(<span class="k">string</span> resourcePath)
+{
+    <span class="k">var</span> uri = <span class="k">new</span> Uri(<span class="s">$"pack://application:,,,/{resourcePath}"</span>);
+    <span class="k">return</span> <span class="k">new</span> System.Windows.Media.Imaging.<span class="fn">BitmapImage</span>(uri);
+}
+
+<span class="cm">// ── Create PushButtonData ──</span>
+<span class="k">var</span> btnData = <span class="k">new</span> <span class="tp">PushButtonData</span>(
+    <span class="s">"btn_WallCount"</span>,                    <span class="cm">// internal name (no spaces)</span>
+    <span class="s">"Count\nWalls"</span>,                     <span class="cm">// label (\n = line break)</span>
+    dll,                               <span class="cm">// DLL path</span>
+    <span class="s">"StudioTools.WallCountCommand"</span>);    <span class="cm">// fully qualified class</span>
+
+<span class="cm">// Display properties</span>
+btnData.LargeImage   = <span class="fn">LoadImg</span>(<span class="s">"StudioTools;component/Resources/wall_count_32.png"</span>);
+btnData.Image        = <span class="fn">LoadImg</span>(<span class="s">"StudioTools;component/Resources/wall_count_16.png"</span>);
+btnData.ToolTip      = <span class="s">"Count all walls in the active document"</span>;
+btnData.LongDescription = <span class="s">"Counts walls by type and outputs a summary report. "
+                         + "Works on the active document or all open documents."</span>;
+
+<span class="cm">// Availability — only enabled when a document is open</span>
+btnData.AvailabilityClassName = <span class="s">"StudioTools.RequiresDocument"</span>;
+
+<span class="cm">// Help file link (optional)</span>
+btnData.SetContextualHelp(<span class="k">new</span> <span class="tp">ContextualHelp</span>(
+    <span class="tp">ContextualHelpType</span>.Url,
+    <span class="s">"https://docs.mystudio.com/wall-count"</span>));
+
+<span class="cm">// ── Add to panel ──</span>
+<span class="tp">PushButton</span> btn = panelModel.<span class="fn">AddItem</span>(btnData) <span class="k">as</span> <span class="tp">PushButton</span>;
+
+<span class="cm">// ── Runtime updates ──</span>
+btn.Enabled = <span class="k">false</span>;                  <span class="cm">// disable</span>
+btn.ItemText = <span class="s">"Wall\nReport"</span>;        <span class="cm">// change label</span>
+btn.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"..."</span>);      <span class="cm">// change icon</span>
+btn.ToolTip    = <span class="s">"Updated tooltip"</span>;   <span class="cm">// change tooltip</span>
+
+<span class="cm">// ── Panel separator (visual divider) ──</span>
+panelModel.<span class="fn">AddSeparator</span>();
+
+<span class="cm">// ── Slide-out panel (hidden controls below ──) ──</span>
+panelModel.<span class="fn">AddSlideOut</span>();              <span class="cm">// items added after this go to the slide-out</span>
+panelModel.<span class="fn">AddItem</span>(anotherBtnData);    <span class="cm">// this button only shows when expanded</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- SplitButton -->
+<div class="class-block" id="cls-splitbutton">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">SplitButton</span></div><div class="class-inherit">Inherits: <span>RibbonItem</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">A button that shows the last-used command on the main face, with a drop-down arrow revealing other commands. The clicked command becomes the new "current" command shown on the face. Ideal for related commands where one is used most often (e.g. "Create Wall" variants).</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — SplitButton with 3 commands</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Create SplitButtonData</span>
+<span class="k">var</span> splitData = <span class="k">new</span> <span class="tp">SplitButtonData</span>(<span class="s">"splitWallCreate"</span>, <span class="s">"Create Wall"</span>);
+
+<span class="cm">// Add to panel — returns SplitButton</span>
+<span class="tp">SplitButton</span> splitBtn = panel.<span class="fn">AddItem</span>(splitData) <span class="k">as</span> <span class="tp">SplitButton</span>;
+
+<span class="cm">// Add commands to the split button's drop-down</span>
+<span class="tp">PushButton</span> pb1 = splitBtn.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(
+    <span class="s">"createBasicWall"</span>, <span class="s">"Basic Wall"</span>, dll, <span class="s">"StudioTools.CreateBasicWall"</span>));
+pb1.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"..."</span>);
+
+<span class="tp">PushButton</span> pb2 = splitBtn.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(
+    <span class="s">"createCurtainWall"</span>, <span class="s">"Curtain Wall"</span>, dll, <span class="s">"StudioTools.CreateCurtainWall"</span>));
+pb2.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"..."</span>);
+
+<span class="tp">PushButton</span> pb3 = splitBtn.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(
+    <span class="s">"createStackedWall"</span>, <span class="s">"Stacked Wall"</span>, dll, <span class="s">"StudioTools.CreateStackedWall"</span>));
+pb3.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"..."</span>);
+
+<span class="cm">// IsSynchronizedWithCurrentItem controls whether the face shows last-used command</span>
+splitBtn.IsSynchronizedWithCurrentItem = <span class="k">true</span>;  <span class="cm">// default and recommended</span>
+
+<span class="cm">// Set default (current) button programmatically</span>
+splitBtn.CurrentButton = pb1;</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- PulldownButton -->
+<div class="class-block" id="cls-pulldownbutton">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PulldownButton</span></div><div class="class-inherit">Inherits: <span>RibbonItem</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">A button with a permanent drop-down arrow that always shows a menu of commands. Unlike SplitButton, the face never changes — it always shows the same icon and text. Ideal for grouping a category of related but equally important commands (e.g. an "Export" button with PDF, DWG, IFC options).</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — PulldownButton export menu</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> pdData = <span class="k">new</span> <span class="tp">PulldownButtonData</span>(<span class="s">"pdExport"</span>, <span class="s">"Export"</span>);
+pdData.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"export_32.png"</span>);
+pdData.ToolTip    = <span class="s">"Export model to various formats"</span>;
+
+<span class="tp">PulldownButton</span> pd = panel.<span class="fn">AddItem</span>(pdData) <span class="k">as</span> <span class="tp">PulldownButton</span>;
+
+<span class="cm">// Add commands to the drop-down</span>
+<span class="tp">PushButton</span> pbPdf = pd.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(
+    <span class="s">"exportPDF"</span>, <span class="s">"Export PDF"</span>, dll, <span class="s">"StudioTools.ExportPDFCommand"</span>));
+pbPdf.Image = <span class="fn">LoadImg</span>(<span class="s">"pdf_16.png"</span>);
+
+<span class="tp">PushButton</span> pbDwg = pd.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(
+    <span class="s">"exportDWG"</span>, <span class="s">"Export DWG"</span>, dll, <span class="s">"StudioTools.ExportDWGCommand"</span>));
+pbDwg.Image = <span class="fn">LoadImg</span>(<span class="s">"dwg_16.png"</span>);
+
+pd.<span class="fn">AddSeparator</span>();   <span class="cm">// visual divider in the dropdown</span>
+
+<span class="tp">PushButton</span> pbIfc = pd.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(
+    <span class="s">"exportIFC"</span>, <span class="s">"Export IFC"</span>, dll, <span class="s">"StudioTools.ExportIFCCommand"</span>));
+pbIfc.Image = <span class="fn">LoadImg</span>(<span class="s">"ifc_16.png"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ComboBox -->
+<div class="class-block" id="cls-combobox">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ComboBox</span></div><div class="class-inherit">Inherits: <span>RibbonItem</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">A dropdown list control that shows text items. The user can select an item from the list or type a value. Items can be grouped using ComboBoxMember.GroupName. The CurrentChanged event fires when selection changes — useful for filter dropdowns, phase selectors, or view template pickers.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + Events + Runtime Update</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — ComboBox phase selector updated on document open</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Create ComboBox in OnStartup ──</span>
+<span class="k">var</span> cbData = <span class="k">new</span> <span class="tp">ComboBoxData</span>(<span class="s">"cbPhase"</span>);
+cbData.ToolTip = <span class="s">"Select active phase"</span>;
+
+<span class="k">static</span> <span class="tp">ComboBox</span> _phaseComboBox;
+_phaseComboBox = panel.<span class="fn">AddItem</span>(cbData) <span class="k">as</span> <span class="tp">ComboBox</span>;
+
+<span class="cm">// Add static items at startup</span>
+_phaseComboBox.<span class="fn">AddItem</span>(<span class="k">new</span> <span class="tp">ComboBoxMemberData</span>(<span class="s">"existing"</span>, <span class="s">"Existing"</span>));
+_phaseComboBox.<span class="fn">AddItem</span>(<span class="k">new</span> <span class="tp">ComboBoxMemberData</span>(<span class="s">"newconstruction"</span>, <span class="s">"New Construction"</span>));
+_phaseComboBox.<span class="fn">AddItem</span>(<span class="k">new</span> <span class="tp">ComboBoxMemberData</span>(<span class="s">"demolition"</span>, <span class="s">"Demolition"</span>));
+
+<span class="cm">// Subscribe to selection change event</span>
+_phaseComboBox.CurrentChanged += <span class="fn">OnPhaseComboChanged</span>;
+
+<span class="cm">// ── Update items dynamically when document opens ──</span>
+<span class="k">private void</span> <span class="fn">OnDocumentOpened</span>(<span class="k">object</span> s, <span class="tp">DocumentOpenedEventArgs</span> e)
+{
+    <span class="tp">Document</span> doc = e.Document;
+
+    <span class="cm">// Get all phases from document</span>
+    <span class="k">var</span> phases = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Phase</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Phase</span>&gt;()
+        .<span class="fn">OrderBy</span>(p => p.Id.IntegerValue).<span class="fn">ToList</span>();
+
+    <span class="cm">// Clear and repopulate ComboBox</span>
+    _phaseComboBox.<span class="fn">ClearList</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> phase <span class="k">in</span> phases)
+    {
+        <span class="k">var</span> mbr = <span class="k">new</span> <span class="tp">ComboBoxMemberData</span>(
+            phase.Id.IntegerValue.ToString(),
+            phase.Name);
+        _phaseComboBox.<span class="fn">AddItem</span>(mbr);
+    }
+    <span class="cm">// Set to last phase</span>
+    _phaseComboBox.Current = _phaseComboBox.GetItems().LastOrDefault();
+}
+
+<span class="cm">// ── Handle selection change ──</span>
+<span class="k">private void</span> <span class="fn">OnPhaseComboChanged</span>(<span class="k">object</span> s, <span class="tp">Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs</span> e)
+{
+    <span class="tp">ComboBoxMember</span> selected = e.NewValue;
+    <span class="k">if</span> (selected == <span class="k">null</span>) <span class="k">return</span>;
+
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Phase changed to: {selected.Name}"</span>);
+    <span class="cm">// Store selection for use by commands</span>
+    MyApp.SelectedPhaseId = <span class="k">new</span> <span class="tp">ElementId</span>(<span class="k">int</span>.<span class="fn">Parse</span>(selected.Name));
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- TextBox -->
+<div class="class-block" id="cls-textbox">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">TextBox</span></div><div class="class-inherit">Inherits: <span>RibbonItem</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">An editable text input field embedded in the ribbon. Used for quick filter inputs, search boxes, or numeric entry that commands can read. The EnterPressed and CurrentChanged events fire when the user presses Enter or changes the text.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + Events</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — TextBox search filter in ribbon</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> tbData = <span class="k">new</span> <span class="tp">TextBoxData</span>(<span class="s">"tbSearch"</span>);
+tbData.Name        = <span class="s">"Search Rooms"</span>;
+tbData.ToolTip     = <span class="s">"Filter rooms by name or number"</span>;
+tbData.PromptText  = <span class="s">"Search rooms…"</span>;  <span class="cm">// placeholder text</span>
+tbData.ShowImageAsButton = <span class="k">false</span>;
+
+<span class="k">static</span> <span class="tp">TextBox</span> _searchBox;
+_searchBox = panel.<span class="fn">AddItem</span>(tbData) <span class="k">as</span> <span class="tp">TextBox</span>;
+
+<span class="cm">// Set width</span>
+_searchBox.Width = <span class="n">140</span>;   <span class="cm">// pixels</span>
+
+<span class="cm">// Enter pressed event</span>
+_searchBox.EnterPressed += (<span class="k">sender</span>, args) =>
+{
+    <span class="k">string</span> query = (_searchBox.Value <span class="k">as</span> <span class="k">string</span>) ?? <span class="s">""</span>;
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Search: {query}"</span>);
+    <span class="cm">// Trigger a search command with the query</span>
+    MyApp.PendingSearchQuery = query;
+    <span class="cm">// Raise external event to execute the search</span>
+    MyApp.SearchEvent.<span class="fn">Raise</span>();
+};
+
+<span class="cm">// Read value from a command</span>
+<span class="k">string</span> currentSearch = _searchBox.Value <span class="k">as</span> <span class="k">string</span>;</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- RadioButtonGroup -->
+<div class="class-block" id="cls-radiobuttongroup">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">RadioButtonGroup</span></div><div class="class-inherit">Inherits: <span>RibbonItem</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">A group of mutually exclusive toggle buttons. Exactly one button in the group is active at any time. Used for mode selection (e.g. "Metric / Imperial", "Gross / Net areas", "2D / 3D view"). The CurrentChanged event fires when selection changes.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + Usage</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Unit mode toggle</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">var</span> rbgData = <span class="k">new</span> <span class="tp">RadioButtonGroupData</span>(<span class="s">"rbgUnits"</span>);
+<span class="tp">RadioButtonGroup</span> rbg = panel.<span class="fn">AddItem</span>(rbgData) <span class="k">as</span> <span class="tp">RadioButtonGroup</span>;
+
+<span class="cm">// Add toggle buttons</span>
+<span class="tp">ToggleButton</span> metricBtn = rbg.<span class="fn">AddItem</span>(<span class="k">new</span> <span class="tp">ToggleButtonData</span>(
+    <span class="s">"rbMetric"</span>, <span class="s">"Metric"</span>, dll, <span class="s">"StudioTools.SetMetricCommand"</span>));
+metricBtn.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"metric_32.png"</span>);
+metricBtn.ToolTip    = <span class="s">"Display values in metric (mm)"</span>;
+
+<span class="tp">ToggleButton</span> imperialBtn = rbg.<span class="fn">AddItem</span>(<span class="k">new</span> <span class="tp">ToggleButtonData</span>(
+    <span class="s">"rbImperial"</span>, <span class="s">"Imperial"</span>, dll, <span class="s">"StudioTools.SetImperialCommand"</span>));
+imperialBtn.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"imperial_32.png"</span>);
+
+<span class="cm">// Set default selection</span>
+rbg.Current = metricBtn;
+
+<span class="cm">// Handle change</span>
+rbg.CurrentChanged += (s, e) =>
+{
+    <span class="k">bool</span> isMetric = rbg.Current.Name == <span class="s">"rbMetric"</span>;
+    MyApp.UseMetric = isMetric;
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Unit mode: {(isMetric ? "Metric" : "Imperial")}"</span>);
+};</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Stacked Items -->
+<div class="class-block" id="cls-stackeditem">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Method</span><span class="class-name">AddStackedItems — Stacked Controls</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span> · Called on RibbonPanel</div>
+  <div class="class-desc">Places 2 or 3 compact controls stacked vertically in one column width. Each item shows only a 16×16 icon and text. Used to pack more controls into limited ribbon space. Supports PushButtonData, ComboBoxData, and TextBoxData as stacked items.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Stacked Items Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — 3-item stack + 2-item stack</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── 3 stacked PushButtons ──</span>
+<span class="k">var</span> s1 = <span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"sBtn1"</span>, <span class="s">"Renumber Rooms"</span>,  dll, <span class="s">"StudioTools.RenumberRooms"</span>);
+<span class="k">var</span> s2 = <span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"sBtn2"</span>, <span class="s">"Tag All Rooms"</span>,    dll, <span class="s">"StudioTools.TagAllRooms"</span>);
+<span class="k">var</span> s3 = <span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"sBtn3"</span>, <span class="s">"Export Room List"</span>, dll, <span class="s">"StudioTools.ExportRooms"</span>);
+
+s1.Image = <span class="fn">LoadImg</span>(<span class="s">"room_renumber_16.png"</span>);
+s2.Image = <span class="fn">LoadImg</span>(<span class="s">"room_tag_16.png"</span>);
+s3.Image = <span class="fn">LoadImg</span>(<span class="s">"room_export_16.png"</span>);
+
+<span class="tp">IList</span>&lt;<span class="tp">RibbonItem</span>&gt; stacked3 = panel.<span class="fn">AddStackedItems</span>(s1, s2, s3);
+<span class="tp">PushButton</span> renumberBtn = stacked3[<span class="n">0</span>] <span class="k">as</span> <span class="tp">PushButton</span>;
+
+<span class="cm">// ── 2 stacked: ComboBox + PushButton ──</span>
+<span class="k">var</span> cbData  = <span class="k">new</span> <span class="tp">ComboBoxData</span>(<span class="s">"cbViewType"</span>);
+<span class="k">var</span> btnGo   = <span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"btnGoView"</span>, <span class="s">"Go to View"</span>, dll, <span class="s">"StudioTools.GoToView"</span>);
+btnGo.Image = <span class="fn">LoadImg</span>(<span class="s">"go_16.png"</span>);
+
+<span class="tp">IList</span>&lt;<span class="tp">RibbonItem</span>&gt; stacked2 = panel.<span class="fn">AddStackedItems</span>(cbData, btnGo);
+<span class="tp">ComboBox</span> viewCombo = stacked2[<span class="n">0</span>] <span class="k">as</span> <span class="tp">ComboBox</span>;</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-ribbon -->
+
+<!-- ════════════════════════════════════
+     AVAILABILITY + POSTABLE COMMAND
+════════════════════════════════════ -->
+<div class="ns-block" id="ns-availability" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔑</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Availability &amp; Commands</div>
+      <h2>IExternalCommandAvailability · PostableCommand</h2>
+      <p>Control when ribbon buttons are enabled, and trigger built-in Revit commands programmatically.</p>
+    </div>
+  </div>
+
+<!-- IExternalCommandAvailability -->
+<div class="class-block" id="cls-iexternalcommandavailability">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IExternalCommandAvailability</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">Controls whether a ribbon button is enabled or disabled based on the current Revit context. Implement this interface to make buttons context-sensitive — e.g. disabled when no document is open, or only active when a 3D view is active, or only when walls are selected. Set via PushButtonData.AvailabilityClassName.</div>
+  <div class="callout c-tip" style="margin:12px 24px 0;"><strong>// Performance Note</strong>IsCommandAvailable() is called very frequently — on every selection change, view activation, and idle cycle. Keep it fast: no FilteredElementCollector queries inside. Only check UIApplication.ActiveUIDocument and UIDocument.ActiveGraphicalView.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Availability Patterns</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — 5 common availability implementations</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── 1. Requires any document open ──</span>
+<span class="k">public class</span> <span class="tp">RequiresDocument</span> : <span class="tp">IExternalCommandAvailability</span>
+{
+    <span class="k">public bool</span> <span class="fn">IsCommandAvailable</span>(<span class="tp">UIApplication</span> app,
+        <span class="tp">CategorySet</span> selectedCategories)
+    {
+        <span class="k">return</span> app.ActiveUIDocument != <span class="k">null</span>;
+    }
+}
+
+<span class="cm">// ── 2. Requires a project document (not family) ──</span>
+<span class="k">public class</span> <span class="tp">RequiresProject</span> : <span class="tp">IExternalCommandAvailability</span>
+{
+    <span class="k">public bool</span> <span class="fn">IsCommandAvailable</span>(<span class="tp">UIApplication</span> app,
+        <span class="tp">CategorySet</span> selectedCategories)
+    {
+        <span class="k">var</span> doc = app.ActiveUIDocument?.Document;
+        <span class="k">return</span> doc != <span class="k">null</span> &amp;&amp; !doc.IsFamilyDocument;
+    }
+}
+
+<span class="cm">// ── 3. Only in a 3D view ──</span>
+<span class="k">public class</span> <span class="tp">Requires3DView</span> : <span class="tp">IExternalCommandAvailability</span>
+{
+    <span class="k">public bool</span> <span class="fn">IsCommandAvailable</span>(<span class="tp">UIApplication</span> app,
+        <span class="tp">CategorySet</span> selectedCategories)
+    {
+        <span class="k">return</span> app.ActiveUIDocument?.ActiveGraphicalView
+            <span class="k">is</span> <span class="tp">View3D</span>;
+    }
+}
+
+<span class="cm">// ── 4. Requires at least one wall selected ──</span>
+<span class="k">public class</span> <span class="tp">RequiresWallSelection</span> : <span class="tp">IExternalCommandAvailability</span>
+{
+    <span class="k">public bool</span> <span class="fn">IsCommandAvailable</span>(<span class="tp">UIApplication</span> app,
+        <span class="tp">CategorySet</span> selectedCategories)
+    {
+        <span class="cm">// selectedCategories — categories of currently selected elements</span>
+        <span class="cm">// Fast — already computed by Revit, no collector needed</span>
+        <span class="k">foreach</span> (<span class="tp">Category</span> cat <span class="k">in</span> selectedCategories)
+            <span class="k">if</span> (cat.Id.IntegerValue == (<span class="k">int</span>)<span class="tp">BuiltInCategory</span>.OST_Walls)
+                <span class="k">return true</span>;
+        <span class="k">return false</span>;
+    }
+}
+
+<span class="cm">// ── 5. Requires workshared document ──</span>
+<span class="k">public class</span> <span class="tp">RequiresWorkshared</span> : <span class="tp">IExternalCommandAvailability</span>
+{
+    <span class="k">public bool</span> <span class="fn">IsCommandAvailable</span>(<span class="tp">UIApplication</span> app,
+        <span class="tp">CategorySet</span> selectedCategories)
+    {
+        <span class="k">var</span> doc = app.ActiveUIDocument?.Document;
+        <span class="k">return</span> doc != <span class="k">null</span> &amp;&amp; doc.IsWorkshared;
+    }
+}
+
+<span class="cm">// ── Assign to button ──</span>
+btnData.AvailabilityClassName = <span class="k">typeof</span>(<span class="tp">RequiresWallSelection</span>).<span class="fn">FullName</span>;
+<span class="cm">// Or as string: "StudioTools.RequiresWallSelection"</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- PostableCommand -->
+<div class="class-block" id="cls-postablecommand">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-enum">Enum</span><span class="class-name">PostableCommand</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">Identifies built-in Revit commands that can be triggered programmatically via UIApplication.PostCommand(). Covers every Revit ribbon button — from Undo/Redo to Open/Save to specific tools. This is how you trigger Revit's native tools from your add-in code without having to re-implement them.</div>
+  <div class="class-section">
+    <div class="section-title st-enum">🟡 Key PostableCommand Values</div>
+    <div class="member">
+      <table class="enum-table">
+        <tr><th>Member</th><th>Description</th></tr>
+        <tr><td>Undo</td><td>Triggers the Undo command</td></tr>
+        <tr><td>Redo</td><td>Triggers the Redo command</td></tr>
+        <tr><td>Save</td><td>Saves the active document</td></tr>
+        <tr><td>SaveAs</td><td>Opens Save As dialog</td></tr>
+        <tr><td>Close</td><td>Closes the active document</td></tr>
+        <tr><td>SynchronizeWithCentral</td><td>Sync to central file (workshared)</td></tr>
+        <tr><td>Wall</td><td>Activates the Wall placement tool</td></tr>
+        <tr><td>Door</td><td>Activates Door placement tool</td></tr>
+        <tr><td>Window</td><td>Activates Window placement tool</td></tr>
+        <tr><td>Column</td><td>Activates Column placement tool</td></tr>
+        <tr><td>Grid</td><td>Activates Grid drawing tool</td></tr>
+        <tr><td>Level</td><td>Activates Level drawing tool</td></tr>
+        <tr><td>AlignDimension</td><td>Activates the aligned dimension tool</td></tr>
+        <tr><td>AnnotateTag</td><td>Activates tag placement tool</td></tr>
+        <tr><td>TextNote</td><td>Activates text note tool</td></tr>
+        <tr><td>ThreeDView</td><td>Opens a new default 3D view</td></tr>
+        <tr><td>ViewProperties</td><td>Opens View Properties dialog</td></tr>
+        <tr><td>Print</td><td>Opens Print dialog</td></tr>
+        <tr><td>ProjectInformation</td><td>Opens Project Information dialog</td></tr>
+        <tr><td>ManageLinks</td><td>Opens Manage Links dialog</td></tr>
+        <tr><td>Purge</td><td>Opens Purge Unused dialog</td></tr>
+        <tr><td>WorksetsDialog</td><td>Opens Worksets dialog</td></tr>
+        <tr><td>DesignOptionsBar</td><td>Opens Design Options bar</td></tr>
+        <tr><td>SelectionBox</td><td>Creates selection box in active 3D view</td></tr>
+        <tr><td>ResetTemporaryHideIsolate</td><td>Resets all temporary hide/isolate overrides</td></tr>
+        <tr><td>HideInView</td><td>Hides selected elements in current view</td></tr>
+        <tr><td>IsolateElementInView</td><td>Isolates selected elements in view</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- RevitCommandId -->
+<div class="class-block" id="cls-revitcommandid">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">RevitCommandId</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">Represents a reference to a built-in Revit command. Obtained from RevitCommandId.LookupPostableCommandId() or RevitCommandId.LookupCommandId(). Used with UIApplication.PostCommand() to trigger commands and with CanExecuteNextCommand to check availability.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete PostCommand Patterns</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — PostCommand usage patterns</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">UIApplication</span> uiapp = commandData.Application;
+
+<span class="cm">// ── Method 1: From PostableCommand enum (most common) ──</span>
+<span class="tp">RevitCommandId</span> saveId = <span class="tp">RevitCommandId</span>
+    .<span class="fn">LookupPostableCommandId</span>(<span class="tp">PostableCommand</span>.Save);
+
+<span class="k">if</span> (uiapp.<span class="fn">CanPostCommand</span>(saveId))
+    uiapp.<span class="fn">PostCommand</span>(saveId);
+
+<span class="cm">// ── Method 2: From command name string ──</span>
+<span class="cm">// Get command names by running the journal or using RevitCommandId.LookupCommandId</span>
+<span class="tp">RevitCommandId</span> purgeId = <span class="tp">RevitCommandId</span>
+    .<span class="fn">LookupCommandId</span>(<span class="s">"ID_PURGE_UNUSED"</span>);
+<span class="k">if</span> (purgeId != <span class="k">null</span> &amp;&amp; uiapp.<span class="fn">CanPostCommand</span>(purgeId))
+    uiapp.<span class="fn">PostCommand</span>(purgeId);
+
+<span class="cm">// ── Practical examples ──</span>
+
+<span class="cm">// Trigger Sync to Central after batch operation</span>
+<span class="k">var</span> syncId = <span class="tp">RevitCommandId</span>.<span class="fn">LookupPostableCommandId</span>(
+    <span class="tp">PostableCommand</span>.SynchronizeWithCentral);
+<span class="k">if</span> (uiapp.<span class="fn">CanPostCommand</span>(syncId))
+    uiapp.<span class="fn">PostCommand</span>(syncId);
+
+<span class="cm">// Reset temporary hide/isolate after batch visual changes</span>
+<span class="k">var</span> resetId = <span class="tp">RevitCommandId</span>.<span class="fn">LookupPostableCommandId</span>(
+    <span class="tp">PostableCommand</span>.ResetTemporaryHideIsolate);
+uiapp.<span class="fn">PostCommand</span>(resetId);
+
+<span class="cm">// Open a new 3D view</span>
+<span class="k">var</span> v3dId = <span class="tp">RevitCommandId</span>.<span class="fn">LookupPostableCommandId</span>(
+    <span class="tp">PostableCommand</span>.ThreeDView);
+uiapp.<span class="fn">PostCommand</span>(v3dId);
+
+<span class="cm">// IMPORTANT: PostCommand is asynchronous!</span>
+<span class="cm">// The command fires AFTER your current Execute() returns.</span>
+<span class="cm">// You cannot wait for its result in the same Execute() call.</span>
+<span class="cm">// If you need to react to it, subscribe to the relevant event.</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Contextual Tabs -->
+<div class="class-block" id="cls-contextual-tabs">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Pattern</span><span class="class-name">Contextual Ribbon Tabs</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">Contextual tabs appear and disappear automatically based on user selection — exactly like Revit's own "Modify | Walls" tab. Implemented by subscribing to UIApplication.ViewActivated and Selection.SelectionChanged and showing/hiding panel visibility via RibbonPanel.Visible.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Contextual Tab Pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Show/hide panel based on selected element type</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// In OnStartup — create panel but start hidden</span>
+<span class="tp">RibbonPanel</span> wallContextPanel = app.<span class="fn">CreateRibbonPanel</span>(<span class="s">"Studio Tools"</span>, <span class="s">"Wall Tools"</span>);
+wallContextPanel.Visible = <span class="k">false</span>;   <span class="cm">// hidden by default</span>
+
+<span class="cm">// Store reference statically</span>
+MyApp.WallContextPanel = wallContextPanel;
+
+<span class="cm">// Subscribe to selection change via Idling (selection API)</span>
+app.Idling += <span class="fn">OnIdlingCheckSelection</span>;
+
+<span class="cm">// ── Handle selection changes ──</span>
+<span class="k">private static</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; _lastSelection = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ElementId</span>&gt;();
+
+<span class="k">private void</span> <span class="fn">OnIdlingCheckSelection</span>(<span class="k">object</span> sender, <span class="tp">IdlingEventArgs</span> e)
+{
+    e.<span class="fn">SetRaiseWithoutDelay</span>(<span class="k">false</span>);   <span class="cm">// be CPU-kind</span>
+
+    <span class="k">var</span> uiapp = sender <span class="k">as</span> <span class="tp">UIApplication</span>;
+    <span class="k">var</span> uidoc = uiapp?.ActiveUIDocument;
+    <span class="k">if</span> (uidoc == <span class="k">null</span>) { MyApp.WallContextPanel.Visible = <span class="k">false</span>; <span class="k">return</span>; }
+
+    <span class="k">var</span> selIds = uidoc.Selection.<span class="fn">GetElementIds</span>();
+
+    <span class="cm">// Only update if selection changed</span>
+    <span class="k">if</span> (selIds.<span class="fn">SequenceEqual</span>(_lastSelection)) <span class="k">return</span>;
+    _lastSelection = selIds;
+
+    <span class="cm">// Check if any selected element is a Wall</span>
+    <span class="k">bool</span> hasWall = selIds
+        .<span class="fn">Select</span>(id => uidoc.Document.<span class="fn">GetElement</span>(id))
+        .<span class="fn">Any</span>(el => el <span class="k">is</span> <span class="tp">Wall</span>);
+
+    <span class="cm">// Show/hide the contextual panel</span>
+    MyApp.WallContextPanel.Visible = hasWall;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-availability -->
+
+<!-- ════════════════════════════════════
+     DOCKABLEPANE
+════════════════════════════════════ -->
+<div class="ns-block" id="ns-dockablepane" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🪟</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.UI</div>
+      <h2>DockablePane — Modeless Panel</h2>
+      <p>A persistent WPF panel that docks inside the Revit window — the same mechanism Revit uses for Properties, Project Browser, and Systems Browser.</p>
+    </div>
+  </div>
+
+  <div class="callout c-note" style="margin-bottom:20px;"><strong>// DockablePane vs WPF Window</strong>Use DockablePane for persistent tools that stay visible while the user works (e.g. a properties inspector, a room schedule panel, a clash report). Use regular WPF Window for modal/temporary dialogs that the user opens, uses, and closes.</div>
+
+  <!-- Lifecycle steps -->
+  <div class="step-list">
+    <div class="step-card"><div class="step-num">1</div><div class="step-body"><h4>Implement IDockablePaneProvider</h4><p>Your WPF UserControl class implements this interface and provides its own content via SetupDockablePane().</p></div></div>
+    <div class="step-card"><div class="step-num">2</div><div class="step-body"><h4>Register in OnStartup()</h4><p>Call app.RegisterDockablePane(paneId, title, provider) once. Cannot be done after startup.</p></div></div>
+    <div class="step-card"><div class="step-num">3</div><div class="step-body"><h4>Show/Hide at runtime</h4><p>Call uiapp.GetDockablePane(paneId).Show() / .Hide() from any command or event handler.</p></div></div>
+    <div class="step-card"><div class="step-num">4</div><div class="step-body"><h4>Update content</h4><p>Revit calls IDockablePaneProvider.SetupDockablePane() on first show. Update your WPF content directly from the main thread via ExternalEvent.</p></div></div>
+  </div>
+
+<!-- IDockablePaneProvider -->
+<div class="class-block" id="cls-dockablepaneprovider">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IDockablePaneProvider</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.UI</span></div>
+  <div class="class-desc">Implemented by the class that provides the WPF content for a DockablePane. Revit calls SetupDockablePane() when the pane is first created. This method configures the pane — setting the content (your WPF UserControl) and initial state.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete DockablePane Implementation</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete DockablePane: provider + registration + show/hide + update</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ════════════════════════════════════
+// STEP 1: Create WPF UserControl (RoomInspectorPane.xaml.cs)
+// ════════════════════════════════════</span>
+<span class="k">public partial class</span> <span class="tp">RoomInspectorPane</span> : System.Windows.Controls.<span class="tp">UserControl</span>,
+    <span class="tp">IDockablePaneProvider</span>
+{
+    <span class="k">public void</span> <span class="fn">SetupDockablePane</span>(<span class="tp">DockablePaneProviderData</span> data)
+    {
+        <span class="cm">// Set this UserControl as the pane content</span>
+        data.FrameworkElement = <span class="k">this</span>;
+
+        <span class="cm">// Configure initial docking state</span>
+        data.InitialState = <span class="k">new</span> <span class="tp">DockablePaneState</span>
+        {
+            DockPosition = <span class="tp">DockPosition</span>.Right,        <span class="cm">// dock to right side</span>
+            MinimumWidth = <span class="n">280</span>,
+            MinimumHeight = <span class="n">200</span>
+        };
+    }
+
+    <span class="cm">// Method to update WPF content from Revit API thread</span>
+    <span class="k">public void</span> <span class="fn">UpdateRoomData</span>(<span class="tp">Room</span> room)
+    {
+        <span class="cm">// This runs on the main thread via ExternalEvent — safe to update UI</span>
+        <span class="k">if</span> (room == <span class="k">null</span>) { lblRoomName.Content = <span class="s">"No room selected"</span>; <span class="k">return</span>; }
+        lblRoomName.Content  = <span class="s">$"{room.Number} — {room.Name}"</span>;
+        lblRoomArea.Content  = <span class="s">$"{room.Area * 0.092903:F1} m²"</span>;
+        lblRoomLevel.Content = room.Level?.Name ?? <span class="s">"—"</span>;
+    }
+}
+
+<span class="cm">// ════════════════════════════════════
+// STEP 2: Register in OnStartup
+// ════════════════════════════════════</span>
+<span class="k">public class</span> <span class="tp">MyApplication</span> : <span class="tp">IExternalApplication</span>
+{
+    <span class="k">public static</span> <span class="tp">DockablePaneId</span>       PaneId;
+    <span class="k">public static</span> <span class="tp">RoomInspectorPane</span>   PaneContent;
+
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+    {
+        <span class="cm">// Create a unique GUID for this pane — must be stable across sessions</span>
+        PaneId      = <span class="k">new</span> <span class="tp">DockablePaneId</span>(
+            <span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"AABBCCDD-1234-5678-ABCD-EF0123456789"</span>));
+        PaneContent = <span class="k">new</span> <span class="tp">RoomInspectorPane</span>();
+
+        <span class="cm">// Register pane</span>
+        app.<span class="fn">RegisterDockablePane</span>(PaneId, <span class="s">"Room Inspector"</span>, PaneContent);
+
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+}
+
+<span class="cm">// ════════════════════════════════════
+// STEP 3: Show / Hide from a command
+// ════════════════════════════════════</span>
+[<span class="tp">Transaction</span>(<span class="tp">TransactionMode</span>.Manual)]
+<span class="k">public class</span> <span class="tp">ToggleRoomInspectorCommand</span> : <span class="tp">IExternalCommand</span>
+{
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(<span class="tp">ExternalCommandData</span> cd, <span class="k">ref string</span> msg, <span class="tp">ElementSet</span> els)
+    {
+        <span class="tp">DockablePane</span> pane = cd.Application.<span class="fn">GetDockablePane</span>(<span class="tp">MyApplication</span>.PaneId);
+
+        <span class="k">if</span> (pane.<span class="fn">IsShown</span>())
+            pane.<span class="fn">Hide</span>();
+        <span class="k">else</span>
+            pane.<span class="fn">Show</span>();
+
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+}
+
+<span class="cm">// ════════════════════════════════════
+// STEP 4: Update content via ExternalEvent
+// ════════════════════════════════════</span>
+<span class="k">public class</span> <span class="tp">UpdateRoomPaneHandler</span> : <span class="tp">IExternalEventHandler</span>
+{
+    <span class="k">public</span> <span class="tp">ElementId</span> RoomId { <span class="k">get</span>; <span class="k">set</span>; }
+
+    <span class="k">public void</span> <span class="fn">Execute</span>(<span class="tp">UIApplication</span> app)
+    {
+        <span class="tp">Document</span> doc  = app.ActiveUIDocument?.Document;
+        <span class="tp">Room</span>     room = doc?.<span class="fn">GetElement</span>(RoomId) <span class="k">as</span> <span class="tp">Room</span>;
+
+        <span class="cm">// Update WPF content (we're on main thread — safe)</span>
+        <span class="tp">MyApplication</span>.PaneContent.<span class="fn">UpdateRoomData</span>(room);
+    }
+    <span class="k">public string</span> <span class="fn">GetName</span>() => <span class="s">"Update Room Pane"</span>;
+}
+
+<span class="cm">// DockPosition options:
+// DockPosition.Left   — left panel area (like Properties)
+// DockPosition.Right  — right panel area
+// DockPosition.Top    — top area
+// DockPosition.Bottom — bottom area  
+// DockPosition.Floating — floating window (default if not set)
+// DockPosition.Tabbed — tab alongside existing panes</span></pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-dockablepane -->
+
+<!-- ════════════════════════════════════
+     DIRECTCONTEXT3D
+════════════════════════════════════ -->
+<div class="ns-block" id="ns-dc3d" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🎮</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB.DirectContext3D</div>
+      <h2>DirectContext3D</h2>
+      <p>Draw custom 3D geometry directly into Revit 3D views in real-time — without creating elements. Used for clash highlights, live analysis overlays, progress indicators, and custom geometry previews.</p>
+    </div>
+  </div>
+
+  <div class="callout c-note" style="margin-bottom:20px;"><strong>// What is DirectContext3D?</strong>DirectContext3D lets you bypass the Revit element system entirely and draw arbitrary OpenGL-style geometry (triangles, lines, points) directly into any 3D view at render time. The geometry is NOT stored in the model — it's drawn fresh on every frame. Perfect for visualisations that change frequently or don't belong in the model.</div>
+
+<!-- IDirectContext3DServer -->
+<div class="class-block" id="cls-idirectcontext3dserver">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-iface">Interface</span><span class="class-name">IDirectContext3DServer</span></div><div class="class-inherit">Inherits: <span>IExternalServer</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.DirectContext3D</span></div>
+  <div class="class-desc">The core interface for custom 3D rendering in Revit views. Implement this interface, register it with ExternalServiceRegistry, and Revit will call RenderScene() on every view redraw. Your implementation creates vertex/index buffers and submits draw calls to the DrawContext.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete IDirectContext3DServer Implementation</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Clash highlight server: draw red transparent boxes on clashes</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.DirectContext3D;
+<span class="k">using</span> Autodesk.Revit.DB.ExternalService;
+
+<span class="k">public class</span> <span class="tp">ClashHighlightServer</span> : <span class="tp">IDirectContext3DServer</span>
+{
+    <span class="k">private</span> <span class="tp">Guid</span> _serviceId = ExternalServices.BuiltInExternalServices.DirectContext3DService;
+    <span class="k">private</span> <span class="tp">Guid</span> _serverId  = <span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"CCDD1122-3344-5566-7788-AABBCCDD1122"</span>);
+
+    <span class="cm">// External list of bounding boxes to highlight as clash volumes</span>
+    <span class="k">public</span> <span class="tp">List</span>&lt;<span class="tp">BoundingBoxXYZ</span>&gt; ClashBoxes { <span class="k">get</span>; <span class="k">set</span>; } = <span class="k">new</span>();
+
+    <span class="cm">// ── IExternalServer required methods ──</span>
+    <span class="k">public</span> <span class="tp">Guid</span>   <span class="fn">GetServiceId</span>()      => _serviceId;
+    <span class="k">public</span> <span class="tp">Guid</span>   <span class="fn">GetServerId</span>()       => _serverId;
+    <span class="k">public string</span> <span class="fn">GetVendorId</span>()        => <span class="s">"STUDIO"</span>;
+    <span class="k">public string</span> <span class="fn">GetName</span>()            => <span class="s">"Clash Highlight Server"</span>;
+    <span class="k">public string</span> <span class="fn">GetDescription</span>()     => <span class="s">"Draws clash volumes as red boxes"</span>;
+    <span class="k">public string</span> <span class="fn">GetApplicationId</span>()   => <span class="s">"StudioTools"</span>;
+
+    <span class="cm">// ── IDirectContext3DServer core methods ──</span>
+
+    <span class="cm">// Should this server draw in the given view?</span>
+    <span class="k">public bool</span> <span class="fn">CanExecute</span>(<span class="tp">View</span> dBView)
+    {
+        <span class="cm">// Only draw in 3D views</span>
+        <span class="k">return</span> dBView <span class="k">is</span> <span class="tp">View3D</span> &amp;&amp; ClashBoxes.Count > <span class="n">0</span>;
+    }
+
+    <span class="cm">// Return outline that encompasses all your custom geometry</span>
+    <span class="cm">// Used for view clipping and level-of-detail decisions</span>
+    <span class="k">public</span> <span class="tp">Outline</span> <span class="fn">GetBoundingBox</span>(<span class="tp">View</span> dBView)
+    {
+        <span class="k">if</span> (ClashBoxes.Count == <span class="n">0</span>)
+            <span class="k">return new</span> <span class="tp">Outline</span>(<span class="tp">XYZ</span>.Zero, <span class="tp">XYZ</span>.Zero);
+
+        <span class="tp">XYZ</span> min = <span class="k">new</span> <span class="tp">XYZ</span>(
+            ClashBoxes.<span class="fn">Min</span>(b => b.Min.X),
+            ClashBoxes.<span class="fn">Min</span>(b => b.Min.Y),
+            ClashBoxes.<span class="fn">Min</span>(b => b.Min.Z));
+        <span class="tp">XYZ</span> max = <span class="k">new</span> <span class="tp">XYZ</span>(
+            ClashBoxes.<span class="fn">Max</span>(b => b.Max.X),
+            ClashBoxes.<span class="fn">Max</span>(b => b.Max.Y),
+            ClashBoxes.<span class="fn">Max</span>(b => b.Max.Z));
+        <span class="k">return new</span> <span class="tp">Outline</span>(min, max);
+    }
+
+    <span class="cm">// Does your geometry need to be re-rendered every frame?</span>
+    <span class="k">public bool</span> <span class="fn">UseInTransparentPass</span>(<span class="tp">View</span> dBView) => <span class="k">true</span>; <span class="cm">// transparent = semi-opaque</span>
+
+    <span class="cm">// ── The main draw method — called every frame ──</span>
+    <span class="k">public void</span> <span class="fn">RenderScene</span>(<span class="tp">View</span> dBView, <span class="tp">DisplayStyle</span> displayStyle)
+    {
+        <span class="k">try</span>
+        {
+            <span class="k">foreach</span> (<span class="k">var</span> bb <span class="k">in</span> ClashBoxes)
+                <span class="fn">DrawBox</span>(bb, <span class="k">new</span> <span class="tp">ColorWithTransparency</span>(<span class="n">255</span>, <span class="n">0</span>, <span class="n">0</span>, <span class="n">128</span>));  <span class="cm">// red, 50% transparent</span>
+        }
+        <span class="k">catch</span> (<span class="tp">Exception</span> ex)
+        {
+            System.Diagnostics.Debug.WriteLine(<span class="s">$"DC3D render error: {ex.Message}"</span>);
+        }
+    }
+
+    <span class="cm">// Helper: draw a wireframe + transparent solid box</span>
+    <span class="k">private static void</span> <span class="fn">DrawBox</span>(<span class="tp">BoundingBoxXYZ</span> bb, <span class="tp">ColorWithTransparency</span> color)
+    {
+        <span class="tp">XYZ</span> mn = bb.Min, mx = bb.Max;
+
+        <span class="cm">// 8 vertices of the box</span>
+        <span class="tp">XYZ</span>[] v =
+        {
+            <span class="k">new</span> <span class="tp">XYZ</span>(mn.X,mn.Y,mn.Z), <span class="k">new</span> <span class="tp">XYZ</span>(mx.X,mn.Y,mn.Z),
+            <span class="k">new</span> <span class="tp">XYZ</span>(mx.X,mx.Y,mn.Z), <span class="k">new</span> <span class="tp">XYZ</span>(mn.X,mx.Y,mn.Z),
+            <span class="k">new</span> <span class="tp">XYZ</span>(mn.X,mn.Y,mx.Z), <span class="k">new</span> <span class="tp">XYZ</span>(mx.X,mn.Y,mx.Z),
+            <span class="k">new</span> <span class="tp">XYZ</span>(mx.X,mx.Y,mx.Z), <span class="k">new</span> <span class="tp">XYZ</span>(mn.X,mx.Y,mx.Z)
+        };
+
+        <span class="cm">// Build vertex buffer (position + colour per vertex)</span>
+        <span class="tp">VertexFormatBits</span> vfBits = <span class="tp">VertexFormatBits</span>.PositionColored;
+        <span class="k">int</span> vertexCount = v.Length;  <span class="cm">// 8</span>
+        <span class="tp">VertexBufferStorage</span> vbs = <span class="k">new</span> <span class="tp">VertexBufferStorage</span>(vfBits, vertexCount);
+
+        <span class="tp">VertexBuffer</span> vb = vbs.VertexBuffer;
+        vb.<span class="fn">Map</span>(vertexCount * <span class="tp">VertexPositionColored</span>.GetSizeInFloats());
+        {
+            <span class="tp">VertexStreamPositionColored</span> vs = vb.<span class="fn">GetVertexStreamPositionColored</span>();
+            <span class="k">foreach</span> (<span class="k">var</span> pt <span class="k">in</span> v)
+                vs.<span class="fn">AddVertex</span>(<span class="k">new</span> <span class="tp">VertexPositionColored</span>(pt, color));
+        }
+        vb.<span class="fn">Unmap</span>();
+
+        <span class="cm">// 12 triangles for 6 faces (2 triangles per face)</span>
+        <span class="k">int</span>[] faces = {
+            <span class="n">0</span>,<span class="n">1</span>,<span class="n">2</span>, <span class="n">0</span>,<span class="n">2</span>,<span class="n">3</span>,  <span class="cm">// bottom</span>
+            <span class="n">4</span>,<span class="n">5</span>,<span class="n">6</span>, <span class="n">4</span>,<span class="n">6</span>,<span class="n">7</span>,  <span class="cm">// top</span>
+            <span class="n">0</span>,<span class="n">1</span>,<span class="n">5</span>, <span class="n">0</span>,<span class="n">5</span>,<span class="n">4</span>,  <span class="cm">// front</span>
+            <span class="n">2</span>,<span class="n">3</span>,<span class="n">7</span>, <span class="n">2</span>,<span class="n">7</span>,<span class="n">6</span>,  <span class="cm">// back</span>
+            <span class="n">0</span>,<span class="n">3</span>,<span class="n">7</span>, <span class="n">0</span>,<span class="n">7</span>,<span class="n">4</span>,  <span class="cm">// left</span>
+            <span class="n">1</span>,<span class="n">2</span>,<span class="n">6</span>, <span class="n">1</span>,<span class="n">6</span>,<span class="n">5</span>   <span class="cm">// right</span>
+        };
+        <span class="tp">IndexBuffer</span> ib = <span class="k">new</span> <span class="tp">IndexBuffer</span>(faces.Length);
+        ib.<span class="fn">Map</span>(faces.Length);
+        {
+            <span class="tp">IndexStream</span> ixs = ib.<span class="fn">GetIndexStreamTriangle</span>();
+            <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; faces.Length; i += <span class="n">3</span>)
+                ixs.<span class="fn">AddTriangle</span>(<span class="k">new</span> <span class="tp">IndexTriangle</span>(faces[i], faces[i+<span class="n">1</span>], faces[i+<span class="n">2</span>]));
+        }
+        ib.<span class="fn">Unmap</span>();
+
+        <span class="cm">// Submit draw call to Revit's render pipeline</span>
+        <span class="k">var</span> effect = <span class="k">new</span> <span class="tp">EffectInstance</span>(vfBits);
+        <span class="tp">DrawContext</span>.<span class="fn">FlushBuffer</span>(vb, vertexCount, ib,
+            faces.Length / <span class="n">3</span>,
+            <span class="k">new</span> <span class="tp">VertexFormat</span>(vfBits),
+            effect,
+            <span class="tp">PrimitiveType</span>.TriangleList);
+    }
+}
+
+<span class="cm">// ════════════════════════════════════
+// REGISTRATION in OnStartup
+// ════════════════════════════════════</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+{
+    <span class="k">var</span> server = <span class="k">new</span> <span class="tp">ClashHighlightServer</span>();
+    MyApp.ClashServer = server;
+
+    <span class="tp">MultiServerService</span> svc = <span class="tp">ExternalServiceRegistry</span>.<span class="fn">GetService</span>(
+        <span class="tp">ExternalServices</span>.BuiltInExternalServices.DirectContext3DService)
+        <span class="k">as</span> <span class="tp">MultiServerService</span>;
+
+    svc?.<span class="fn">AddServer</span>(server);
+
+    <span class="cm">// Activate the server for all 3D views</span>
+    <span class="tp">IList</span>&lt;<span class="tp">Guid</span>&gt; activeServerIds = svc?.<span class="fn">GetActiveServerIds</span>() ?? <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Guid</span>&gt;();
+    activeServerIds.<span class="fn">Add</span>(server.<span class="fn">GetServerId</span>());
+    svc?.<span class="fn">SetActiveServers</span>(activeServerIds);
+
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}
+
+<span class="cm">// ════════════════════════════════════
+// USAGE: update clash boxes and invalidate view
+// ════════════════════════════════════</span>
+<span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(<span class="tp">ExternalCommandData</span> cd, <span class="k">ref string</span> msg, <span class="tp">ElementSet</span> els)
+{
+    <span class="cm">// Set clash boxes to highlight</span>
+    MyApp.ClashServer.ClashBoxes = <span class="fn">DetectClashes</span>(cd.Application.ActiveUIDocument.Document);
+
+    <span class="cm">// Force view to redraw (triggers RenderScene)</span>
+    cd.Application.ActiveUIDocument.RefreshActiveView();
+
+    <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Key DC3D classes quick ref -->
+<div class="class-block" id="cls-renderbuffer">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Reference</span><span class="class-name">DirectContext3D Key Classes</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.DirectContext3D</span></div>
+  <div class="class-section">
+    <div class="section-title st-enum">🟡 Class Summary</div>
+    <div class="member">
+      <table class="enum-table">
+        <tr><th>Class</th><th>Purpose</th></tr>
+        <tr><td>VertexBuffer</td><td>GPU buffer holding vertex data (positions, colors, normals, UVs)</td></tr>
+        <tr><td>IndexBuffer</td><td>GPU index buffer defining triangle/line connectivity</td></tr>
+        <tr><td>VertexFormat</td><td>Describes which attributes each vertex has</td></tr>
+        <tr><td>VertexFormatBits</td><td>Flags: Position, PositionColored, PositionNormal, PositionNormalColored, PositionNormalTextured</td></tr>
+        <tr><td>EffectInstance</td><td>Shader effect — controls lighting model and blending mode</td></tr>
+        <tr><td>DrawContext</td><td>Static class with FlushBuffer() — submits draw call to Revit's pipeline</td></tr>
+        <tr><td>ColorWithTransparency</td><td>RGBA color for per-vertex coloring (R,G,B,A each 0–255)</td></tr>
+        <tr><td>VertexStreamPositionColored</td><td>Typed stream for writing Position+Color vertices to a VertexBuffer</td></tr>
+        <tr><td>IndexStreamTriangle</td><td>Typed stream for writing triangle indices to an IndexBuffer</td></tr>
+        <tr><td>IndexStreamLine</td><td>Typed stream for writing line segment indices</td></tr>
+        <tr><td>PrimitiveType</td><td>TriangleList, LineList, PointList</td></tr>
+        <tr><td>RenderingPassBufferStorage</td><td>Higher-level helper combining VertexBuffer + IndexBuffer into a reusable cache</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-dc3d -->
+
+<!-- ════════════════════════════════════
+     ATTRIBUTES NAMESPACE
+════════════════════════════════════ -->
+<div class="ns-block" id="ns-attributes" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🏷️</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.Attributes</div>
+      <h2>Attributes Namespace</h2>
+      <p>Required decorators for every IExternalCommand and IExternalApplication class.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-attributes">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Reference</span><span class="class-name">All Attribute Types</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.Attributes</span></div>
+  <div class="class-desc">C# attribute classes used to decorate IExternalCommand and IExternalApplication implementations. These attributes are mandatory — without them Revit will not load your command correctly.</div>
+  <div class="class-section">
+    <div class="section-title st-enum">🟡 Attribute Reference Table</div>
+    <div class="member">
+      <table class="enum-table">
+        <tr><th>Attribute</th><th>Values</th><th>Usage</th><th>Notes</th></tr>
+        <tr><td>[Transaction(...)]</td><td>TransactionMode.Manual<br/>TransactionMode.Automatic<br/>TransactionMode.ReadOnly</td><td>Required on every IExternalCommand class</td><td>Always use Manual — gives you full transaction control</td></tr>
+        <tr><td>[Regeneration(...)]</td><td>RegenerationOption.Manual<br/>RegenerationOption.Automatic</td><td>Optional on IExternalCommand</td><td>Use Manual — Automatic is deprecated and causes performance issues</td></tr>
+        <tr><td>[Journaling(...)]</td><td>JournalingMode.NoCommandData<br/>JournalingMode.UsingCommandData</td><td>Optional on IExternalCommand</td><td>Controls whether command data is saved in Revit journal files for replay</td></tr>
+      </table>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Correct attribute decoration</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.Attributes;
+<span class="k">using</span> Autodesk.Revit.DB;
+<span class="k">using</span> Autodesk.Revit.UI;
+
+<span class="cm">// ── IExternalCommand — required attributes ──</span>
+[<span class="tp">Transaction</span>(<span class="tp">TransactionMode</span>.Manual)]       <span class="cm">// REQUIRED — always Manual</span>
+[<span class="tp">Regeneration</span>(<span class="tp">RegenerationOption</span>.Manual)]  <span class="cm">// optional but recommended</span>
+<span class="k">public class</span> <span class="tp">MyCommand</span> : <span class="tp">IExternalCommand</span>
+{
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(<span class="tp">ExternalCommandData</span> cd,
+        <span class="k">ref string</span> msg, <span class="tp">ElementSet</span> els) { ... }
+}
+
+<span class="cm">// ── Read-only command (no writes) ──</span>
+[<span class="tp">Transaction</span>(<span class="tp">TransactionMode</span>.ReadOnly)]
+<span class="k">public class</span> <span class="tp">MyQueryCommand</span> : <span class="tp">IExternalCommand</span>
+{
+    <span class="cm">// Can read elements and parameters but cannot create/modify/delete</span>
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(...) { ... }
+}
+
+<span class="cm">// ── IExternalApplication — NO attributes needed ──</span>
+<span class="k">public class</span> <span class="tp">MyApplication</span> : <span class="tp">IExternalApplication</span>
+{
+    <span class="cm">// No Transaction attribute required on IExternalApplication</span>
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app) { ... }
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnShutdown</span>(<span class="tp">UIControlledApplication</span> app) { ... }
+}
+
+<span class="cm">// TransactionMode comparison:
+// Manual     — You control Transaction.Start/Commit/RollBack (use this always)
+// Automatic  — Revit wraps your Execute() in one auto-transaction (deprecated)
+// ReadOnly   — No transactions allowed. Perfect for analysis/reporting commands.</span></pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-attributes -->
+
+<!-- ════════════════════════════════════
+     COMPLETE PRODUCTION ADD-IN TEMPLATE
+════════════════════════════════════ -->
+<div class="ns-block" id="sec-complete-template" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🏭</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Production Template</div>
+      <h2>Complete Production Add-In</h2>
+      <p>A single-file template combining everything: IExternalApplication + custom tab + all control types + DockablePane + ExternalEvent + IExternalCommandAvailability + PostCommand.</p>
+    </div>
+  </div>
+
+<div class="class-block">
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Full Production Template</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// MyApplication.cs — complete production-grade add-in skeleton</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.Attributes;
+<span class="k">using</span> Autodesk.Revit.DB;
+<span class="k">using</span> Autodesk.Revit.UI;
+<span class="k">using</span> Autodesk.Revit.UI.Selection;
+<span class="k">using</span> System;
+<span class="k">using</span> System.Reflection;
+
+<span class="k">namespace</span> StudioTools
+{
+    <span class="cm">// ══════════════════════════════════════════
+    // APPLICATION
+    // ══════════════════════════════════════════</span>
+    <span class="k">public class</span> <span class="tp">StudioApplication</span> : <span class="tp">IExternalApplication</span>
+    {
+        <span class="k">public static</span> <span class="tp">ExternalEvent</span>       UpdatePaneEvent  { <span class="k">get</span>; <span class="k">private set</span>; }
+        <span class="k">public static</span> <span class="tp">UpdatePaneHandler</span>   PaneHandler      { <span class="k">get</span>; <span class="k">private set</span>; }
+        <span class="k">public static</span> <span class="tp">MyDockablePane</span>      PaneContent      { <span class="k">get</span>; <span class="k">private set</span>; }
+        <span class="k">public static</span> <span class="tp">DockablePaneId</span>      PaneId           { <span class="k">get</span>; <span class="k">private set</span>; }
+        <span class="k">public static</span> <span class="tp">RibbonPanel</span>         ContextPanel     { <span class="k">get</span>; <span class="k">private set</span>; }
+
+        <span class="k">private</span> <span class="k">const string</span> TAB = <span class="s">"Studio Tools"</span>;
+
+        <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnStartup</span>(<span class="tp">UIControlledApplication</span> app)
+        {
+            <span class="k">string</span> dll = <span class="tp">Assembly</span>.<span class="fn">GetExecutingAssembly</span>().Location;
+
+            <span class="cm">// ── 1. Create Tab ──</span>
+            <span class="k">try</span> { app.<span class="fn">CreateRibbonTab</span>(TAB); } <span class="k">catch</span> { }
+
+            <span class="cm">// ── 2. Create Panels ──</span>
+            <span class="tp">RibbonPanel</span> panelMain = app.<span class="fn">CreateRibbonPanel</span>(TAB, <span class="s">"Tools"</span>);
+            <span class="tp">RibbonPanel</span> panelExport = app.<span class="fn">CreateRibbonPanel</span>(TAB, <span class="s">"Export"</span>);
+            ContextPanel = app.<span class="fn">CreateRibbonPanel</span>(TAB, <span class="s">"Wall Context"</span>);
+            ContextPanel.Visible = <span class="k">false</span>;
+
+            <span class="cm">// ── 3. Large button ──</span>
+            <span class="k">var</span> mainBtn = <span class="k">new</span> <span class="tp">PushButtonData</span>(
+                <span class="s">"btnMain"</span>, <span class="s">"Open\nInspector"</span>, dll,
+                <span class="s">"StudioTools.TogglePaneCommand"</span>);
+            mainBtn.LargeImage = <span class="fn">LoadImg</span>(<span class="s">"inspector_32.png"</span>);
+            mainBtn.ToolTip    = <span class="s">"Open the Studio Inspector panel"</span>;
+            panelMain.<span class="fn">AddItem</span>(mainBtn);
+
+            panelMain.<span class="fn">AddSeparator</span>();
+
+            <span class="cm">// ── 4. Stacked small buttons ──</span>
+            <span class="k">var</span> s1 = <span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"sWalls"</span>, <span class="s">"Audit Walls"</span>,  dll, <span class="s">"StudioTools.AuditWalls"</span>);
+            <span class="k">var</span> s2 = <span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"sRooms"</span>, <span class="s">"Audit Rooms"</span>,  dll, <span class="s">"StudioTools.AuditRooms"</span>);
+            <span class="k">var</span> s3 = <span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"sViews"</span>, <span class="s">"Audit Views"</span>,  dll, <span class="s">"StudioTools.AuditViews"</span>);
+            s1.AvailabilityClassName = <span class="k">typeof</span>(<span class="tp">RequiresProject</span>).<span class="fn">FullName</span>;
+            s2.AvailabilityClassName = <span class="k">typeof</span>(<span class="tp">RequiresProject</span>).<span class="fn">FullName</span>;
+            s3.AvailabilityClassName = <span class="k">typeof</span>(<span class="tp">RequiresProject</span>).<span class="fn">FullName</span>;
+            panelMain.<span class="fn">AddStackedItems</span>(s1, s2, s3);
+
+            <span class="cm">// ── 5. PulldownButton export menu ──</span>
+            <span class="k">var</span> pdData = <span class="k">new</span> <span class="tp">PulldownButtonData</span>(<span class="s">"pdExport"</span>, <span class="s">"Export"</span>);
+            <span class="tp">PulldownButton</span> pd = panelExport.<span class="fn">AddItem</span>(pdData) <span class="k">as</span> <span class="tp">PulldownButton</span>;
+            pd.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"ePDF"</span>, <span class="s">"PDF"</span>, dll, <span class="s">"StudioTools.ExportPDF"</span>));
+            pd.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"eDWG"</span>, <span class="s">"DWG"</span>, dll, <span class="s">"StudioTools.ExportDWG"</span>));
+            pd.<span class="fn">AddPushButton</span>(<span class="k">new</span> <span class="tp">PushButtonData</span>(<span class="s">"eIFC"</span>, <span class="s">"IFC"</span>, dll, <span class="s">"StudioTools.ExportIFC"</span>));
+
+            <span class="cm">// ── 6. Register DockablePane ──</span>
+            PaneId      = <span class="k">new</span> <span class="tp">DockablePaneId</span>(<span class="k">new</span> <span class="tp">Guid</span>(<span class="s">"AABB1122-3344-5566-7788-CCDD9900AABB"</span>));
+            PaneContent = <span class="k">new</span> <span class="tp">MyDockablePane</span>();
+            app.<span class="fn">RegisterDockablePane</span>(PaneId, <span class="s">"Studio Inspector"</span>, PaneContent);
+
+            <span class="cm">// ── 7. ExternalEvent ──</span>
+            PaneHandler     = <span class="k">new</span> <span class="tp">UpdatePaneHandler</span>();
+            UpdatePaneEvent = <span class="tp">ExternalEvent</span>.<span class="fn">Create</span>(PaneHandler);
+
+            <span class="cm">// ── 8. Subscribe to events ──</span>
+            app.ControlledApplication.DocumentOpened  += <span class="fn">OnDocOpened</span>;
+            app.ControlledApplication.DocumentChanged += <span class="fn">OnDocChanged</span>;
+            app.ControlledApplication.DocumentClosing += <span class="fn">OnDocClosing</span>;
+            app.Idling                                 += <span class="fn">OnIdling</span>;
+
+            <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+        }
+
+        <span class="k">public</span> <span class="tp">Result</span> <span class="fn">OnShutdown</span>(<span class="tp">UIControlledApplication</span> app)
+        {
+            app.ControlledApplication.DocumentOpened  -= <span class="fn">OnDocOpened</span>;
+            app.ControlledApplication.DocumentChanged -= <span class="fn">OnDocChanged</span>;
+            app.ControlledApplication.DocumentClosing -= <span class="fn">OnDocClosing</span>;
+            app.Idling                                 -= <span class="fn">OnIdling</span>;
+            UpdatePaneEvent?.<span class="fn">Dispose</span>();
+            <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+        }
+
+        <span class="k">private void</span> <span class="fn">OnDocOpened</span>(<span class="k">object</span> s, <span class="tp">Autodesk.Revit.DB.Events.DocumentOpenedEventArgs</span> e) { }
+        <span class="k">private void</span> <span class="fn">OnDocChanged</span>(<span class="k">object</span> s, <span class="tp">Autodesk.Revit.DB.Events.DocumentChangedEventArgs</span> e) { }
+        <span class="k">private void</span> <span class="fn">OnDocClosing</span>(<span class="k">object</span> s, <span class="tp">Autodesk.Revit.DB.Events.DocumentClosingEventArgs</span> e) { }
+        <span class="k">private void</span> <span class="fn">OnIdling</span>(<span class="k">object</span> s, <span class="tp">Autodesk.Revit.UI.Events.IdlingEventArgs</span> e)
+        {
+            e.<span class="fn">SetRaiseWithoutDelay</span>(<span class="k">false</span>);
+            <span class="cm">// check selection, update context panel visibility etc.</span>
+        }
+
+        <span class="k">private static</span> System.Windows.Media.ImageSource <span class="fn">LoadImg</span>(<span class="k">string</span> name)
+        {
+            <span class="k">try</span> {
+                <span class="k">var</span> uri = <span class="k">new</span> Uri(<span class="s">$"pack://application:,,,/StudioTools;component/Resources/{name}"</span>);
+                <span class="k">return new</span> System.Windows.Media.Imaging.<span class="fn">BitmapImage</span>(uri);
+            } <span class="k">catch</span> { <span class="k">return null</span>; }
+        }
+    }
+
+    <span class="cm">// ══════════════════════════════════════════
+    // AVAILABILITY CLASS
+    // ══════════════════════════════════════════</span>
+    <span class="k">public class</span> <span class="tp">RequiresProject</span> : <span class="tp">IExternalCommandAvailability</span>
+    {
+        <span class="k">public bool</span> <span class="fn">IsCommandAvailable</span>(<span class="tp">UIApplication</span> app, <span class="tp">CategorySet</span> cats)
+            => app.ActiveUIDocument?.Document?.IsFamilyDocument == <span class="k">false</span>;
+    }
+
+    <span class="cm">// ══════════════════════════════════════════
+    // COMMAND: Toggle DockablePane
+    // ══════════════════════════════════════════</span>
+    [<span class="tp">Transaction</span>(<span class="tp">TransactionMode</span>.Manual)]
+    <span class="k">public class</span> <span class="tp">TogglePaneCommand</span> : <span class="tp">IExternalCommand</span>
+    {
+        <span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(<span class="tp">ExternalCommandData</span> cd, <span class="k">ref string</span> msg, <span class="tp">ElementSet</span> els)
+        {
+            <span class="tp">DockablePane</span> pane = cd.Application.<span class="fn">GetDockablePane</span>(<span class="tp">StudioApplication</span>.PaneId);
+            <span class="k">if</span> (pane.<span class="fn">IsShown</span>()) pane.<span class="fn">Hide</span>(); <span class="k">else</span> pane.<span class="fn">Show</span>();
+            <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+        }
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /production template -->
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+<script src="search-data.js"></script><script src="search.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

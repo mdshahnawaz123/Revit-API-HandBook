@@ -1,0 +1,1387 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API — Book 18: Final Gaps + Complete Learning Path</title>
+<link rel="stylesheet" href="api-style.css"/>
+<style>
+.lp-hero{background:linear-gradient(135deg,rgba(79,158,255,.08),rgba(124,106,247,.06));border:1px solid rgba(79,158,255,.2);border-radius:12px;padding:32px 36px;margin:24px 0;}
+.lp-hero h2{font-family:'Fraunces',serif;font-size:26px;color:var(--text);margin-bottom:8px;}
+.lp-hero p{color:var(--text2);font-size:14px;}
+.lp-stats{display:flex;gap:28px;margin-top:18px;flex-wrap:wrap;}
+.lp-stat{text-align:center;}
+.lp-stat .n{font-family:'Fraunces',serif;font-size:30px;font-weight:900;color:var(--accent);}
+.lp-stat .l{font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:1px;}
+.path-timeline{position:relative;padding-left:32px;margin:20px 0;}
+.path-timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent2),var(--accent3));border-radius:2px;}
+.path-item{position:relative;margin-bottom:22px;}
+.path-dot{position:absolute;left:-28px;top:2px;width:22px;height:22px;border-radius:50%;background:var(--surface2);border:2px solid var(--accent);font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--accent);display:flex;align-items:center;justify-content:center;}
+.path-card{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:16px 20px;margin-left:4px;}
+.path-card h4{font-family:'Fraunces',serif;font-size:15px;color:var(--text);margin-bottom:8px;}
+.pc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.pc-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 8px;border-radius:3px;}
+.pct-time{background:rgba(62,217,160,.1);color:var(--accent3);border:1px solid rgba(62,217,160,.25);}
+.pct-level{background:rgba(247,200,79,.1);color:var(--accent4);border:1px solid rgba(247,200,79,.25);}
+.pct-books{background:rgba(79,158,255,.1);color:var(--accent);border:1px solid rgba(79,158,255,.25);}
+.path-card ul{list-style:none;padding:0;margin:0;}
+.path-card ul li{font-size:13px;color:var(--text2);padding:2px 0;display:flex;gap:8px;align-items:flex-start;}
+.path-card ul li::before{content:'→';color:var(--accent3);font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:2px;flex-shrink:0;}
+.outcome{margin-top:10px;padding:8px 12px;border-radius:5px;background:rgba(62,217,160,.06);border-left:3px solid var(--accent3);font-size:12px;color:var(--accent3);font-family:'JetBrains Mono',monospace;}
+.stage-hdr{font-family:'Fraunces',serif;font-size:20px;margin:32px 0 14px;}
+.project-card{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:18px 22px;margin-bottom:12px;display:flex;gap:16px;}
+.proj-num{font-family:'Fraunces',serif;font-size:36px;font-weight:900;color:var(--accent);opacity:.25;line-height:1;flex-shrink:0;width:42px;}
+.proj-body h4{font-family:'Fraunces',serif;font-size:15px;color:var(--text);margin-bottom:4px;}
+.proj-body p{font-size:13px;color:var(--text2);margin:0 0 8px;}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;background:var(--surface2);color:var(--text3);border:1px solid var(--border2);}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:16px 0;}
+.skill-card{background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:14px;}
+.skill-card .si{font-size:18px;margin-bottom:6px;}
+.skill-card .st{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent2);margin-bottom:4px;}
+.skill-card .sd{font-size:12px;color:var(--text3);}
+.skill-bar{margin-top:8px;height:3px;background:var(--border2);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+.book-map-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.book-map-table th{background:var(--surface2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);}
+.book-map-table td{padding:9px 12px;border-bottom:1px solid rgba(37,37,48,.5);color:var(--text2);vertical-align:top;}
+.book-map-table td:first-child{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:11px;font-weight:700;white-space:nowrap;}
+.book-map-table td:nth-child(2){color:var(--text);font-weight:500;}
+.ph{display:inline-block;font-size:9px;font-family:'JetBrains Mono',monospace;padding:1px 6px;border-radius:2px;margin-right:4px;}
+.ph-f{background:rgba(62,217,160,.15);color:var(--accent3);}
+.ph-r{background:rgba(79,158,255,.15);color:var(--accent);}
+.ph-a{background:rgba(217,124,247,.15);color:var(--accent6);}
+.ph-s{background:rgba(247,200,79,.15);color:var(--accent4);}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Final Gaps +<br/>Learning Path</div>
+    <div class="sb-sub">Book 18 · Complete Handbook</div>
+  </div>
+  <div class="sb-search"><input type="text" id="sbsearch" placeholder="Search…" oninput="sbSearch(this.value)"/></div>
+  <div class="sb-nav">
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>Final 3% Gaps<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-rebarlayout')"><span class="type-badge tb-class">CLS</span>Rebar Layout Rules</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarbend')"><span class="type-badge tb-class">CLS</span>GetBendData</div>
+        <div class="sb-ns-child" onclick="go('cls-covertype')"><span class="type-badge tb-class">CLS</span>CoverType</div>
+        <div class="sb-ns-child" onclick="go('cls-fabricsheet')"><span class="type-badge tb-class">CLS</span>FabricSheet</div>
+        <div class="sb-ns-child" onclick="go('cls-ceiling')"><span class="type-badge tb-class">CLS</span>Ceiling.Create</div>
+        <div class="sb-ns-child" onclick="go('cls-modelgroup')"><span class="type-badge tb-class">CLS</span>ModelGroup</div>
+        <div class="sb-ns-child" onclick="go('cls-revision')"><span class="type-badge tb-class">CLS</span>Revision + Cloud</div>
+        <div class="sb-ns-child" onclick="go('cls-sfm')"><span class="type-badge tb-class">CLS</span>SpatialFieldManager</div>
+        <div class="sb-ns-child" onclick="go('cls-importinstance')"><span class="type-badge tb-class">CLS</span>ImportInstance</div>
+      </div>
+    </div>
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>Learning Path<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-lp-overview')">📚 Overview</div>
+        <div class="sb-ns-child" onclick="go('sec-beginner')">🟢 Beginner (Wks 1–4)</div>
+        <div class="sb-ns-child" onclick="go('sec-intermediate')">🟡 Intermediate (Wks 5–10)</div>
+        <div class="sb-ns-child" onclick="go('sec-advanced')">🔴 Advanced (Wks 11–16)</div>
+        <div class="sb-ns-child" onclick="go('sec-specialist')">🔵 Specialist Tracks</div>
+        <div class="sb-ns-child" onclick="go('sec-projects')">⚙️ Practice Projects</div>
+        <div class="sb-ns-child" onclick="go('sec-skills')">📊 Skills Checklist</div>
+        <div class="sb-ns-child" onclick="go('sec-bookmap')">🗺️ Book Map</div>
+      </div>
+    </div>
+  </div>
+              <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html" class="current"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html" class="current" ><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html" class="current"  ><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html" class="current"   ><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html" class="current"    ><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP � Arch � Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family � Print � Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref � Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI � DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html" class="current"     ><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="fn">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="fn">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="fn">03</span> Views &amp; Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="fn">04</span> Events &amp; Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="fn">05</span> Families &amp; Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="fn">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="fn">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="fn">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="fn">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="fn">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="fn">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="fn">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="fn">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="fn">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="fn">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="fn">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="fn">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link current" href="book18-final-gaps-learning-path.html" class="current"     ><span class="fn">18</span> Learning Path & Gaps</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 18 of 19 — Learning Path & Gaps
+    
+</div>
+  <h1>Final Gaps &amp;<br/><span>Learning Path</span></h1>
+  <p>The last remaining API gaps — Rebar Layout Rules, GetBendData, CoverType, FabricSheet, Ceiling.Create, ModelGroup, Revision workflow, SpatialFieldManager, and CAD ImportInstance — plus a complete structured learning guide from absolute beginner to expert, with practice projects and a skills checklist.</p>
+    <!-- GLOBAL SEARCH -->
+    <div style="margin-top:20px;position:relative;max-width:400px;z-index:9999;">
+      <input type="text" id="globalsearch" placeholder="Search Class, Method or Topic..." 
+             style="width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;outline:none;"
+             oninput="globalSearch(this.value)"/>
+      <div id="searchresults" class="search-results-container"></div>
+    </div>
+    
+  <div class="hero-chips">
+    <span class="chip c-gr">Rebar Layout Rules</span>
+    <span class="chip c-bl">ModelGroup</span>
+    <span class="chip c-or">Revision</span>
+    <span class="chip c-pu">SpatialFieldManager</span>
+    <span class="chip c-ye">Learning Path</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════ GAPS ═══════════════════════ -->
+<div class="ns-block" id="ns-gaps">
+  <div class="ns-header">
+    <div class="ns-icon">🔧</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Final API Gaps</div>
+      <h2>Remaining 3% — All Missing Classes</h2>
+      <p>Every genuinely missing class not covered in Books 1–17.</p>
+    </div>
+  </div>
+
+<!-- REBAR LAYOUT RULES -->
+<div class="class-block" id="cls-rebarlayout">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Rebar — Layout Rules</span></div><div class="class-inherit">Inherits: <span>DB.Structure.Rebar</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Structure</span></div>
+  <div class="class-desc">The professional way to place a full set of bars — create ONE Rebar element then apply a layout rule. Revit distributes the bars automatically. This is how Revit's own reinforcement tool works internally and produces proper bar sets that schedule correctly.</div>
+  <div class="callout c-tip" style="margin:12px 24px 0;"><strong>// Book 17 of 19 vs Book 18</strong>Book 17 loops to place individual bars (great for learning). Production add-ins use Layout Rules: place one Rebar, set the rule, Revit creates the full set with correct scheduling.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 All 4 Layout Modes</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// All 4 Rebar Layout Rules with real examples</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Structure;
+
+<span class="k">double</span> mmToFt(<span class="k">double</span> mm) =>
+    <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(mm, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="tp">RebarBarType</span> bt = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RebarBarType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">RebarBarType</span>&gt;()
+    .<span class="fn">OrderBy</span>(b => Math.<span class="fn">Abs</span>(b.BarNominalDiameter * <span class="n">304.8</span> - <span class="n">20</span>)).<span class="fn">First</span>();
+
+<span class="cm">// ── Place ONE bar (position 0) ──</span>
+<span class="tp">LocationCurve</span> lc     = beam.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+<span class="tp">XYZ</span>           bStart = lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+<span class="tp">XYZ</span>           bEnd   = lc.Curve.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+<span class="tp">XYZ</span>           dir    = (bEnd - bStart).<span class="fn">Normalize</span>();
+<span class="tp">XYZ</span>           perp   = dir.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ).<span class="fn">Normalize</span>();
+
+<span class="k">double</span> beamW  = mmToFt(<span class="n">300</span>);
+<span class="k">double</span> beamH  = mmToFt(<span class="n">600</span>);
+<span class="k">double</span> cvFt   = mmToFt(<span class="n">35</span>);
+
+<span class="tp">XYZ</span> off   = perp * (-beamW/<span class="n">2</span> + cvFt + mmToFt(<span class="n">10</span>))
+           + <span class="tp">XYZ</span>.BasisZ * (-beamH/<span class="n">2</span> + cvFt + mmToFt(<span class="n">10</span>));
+<span class="tp">XYZ</span> barS  = bStart + off + dir * cvFt;
+<span class="tp">XYZ</span> barE  = bEnd   + off - dir * cvFt;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Rebar Layout"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="tp">Rebar</span> rebar = <span class="tp">Rebar</span>.<span class="fn">CreateFromCurves</span>(
+        doc, <span class="tp">RebarStyle</span>.Standard, bt,
+        <span class="k">null</span>, <span class="k">null</span>, beam, <span class="tp">XYZ</span>.BasisZ,
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt; { <span class="tp">Line</span>.<span class="fn">CreateBound</span>(barS, barE) },
+        <span class="tp">RebarHookOrientation</span>.Left,
+        <span class="tp">RebarHookOrientation</span>.Left);
+
+    <span class="cm">// ════ LAYOUT 1: Fixed Number ════
+    // Place exactly 5 bars evenly distributed across beam width</span>
+    rebar.<span class="fn">SetLayoutAsFixedNumber</span>(
+        <span class="n">5</span>,                         <span class="cm">// number of bars</span>
+        beamW - <span class="n">2</span> * cvFt,          <span class="cm">// array length (total span)</span>
+        <span class="k">true</span>,                      <span class="cm">// include first bar</span>
+        <span class="k">true</span>,                      <span class="cm">// include last bar</span>
+        <span class="k">true</span>);                     <span class="cm">// on normal side</span>
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Fixed: {rebar.NumberOfBarPositions} bars at {rebar.MaxSpacing*304.8:F0}mm"</span>);
+
+    <span class="cm">// ════ LAYOUT 2: Maximum Spacing ════
+    // Fill the zone with bars — Revit calculates how many fit at max 150mm</span>
+    rebar.<span class="fn">SetLayoutAsMaximumSpacing</span>(
+        mmToFt(<span class="n">150</span>),               <span class="cm">// maximum spacing</span>
+        beamW - <span class="n">2</span> * cvFt,          <span class="cm">// array length</span>
+        <span class="k">true</span>, <span class="k">true</span>, <span class="k">true</span>);
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"MaxSpacing: {rebar.NumberOfBarPositions} bars"</span>);
+
+    <span class="cm">// ════ LAYOUT 3: Minimum Clear Spacing ════
+    // Bars with 25mm minimum clear gap between them</span>
+    rebar.<span class="fn">SetLayoutAsMinimumClearSpacing</span>(
+        mmToFt(<span class="n">25</span>),                <span class="cm">// minimum clear gap</span>
+        beamW - <span class="n">2</span> * cvFt,
+        <span class="k">true</span>, <span class="k">true</span>, <span class="k">true</span>);
+
+    <span class="cm">// ════ LAYOUT 4: Single Bar (reset to just 1) ════</span>
+    rebar.<span class="fn">SetLayoutAsSingleBar</span>();
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Read layout properties of any rebar ──</span>
+<span class="k">var</span> bars = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar)
+    .<span class="fn">Cast</span>&lt;<span class="tp">Rebar</span>&gt;().<span class="fn">ToList</span>();
+
+<span class="k">foreach</span> (<span class="k">var</span> bar <span class="k">in</span> bars)
+{
+    <span class="tp">RebarLayoutRule</span> rule  = bar.LayoutRule;
+    <span class="k">int</span>             count = bar.NumberOfBarPositions;
+    <span class="k">double</span>          sp    = bar.MaxSpacing * <span class="n">304.8</span>;
+
+    <span class="cm">// Get transform for each bar position in the set</span>
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; count; i++)
+    {
+        <span class="tp">Transform</span> t = bar.<span class="fn">GetShapeDrivenAccessor</span>()
+                          .<span class="fn">GetBarPositionTransform</span>(i);
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Bar {i}: Rule={rule} Count={count} Sp={sp:F0}mm Pos={t.Origin}"</span>);
+    }
+}
+
+<span class="cm">// RebarLayoutRule enum:
+// Single | FixedNumber | MaximumSpacing | MinimumClearSpacing | NumberWithSpacing</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- GetBendData -->
+<div class="class-block" id="cls-rebarbend">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Methods</span><span class="class-name">GetBendData · RebarShapeDrivenAccessor · ComputeDrivingCurves</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Structure</span></div>
+  <div class="class-desc">Access bend leg lengths, bend angles, and mandrel sizes for bar bending schedule generation. GetShapeDrivenAccessor() returns a RebarShapeDrivenAccessor that exposes ComputeDrivingCurves() for individual leg lengths.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Bend data extraction for bar bending schedules</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Extract bend data → CSV for bar bending schedule</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ExtractBendData</span>(<span class="tp">Document</span> doc)
+{
+    <span class="k">var</span> bars = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar)
+        .<span class="fn">Cast</span>&lt;<span class="tp">Rebar</span>&gt;().<span class="fn">ToList</span>();
+
+    <span class="k">var</span> sb = <span class="k">new</span> System.Text.<span class="tp">StringBuilder</span>();
+    sb.<span class="fn">AppendLine</span>(<span class="s">"Mark,Shape,Dia(mm),TotalLen(mm),Legs,A(mm),B(mm),C(mm),BendDia(mm)"</span>);
+
+    <span class="k">foreach</span> (<span class="k">var</span> bar <span class="k">in</span> bars)
+    {
+        <span class="k">string</span> mark  = bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+                           ?.AsString() ?? <span class="s">""</span>;
+        <span class="tp">RebarShape</span> shape = doc.<span class="fn">GetElement</span>(bar.RebarShapeId) <span class="k">as</span> <span class="tp">RebarShape</span>;
+        <span class="k">string</span> shpName   = shape?.Name ?? <span class="s">"Straight"</span>;
+        <span class="k">double</span> totalMm   = bar.<span class="fn">get_Parameter</span>(
+            <span class="tp">BuiltInParameter</span>.REBAR_ELEM_LENGTH)?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+
+        <span class="tp">RebarBarType</span> bt  = doc.<span class="fn">GetElement</span>(bar.<span class="fn">GetTypeId</span>()) <span class="k">as</span> <span class="tp">RebarBarType</span>;
+        <span class="k">double</span> dMm       = bt?.BarNominalDiameter * <span class="n">304.8</span> ?? <span class="n">0</span>;
+        <span class="k">double</span> bendDiaMm = bt?.StandardBendDiameter * <span class="n">304.8</span> ?? dMm * <span class="n">4</span>;
+
+        <span class="cm">// Get individual leg lengths from shape accessor</span>
+        <span class="tp">RebarShapeDrivenAccessor</span> acc = bar.<span class="fn">GetShapeDrivenAccessor</span>();
+        <span class="tp">IList</span>&lt;<span class="tp">Curve</span>&gt; legs = acc?.<span class="fn">ComputeDrivingCurves</span>();
+        <span class="k">var</span> legsMm = legs?.Select(c => c.Length * <span class="n">304.8</span>).<span class="fn">ToList</span>()
+                    ?? <span class="k">new</span> <span class="tp">List</span>&lt;<span class="k">double</span>&gt;();
+
+        <span class="k">double</span> A = legsMm.Count > <span class="n">0</span> ? legsMm[<span class="n">0</span>] : <span class="n">0</span>;
+        <span class="k">double</span> B = legsMm.Count > <span class="n">1</span> ? legsMm[<span class="n">1</span>] : <span class="n">0</span>;
+        <span class="k">double</span> C = legsMm.Count > <span class="n">2</span> ? legsMm[<span class="n">2</span>] : <span class="n">0</span>;
+
+        sb.<span class="fn">AppendLine</span>(<span class="s">$"{mark},{shpName},{dMm:F0},{totalMm:F0},"</span>
+                    + <span class="s">$"{legsMm.Count},{A:F0},{B:F0},{C:F0},{bendDiaMm:F0}"</span>);
+    }
+
+    <span class="k">string</span> path = System.IO.<span class="tp">Path</span>.<span class="fn">Combine</span>(
+        System.Environment.<span class="fn">GetFolderPath</span>(
+            System.Environment.SpecialFolder.Desktop), <span class="s">"BendData.csv"</span>);
+    System.IO.<span class="tp">File</span>.<span class="fn">WriteAllText</span>(path, sb.ToString());
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Bend Data"</span>, <span class="s">$"Exported {bars.Count} bars → {path}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- CoverType -->
+<div class="class-block" id="cls-covertype">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">RebarCoverType · RebarHostData</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Structure</span></div>
+  <div class="class-desc">Project-level cover type definitions (nominal cover by exposure class) assigned to faces of structural hosts. Define a RebarCoverType once, then assign it to any host face via RebarHostData.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Create cover types + assign to host faces</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Create cover types + assign to beam/column faces</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Structure;
+
+<span class="k">public void</span> <span class="fn">SetupCoverTypes</span>(<span class="tp">Document</span> doc, <span class="tp">FamilyInstance</span> beam)
+{
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Cover Types"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// ── Create named cover type definitions ──</span>
+        <span class="tp">RebarCoverType</span> cv35 = <span class="tp">RebarCoverType</span>.<span class="fn">Create</span>(
+            doc, <span class="s">"Internal 35mm"</span>,
+            <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">35</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+
+        <span class="tp">RebarCoverType</span> cv40 = <span class="tp">RebarCoverType</span>.<span class="fn">Create</span>(
+            doc, <span class="s">"External 40mm"</span>,
+            <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">40</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+
+        <span class="tp">RebarCoverType</span> cv75 = <span class="tp">RebarCoverType</span>.<span class="fn">Create</span>(
+            doc, <span class="s">"Foundation 75mm"</span>,
+            <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">75</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+
+        <span class="cm">// ── Assign to host faces ──</span>
+        <span class="tp">RebarHostData</span> hd = <span class="tp">RebarHostData</span>.<span class="fn">GetRebarHostData</span>(beam);
+        <span class="k">if</span> (hd != <span class="k">null</span>)
+        {
+            hd.<span class="fn">SetFaceCoverTypeId</span>(<span class="tp">RebarHostFace</span>.Bottom, cv35.Id);
+            hd.<span class="fn">SetFaceCoverTypeId</span>(<span class="tp">RebarHostFace</span>.Top,    cv35.Id);
+            hd.<span class="fn">SetFaceCoverTypeId</span>(<span class="tp">RebarHostFace</span>.Left,   cv35.Id);
+            hd.<span class="fn">SetFaceCoverTypeId</span>(<span class="tp">RebarHostFace</span>.Right,  cv35.Id);
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+
+    <span class="cm">// ── Read all cover types in project ──</span>
+    <span class="k">var</span> covers = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RebarCoverType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">RebarCoverType</span>&gt;();
+    <span class="k">foreach</span> (<span class="k">var</span> c <span class="k">in</span> covers)
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Cover: {c.Name} = {c.CoverDistance * 304.8:F0}mm"</span>);
+}
+<span class="cm">// RebarHostFace: Bottom Top Left Right Front Back</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- FabricSheet -->
+<div class="class-block" id="cls-fabricsheet">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">FabricSheet · FabricSheetType</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Structure</span></div>
+  <div class="class-desc">Represents a welded wire mesh / BRC fabric sheet placed in a slab or wall. FabricSheetType defines wire diameters, wire spacings, and sheet dimensions. FabricSheet is the placed instance.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Place fabric sheet + read type properties</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Place A393 BRC mesh in a concrete slab</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">PlaceFabricSheet</span>(<span class="tp">Document</span> doc, <span class="tp">Floor</span> slab)
+{
+    <span class="tp">FabricSheetType</span> fst = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FabricSheetType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">FabricSheetType</span>&gt;()
+        .<span class="fn">FirstOrDefault</span>(t => t.Name.Contains(<span class="s">"A393"</span>)
+                          || t.Name.Contains(<span class="s">"A252"</span>));
+
+    <span class="k">if</span> (fst == <span class="k">null</span>) {
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Info"</span>,
+            <span class="s">"Load a Fabric Reinforcement type from the Structural library first."</span>);
+        <span class="k">return</span>;
+    }
+
+    <span class="tp">BoundingBoxXYZ</span> bb = slab.<span class="fn">get_BoundingBox</span>(<span class="k">null</span>);
+    <span class="k">if</span> (bb == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="k">double</span> cvFt    = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">25</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="tp">XYZ</span>    origin  = <span class="k">new</span> <span class="tp">XYZ</span>(bb.Min.X + cvFt, bb.Min.Y + cvFt, bb.Min.Z + cvFt);
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Fabric Sheet"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="tp">FabricSheet</span> sheet = <span class="tp">FabricSheet</span>.<span class="fn">Create</span>(
+            doc, fst.Id, slab, origin, <span class="tp">XYZ</span>.BasisX);
+        sheet.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)?.<span class="fn">Set</span>(<span class="s">"FS-A393-BOT"</span>);
+        tx.<span class="fn">Commit</span>();
+    }
+
+    <span class="cm">// Read FabricSheetType properties</span>
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"Sheet: {fst.Name}"</span>);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"  Major: Ø{fst.MajorWireDiameter*304.8:F1}mm @{fst.MajorWireSpacing*304.8:F0}mm"</span>);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"  Minor: Ø{fst.MinorWireDiameter*304.8:F1}mm @{fst.MinorWireSpacing*304.8:F0}mm"</span>);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"  Size: {fst.SheetWidth*304.8:F0}mm × {fst.SheetLength*304.8:F0}mm"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Ceiling -->
+<div class="class-block" id="cls-ceiling">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Ceiling.Create</span></div><div class="class-inherit">Inherits: <span>HostObject → Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Creates a ceiling from CurveLoops — identical API pattern to Floor.Create(). Use room boundaries as the profile. The Height Offset from Level parameter controls how far below the level the ceiling sits.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Create ceiling + batch create all room ceilings</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Ceiling.Create from room boundary + batch all rooms</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">CreateCeilingFromRoom</span>(<span class="tp">Document</span> doc, <span class="tp">Room</span> room)
+{
+    <span class="tp">CeilingType</span> ct = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">CeilingType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">CeilingType</span>&gt;().<span class="fn">First</span>();
+
+    <span class="k">var</span> bOpts = <span class="k">new</span> <span class="tp">SpatialElementBoundaryOptions</span>();
+    <span class="k">var</span> segs  = room.<span class="fn">GetBoundarySegments</span>(bOpts);
+    <span class="k">if</span> (segs.Count == <span class="n">0</span>) <span class="k">return</span>;
+
+    <span class="k">var</span> loop = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> seg <span class="k">in</span> segs[<span class="n">0</span>]) loop.<span class="fn">Append</span>(seg.<span class="fn">GetCurve</span>());
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Ceiling"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// Identical to Floor.Create — just different element type</span>
+        <span class="tp">Ceiling</span> ceiling = <span class="tp">Ceiling</span>.<span class="fn">Create</span>(
+            doc,
+            <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { loop },
+            ct.Id,
+            room.LevelId);
+
+        <span class="cm">// Height offset below the level (negative = below)</span>
+        <span class="k">double</span> off = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">200</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+        ceiling.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.CEILING_HEIGHTABOVELEVEL_PARAM)
+               ?.<span class="fn">Set</span>(-off);
+
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── Batch: create ceilings for ALL rooms on a level ──</span>
+<span class="k">public void</span> <span class="fn">BatchCeilings</span>(<span class="tp">Document</span> doc, <span class="tp">Level</span> level)
+{
+    <span class="k">var</span> rooms = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rooms)
+        .<span class="fn">Cast</span>&lt;<span class="tp">Room</span>&gt;()
+        .<span class="fn">Where</span>(r => r.Area > <span class="n">0</span> &amp;&amp; r.LevelId == level.Id).<span class="fn">ToList</span>();
+
+    <span class="tp">CeilingType</span> ct = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">CeilingType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">CeilingType</span>&gt;().<span class="fn">First</span>();
+    <span class="k">int</span> n = <span class="n">0</span>;
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Batch Ceilings"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="k">foreach</span> (<span class="k">var</span> room <span class="k">in</span> rooms)
+        {
+            <span class="k">try</span> {
+                <span class="k">var</span> bOpts = <span class="k">new</span> <span class="tp">SpatialElementBoundaryOptions</span>();
+                <span class="k">var</span> segs  = room.<span class="fn">GetBoundarySegments</span>(bOpts);
+                <span class="k">if</span> (segs.Count == <span class="n">0</span>) <span class="k">continue</span>;
+                <span class="k">var</span> loop = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+                <span class="k">foreach</span> (<span class="k">var</span> seg <span class="k">in</span> segs[<span class="n">0</span>]) loop.<span class="fn">Append</span>(seg.<span class="fn">GetCurve</span>());
+                <span class="tp">Ceiling</span>.<span class="fn">Create</span>(doc,
+                    <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt;{ loop }, ct.Id, room.LevelId);
+                n++;
+            } <span class="k">catch</span> { }
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Done"</span>, <span class="s">$"Created {n} ceilings on {level.Name}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ModelGroup -->
+<div class="class-block" id="cls-modelgroup">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Group · GroupType</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">A named, reusable collection of elements. Groups have types (GroupType) and instances (Group). All instances update when the type is edited. Used for repeating room layouts, structural bays, and unit plans.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Create, place, audit, and ungroup</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Complete ModelGroup workflow</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── CREATE group from element IDs ──</span>
+<span class="k">public</span> <span class="tp">Group</span> <span class="fn">CreateGroup</span>(<span class="tp">Document</span> doc,
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; ids, <span class="k">string</span> name)
+{
+    <span class="tp">Group</span> grp;
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Group"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        grp = doc.Create.<span class="fn">NewGroup</span>(ids);
+        grp.GroupType.Name = name;
+        tx.<span class="fn">Commit</span>();
+    }
+    <span class="k">return</span> grp;
+}
+
+<span class="cm">// ── PLACE group type at multiple positions ──</span>
+<span class="k">public void</span> <span class="fn">PlaceGroups</span>(<span class="tp">Document</span> doc,
+    <span class="tp">GroupType</span> gt, <span class="tp">IList</span>&lt;<span class="tp">XYZ</span>&gt; positions)
+{
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Place Groups"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="k">foreach</span> (<span class="k">var</span> pos <span class="k">in</span> positions)
+            doc.Create.<span class="fn">PlaceGroup</span>(pos, gt);
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── AUDIT all groups ──</span>
+<span class="k">public void</span> <span class="fn">AuditGroups</span>(<span class="tp">Document</span> doc)
+{
+    <span class="k">var</span> gts = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">GroupType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">GroupType</span>&gt;();
+    <span class="k">foreach</span> (<span class="k">var</span> gt <span class="k">in</span> gts)
+    {
+        <span class="k">int</span> count = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Group</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Group</span>&gt;()
+            .<span class="fn">Count</span>(g => g.GroupType.Id == gt.Id);
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Group '{gt.Name}': {count} instances"</span>);
+    }
+}
+
+<span class="cm">// ── UNGROUP (explode) all instances ──</span>
+<span class="k">public void</span> <span class="fn">UngroupAll</span>(<span class="tp">Document</span> doc, <span class="tp">GroupType</span> gt)
+{
+    <span class="k">var</span> instances = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Group</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Group</span>&gt;()
+        .<span class="fn">Where</span>(g => g.GroupType.Id == gt.Id).<span class="fn">ToList</span>();
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Ungroup"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="k">foreach</span> (<span class="k">var</span> g <span class="k">in</span> instances)
+        {
+            <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; members = g.<span class="fn">UngroupMembers</span>();
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"Ungrouped {members.Count} elements"</span>);
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- Revision -->
+<div class="class-block" id="cls-revision">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Revision · RevisionCloud</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a project revision. Revisions appear in the revision schedule on title blocks. RevisionClouds mark areas of change in views. Full workflow: Create Revision → add to Sheet → place RevisionCloud → Issue.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete revision workflow — create, cloud, issue, read</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Revision workflow: create → add to sheet → cloud → issue</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">FullRevisionWorkflow</span>(<span class="tp">Document</span> doc,
+    <span class="tp">ViewSheet</span> sheet, <span class="tp">View</span> view)
+{
+    <span class="tp">Revision</span> rev;
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Revision"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// ── STEP 1: Create Revision ──</span>
+        rev              = <span class="tp">Revision</span>.<span class="fn">Create</span>(doc);
+        rev.Description  = <span class="s">"Structural amendments per engineer review"</span>;
+        rev.IssuedBy     = <span class="s">"Studio Architecture Ltd"</span>;
+        rev.IssuedTo     = <span class="s">"Client: Acme Corp"</span>;
+        rev.RevisionDate = <span class="s">"2024-06-01"</span>;
+        rev.NumberType   = <span class="tp">RevisionNumberType</span>.Numeric;  <span class="cm">// 1,2,3 or Alphanumeric A,B,C</span>
+
+        <span class="cm">// ── STEP 2: Add to sheet (appears in title block table) ──</span>
+        <span class="k">var</span> ids = sheet.<span class="fn">GetAdditionalRevisionIds</span>().<span class="fn">ToList</span>();
+        ids.<span class="fn">Add</span>(rev.Id);
+        sheet.<span class="fn">SetAdditionalRevisionIds</span>(ids);
+
+        tx.<span class="fn">Commit</span>();
+    }
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Revision Cloud"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// ── STEP 3: Place RevisionCloud in a view ──</span>
+        <span class="k">var</span> loop = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+        loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>,<span class="n">0</span>,<span class="n">0</span>)));
+        loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>,<span class="n">0</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>,<span class="n">3</span>,<span class="n">0</span>)));
+        loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>,<span class="n">3</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">3</span>,<span class="n">0</span>)));
+        loop.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">3</span>,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>)));
+
+        <span class="tp">RevisionCloud</span> cloud = <span class="tp">RevisionCloud</span>.<span class="fn">Create</span>(
+            doc, view, rev.Id,
+            <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { loop });
+        cloud.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_COMMENTS)
+             ?.<span class="fn">Set</span>(<span class="s">"Wall moved 300mm N per RFI-042"</span>);
+
+        tx.<span class="fn">Commit</span>();
+    }
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Issue Revision"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        rev.Issued = <span class="k">true</span>;   <span class="cm">// locks it — no more editing</span>
+        tx.<span class="fn">Commit</span>();
+    }
+
+    <span class="cm">// ── Read all revisions on a sheet ──</span>
+    <span class="k">foreach</span> (<span class="k">var</span> rid <span class="k">in</span> sheet.<span class="fn">GetAllRevisionIds</span>())
+    {
+        <span class="tp">Revision</span> r = doc.<span class="fn">GetElement</span>(rid) <span class="k">as</span> <span class="tp">Revision</span>;
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"{r?.RevisionDate} | {r?.Description} | Issued={r?.Issued}"</span>);
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- SpatialFieldManager -->
+<div class="class-block" id="cls-sfm">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">SpatialFieldManager · AnalysisResultSchema</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Analysis</span></div>
+  <div class="class-desc">Creates custom analysis display overlays on element faces in Revit 3D views — colour-mapped results like heat flux, stress contours, or daylighting. Used when a plugin needs to display numerical analysis results visually on the model geometry.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Display custom analysis results on wall faces</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Colour-map custom heat flux values on exterior wall faces</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Analysis;
+
+<span class="k">public void</span> <span class="fn">ShowAnalysisOverlay</span>(<span class="tp">Document</span> doc, <span class="tp">View3D</span> view3D)
+{
+    <span class="cm">// ── STEP 1: Get or create SpatialFieldManager for the view ──</span>
+    <span class="tp">SpatialFieldManager</span> sfm =
+        <span class="tp">SpatialFieldManager</span>.<span class="fn">GetSpatialFieldManager</span>(view3D)
+        ?? <span class="tp">SpatialFieldManager</span>.<span class="fn">CreateSpatialFieldManager</span>(view3D, <span class="n">1</span>);
+
+    <span class="cm">// ── STEP 2: Register result schema ──</span>
+    <span class="k">var</span> schema = <span class="k">new</span> <span class="tp">AnalysisResultSchema</span>(<span class="s">"HeatFlux"</span>, <span class="s">"W/m²"</span>);
+    schema.<span class="fn">SetUnits</span>(<span class="k">new</span> <span class="tp">List</span>&lt;<span class="k">string</span>&gt; { <span class="s">"W/m²"</span> },
+                    <span class="k">new</span> <span class="tp">List</span>&lt;<span class="k">double</span>&gt; { <span class="n">1.0</span> });
+    <span class="k">int</span> schIdx = sfm.<span class="fn">RegisterResult</span>(schema);
+
+    <span class="cm">// ── STEP 3: For each exterior wall face — upload values ──</span>
+    <span class="k">var</span> walls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Wall</span>&gt;()
+        .<span class="fn">Where</span>(w => w.WallType.Function == <span class="tp">WallFunction</span>.Exterior).<span class="fn">ToList</span>();
+
+    <span class="k">var</span> opts = <span class="k">new</span> <span class="tp">Options</span> { ComputeReferences = <span class="k">true</span> };
+    <span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> walls)
+    {
+        <span class="k">foreach</span> (<span class="tp">GeometryObject</span> obj <span class="k">in</span> wall.<span class="fn">get_Geometry</span>(opts))
+        {
+            <span class="k">if</span> (!(obj <span class="k">is</span> <span class="tp">Solid</span> solid)) <span class="k">continue</span>;
+            <span class="k">foreach</span> (<span class="tp">Face</span> face <span class="k">in</span> solid.Faces)
+            {
+                <span class="tp">XYZ</span> n = face.<span class="fn">ComputeNormal</span>(<span class="k">new</span> <span class="tp">UV</span>(.5,.5));
+                <span class="k">if</span> (Math.<span class="fn">Abs</span>(n.Z) > <span class="n">0.3</span> || face.Reference == <span class="k">null</span>) <span class="k">continue</span>;
+
+                <span class="k">int</span> primIdx = sfm.<span class="fn">AddSpatialFieldPrimitive</span>(face.Reference);
+                <span class="k">var</span> uvPts = <span class="k">new</span> <span class="tp">FieldDomainPointsByUV</span>();
+                <span class="k">var</span> vals  = <span class="k">new</span> <span class="tp">FieldValues</span>();
+                <span class="tp">BoundingBoxUV</span> bb = face.<span class="fn">GetBoundingBox</span>();
+
+                <span class="cm">// 5×5 grid sample</span>
+                <span class="k">for</span> (<span class="k">int</span> iu = <span class="n">0</span>; iu &lt; <span class="n">5</span>; iu++)
+                <span class="k">for</span> (<span class="k">int</span> iv = <span class="n">0</span>; iv &lt; <span class="n">5</span>; iv++)
+                {
+                    <span class="k">double</span> u = bb.Min.U + (bb.Max.U-bb.Min.U)*iu/<span class="n">4</span>;
+                    <span class="k">double</span> v = bb.Min.V + (bb.Max.V-bb.Min.V)*iv/<span class="n">4</span>;
+                    uvPts.<span class="fn">Add</span>(<span class="k">new</span> <span class="tp">UV</span>(u,v));
+                    vals.<span class="fn">Add</span>(<span class="k">new</span> <span class="tp">ValueAtPoint</span>(
+                        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="k">double</span>&gt; { <span class="n">5.0</span> + v * <span class="n">15.0</span> })); <span class="cm">// fake heat flux</span>
+                }
+                sfm.<span class="fn">UpdateSpatialFieldPrimitive</span>(primIdx, uvPts, vals, schIdx);
+            }
+        }
+    }
+
+    <span class="cm">// ── STEP 4: Create + apply AnalysisDisplayStyle ──</span>
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Analysis Style"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="tp">AnalysisDisplayStyle</span> style =
+            <span class="tp">AnalysisDisplayStyle</span>.<span class="fn">CreateAnalysisDisplayStyle</span>(
+                doc, <span class="s">"Heat Flux Style"</span>,
+                <span class="k">new</span> <span class="tp">AnalysisDisplayColoredSurfaceSettings</span>(),
+                <span class="k">new</span> <span class="tp">AnalysisDisplayColorSettings</span>(),
+                <span class="k">new</span> <span class="tp">AnalysisDisplayLegendSettings</span>());
+        view3D.AnalysisDisplayStyleId = style.Id;
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ImportInstance -->
+<div class="class-block" id="cls-importinstance">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ImportInstance · CAD Linking</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents an imported or linked CAD file (DWG/DXF/DGN). Use Document.Import() for embedded imports and Document.Link() for live-linked files. ImportInstance gives access to transform, file path, and layer visibility.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Import, Link, Audit, Explode CAD files</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Import DWG + Link DWG + Audit all CAD + Explode</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── IMPORT DWG (embedded) ──</span>
+<span class="k">public void</span> <span class="fn">ImportDWG</span>(<span class="tp">Document</span> doc, <span class="k">string</span> dwgPath, <span class="tp">View</span> view)
+{
+    <span class="k">var</span> opts = <span class="k">new</span> <span class="tp">DWGImportOptions</span>
+    {
+        ColorMode    = <span class="tp">ImportColorMode</span>.BlackAndWhite,
+        Unit         = <span class="tp">ImportUnit</span>.Millimeter,
+        Placement    = <span class="tp">ImportPlacement</span>.Origin,
+        ThisViewOnly = <span class="k">true</span>
+    };
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Import DWG"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="tp">ElementId</span> id;
+        doc.<span class="fn">Import</span>(dwgPath, opts, view, <span class="k">out</span> id);
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── LINK DWG (live link) ──</span>
+<span class="k">public void</span> <span class="fn">LinkDWG</span>(<span class="tp">Document</span> doc, <span class="k">string</span> dwgPath, <span class="tp">View</span> view)
+{
+    <span class="k">var</span> opts = <span class="k">new</span> <span class="tp">DWGImportOptions</span>
+    {
+        Unit      = <span class="tp">ImportUnit</span>.Millimeter,
+        Placement = <span class="tp">ImportPlacement</span>.Shared
+    };
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Link DWG"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="tp">ElementId</span> id;
+        doc.<span class="fn">Link</span>(dwgPath, opts, view, <span class="k">out</span> id);
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── AUDIT all CAD imports/links ──</span>
+<span class="k">public void</span> <span class="fn">AuditCAD</span>(<span class="tp">Document</span> doc)
+{
+    <span class="k">var</span> cads = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ImportInstance</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">ImportInstance</span>&gt;().<span class="fn">ToList</span>();
+
+    <span class="k">foreach</span> (<span class="k">var</span> cad <span class="k">in</span> cads)
+    {
+        <span class="k">bool</span>   isLink = cad.IsLinked;
+        <span class="k">string</span> name   = cad.<span class="fn">get_Parameter</span>(
+            <span class="tp">BuiltInParameter</span>.IMPORT_SYMBOL_SYMBOL_NAME)?.AsString() ?? <span class="s">""</span>;
+        <span class="tp">CADLinkType</span> lt = doc.<span class="fn">GetElement</span>(cad.<span class="fn">GetTypeId</span>()) <span class="k">as</span> <span class="tp">CADLinkType</span>;
+        <span class="k">string</span> status = lt?.<span class="fn">GetLinkedFileStatus</span>().<span class="fn">ToString</span>() ?? <span class="s">"—"</span>;
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"CAD: {name} | Linked={isLink} | Status={status}"</span>);
+    }
+}
+
+<span class="cm">// ── EXPLODE import into Revit lines ──</span>
+<span class="k">public void</span> <span class="fn">ExplodeCAD</span>(<span class="tp">Document</span> doc, <span class="tp">ImportInstance</span> cad)
+{
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Explode CAD"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; ids =
+            <span class="tp">ImportInstance</span>.<span class="fn">ExplodeAndDelete</span>(doc, cad.Id);
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Exploded → {ids.Count} elements"</span>);
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-gaps -->
+
+<!-- ═══════════════════════ LEARNING PATH ═══════════════════════ -->
+<hr style="border:none;border-top:2px solid var(--border2);margin:52px 0 0;"/>
+
+<div class="ns-block" id="sec-lp-overview" style="padding-top:44px;">
+  <div class="ns-header">
+    <div class="ns-icon">📚</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Learning Path</div>
+      <h2>Complete Revit API Learning Guide</h2>
+      <p>Structured curriculum from absolute beginner to expert using all 18 books.</p>
+    </div>
+  </div>
+
+  <div class="lp-hero">
+    <h2>Your Path to Revit API Mastery</h2>
+    <p>18 books · 1.5MB · 400+ code examples · 632 challenges · 27 namespaces. Use this guide to navigate in the right order for your level. Each stage builds on the previous — follow the path, build the projects, and you will be production-ready in 16 weeks.</p>
+    <div class="lp-stats">
+      <div class="lp-stat"><div class="n" style="color:var(--accent);">18</div><div class="l">BOOKS</div></div>
+      <div class="lp-stat"><div class="n" style="color:var(--accent2);">400+</div><div class="l">EXAMPLES</div></div>
+      <div class="lp-stat"><div class="n" style="color:var(--accent3);">632</div><div class="l">CHALLENGES</div></div>
+      <div class="lp-stat"><div class="n" style="color:var(--accent4);">27</div><div class="l">NAMESPACES</div></div>
+      <div class="lp-stat"><div class="n" style="color:var(--accent6);">16</div><div class="l">WEEKS</div></div>
+    </div>
+  </div>
+
+<!-- BEGINNER -->
+<div id="sec-beginner">
+  <h3 class="stage-hdr" style="color:var(--accent3);">🟢 Stage 1 — Beginner (Weeks 1–4)</h3>
+  <p style="color:var(--text2);font-size:13.5px;margin-bottom:18px;">Prerequisites: Basic C# (classes, methods, LINQ). No Revit API experience needed. Goal: Write your first working command and interact with elements.</p>
+  <div class="path-timeline">
+
+    <div class="path-item">
+      <div class="path-dot">1</div>
+      <div class="path-card">
+        <h4>Week 1 — Environment + First Command</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~8 hrs</span><span class="pc-tag pct-level">Absolute Beginner</span><span class="pc-tag pct-books">Books 01, 13</span></div>
+        <ul>
+          <li>Install Revit + Visual Studio, set up .csproj with RevitAPI.dll (Book 13 — Assembly Setup)</li>
+          <li>Write the .addin manifest — AddInId, FullClassName, Assembly (Book 13 — Addin Manifest)</li>
+          <li>Create IExternalCommand showing a TaskDialog (Book 01 — Fundamentals)</li>
+          <li>Run inside Revit — verify it loads and shows in Add-Ins tab</li>
+        </ul>
+        <div class="outcome">✓ A working add-in that appears in Revit and executes</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">2</div>
+      <div class="path-card">
+        <h4>Week 2 — Elements, Parameters, Collector</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~10 hrs</span><span class="pc-tag pct-level">Beginner</span><span class="pc-tag pct-books">Books 01, 09</span></div>
+        <ul>
+          <li>FilteredElementCollector — collect walls, doors, rooms (Books 01, 09)</li>
+          <li>Read parameters: get_Parameter(BuiltInParameter), AsString/AsDouble/AsInteger (Book 09)</li>
+          <li>Write parameters inside a Transaction — set mark, comments (Book 09)</li>
+          <li>Unit conversion with UnitUtils.ConvertToInternalUnits (Book 10)</li>
+          <li>Challenges: Book 07, Chapter 1 — Challenges 1–20</li>
+        </ul>
+        <div class="outcome">✓ Commands that read and write element data, count elements by type</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">3</div>
+      <div class="path-card">
+        <h4>Week 3 — Geometry + Creating Elements</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~10 hrs</span><span class="pc-tag pct-level">Beginner</span><span class="pc-tag pct-books">Books 02, 09, 10</span></div>
+        <ul>
+          <li>XYZ — create points, vectors, arithmetic, cross products (Book 10)</li>
+          <li>Line.CreateBound, Arc.Create — build curves (Books 09, 10)</li>
+          <li>Wall.Create, Floor.Create, Level.Create (Books 10, 16)</li>
+          <li>CurveLoop — build boundary profiles for floors and ceilings (Book 09)</li>
+          <li>Challenges: Book 07, Chapter 2 — Geometry challenges 1–15</li>
+        </ul>
+        <div class="outcome">✓ Commands that create walls, floors, and levels from code</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">4</div>
+      <div class="path-card">
+        <h4>Week 4 — Views, Selection, Error Handling</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~8 hrs</span><span class="pc-tag pct-level">Beginner</span><span class="pc-tag pct-books">Books 03, 10, 13</span></div>
+        <ul>
+          <li>ViewPlan.Create, ViewSection.CreateSection (Book 03)</li>
+          <li>Selection.PickObject with ISelectionFilter (Books 10, 13)</li>
+          <li>Always catch OperationCanceledException after PickObject (Book 13 — BP-13)</li>
+          <li>Exception handling in Execute() — Result.Failed with message string (Book 13)</li>
+          <li>Challenges: Book 07, Chapter 3 — View challenges 1–10</li>
+        </ul>
+        <div class="outcome">✓ Commands that interact with the user via selection and view creation</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- INTERMEDIATE -->
+<div id="sec-intermediate">
+  <h3 class="stage-hdr" style="color:var(--accent4);">🟡 Stage 2 — Intermediate (Weeks 5–10)</h3>
+  <p style="color:var(--text2);font-size:13.5px;margin-bottom:18px;">Prerequisites: Stage 1 complete. Goal: Build production-quality add-ins with UI, events, and complex workflows.</p>
+  <div class="path-timeline">
+
+    <div class="path-item">
+      <div class="path-dot">5</div>
+      <div class="path-card">
+        <h4>Week 5 — IExternalApplication + Ribbon + Events</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~12 hrs</span><span class="pc-tag pct-level">Intermediate</span><span class="pc-tag pct-books">Books 04, 13, 14</span></div>
+        <ul>
+          <li>IExternalApplication — OnStartup/OnShutdown, subscribe/unsubscribe events (Books 04, 13)</li>
+          <li>Create custom ribbon tab + panels + PushButton with icon and tooltip (Book 14)</li>
+          <li>SplitButton, PulldownButton, ComboBox, Stacked Items (Book 14)</li>
+          <li>IExternalCommandAvailability — context-sensitive button enabling (Book 14)</li>
+          <li>Challenges: Book 07, Chapter 8 — Ribbon challenges</li>
+        </ul>
+        <div class="outcome">✓ A proper IExternalApplication with full custom ribbon and event lifecycle</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">6</div>
+      <div class="path-card">
+        <h4>Week 6 — Families + Shared Parameters</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~12 hrs</span><span class="pc-tag pct-level">Intermediate</span><span class="pc-tag pct-books">Books 05, 12, 16</span></div>
+        <ul>
+          <li>Load families, activate symbols, place instances — all overloads (Books 05, 13)</li>
+          <li>FamilyManager — create types, add parameters, set formulas (Book 12)</li>
+          <li>Shared Parameter file → ExternalDefinition → ParameterBinding workflow (Book 16)</li>
+          <li>InstanceBinding vs TypeBinding, GroupTypeId (Book 16)</li>
+          <li>Challenges: Book 07, Chapters 6–7 — Family + Parameter challenges</li>
+        </ul>
+        <div class="outcome">✓ Commands that manage families and create project-wide custom parameters</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">7</div>
+      <div class="path-card">
+        <h4>Week 7 — ExtensibleStorage + GlobalParameters + Phases</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~10 hrs</span><span class="pc-tag pct-level">Intermediate</span><span class="pc-tag pct-books">Books 11, 16, 18</span></div>
+        <ul>
+          <li>ExtensibleStorage — Schema/Entity/SchemaBuilder full workflow (Book 11)</li>
+          <li>GlobalParameter — create, read, write, SetFormula (Book 16)</li>
+          <li>Phase workflow — doc.Phases, ElementPhaseStatusFilter, assign phase to views (Book 16)</li>
+          <li>When to use SharedParam vs ProjectParam vs ExtensibleStorage (Books 11, 16)</li>
+        </ul>
+        <div class="outcome">✓ Add-ins that persist structured data and work phase-aware</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">8</div>
+      <div class="path-card">
+        <h4>Week 8 — MEP + Export + Schedules</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~12 hrs</span><span class="pc-tag pct-level">Intermediate</span><span class="pc-tag pct-books">Books 06, 11, 12</span></div>
+        <ul>
+          <li>Pipe.Create, Duct.Create, ConnectorManager, MEPSystem traversal (Books 06, 11)</li>
+          <li>PDFExportOptions, DWGExportOptions, IFCExportOptions — batch export (Book 12)</li>
+          <li>ViewSchedule.CreateSchedule, GetSchedulableFields, AddField, sort (Book 11)</li>
+          <li>Challenges: Book 07, Chapters 9–10 — MEP + Export challenges</li>
+        </ul>
+        <div class="outcome">✓ MEP routing tools and batch export commands for PDF/DWG/IFC</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">9</div>
+      <div class="path-card">
+        <h4>Week 9 — Geometry Analysis + Boolean Ops</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~10 hrs</span><span class="pc-tag pct-level">Intermediate</span><span class="pc-tag pct-books">Books 02, 09, 15</span></div>
+        <ul>
+          <li>get_Geometry() with Options — extract Solids, Faces, Edges (Book 09)</li>
+          <li>BooleanOperationsUtils.Intersect — clash detection (Book 15)</li>
+          <li>GeometryCreationUtilities — create Solids from scratch (Book 16)</li>
+          <li>ReferenceIntersector — ray casting for spatial queries (Book 09)</li>
+          <li>Challenges: Book 07, Chapter 4 — Geometry analysis challenges</li>
+        </ul>
+        <div class="outcome">✓ Clash detection and custom geometry analysis tools</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">10</div>
+      <div class="path-card">
+        <h4>Week 10 — WPF + ExternalEvent + DockablePane</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~14 hrs</span><span class="pc-tag pct-level">Intermediate–Advanced</span><span class="pc-tag pct-books">Books 04, 14</span></div>
+        <ul>
+          <li>IExternalEventHandler + ExternalEvent — the threading bridge (Books 04, 14)</li>
+          <li>Build a WPF window that calls Revit API via ExternalEvent.Raise() (Book 14)</li>
+          <li>DockablePane — IDockablePaneProvider, Register, Show/Hide, update WPF (Book 14)</li>
+          <li>NEVER call API from a background thread — always via ExternalEvent (Book 13 BP-11)</li>
+          <li>Challenges: Book 08, Chapter 3 — Modeless dialog challenges</li>
+        </ul>
+        <div class="outcome">✓ Modeless WPF tools with persistent docked panels</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ADVANCED -->
+<div id="sec-advanced">
+  <h3 class="stage-hdr" style="color:var(--accent5);">🔴 Stage 3 — Advanced (Weeks 11–16)</h3>
+  <p style="color:var(--text2);font-size:13.5px;margin-bottom:18px;">Prerequisites: Stages 1–2 complete. Goal: Enterprise-grade add-ins — DMU, DirectContext3D, Worksharing, cross-document operations.</p>
+  <div class="path-timeline">
+
+    <div class="path-item">
+      <div class="path-dot">11</div>
+      <div class="path-card">
+        <h4>Week 11 — DMU (Dynamic Model Update) + IUpdater</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~10 hrs</span><span class="pc-tag pct-level">Advanced</span><span class="pc-tag pct-books">Books 04, 11</span></div>
+        <ul>
+          <li>IUpdater — GetTriggerInfo, Execute, Register, Unregister (Book 11)</li>
+          <li>Inside Execute() you are already in a transaction — do NOT start a new one (Book 04)</li>
+          <li>ChangeType — ElementAddedTrigger, ParameterChangedTrigger (Book 11)</li>
+          <li>IFailuresPreprocessor — suppress harmless warnings in batch operations (Books 04, 13)</li>
+        </ul>
+        <div class="outcome">✓ Reactive add-ins that respond to model changes automatically</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">12</div>
+      <div class="path-card">
+        <h4>Week 12 — Worksharing + Batch Document Processing</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~12 hrs</span><span class="pc-tag pct-level">Advanced</span><span class="pc-tag pct-books">Books 12, 15, 16</span></div>
+        <ul>
+          <li>SynchronizeWithCentralOptions, RelinquishOptions — automated sync (Book 15)</li>
+          <li>WorksharingUtils.GetCheckoutStatus, GetWorksharingTooltipInfo (Book 15)</li>
+          <li>OpenDocumentFile with OpenOptions (DetachFromCentral, Audit) (Books 13, 15)</li>
+          <li>Batch process folder of .rvt files — open, modify, save, close (Book 15)</li>
+          <li>Challenges: Book 08, Chapter 6 — Worksharing challenges</li>
+        </ul>
+        <div class="outcome">✓ Enterprise batch tools and automated worksharing workflows</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">13</div>
+      <div class="path-card">
+        <h4>Week 13 — Advanced UI: DirectContext3D + PostableCommand</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~12 hrs</span><span class="pc-tag pct-level">Advanced</span><span class="pc-tag pct-books">Book 14</span></div>
+        <ul>
+          <li>IDirectContext3DServer — CanExecute, GetBoundingBox, RenderScene (Book 14)</li>
+          <li>VertexBuffer, IndexBuffer, DrawContext.FlushBuffer — custom 3D geometry (Book 14)</li>
+          <li>ExternalServiceRegistry.GetService, AddServer — register custom servers (Books 14, 15)</li>
+          <li>PostableCommand + RevitCommandId.LookupPostableCommandId (Book 14)</li>
+        </ul>
+        <div class="outcome">✓ Real-time custom 3D overlays and triggering built-in Revit commands</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">14</div>
+      <div class="path-card">
+        <h4>Week 14 — Cross-Document Operations + ElementTransformUtils</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~10 hrs</span><span class="pc-tag pct-level">Advanced</span><span class="pc-tag pct-books">Book 16</span></div>
+        <ul>
+          <li>ElementTransformUtils.CopyElements across documents (Book 16)</li>
+          <li>IDuplicateTypeNamesHandler — handle type conflicts on cross-doc copy (Book 16)</li>
+          <li>MoveElement, RotateElement, MirrorElements — all overloads (Book 16)</li>
+          <li>RevitLinkInstance + GetLinkDocument — working with linked models (Book 10)</li>
+        </ul>
+        <div class="outcome">✓ Cross-document transfer tools and advanced element manipulation</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">15</div>
+      <div class="path-card">
+        <h4>Week 15 — Structural + Reinforcement Workflows</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~12 hrs</span><span class="pc-tag pct-level">Advanced</span><span class="pc-tag pct-books">Books 11, 16, 17, 18</span></div>
+        <ul>
+          <li>Rebar.CreateFromCurves — beam, column, slab, foundation (Book 17)</li>
+          <li>Rebar Layout Rules — SetLayoutAsFixedNumber, SetLayoutAsMaximumSpacing (Book 18)</li>
+          <li>AreaReinforcement, PathReinforcement, BeamSystem, FabricSheet (Books 16, 17, 18)</li>
+          <li>GetBendData — leg lengths for bar bending schedules (Book 18)</li>
+        </ul>
+        <div class="outcome">✓ Full structural reinforcement automation tools</div>
+      </div>
+    </div>
+
+    <div class="path-item">
+      <div class="path-dot">16</div>
+      <div class="path-card">
+        <h4>Week 16 — Advanced Workflows: CurtainGrid, Adaptive, Assembly</h4>
+        <div class="pc-meta"><span class="pc-tag pct-time">~12 hrs</span><span class="pc-tag pct-level">Advanced</span><span class="pc-tag pct-books">Books 15, 16</span></div>
+        <ul>
+          <li>CurtainGrid — GetUGridLineIds, GetPanelIds, AddGridLine, ChangeTypeId (Book 15)</li>
+          <li>AdaptiveComponentInstanceUtils — place and position adaptive families (Book 15)</li>
+          <li>AssemblyInstance + AssemblyViewUtils — auto-generate fabrication sheets (Book 15)</li>
+          <li>StairsEditScope — the correct pattern for stair creation/modification (Book 16)</li>
+        </ul>
+        <div class="outcome">✓ Complex parametric facade tools and fabrication automation</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SPECIALIST TRACKS -->
+<div id="sec-specialist" style="margin-top:32px;">
+  <h3 class="stage-hdr" style="color:var(--accent);">🔵 Stage 4 — Specialist Tracks (After Week 16)</h3>
+  <p style="color:var(--text2);font-size:13.5px;margin-bottom:18px;">Once you complete Stages 1–3, choose the track that matches your project type. Each track is 3–4 weeks of focused study.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+
+    <div class="path-card">
+      <h4>🔌 MEP Specialist Track</h4>
+      <ul>
+        <li>ExternalService — IRoutingPreferenceServer, PipeSizingService (Book 15)</li>
+        <li>ElectricalSetting, MechanicalSettings — project MEP settings (Book 16)</li>
+        <li>FabricationPart, FabricationService — shop drawing data (Book 15)</li>
+        <li>MEP system BFS traversal + system reporting (Book 11)</li>
+        <li>Book 06 → Book 11 deep → Book 15 → Challenges 07 Ch.10</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>🏗️ Structural Specialist Track</h4>
+      <ul>
+        <li>Full reinforcement cage automation (Books 17, 18)</li>
+        <li>Steel connections — base plate, end plate, cleat (Book 17)</li>
+        <li>AnalyticalModel — analytical member data (Book 11)</li>
+        <li>SpatialFieldManager — stress/force analysis overlay (Book 18)</li>
+        <li>Book 11 → Book 16 → Book 17 → Book 18 → Challenges 08 Ch.7</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>🏛️ Architecture Specialist Track</h4>
+      <ul>
+        <li>CurtainGrid + Adaptive Components — parametric facade (Book 15)</li>
+        <li>ColorFillScheme — room data visualisation (Book 15)</li>
+        <li>DesignOption — multiple design variants (Book 15)</li>
+        <li>ElevationMarker, DraftingView, Callout creation (Book 16)</li>
+        <li>Book 03 → Book 12 → Book 15 → Book 16 → Challenges 07 Ch.13</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>📊 BIM Data Specialist Track</h4>
+      <ul>
+        <li>ExtensibleStorage — full schema lifecycle (Book 11)</li>
+        <li>Shared Parameters + ParameterBinding (Book 16)</li>
+        <li>IFC export — property sets, type mapping (Book 12)</li>
+        <li>Revision workflow — automated issue management (Book 18)</li>
+        <li>Book 11 → Book 16 → Book 12 → Book 18 → Challenges 08 Ch.5</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRACTICE PROJECTS -->
+<div id="sec-projects" style="margin-top:40px;">
+  <h3 class="stage-hdr">⚙️ 10 Capstone Practice Projects</h3>
+  <p style="color:var(--text2);font-size:13.5px;margin-bottom:18px;">Build these in order. Each project reinforces 3–5 API areas and produces a real tool you can use or show in a portfolio.</p>
+
+  <div class="project-card"><div class="proj-num">01</div><div class="proj-body"><h4>Element Data Exporter</h4><p>Export all walls, rooms, and doors to a formatted CSV. Parameters, areas, types. Run on any project.</p><div class="proj-tags"><span class="proj-tag">FilteredElementCollector</span><span class="proj-tag">Parameters</span><span class="proj-tag">File I/O</span><span class="proj-tag">Week 2</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">02</div><div class="proj-body"><h4>Floor Plan Generator</h4><p>Given a grid of XY points, create walls, a floor, and a ceiling plan view automatically. Input from a CSV.</p><div class="proj-tags"><span class="proj-tag">Wall.Create</span><span class="proj-tag">ViewPlan</span><span class="proj-tag">Floor</span><span class="proj-tag">Week 3</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">03</div><div class="proj-body"><h4>Room Data Sheet</h4><p>For each room create a dedicated view, tag it, fill in department/area, and place it on a sheet with a title block.</p><div class="proj-tags"><span class="proj-tag">Room</span><span class="proj-tag">ViewSheet</span><span class="proj-tag">Viewport</span><span class="proj-tag">Week 4</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">04</div><div class="proj-body"><h4>Smart Renumber Tool</h4><p>WPF window with a ribbon button. Renumber all rooms, doors, and windows in sequence by level. Undo support.</p><div class="proj-tags"><span class="proj-tag">IExternalApplication</span><span class="proj-tag">Ribbon</span><span class="proj-tag">WPF</span><span class="proj-tag">Week 5</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">05</div><div class="proj-body"><h4>Family Parameter Sync</h4><p>Load a shared parameter file, bind parameters to 3 categories, write values from a JSON config file.</p><div class="proj-tags"><span class="proj-tag">SharedParams</span><span class="proj-tag">ParameterBinding</span><span class="proj-tag">JSON</span><span class="proj-tag">Week 6</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">06</div><div class="proj-body"><h4>Batch PDF Exporter</h4><p>Export all sheets in all open documents to PDF, named by sheet number. Progress bar in DockablePane.</p><div class="proj-tags"><span class="proj-tag">PDFExportOptions</span><span class="proj-tag">DockablePane</span><span class="proj-tag">ExternalEvent</span><span class="proj-tag">Week 10</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">07</div><div class="proj-body"><h4>MEP Clash Reporter</h4><p>Find all pipe-to-beam Boolean intersections, highlight clashes with DirectContext3D red boxes, export CSV.</p><div class="proj-tags"><span class="proj-tag">BooleanOps</span><span class="proj-tag">DirectContext3D</span><span class="proj-tag">CSV Export</span><span class="proj-tag">Week 13</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">08</div><div class="proj-body"><h4>Structural Cage Automation</h4><p>Command to select any beam or column and automatically place a full rebar cage using Layout Rules.</p><div class="proj-tags"><span class="proj-tag">Rebar Layout Rules</span><span class="proj-tag">RebarBarType</span><span class="proj-tag">ISelectionFilter</span><span class="proj-tag">Week 15</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">09</div><div class="proj-body"><h4>Template Transfer Tool</h4><p>Copy walls, room layouts, and view templates from a template .rvt into any open project using cross-doc CopyElements.</p><div class="proj-tags"><span class="proj-tag">CopyElements</span><span class="proj-tag">Cross-doc</span><span class="proj-tag">IDuplicateTypeNamesHandler</span><span class="proj-tag">Week 14</span></div></div></div>
+
+  <div class="project-card"><div class="proj-num">10</div><div class="proj-body"><h4>BIM Health Dashboard</h4><p>DockablePane showing live stats: unplaced rooms, untagged doors, missing marks, rebar count, revision status. Updates on DocumentChanged.</p><div class="proj-tags"><span class="proj-tag">DockablePane</span><span class="proj-tag">DMU</span><span class="proj-tag">ExternalEvent</span><span class="proj-tag">All APIs</span></div></div></div>
+
+</div>
+
+<!-- SKILLS CHECKLIST -->
+<div id="sec-skills" style="margin-top:40px;">
+  <h3 class="stage-hdr">📊 Skills Checklist</h3>
+  <p style="color:var(--text2);font-size:13.5px;margin-bottom:18px;">Track your progress. Each bar shows the depth of coverage in this handbook — 100% means full production-ready examples are provided.</p>
+  <div class="skill-grid">
+    <div class="skill-card"><div class="si">🔷</div><div class="st">FilteredElementCollector</div><div class="sd">All filters, chains, LINQ, performance patterns</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">📦</div><div class="st">Parameters</div><div class="sd">BIP, SharedParam, ProjectParam, read/write all storage types</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">⚙️</div><div class="st">Transactions</div><div class="sd">Manual, TransactionGroup, SubTransaction, FailureHandling</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">📐</div><div class="st">Geometry (XYZ, Solid)</div><div class="sd">All curve types, solid ops, GeometryCreationUtilities</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🎀</div><div class="st">Ribbon API</div><div class="sd">All 8 control types, availability, contextual tabs</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🪟</div><div class="st">DockablePane</div><div class="sd">Full lifecycle, WPF, ExternalEvent bridge</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">📡</div><div class="st">Events + DMU</div><div class="sd">All document events, IUpdater, ExternalEvent, Idling</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🏗️</div><div class="st">Families</div><div class="sd">Load, place, FamilyManager, FamilyCreate geometry</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">💾</div><div class="st">ExtensibleStorage</div><div class="sd">Schema, Entity, SchemaBuilder full workflow</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🔌</div><div class="st">MEP (Pipe/Duct/Elec)</div><div class="sd">Create, connect, traverse, fabrication parts</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">📄</div><div class="st">Export (PDF/DWG/IFC)</div><div class="sd">Batch export with all options</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🌐</div><div class="st">Worksharing</div><div class="sd">Sync, relinquish, checkout status, ModelPath</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🎮</div><div class="st">DirectContext3D</div><div class="sd">IDirectContext3DServer, vertex/index buffers</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🔄</div><div class="st">ElementTransformUtils</div><div class="sd">Copy/Move/Rotate/Mirror + cross-document</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🏛️</div><div class="st">Architecture (Curtain/Adaptive)</div><div class="sd">CurtainGrid, AdaptiveComponents, DesignOptions</div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+    <div class="skill-card"><div class="si">🦺</div><div class="st">Structural Reinforcement</div><div class="sd">Beam/Column/Slab/Foundation + Layout Rules</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+    <div class="skill-card"><div class="si">🔩</div><div class="st">Steel Connections</div><div class="sd">Base plate, end plate, audit, CSV export</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+    <div class="skill-card"><div class="si">📅</div><div class="st">Phasing + Revisions</div><div class="sd">Create phases, filters, revision workflow</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+  </div>
+</div>
+
+<!-- BOOK MAP -->
+<div id="sec-bookmap" style="margin-top:40px;">
+  <h3 class="stage-hdr">🗺️ Complete Book Map</h3>
+  <p style="color:var(--text2);font-size:13.5px;margin-bottom:16px;">All 18 books with their learning phase and key topics. Use this as a quick reference to know which book covers what.</p>
+  <table class="book-map-table">
+    <tr><th>Book</th><th>Title</th><th>Phase</th><th>Key Topics</th></tr>
+    <tr><td>01</td><td>Fundamentals</td><td><span class="ph ph-f">FOUNDATION</span></td><td>UIApplication, Document, Element, Parameters, FilteredElementCollector, Transaction, Units</td></tr>
+    <tr><td>02</td><td>Geometry</td><td><span class="ph ph-f">FOUNDATION</span></td><td>XYZ, Transform, Arc, Line, Solid, Face, Edge, GeometryElement, CurveLoop</td></tr>
+    <tr><td>03</td><td>Views</td><td><span class="ph ph-f">FOUNDATION</span></td><td>ViewPlan, ViewSection, ViewSheet, Viewport, Dimension, TextNote, Tags</td></tr>
+    <tr><td>04</td><td>Events &amp; DMU</td><td><span class="ph ph-f">FOUNDATION</span></td><td>All document events, IUpdater, ExternalEvent, IFailuresPreprocessor, Idling</td></tr>
+    <tr><td>05</td><td>Families</td><td><span class="ph ph-f">FOUNDATION</span></td><td>Family, FamilyManager, FamilySymbol, IFamilyLoadOptions, Extrusion</td></tr>
+    <tr><td>06</td><td>MEP Guide</td><td><span class="ph ph-f">FOUNDATION</span></td><td>Pipe, Duct, CableTray, Connector, MEPSystem, Space</td></tr>
+    <tr><td>07</td><td>Challenges Vol.1</td><td><span class="ph ph-f">FOUNDATION</span></td><td>312 challenges — Beginner through Expert, 15 chapters</td></tr>
+    <tr><td>08</td><td>Challenges Vol.2</td><td><span class="ph ph-r">REFERENCE</span></td><td>320+ challenges — Ribbon, Worksharing, Export, Rebar, Capstone projects</td></tr>
+    <tr><td>09</td><td>API Ref DB (A–E)</td><td><span class="ph ph-r">REFERENCE</span></td><td>AddInId, Arc, BoundingBoxXYZ, BuiltInCategory/Parameter, Color, CurveLoop, Dimension, Document, Element, ElementId, FilteredElementCollector</td></tr>
+    <tr><td>10</td><td>API Ref DB (F–Z) + UI</td><td><span class="ph ph-r">REFERENCE</span></td><td>Face, FamilyInstance, Floor, Grid, Level, Line, Material, Options, OverrideGraphicSettings, Parameter, Solid, Transform, UnitUtils, Wall, XYZ · UIApplication, UIDocument, IExternalCommand, ExternalEvent, TaskDialog</td></tr>
+    <tr><td>11</td><td>MEP · Architecture · DMU</td><td><span class="ph ph-r">REFERENCE</span></td><td>CableTray, Duct, Pipe, Room, TopographySurface, Rebar, ExtensibleStorage, IUpdater, ViewSchedule, ViewFamilyType</td></tr>
+    <tr><td>12</td><td>Family · Print · Worksets</td><td><span class="ph ph-r">REFERENCE</span></td><td>FamilyManager, DirectShape, PDF/DWG/IFC export, WorksharingUtils, BooleanOperationsUtils, all Filters</td></tr>
+    <tr><td>13</td><td>AppServices · Best Practices</td><td><span class="ph ph-r">REFERENCE</span></td><td>Application, ControlledApplication, doc.Create, all Exceptions, ISelectionFilter, addin manifest, 16 BP cards, BuiltInParameter index, 20 patterns</td></tr>
+    <tr><td>14</td><td>Advanced UI</td><td><span class="ph ph-a">ADVANCED</span></td><td>Ribbon (8 controls), IExternalCommandAvailability, PostableCommand, DockablePane, DirectContext3D, Attributes</td></tr>
+    <tr><td>15</td><td>Advanced Workflows</td><td><span class="ph ph-a">ADVANCED</span></td><td>ExternalService, CurtainGrid, AdaptiveComponents, ColorFillScheme, DesignOption, AssemblyInstance, PointClouds, Steel, Fabrication, Worksharing deep, Lighting</td></tr>
+    <tr><td>16</td><td>Final Completion</td><td><span class="ph ph-a">ADVANCED</span></td><td>ElementTransformUtils, GeometryCreationUtilities, SharedParams+Binding, GlobalParameter, Phasing, ElevationMarker, DraftingView, StairsEditScope, MEP Settings, PathReinforcement, BeamSystem</td></tr>
+    <tr><td>17</td><td>Structural Reinforcement</td><td><span class="ph ph-s">SPECIALIST</span></td><td>Beam/Column/Slab/Foundation rebar, AreaReinforcement, PathReinforcement, Steel connections, Rebar schedule, CSV export</td></tr>
+    <tr><td>18</td><td>Final Gaps + Learning Path ← This Book</td><td><span class="ph ph-s">SPECIALIST</span></td><td>Rebar Layout Rules, GetBendData, CoverType, FabricSheet, Ceiling, ModelGroup, Revision, SpatialFieldManager, ImportInstance + Complete Learning Path</td></tr>
+  </table>
+</div>
+
+</div><!-- /sec-lp-overview -->
+</div><!-- /content -->
+</main>
+</div>
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block,.path-card,.project-card').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+<script src="search-data.js"></script><script src="search.js"></script>
+</body>
+</html>
+
+
+
+
+
+

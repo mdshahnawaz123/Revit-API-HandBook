@@ -29,10 +29,18 @@
     <h1 style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1.05;margin-bottom:16px;color:var(--text);">Revit API<br/>Developer Handbook</h1>
     <p style="color:var(--muted);font-size:16px;max-width:600px;font-weight:300;">A complete reference from beginner to advanced. Every major API surface covered — from elements and parameters to events, modeless dialogs, DMU and MEP systems.</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;">
-      <span class="chip c-or">13 Books</span>
-      <span class="chip c-bl">70+ Sections</span>
-      <span class="chip c-gr">1100+ Challenges</span>
+      <span class="chip c-or">19 Books</span>
+      <span class="chip c-bl">75+ Sections</span>
+      <span class="chip c-gr">1200+ Challenges</span>
       <span class="chip c-ye">Complete Reference</span>
+    </div>
+
+    <!-- GLOBAL SEARCH -->
+    <div style="margin-top:32px;position:relative;max-width:500px;">
+      <input type="text" id="globalsearch" placeholder="Search for Class, Method or Topic across all books..." 
+             style="width:100%;padding:14px 20px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;outline:none;box-shadow:0 4px 20px rgba(0,0,0,0.2);"
+             oninput="globalSearch(this.value)"/>
+      <div id="searchresults" class="search-results-container"></div>
     </div>
   </div>
 
@@ -179,6 +187,74 @@
       </div>
       <span class="arrow">→</span>
     </a>
+
+    <a class="book-card" href="book14-advanced-ui.html" style="--c1: rgba(196,122,247,0.06);">
+      <div class="book-num">// Book 14</div>
+      <h3>Advanced UI Reference</h3>
+      <p>Complete Ribbon API (8 control types), Command Availability, PostableCommand, DockablePane lifecycle, and DirectContext3D rendering.</p>
+      <div class="topic-list">
+        <span class="topic">Ribbon API</span><span class="topic">DockablePane</span><span class="topic">PostableCommand</span>
+        <span class="topic">DC3D</span><span class="topic">Availability</span><span class="topic">Attributes</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book15-advanced-workflows.html" style="--c1: rgba(77,158,247,0.06);">
+      <div class="book-num">// Book 15</div>
+      <h3>Advanced Workflows</h3>
+      <p>ExternalService framework, CurtainGrid manipulation, Adaptive Components, PointClouds, Steel, Fabrication and deep Worksharing.</p>
+      <div class="topic-list">
+        <span class="topic">ExternalService</span><span class="topic">CurtainGrid</span><span class="topic">Adaptive</span>
+        <span class="topic">PointClouds</span><span class="topic">Steel/Fab</span><span class="topic">Worksharing</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book16-final-completion.html" style="--c1: rgba(62,217,160,0.06);">
+      <div class="book-num">// Book 16</div>
+      <h3>Final Completion</h3>
+      <p>ElementTransformUtils (Copy/Move/Across Doc), GeometryCreationUtilities (Solid from scratch), Shared Parameters workflow, Phases and 100% Coverage.</p>
+      <div class="topic-list">
+        <span class="topic">TransformUtils</span><span class="topic">GeometryCreation</span><span class="topic">SharedParams</span>
+        <span class="topic">GlobalParams</span><span class="topic">Phasing</span><span class="topic">100% Core</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book17-structural-reinforcement.html" style="--c1: rgba(77,158,247,0.06);">
+      <div class="book-num">// Book 17</div>
+      <h3>Structural Reinforcement</h3>
+      <p>Complete Rebar reference (Beam, Column, Slab, Foundation) + Steel Connections (Advance Steel API). 100% production-ready C# examples.</p>
+      <div class="topic-list">
+        <span class="topic">Beam/Col Rebar</span><span class="topic">Slab/Found</span><span class="topic">Steel Conn</span>
+        <span class="topic">Advance Steel</span><span class="topic">Schedules</span><span class="topic">Production</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book18-final-gaps-learning-path.html" style="--c1: rgba(62,207,142,0.06);">
+      <div class="book-num">// Book 18</div>
+      <h3>Learning Path &amp; Gaps Masters</h3>
+      <p>Mastering the gap between reference and production. Final roadmap, learning workflows and becoming a Revit API Architect.</p>
+      <div class="topic-list">
+        <span class="topic">Roadmap</span><span class="topic">Architect Level</span><span class="topic">Dev Workflow</span>
+        <span class="topic">Resources</span><span class="topic">Real World</span><span class="topic">Gaps</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="book-card" href="book19-production-development.html" style="--c1: rgba(196,122,247,0.06);">
+      <div class="book-num">// Book 19</div>
+      <h3>Production Development</h3>
+      <p>Building shippable plugins: WPF/MVVM, Unit Testing, Deployment, Logging, REST/SQLite, and professional UX patterns.</p>
+      <div class="topic-list">
+        <span class="topic">WPF + MVVM</span><span class="topic">Unit Testing</span><span class="topic">Deployment</span>
+        <span class="topic">Logging</span><span class="topic">REST / SQLite</span><span class="topic">UX Flow</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+  </div>
   </div>
 
   <div style="margin-top:56px;">
@@ -193,5 +269,8 @@
     </div>
   </div>
 </div>
+
+<script src="search-data.js"></script>
+<script src="search.js"></script>
 </body>
 </html>

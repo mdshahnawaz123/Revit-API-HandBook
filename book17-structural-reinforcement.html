@@ -1,0 +1,1745 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API — Book 17: Structural Reinforcement · Beam · Column · Slab · Foundation · Steel Connections</title>
+<link rel="stylesheet" href="api-style.css"/>
+<style>
+.rebar-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-bottom:10px;border:1px solid;}
+.rb-beam   {background:rgba(79,158,255,.1);  color:var(--accent);  border-color:rgba(79,158,255,.3);}
+.rb-column {background:rgba(247,111,79,.1);  color:var(--accent5); border-color:rgba(247,111,79,.3);}
+.rb-slab   {background:rgba(62,217,160,.1);  color:var(--accent3); border-color:rgba(62,217,160,.3);}
+.rb-found  {background:rgba(247,200,79,.1);  color:var(--accent4); border-color:rgba(247,200,79,.3);}
+.rb-steel  {background:rgba(217,124,247,.1); color:var(--accent6); border-color:rgba(217,124,247,.3);}
+.section-tag{
+  display:inline-block;width:36px;height:36px;border-radius:50%;
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tag-beam  {background:rgba(79,158,255,.2);  color:var(--accent);}
+.tag-col   {background:rgba(247,111,79,.2);  color:var(--accent5);}
+.tag-slab  {background:rgba(62,217,160,.2);  color:var(--accent3);}
+.tag-found {background:rgba(247,200,79,.2);  color:var(--accent4);}
+.tag-steel {background:rgba(217,124,247,.2); color:var(--accent6);}
+.struct-intro{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:8px;padding:18px 20px;margin-bottom:20px;
+}
+.struct-intro p{margin:0;font-size:13.5px;color:var(--text2);}
+.struct-intro h4{font-family:'Fraunces',serif;font-size:15px;color:var(--text);margin-bottom:4px;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Structural<br/>Reinforcement</div>
+    <div class="sb-sub">Book 17 · Rebar · Steel Connections</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav">
+
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>Rebar Fundamentals<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-rebar-fund')"><span class="type-badge tb-class">CLS</span>Rebar</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarbartype')"><span class="type-badge tb-class">CLS</span>RebarBarType</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarhooktype')"><span class="type-badge tb-class">CLS</span>RebarHookType</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarshape')"><span class="type-badge tb-class">CLS</span>RebarShape</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarstyle')"><span class="type-badge tb-enum">ENUM</span>RebarStyle</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarcoverdesc')"><span class="type-badge tb-class">CLS</span>CoverType</div>
+        <div class="sb-ns-child" onclick="go('cls-rebarconstraints')"><span class="type-badge tb-class">CLS</span>RebarConstraints</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>Beam Reinforcement<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-beam-bottom')">Bottom Longitudinal</div>
+        <div class="sb-ns-child" onclick="go('sec-beam-top')">Top Longitudinal</div>
+        <div class="sb-ns-child" onclick="go('sec-beam-stirrup')">Stirrups / Links</div>
+        <div class="sb-ns-child" onclick="go('sec-beam-full')">Full Beam Command</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>Column Reinforcement<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-col-longit')">Longitudinal Bars</div>
+        <div class="sb-ns-child" onclick="go('sec-col-ties')">Ties / Links</div>
+        <div class="sb-ns-child" onclick="go('sec-col-full')">Full Column Command</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>Slab Reinforcement<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-slab-area')">AreaReinforcement</div>
+        <div class="sb-ns-child" onclick="go('sec-slab-path')">PathReinforcement</div>
+        <div class="sb-ns-child" onclick="go('sec-slab-punching')">Punching Zone Bars</div>
+        <div class="sb-ns-child" onclick="go('sec-slab-full')">Full Slab Command</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng5">
+      <div class="sb-ns-header" onclick="tog('ng5',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>Foundation Reinforcement<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-found-pad')">Pad Footing</div>
+        <div class="sb-ns-child" onclick="go('sec-found-strip')">Strip Footing</div>
+        <div class="sb-ns-child" onclick="go('sec-found-pile')">Pile Cap</div>
+        <div class="sb-ns-child" onclick="go('sec-found-full')">Full Foundation Command</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng6">
+      <div class="sb-ns-header" onclick="tog('ng6',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>Steel Connections<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-steel-overview')">Steel API Overview</div>
+        <div class="sb-ns-child" onclick="go('sec-steel-baseplate')">Base Plate</div>
+        <div class="sb-ns-child" onclick="go('sec-steel-endplate')">End Plate Connection</div>
+        <div class="sb-ns-child" onclick="go('sec-steel-cleat')">Cleat / Angle Cleat</div>
+        <div class="sb-ns-child" onclick="go('sec-steel-hollow')">Hollow Section Gusset</div>
+        <div class="sb-ns-child" onclick="go('sec-steel-audit')">Connection Audit</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng7">
+      <div class="sb-ns-header" onclick="tog('ng7',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>Rebar Schedules<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('sec-schedule-rebar')">Rebar Schedule</div>
+        <div class="sb-ns-child" onclick="go('sec-schedule-export')">Export to CSV</div>
+        <div class="sb-ns-child" onclick="go('sec-schedule-mark')">Auto Mark Bars</div>
+      </div>
+    </div>
+
+  </div>
+              <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html" class="current"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html" class="current" ><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html" class="current"  ><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html" class="current"   ><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html" class="current"    ><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP � Arch � Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family � Print � Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref � Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI � DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html" class="current"     ><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="fn">09</span> DB (A–E)</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="fn">10</span> DB (F–Z) · UI</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="fn">11</span> MEP · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="fn">12</span> Family · Print</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="fn">13</span> Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="fn">14</span> Ribbon · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="fn">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html"><span class="fn">16</span> Final Completion</a>
+    <a class="sb-file-link current" href="book17-structural-reinforcement.html" class="current"     ><span class="fn">17</span> Structural Reinforcement</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 17 of 19 — Structural Reinforcement · Beam · Column · Slab · Foundation · Steel Connections
+    
+</div>
+  <h1>Structural<br/><span>Reinforcement</span></h1>
+  <p>Complete real-code reference for placing reinforcement in beams, columns, slabs, and foundations — bottom bars, top bars, stirrups, ties, area reinforcement, punching zones — plus steel connections (base plates, end plates, cleats, gussets) using the Advance Steel API. Every example is production-ready C# with correct cover distances, hook types, and bar spacing.</p>
+    <!-- GLOBAL SEARCH -->
+    <div style="margin-top:20px;position:relative;max-width:400px;z-index:9999;">
+      <input type="text" id="globalsearch" placeholder="Search Class, Method or Topic..." 
+             style="width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;outline:none;"
+             oninput="globalSearch(this.value)"/>
+      <div id="searchresults" class="search-results-container"></div>
+    </div>
+    
+  <div class="hero-chips">
+    <span class="chip c-bl">Beam Rebar</span>
+    <span class="chip c-or">Column Ties</span>
+    <span class="chip c-gr">Slab Area Reinf</span>
+    <span class="chip c-ye">Foundation</span>
+    <span class="chip c-pu">Steel Connections</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════
+     REBAR FUNDAMENTALS
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-fund">
+  <div class="ns-header">
+    <div class="ns-icon">📐</div>
+    <div class="ns-meta">
+      <div class="ns-label">// DB.Structure — Fundamentals</div>
+      <h2>Rebar Fundamentals</h2>
+      <p>Core classes, enums, and helper patterns used across all reinforcement workflows.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-rebar-fund">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Rebar</span> <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)">— Core placement class</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Structure</span></div>
+  <div class="class-desc">The primary class for placing individual reinforcement bars. Every reinforcement bar — whether bottom, top, stirrup, or tie — is a Rebar element. Bars are created from curves, a bar type, optional hook types, a host structural element, and a normal vector defining the bar's plane.</div>
+
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Essential Helper — Get Bar Type by Diameter</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Helpers used throughout ALL examples in this book</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Structure;
+
+<span class="cm">// ── Get RebarBarType by nominal diameter (mm) ──</span>
+<span class="tp">RebarBarType</span> <span class="fn">GetBarType</span>(<span class="tp">Document</span> doc, <span class="k">double</span> diamMm)
+{
+    <span class="k">return new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RebarBarType</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">RebarBarType</span>&gt;()
+        .<span class="fn">OrderBy</span>(b => Math.<span class="fn">Abs</span>(b.BarNominalDiameter * <span class="n">304.8</span> - diamMm))
+        .<span class="fn">FirstOrDefault</span>();
+}
+
+<span class="cm">// ── Get hook type (90°, 135°, 180°) ──</span>
+<span class="tp">RebarHookType</span> <span class="fn">GetHookType</span>(<span class="tp">Document</span> doc, <span class="k">double</span> angleDeg)
+{
+    <span class="k">return new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RebarHookType</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">RebarHookType</span>&gt;()
+        .<span class="fn">OrderBy</span>(h => Math.<span class="fn">Abs</span>(h.HookAngle * (<span class="n">180</span> / Math.PI) - angleDeg))
+        .<span class="fn">FirstOrDefault</span>();
+}
+
+<span class="cm">// ── Get RebarShape by name (straight, stirrup, U-bar etc.) ──</span>
+<span class="tp">RebarShape</span> <span class="fn">GetShape</span>(<span class="tp">Document</span> doc, <span class="k">string</span> nameContains = <span class="s">"Straight"</span>)
+{
+    <span class="k">return new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RebarShape</span>))
+        .<span class="fn">Cast</span>&lt;<span class="tp">RebarShape</span>&gt;()
+        .<span class="fn">FirstOrDefault</span>(s => s.Name.Contains(nameContains));
+}
+
+<span class="cm">// ── Convert mm to feet ──</span>
+<span class="k">double</span> <span class="fn">mmToFt</span>(<span class="k">double</span> mm) =>
+    <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(mm, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="cm">// ── Single bar placement wrapper ──</span>
+<span class="tp">Rebar</span> <span class="fn">PlaceBar</span>(<span class="tp">Document</span> doc, <span class="tp">Element</span> host,
+    <span class="tp">RebarBarType</span> barType, <span class="tp">Curve</span> curve,
+    <span class="tp">XYZ</span> normal, <span class="tp">RebarStyle</span> style = <span class="tp">RebarStyle</span>.Standard,
+    <span class="tp">RebarHookType</span> startHook = <span class="k">null</span>, <span class="tp">RebarHookType</span> endHook = <span class="k">null</span>)
+{
+    <span class="k">return</span> <span class="tp">Rebar</span>.<span class="fn">CreateFromCurves</span>(
+        doc, style, barType,
+        startHook, endHook,
+        host, normal,
+        <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt; { curve },
+        <span class="tp">RebarHookOrientation</span>.Left,
+        <span class="tp">RebarHookOrientation</span>.Left);
+}
+
+<span class="cm">// ── RebarStyle values ──
+// RebarStyle.Standard       — normal straight or shaped bar
+// RebarStyle.StirrupTie     — closed stirrup/tie (links)
+// RebarStyle.Unknown        — not used in new code</span></pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-fund -->
+
+<!-- ═══════════════════════════════════════
+     BEAM REINFORCEMENT
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-beam" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔵</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Beam Reinforcement</div>
+      <h2>Beam — Bottom · Top · Stirrups</h2>
+      <p>Complete beam reinforcement: bottom longitudinal bars, top longitudinal bars, and vertical stirrups (links) — with correct cover distances and hook configuration.</p>
+    </div>
+  </div>
+
+  <div class="struct-intro">
+    <div class="section-tag tag-beam">B</div>
+    <div>
+      <h4>Beam reinforcement conventions</h4>
+      <p>Bottom bars resist sagging moment (tension at bottom). Top bars resist hogging (tension at top — over supports). Stirrups resist shear and hold the cage together. All bars placed parallel to the beam centreline except stirrups. Cover = 35mm for internal beams (Eurocode), 40mm external. Normal vector for longitudinal bars = perpendicular to beam axis, in the XZ plane.</p>
+    </div>
+  </div>
+
+<!-- BOTTOM BARS -->
+<div class="class-block" id="sec-beam-bottom">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-beam">Bottom Longitudinal Bars</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Place bottom tension bars in a concrete beam</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Bottom bars — 3T20 at beam soffit with 35mm cover</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">/// &lt;summary&gt;
+/// Place bottom longitudinal reinforcement bars in a concrete beam.
+/// 3 x Ø20mm bottom bars at 35mm cover from soffit and sides.
+/// &lt;/summary&gt;</span>
+<span class="k">public void</span> <span class="fn">ReinforcBeamBottom</span>(<span class="tp">Document</span> doc, <span class="tp">FamilyInstance</span> beam)
+{
+    <span class="cm">// ── Get beam geometry ──</span>
+    <span class="tp">LocationCurve</span> lc       = beam.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+    <span class="tp">Line</span>          beamLine = lc?.Curve <span class="k">as</span> <span class="tp">Line</span>;
+    <span class="k">if</span> (beamLine == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="tp">XYZ</span> start = beamLine.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+    <span class="tp">XYZ</span> end   = beamLine.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+    <span class="tp">XYZ</span> dir   = (end - start).<span class="fn">Normalize</span>();
+
+    <span class="cm">// ── Read beam cross-section dimensions ──</span>
+    <span class="k">double</span> beamWidthFt  = beam.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_BF)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">300</span>);
+    <span class="k">double</span> beamDepthFt  = beam.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_HW)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">600</span>);
+
+    <span class="cm">// ── Bar configuration ──</span>
+    <span class="k">double</span> coverFt   = <span class="fn">mmToFt</span>(<span class="n">35</span>);  <span class="cm">// Eurocode nominal cover</span>
+    <span class="k">double</span> barDiamFt = <span class="fn">mmToFt</span>(<span class="n">20</span>);  <span class="cm">// Ø20 bars</span>
+    <span class="k">int</span>    numBars   = <span class="n">3</span>;             <span class="cm">// 3T20 bottom</span>
+
+    <span class="tp">RebarBarType</span> bt20 = <span class="fn">GetBarType</span>(doc, <span class="n">20</span>);
+    <span class="tp">RebarHookType</span> hook90 = <span class="fn">GetHookType</span>(doc, <span class="n">90</span>);
+
+    <span class="cm">// ── Calculate bar positions across bottom of beam ──</span>
+    <span class="cm">// centreZ = beam bottom + cover + half bar diameter</span>
+    <span class="k">double</span> barZOffset = -beamDepthFt / <span class="n">2</span> + coverFt + barDiamFt / <span class="n">2</span>;
+
+    <span class="cm">// Distribute bars across width</span>
+    <span class="k">double</span> availWidth = beamWidthFt - <span class="n">2</span> * (coverFt + barDiamFt / <span class="n">2</span>);
+    <span class="k">double</span> spacing    = numBars > <span class="n">1</span> ? availWidth / (numBars - <span class="n">1</span>) : <span class="n">0</span>;
+
+    <span class="cm">// Normal vector for longitudinal bar plane = vertical (Z)</span>
+    <span class="cm">// — perpendicular to beam axis, in vertical plane</span>
+    <span class="tp">XYZ</span> normal = <span class="tp">XYZ</span>.BasisZ;
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Beam Bottom Bars"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numBars; i++)
+        {
+            <span class="k">double</span> xOffset = -availWidth / <span class="n">2</span> + i * spacing;
+
+            <span class="cm">// Build offset transform: shift bar to correct position</span>
+            <span class="tp">XYZ</span> perp   = dir.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ).<span class="fn">Normalize</span>();
+            <span class="tp">XYZ</span> barOff = perp * xOffset + <span class="tp">XYZ</span>.BasisZ * barZOffset;
+
+            <span class="tp">XYZ</span> barStart = start + barOff;
+            <span class="tp">XYZ</span> barEnd   = end   + barOff;
+
+            <span class="cm">// Shorten bar by cover at each end (bar stops before the face)</span>
+            <span class="tp">XYZ</span> s = barStart + dir * coverFt;
+            <span class="tp">XYZ</span> e = barEnd   - dir * coverFt;
+
+            <span class="tp">Line</span> barCurve = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(s, e);
+
+            <span class="tp">Rebar</span> bar = <span class="tp">Rebar</span>.<span class="fn">CreateFromCurves</span>(
+                doc,
+                <span class="tp">RebarStyle</span>.Standard,
+                bt20,
+                hook90,   <span class="cm">// start hook 90°</span>
+                hook90,   <span class="cm">// end hook 90°</span>
+                beam,
+                normal,
+                <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt; { barCurve },
+                <span class="tp">RebarHookOrientation</span>.Left,
+                <span class="tp">RebarHookOrientation</span>.Left);
+
+            <span class="cm">// Set bar mark</span>
+            bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+               ?.<span class="fn">Set</span>(<span class="s">$"B{i+1}-BOT-Ø20"</span>);
+        }
+
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BARS -->
+<div class="class-block" id="sec-beam-top">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-beam">Top Longitudinal Bars</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Place top compression/hogging bars</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Top bars — 2T16 at top of beam with 35mm cover</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcBeamTop</span>(<span class="tp">Document</span> doc, <span class="tp">FamilyInstance</span> beam)
+{
+    <span class="tp">LocationCurve</span> lc    = beam.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+    <span class="tp">Line</span>          line  = lc?.Curve <span class="k">as</span> <span class="tp">Line</span>;
+    <span class="k">if</span> (line == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="tp">XYZ</span> start = line.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+    <span class="tp">XYZ</span> end   = line.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+    <span class="tp">XYZ</span> dir   = (end - start).<span class="fn">Normalize</span>();
+
+    <span class="k">double</span> beamWidthFt = beam.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_BF)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">300</span>);
+    <span class="k">double</span> beamDepthFt = beam.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_HW)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">600</span>);
+
+    <span class="k">double</span> coverFt   = <span class="fn">mmToFt</span>(<span class="n">35</span>);
+    <span class="k">double</span> barDiamFt = <span class="fn">mmToFt</span>(<span class="n">16</span>);
+    <span class="k">int</span>    numBars   = <span class="n">2</span>;   <span class="cm">// 2T16 top bars</span>
+
+    <span class="tp">RebarBarType</span> bt16 = <span class="fn">GetBarType</span>(doc, <span class="n">16</span>);
+
+    <span class="cm">// ++ for top: offset UPWARD from beam centre</span>
+    <span class="k">double</span> barZOffset = <span class="n">+</span>beamDepthFt / <span class="n">2</span> - coverFt - barDiamFt / <span class="n">2</span>;
+    <span class="k">double</span> availWidth = beamWidthFt - <span class="n">2</span> * (coverFt + barDiamFt / <span class="n">2</span>);
+    <span class="k">double</span> spacing    = numBars > <span class="n">1</span> ? availWidth / (numBars - <span class="n">1</span>) : <span class="n">0</span>;
+    <span class="tp">XYZ</span>    perp      = dir.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ).<span class="fn">Normalize</span>();
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Beam Top Bars"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numBars; i++)
+        {
+            <span class="k">double</span> xOff  = -availWidth / <span class="n">2</span> + i * spacing;
+            <span class="tp">XYZ</span>    off   = perp * xOff + <span class="tp">XYZ</span>.BasisZ * barZOffset;
+            <span class="tp">XYZ</span>    s     = start + off + dir * coverFt;
+            <span class="tp">XYZ</span>    e     = end   + off - dir * coverFt;
+            <span class="tp">Rebar</span>  bar   = <span class="fn">PlaceBar</span>(doc, beam, bt16,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(s, e), <span class="tp">XYZ</span>.BasisZ);
+            bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+               ?.<span class="fn">Set</span>(<span class="s">$"B{i+1}-TOP-Ø16"</span>);
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STIRRUPS -->
+<div class="class-block" id="sec-beam-stirrup">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-beam">Stirrups / Shear Links</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Place vertical closed stirrups along beam</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Stirrups — Ø10 links at 150mm centres along full beam length</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcBeamStirrups</span>(<span class="tp">Document</span> doc, <span class="tp">FamilyInstance</span> beam,
+    <span class="k">double</span> spacingMm = <span class="n">150</span>, <span class="k">double</span> linkDiamMm = <span class="n">10</span>)
+{
+    <span class="tp">LocationCurve</span> lc   = beam.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+    <span class="tp">Line</span>          line = lc?.Curve <span class="k">as</span> <span class="tp">Line</span>;
+    <span class="k">if</span> (line == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="tp">XYZ</span> start     = line.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+    <span class="tp">XYZ</span> end       = line.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+    <span class="tp">XYZ</span> dir       = (end - start).<span class="fn">Normalize</span>();
+    <span class="k">double</span> lenFt  = line.Length;
+
+    <span class="k">double</span> coverFt    = <span class="fn">mmToFt</span>(<span class="n">35</span>);
+    <span class="k">double</span> spacingFt  = <span class="fn">mmToFt</span>(spacingMm);
+    <span class="k">double</span> dFt        = <span class="fn">mmToFt</span>(linkDiamMm);
+
+    <span class="k">double</span> beamW = beam.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_BF)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">300</span>);
+    <span class="k">double</span> beamH = beam.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_HW)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">600</span>);
+
+    <span class="tp">RebarBarType</span>  bt10 = <span class="fn">GetBarType</span>(doc, linkDiamMm);
+    <span class="tp">RebarHookType</span> h135 = <span class="fn">GetHookType</span>(doc, <span class="n">135</span>);  <span class="cm">// 135° hook for seismic</span>
+
+    <span class="cm">// Inner dimensions of stirrup</span>
+    <span class="k">double</span> sw = beamW - <span class="n">2</span> * coverFt;  <span class="cm">// stirrup inner width</span>
+    <span class="k">double</span> sh = beamH - <span class="n">2</span> * coverFt;  <span class="cm">// stirrup inner height</span>
+
+    <span class="cm">// Perpendicular to beam axis (horizontal, for stirrup plane)</span>
+    <span class="tp">XYZ</span> perp = dir.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ).<span class="fn">Normalize</span>();
+
+    <span class="k">int</span> numLinks = (<span class="k">int</span>)Math.<span class="fn">Floor</span>((lenFt - <span class="n">2</span> * coverFt) / spacingFt) + <span class="n">1</span>;
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Beam Stirrups"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numLinks; i++)
+        {
+            <span class="k">double</span> dist = coverFt + i * spacingFt;
+            <span class="k">if</span> (dist > lenFt - coverFt) <span class="k">break</span>;
+
+            <span class="cm">// Centre of stirrup along beam axis</span>
+            <span class="tp">XYZ</span> ctr = start + dir * dist;
+
+            <span class="cm">// 4 corners of the closed stirrup rectangle
+            // p0=bottom-left, p1=bottom-right, p2=top-right, p3=top-left</span>
+            <span class="tp">XYZ</span> p0 = ctr - perp * sw / <span class="n">2</span> - <span class="tp">XYZ</span>.BasisZ * sh / <span class="n">2</span>;
+            <span class="tp">XYZ</span> p1 = ctr + perp * sw / <span class="n">2</span> - <span class="tp">XYZ</span>.BasisZ * sh / <span class="n">2</span>;
+            <span class="tp">XYZ</span> p2 = ctr + perp * sw / <span class="n">2</span> + <span class="tp">XYZ</span>.BasisZ * sh / <span class="n">2</span>;
+            <span class="tp">XYZ</span> p3 = ctr - perp * sw / <span class="n">2</span> + <span class="tp">XYZ</span>.BasisZ * sh / <span class="n">2</span>;
+
+            <span class="cm">// Stirrup = 4 lines forming closed rectangle</span>
+            <span class="k">var</span> curves = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt;
+            {
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p0, p1),  <span class="cm">// bottom</span>
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p1, p2),  <span class="cm">// right</span>
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p2, p3),  <span class="cm">// top</span>
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p3, p0)   <span class="cm">// left</span>
+            };
+
+            <span class="cm">// Normal = beam direction (stirrup plane perpendicular to beam)</span>
+            <span class="tp">Rebar</span> stirrup = <span class="tp">Rebar</span>.<span class="fn">CreateFromCurves</span>(
+                doc,
+                <span class="tp">RebarStyle</span>.StirrupTie,   <span class="cm">// ← MUST be StirrupTie for closed links</span>
+                bt10,
+                h135, h135,              <span class="cm">// 135° hooks for seismic</span>
+                beam,
+                dir,                     <span class="cm">// ← normal = beam direction</span>
+                curves,
+                <span class="tp">RebarHookOrientation</span>.Left,
+                <span class="tp">RebarHookOrientation</span>.Right);
+
+            stirrup.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+                   ?.<span class="fn">Set</span>(<span class="s">$"L{i+1}-Ø{linkDiamMm}@{spacingMm}"</span>);
+        }
+
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL BEAM COMMAND -->
+<div class="class-block" id="sec-beam-full">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-beam">Complete Beam Command</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 One command — full beam cage: bottom + top + stirrups</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// IExternalCommand — reinforce all selected beams automatically</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex">[<span class="tp">Transaction</span>(<span class="tp">TransactionMode</span>.Manual)]
+<span class="k">public class</span> <span class="tp">ReinforcBeamsCommand</span> : <span class="tp">IExternalCommand</span>
+{
+    <span class="k">public</span> <span class="tp">Result</span> <span class="fn">Execute</span>(<span class="tp">ExternalCommandData</span> cd, <span class="k">ref string</span> msg, <span class="tp">ElementSet</span> els)
+    {
+        <span class="tp">Document</span> doc   = cd.Application.ActiveUIDocument.Document;
+        <span class="tp">UIDocument</span> uid  = cd.Application.ActiveUIDocument;
+
+        <span class="cm">// Let user pick beams</span>
+        <span class="tp">IList</span>&lt;<span class="tp">Reference</span>&gt; refs;
+        <span class="k">try</span>
+        {
+            refs = uid.Selection.<span class="fn">PickObjects</span>(
+                <span class="tp">Autodesk.Revit.UI.Selection.ObjectType</span>.Element,
+                <span class="k">new</span> <span class="tp">BeamSelectionFilter</span>(),
+                <span class="s">"Select concrete beams to reinforce"</span>);
+        }
+        <span class="k">catch</span> (<span class="tp">Autodesk.Revit.Exceptions.OperationCanceledException</span>)
+        {
+            <span class="k">return</span> <span class="tp">Result</span>.Cancelled;
+        }
+
+        <span class="k">int</span> count = <span class="n">0</span>;
+        <span class="k">foreach</span> (<span class="k">var</span> r <span class="k">in</span> refs)
+        {
+            <span class="tp">FamilyInstance</span> beam = doc.<span class="fn">GetElement</span>(r) <span class="k">as</span> <span class="tp">FamilyInstance</span>;
+            <span class="k">if</span> (beam == <span class="k">null</span>) <span class="k">continue</span>;
+
+            <span class="fn">ReinforcBeamBottom</span>(doc, beam);       <span class="cm">// 3T20 bottom</span>
+            <span class="fn">ReinforcBeamTop</span>(doc, beam);           <span class="cm">// 2T16 top</span>
+            <span class="fn">ReinforcBeamStirrups</span>(doc, beam,
+                spacingMm: <span class="n">150</span>, linkDiamMm: <span class="n">10</span>); <span class="cm">// Ø10@150</span>
+            count++;
+        }
+
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Done"</span>,
+            <span class="s">$"Reinforced {count} beam(s) with:\n"</span> +
+            <span class="s">"  3T20 bottom bars\n  2T16 top bars\n  Ø10 stirrups @150mm"</span>);
+
+        <span class="k">return</span> <span class="tp">Result</span>.Succeeded;
+    }
+}
+
+<span class="k">public class</span> <span class="tp">BeamSelectionFilter</span> : <span class="tp">ISelectionFilter</span>
+{
+    <span class="k">public bool</span> <span class="fn">AllowElement</span>(<span class="tp">Element</span> e)
+        => e <span class="k">is</span> <span class="tp">FamilyInstance</span> fi
+           &amp;&amp; fi.StructuralType == <span class="tp">StructuralType</span>.Beam;
+    <span class="k">public bool</span> <span class="fn">AllowReference</span>(<span class="tp">Reference</span> r, <span class="tp">XYZ</span> p) => <span class="k">true</span>;
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-beam -->
+
+<!-- ═══════════════════════════════════════
+     COLUMN REINFORCEMENT
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-column" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔴</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Column Reinforcement</div>
+      <h2>Column — Longitudinal Bars · Ties</h2>
+      <p>Reinforcement cage for rectangular concrete columns: corner bars + intermediate bars + rectangular ties at specified spacing.</p>
+    </div>
+  </div>
+
+  <div class="struct-intro">
+    <div class="section-tag tag-col">C</div>
+    <div>
+      <h4>Column reinforcement conventions</h4>
+      <p>Longitudinal bars run vertically the full height of the column. They are positioned around the perimeter with 40mm cover (external column). Ties are horizontal closed links at vertical spacing — typically 150–200mm. The column cage is assembled from 4 corner bars + intermediate side bars + ties. Normal vector for vertical bars = horizontal (XY plane). Normal for ties = vertical (Z axis).</p>
+    </div>
+  </div>
+
+<!-- LONGITUDINAL BARS -->
+<div class="class-block" id="sec-col-longit">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-column">Longitudinal Column Bars</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 8T20 longitudinal bars around column perimeter</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Column longitudinal — 8×Ø20 perimeter bars at 40mm cover</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcColumnLongitudinal</span>(<span class="tp">Document</span> doc,
+    <span class="tp">FamilyInstance</span> column, <span class="k">int</span> numBars = <span class="n">8</span>, <span class="k">double</span> barDiamMm = <span class="n">20</span>)
+{
+    <span class="cm">// ── Get column geometry ──</span>
+    <span class="tp">LocationPoint</span> lp  = column.Location <span class="k">as</span> <span class="tp">LocationPoint</span>;
+    <span class="k">if</span> (lp == <span class="k">null</span>) <span class="k">return</span>;
+    <span class="tp">XYZ</span> colBase = lp.Point;
+
+    <span class="cm">// Get column height from base to top level</span>
+    <span class="k">double</span> colHeightFt = column.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.INSTANCE_LENGTH_PARAM)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">3000</span>);
+
+    <span class="cm">// Get cross-section dimensions</span>
+    <span class="k">double</span> colBFt = column.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_BF)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">400</span>);
+    <span class="k">double</span> colHFt = column.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_HW)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">400</span>);
+
+    <span class="k">double</span> coverFt   = <span class="fn">mmToFt</span>(<span class="n">40</span>);
+    <span class="k">double</span> dFt        = <span class="fn">mmToFt</span>(barDiamMm);
+    <span class="k">double</span> innerW     = colBFt - <span class="n">2</span> * (coverFt + dFt / <span class="n">2</span>);
+    <span class="k">double</span> innerH     = colHFt - <span class="n">2</span> * (coverFt + dFt / <span class="n">2</span>);
+
+    <span class="tp">RebarBarType</span> bt = <span class="fn">GetBarType</span>(doc, barDiamMm);
+
+    <span class="cm">// ── Calculate bar positions around perimeter ──
+    // For 8 bars: 4 corners + 1 intermediate per long side
+    // Layout: 
+    //   (0)-----(1)-----(2)   ← top
+    //    |               |
+    //   (7)             (3)   ← sides
+    //    |               |
+    //   (6)-----(5)-----(4)   ← bottom</span>
+    <span class="k">double</span> x0 = colBase.X - innerW / <span class="n">2</span>;
+    <span class="k">double</span> x1 = colBase.X + innerW / <span class="n">2</span>;
+    <span class="k">double</span> y0 = colBase.Y - innerH / <span class="n">2</span>;
+    <span class="k">double</span> y1 = colBase.Y + innerH / <span class="n">2</span>;
+
+    <span class="k">var</span> positions = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">XYZ</span>&gt;
+    {
+        <span class="k">new</span> <span class="tp">XYZ</span>(x0,               y1, colBase.Z),  <span class="cm">// TL corner</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>((x0+x1)/<span class="n">2</span>,       y1, colBase.Z),  <span class="cm">// T mid</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(x1,               y1, colBase.Z),  <span class="cm">// TR corner</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(x1, (y0+y1)/<span class="n">2</span>,       colBase.Z),  <span class="cm">// R mid</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(x1,               y0, colBase.Z),  <span class="cm">// BR corner</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>((x0+x1)/<span class="n">2</span>,       y0, colBase.Z),  <span class="cm">// B mid</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(x0,               y0, colBase.Z),  <span class="cm">// BL corner</span>
+        <span class="k">new</span> <span class="tp">XYZ</span>(x0, (y0+y1)/<span class="n">2</span>,       colBase.Z),  <span class="cm">// L mid</span>
+    };
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Column Longitudinal"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; Math.<span class="fn">Min</span>(numBars, positions.Count); i++)
+        {
+            <span class="tp">XYZ</span>  pos  = positions[i];
+            <span class="tp">XYZ</span>  ptS  = <span class="k">new</span> <span class="tp">XYZ</span>(pos.X, pos.Y, colBase.Z + coverFt);
+            <span class="tp">XYZ</span>  ptE  = <span class="k">new</span> <span class="tp">XYZ</span>(pos.X, pos.Y, colBase.Z + colHeightFt - coverFt);
+            <span class="tp">Line</span> barL = <span class="tp">Line</span>.<span class="fn">CreateBound</span>(ptS, ptE);
+
+            <span class="cm">// Normal for vertical bar = horizontal (perpendicular to bar)</span>
+            <span class="cm">// Use XYZ.BasisX for bars in YZ plane, BasisY for bars in XZ plane</span>
+            <span class="tp">XYZ</span> normal = Math.<span class="fn">Abs</span>(pos.X - colBase.X) >
+                         Math.<span class="fn">Abs</span>(pos.Y - colBase.Y)
+                ? <span class="tp">XYZ</span>.BasisY   <span class="cm">// bar on left/right face: normal = Y</span>
+                : <span class="tp">XYZ</span>.BasisX;  <span class="cm">// bar on front/back face: normal = X</span>
+
+            <span class="tp">Rebar</span> bar = <span class="tp">Rebar</span>.<span class="fn">CreateFromCurves</span>(
+                doc,
+                <span class="tp">RebarStyle</span>.Standard,
+                bt,
+                <span class="k">null</span>, <span class="k">null</span>,   <span class="cm">// no hooks on vertical column bars</span>
+                column,
+                normal,
+                <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt; { barL },
+                <span class="tp">RebarHookOrientation</span>.Left,
+                <span class="tp">RebarHookOrientation</span>.Left);
+
+            bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+               ?.<span class="fn">Set</span>(<span class="s">$"VB{i+1}-Ø{barDiamMm}"</span>);
+        }
+
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIES -->
+<div class="class-block" id="sec-col-ties">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-column">Column Ties / Rectangular Links</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Rectangular ties at specified vertical spacing</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Column ties — Ø10 rectangular links at 200mm vertical centres</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcColumnTies</span>(<span class="tp">Document</span> doc, <span class="tp">FamilyInstance</span> column,
+    <span class="k">double</span> spacingMm = <span class="n">200</span>, <span class="k">double</span> tieDiamMm = <span class="n">10</span>)
+{
+    <span class="tp">LocationPoint</span> lp = column.Location <span class="k">as</span> <span class="tp">LocationPoint</span>;
+    <span class="k">if</span> (lp == <span class="k">null</span>) <span class="k">return</span>;
+    <span class="tp">XYZ</span> base  = lp.Point;
+
+    <span class="k">double</span> colH = column.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.INSTANCE_LENGTH_PARAM)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">3000</span>);
+    <span class="k">double</span> colB = column.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_BF)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">400</span>);
+    <span class="k">double</span> colD = column.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_HW)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">400</span>);
+
+    <span class="k">double</span> coverFt  = <span class="fn">mmToFt</span>(<span class="n">40</span>);
+    <span class="k">double</span> dFt      = <span class="fn">mmToFt</span>(tieDiamMm);
+    <span class="k">double</span> spFt     = <span class="fn">mmToFt</span>(spacingMm);
+
+    <span class="cm">// Inner rectangle of tie</span>
+    <span class="k">double</span> tw = colB - <span class="n">2</span> * coverFt;
+    <span class="k">double</span> td = colD - <span class="n">2</span> * coverFt;
+
+    <span class="tp">RebarBarType</span>  bt  = <span class="fn">GetBarType</span>(doc, tieDiamMm);
+    <span class="tp">RebarHookType</span> h90 = <span class="fn">GetHookType</span>(doc, <span class="n">90</span>);
+
+    <span class="k">int</span> numTies = (<span class="k">int</span>)Math.<span class="fn">Floor</span>((colH - <span class="n">2</span> * coverFt) / spFt) + <span class="n">1</span>;
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Column Ties"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numTies; i++)
+        {
+            <span class="k">double</span> z = base.Z + coverFt + i * spFt;
+
+            <span class="cm">// 4 corners of horizontal tie at elevation z</span>
+            <span class="tp">XYZ</span> p0 = <span class="k">new</span> <span class="tp">XYZ</span>(base.X - tw/<span class="n">2</span>, base.Y - td/<span class="n">2</span>, z);
+            <span class="tp">XYZ</span> p1 = <span class="k">new</span> <span class="tp">XYZ</span>(base.X + tw/<span class="n">2</span>, base.Y - td/<span class="n">2</span>, z);
+            <span class="tp">XYZ</span> p2 = <span class="k">new</span> <span class="tp">XYZ</span>(base.X + tw/<span class="n">2</span>, base.Y + td/<span class="n">2</span>, z);
+            <span class="tp">XYZ</span> p3 = <span class="k">new</span> <span class="tp">XYZ</span>(base.X - tw/<span class="n">2</span>, base.Y + td/<span class="n">2</span>, z);
+
+            <span class="k">var</span> curves = <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">Curve</span>&gt;
+            {
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p0, p1),
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p1, p2),
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p2, p3),
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(p3, p0)
+            };
+
+            <span class="cm">// Normal = Z (tie lies in horizontal plane)</span>
+            <span class="tp">Rebar</span> tie = <span class="tp">Rebar</span>.<span class="fn">CreateFromCurves</span>(
+                doc, <span class="tp">RebarStyle</span>.StirrupTie,
+                bt, h90, h90,
+                column, <span class="tp">XYZ</span>.BasisZ,
+                curves,
+                <span class="tp">RebarHookOrientation</span>.Left,
+                <span class="tp">RebarHookOrientation</span>.Right);
+
+            tie.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+               ?.<span class="fn">Set</span>(<span class="s">$"T{i+1}-Ø{tieDiamMm}@{spacingMm}"</span>);
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── Full column command ──</span>
+<span class="k">public void</span> <span class="fn">ReinforcColumn</span>(<span class="tp">Document</span> doc, <span class="tp">FamilyInstance</span> col)
+{
+    <span class="fn">ReinforcColumnLongitudinal</span>(doc, col, numBars: <span class="n">8</span>, barDiamMm: <span class="n">20</span>);
+    <span class="fn">ReinforcColumnTies</span>(doc, col, spacingMm: <span class="n">200</span>, tieDiamMm: <span class="n">10</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-column -->
+
+<!-- ═══════════════════════════════════════
+     SLAB REINFORCEMENT
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-slab" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🟢</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Slab Reinforcement</div>
+      <h2>Slab — AreaReinforcement · PathReinforcement · Punching</h2>
+      <p>Two-way slab reinforcement: bottom mesh (X+Y), top mesh over supports, and punching shear bars around columns.</p>
+    </div>
+  </div>
+
+  <div class="struct-intro">
+    <div class="section-tag tag-slab">S</div>
+    <div>
+      <h4>Slab reinforcement approach</h4>
+      <p>Two-way slabs use <strong>AreaReinforcement</strong> for uniform mesh (bottom and top). Local punching zones and strip reinforcement use <strong>PathReinforcement</strong>. Bottom bars are placed first (lowest layer), then top bars. Cover = 25mm internal / 35mm external. Bar spacing typically 150–200mm for T12 or T16.</p>
+    </div>
+  </div>
+
+<!-- AREA REINFORCEMENT -->
+<div class="class-block" id="sec-slab-area">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-slab">Slab AreaReinforcement — Two-Way Mesh</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Bottom and top mesh for a two-way concrete slab</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Two-way slab mesh — T12@150 bottom + T12@150 top</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcSlabMesh</span>(<span class="tp">Document</span> doc, <span class="tp">Floor</span> slab,
+    <span class="k">double</span> barDiamMm = <span class="n">12</span>, <span class="k">double</span> spacingMm = <span class="n">150</span>)
+{
+    <span class="tp">RebarBarType</span> bt = <span class="fn">GetBarType</span>(doc, barDiamMm);
+    <span class="k">if</span> (bt == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="cm">// Get slab boundary as CurveArray</span>
+    <span class="tp">Options</span> opts = <span class="k">new</span> <span class="tp">Options</span> { ComputeReferences = <span class="k">false</span> };
+    <span class="tp">BoundingBoxXYZ</span> bb = slab.<span class="fn">get_BoundingBox</span>(<span class="k">null</span>);
+    <span class="k">if</span> (bb == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="cm">// Extract slab boundary curves from geometry</span>
+    <span class="tp">CurveArray</span> boundary = <span class="k">new</span> <span class="tp">CurveArray</span>();
+    <span class="k">foreach</span> (<span class="tp">GeometryObject</span> obj <span class="k">in</span> slab.<span class="fn">get_Geometry</span>(opts))
+    {
+        <span class="k">if</span> (obj <span class="k">is</span> <span class="tp">Solid</span> solid)
+        {
+            <span class="k">foreach</span> (<span class="tp">Face</span> face <span class="k">in</span> solid.Faces)
+            {
+                <span class="tp">XYZ</span> n = face.<span class="fn">ComputeNormal</span>(<span class="k">new</span> <span class="tp">UV</span>(<span class="n">.5</span>,<span class="n">.5</span>));
+                <span class="k">if</span> (Math.<span class="fn">Abs</span>(n.Z) > <span class="n">0.9</span> &amp;&amp; n.Z > <span class="n">0</span>)   <span class="cm">// top face</span>
+                {
+                    <span class="k">foreach</span> (<span class="k">var</span> loop <span class="k">in</span> face.<span class="fn">GetEdgesAsCurveLoops</span>())
+                        <span class="k">foreach</span> (<span class="k">var</span> c <span class="k">in</span> loop)
+                            boundary.<span class="fn">Append</span>(c);
+                    <span class="k">break</span>;
+                }
+            }
+        }
+    }
+    <span class="k">if</span> (boundary.Size == <span class="n">0</span>) <span class="k">return</span>;
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Slab Mesh Reinf"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// ── BOTTOM MESH ──</span>
+        <span class="tp">AreaReinforcement</span> botReinf = <span class="tp">AreaReinforcement</span>.<span class="fn">Create</span>(
+            doc,
+            slab,
+            boundary,
+            <span class="tp">XYZ</span>.BasisX,      <span class="cm">// major direction = X</span>
+            bt.Id,            <span class="cm">// major bar type</span>
+            <span class="tp">ElementId</span>.InvalidElementId,
+            bt.Id,            <span class="cm">// minor bar type (Y direction)</span>
+            <span class="tp">ElementId</span>.InvalidElementId);
+
+        <span class="cm">// Set spacing for both directions</span>
+        botReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_AREA_REINF_SPACING_BOTTOM_DIR_1)
+            ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(spacingMm));
+        botReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_AREA_REINF_SPACING_BOTTOM_DIR_2)
+            ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(spacingMm));
+
+        <span class="cm">// Bottom cover</span>
+        botReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_AREA_REINF_BOTTOM_COVER_1)
+            ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">25</span>));
+        botReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_AREA_REINF_BOTTOM_COVER_2)
+            ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">25</span> + barDiamMm));  <span class="cm">// 2nd layer sits above 1st</span>
+
+        botReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+            ?.<span class="fn">Set</span>(<span class="s">$"BOT-T{barDiamMm}@{spacingMm}"</span>);
+
+        <span class="cm">// ── TOP MESH ── (same boundary, different cover)</span>
+        <span class="tp">AreaReinforcement</span> topReinf = <span class="tp">AreaReinforcement</span>.<span class="fn">Create</span>(
+            doc, slab, boundary,
+            <span class="tp">XYZ</span>.BasisX, bt.Id,
+            <span class="tp">ElementId</span>.InvalidElementId,
+            bt.Id,
+            <span class="tp">ElementId</span>.InvalidElementId);
+
+        topReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_AREA_REINF_SPACING_TOP_DIR_1)
+            ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(spacingMm));
+        topReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_AREA_REINF_SPACING_TOP_DIR_2)
+            ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(spacingMm));
+        topReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_AREA_REINF_TOP_COVER_1)
+            ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">25</span>));
+        topReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+            ?.<span class="fn">Set</span>(<span class="s">$"TOP-T{barDiamMm}@{spacingMm}"</span>);
+
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- PUNCHING -->
+<div class="class-block" id="sec-slab-punching">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-slab">Punching Shear Zone</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Radial punching shear bars around a column head</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Punching zone — radial T12 bars on 1.5d perimeter around column</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcPunchingZone</span>(<span class="tp">Document</span> doc,
+    <span class="tp">Floor</span> slab, <span class="tp">FamilyInstance</span> column,
+    <span class="k">double</span> slabDepthMm = <span class="n">250</span>, <span class="k">double</span> barDiamMm = <span class="n">12</span>)
+{
+    <span class="cm">// Column centre</span>
+    <span class="tp">XYZ</span> colCtr = ((column.Location <span class="k">as</span> <span class="tp">LocationPoint</span>)?.Point)
+        ?? <span class="tp">XYZ</span>.Zero;
+
+    <span class="cm">// Effective depth d = slab - cover - bar diameter</span>
+    <span class="k">double</span> d       = slabDepthMm - <span class="n">25</span> - barDiamMm;
+    <span class="k">double</span> perimFt = <span class="fn">mmToFt</span>(<span class="n">1.5</span> * d);  <span class="cm">// critical perimeter at 1.5d</span>
+
+    <span class="cm">// Get column half-dimensions</span>
+    <span class="k">double</span> cHalf = (<span class="k">double</span>)(column.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_SECTION_ISHAPE_BF)?.AsDouble()
+        ?? <span class="fn">mmToFt</span>(<span class="n">400</span>)) / <span class="n">2</span>;
+
+    <span class="k">double</span> slabElev = (slab.<span class="fn">get_BoundingBox</span>(<span class="k">null</span>)?.Max.Z ?? colCtr.Z) - <span class="fn">mmToFt</span>(<span class="n">50</span>);
+
+    <span class="tp">RebarBarType</span> bt = <span class="fn">GetBarType</span>(doc, barDiamMm);
+
+    <span class="cm">// Place 8 radial bars at 45° intervals around column</span>
+    <span class="k">int</span> numRadial = <span class="n">8</span>;
+    <span class="k">double</span> innerR = cHalf + <span class="fn">mmToFt</span>(<span class="n">50</span>);   <span class="cm">// start 50mm from column face</span>
+    <span class="k">double</span> outerR = perimFt + cHalf;       <span class="cm">// out to 1.5d perimeter</span>
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Punching Reinf"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numRadial; i++)
+        {
+            <span class="k">double</span> angle = i * (<span class="n">2</span> * Math.PI / numRadial);
+            <span class="k">double</span> cosA  = Math.<span class="fn">Cos</span>(angle);
+            <span class="k">double</span> sinA  = Math.<span class="fn">Sin</span>(angle);
+
+            <span class="cm">// Bar runs radially outward from column face to 1.5d perimeter</span>
+            <span class="tp">XYZ</span> s = <span class="k">new</span> <span class="tp">XYZ</span>(
+                colCtr.X + cosA * innerR,
+                colCtr.Y + sinA * innerR,
+                slabElev);
+            <span class="tp">XYZ</span> e = <span class="k">new</span> <span class="tp">XYZ</span>(
+                colCtr.X + cosA * outerR,
+                colCtr.Y + sinA * outerR,
+                slabElev);
+
+            <span class="cm">// Normal = perpendicular to bar in horizontal plane</span>
+            <span class="tp">XYZ</span> radialDir = <span class="k">new</span> <span class="tp">XYZ</span>(cosA, sinA, <span class="n">0</span>);
+            <span class="tp">XYZ</span> normal    = radialDir.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ).<span class="fn">Normalize</span>();
+
+            <span class="tp">Rebar</span> bar = <span class="fn">PlaceBar</span>(doc, slab, bt,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(s, e), normal);
+
+            bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+               ?.<span class="fn">Set</span>(<span class="s">$"PZ{i+1}-Ø{barDiamMm}"</span>);
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-slab -->
+
+<!-- ═══════════════════════════════════════
+     FOUNDATION REINFORCEMENT
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-foundation" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🟡</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Foundation Reinforcement</div>
+      <h2>Foundation — Pad · Strip · Pile Cap</h2>
+      <p>Bottom mesh for pad footings, bottom bars for strip footings, and pile cap cage — all with correct 75mm cover to external face.</p>
+    </div>
+  </div>
+
+  <div class="struct-intro">
+    <div class="section-tag tag-found">F</div>
+    <div>
+      <h4>Foundation reinforcement conventions</h4>
+      <p>Cover to external face of foundation = 75mm (concrete cast against earth). Pad footing: two-way bottom mesh spanning to column face. Strip footing: longitudinal bottom bars + transverse distribution bars. Pile cap: bottom bars spanning between pile heads + perimeter tie bars. Starter bars for column lap are separate and placed after the footing cage.</p>
+    </div>
+  </div>
+
+<!-- PAD FOOTING -->
+<div class="class-block" id="sec-found-pad">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-found">Pad Footing Reinforcement</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Two-way bottom mesh + starter bars for isolated pad footing</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Pad footing — T16@150 two-way mesh + 4 T20 starter bars at 75mm cover</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcPadFooting</span>(<span class="tp">Document</span> doc,
+    <span class="tp">FamilyInstance</span> footing,  <span class="cm">// structural foundation family instance</span>
+    <span class="k">double</span> meshBarDiamMm = <span class="n">16</span>,
+    <span class="k">double</span> meshSpacingMm = <span class="n">150</span>,
+    <span class="k">double</span> starterBarDiamMm = <span class="n">20</span>,
+    <span class="k">double</span> starterLapMm = <span class="n">600</span>)
+{
+    <span class="tp">LocationPoint</span> lp = footing.Location <span class="k">as</span> <span class="tp">LocationPoint</span>;
+    <span class="k">if</span> (lp == <span class="k">null</span>) <span class="k">return</span>;
+    <span class="tp">XYZ</span> ctr = lp.Point;
+
+    <span class="cm">// Read footing dimensions</span>
+    <span class="k">double</span> fW = footing.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_FOUNDATION_WIDTH)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">1500</span>);
+    <span class="k">double</span> fD = footing.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_FOUNDATION_LENGTH)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">1500</span>);
+    <span class="k">double</span> fH = footing.<span class="fn">get_Parameter</span>(
+        <span class="tp">BuiltInParameter</span>.STRUCTURAL_FOUNDATION_THICKNESS)?.AsDouble() ?? <span class="fn">mmToFt</span>(<span class="n">500</span>);
+
+    <span class="k">double</span> coverFt  = <span class="fn">mmToFt</span>(<span class="n">75</span>);  <span class="cm">// 75mm cover to earth</span>
+    <span class="k">double</span> mDFt     = <span class="fn">mmToFt</span>(meshBarDiamMm);
+    <span class="k">double</span> spFt     = <span class="fn">mmToFt</span>(meshSpacingMm);
+
+    <span class="k">double</span> btmZ     = ctr.Z + coverFt + mDFt / <span class="n">2</span>;  <span class="cm">// first layer Z</span>
+    <span class="k">double</span> btmZ2    = btmZ + mDFt + <span class="fn">mmToFt</span>(<span class="n">5</span>);      <span class="cm">// second layer Z</span>
+
+    <span class="tp">RebarBarType</span> btMesh    = <span class="fn">GetBarType</span>(doc, meshBarDiamMm);
+    <span class="tp">RebarBarType</span> btStarter = <span class="fn">GetBarType</span>(doc, starterBarDiamMm);
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Pad Footing Reinf"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// ── Bottom mesh — X direction (first layer) ──</span>
+        <span class="k">int</span> numX = (<span class="k">int</span>)Math.<span class="fn">Floor</span>((fD - <span class="n">2</span> * coverFt) / spFt) + <span class="n">1</span>;
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numX; i++)
+        {
+            <span class="k">double</span> y = ctr.Y - fD/<span class="n">2</span> + coverFt + i * spFt;
+            <span class="tp">XYZ</span> s = <span class="k">new</span> <span class="tp">XYZ</span>(ctr.X - fW/<span class="n">2</span> + coverFt, y, btmZ);
+            <span class="tp">XYZ</span> e = <span class="k">new</span> <span class="tp">XYZ</span>(ctr.X + fW/<span class="n">2</span> - coverFt, y, btmZ);
+            <span class="k">var</span> bar = <span class="fn">PlaceBar</span>(doc, footing, btMesh,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(s, e), <span class="tp">XYZ</span>.BasisZ);
+            bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+               ?.<span class="fn">Set</span>(<span class="s">$"FBX{i+1}-Ø{meshBarDiamMm}"</span>);
+        }
+
+        <span class="cm">// ── Bottom mesh — Y direction (second layer) ──</span>
+        <span class="k">int</span> numY = (<span class="k">int</span>)Math.<span class="fn">Floor</span>((fW - <span class="n">2</span> * coverFt) / spFt) + <span class="n">1</span>;
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; numY; i++)
+        {
+            <span class="k">double</span> x = ctr.X - fW/<span class="n">2</span> + coverFt + i * spFt;
+            <span class="tp">XYZ</span> s = <span class="k">new</span> <span class="tp">XYZ</span>(x, ctr.Y - fD/<span class="n">2</span> + coverFt, btmZ2);
+            <span class="tp">XYZ</span> e = <span class="k">new</span> <span class="tp">XYZ</span>(x, ctr.Y + fD/<span class="n">2</span> - coverFt, btmZ2);
+            <span class="fn">PlaceBar</span>(doc, footing, btMesh,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(s, e), <span class="tp">XYZ</span>.BasisY)
+              .<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+              ?.<span class="fn">Set</span>(<span class="s">$"FBY{i+1}-Ø{meshBarDiamMm}"</span>);
+        }
+
+        <span class="cm">// ── Starter bars — 4 corner starters projecting above footing ──</span>
+        <span class="k">double</span> colBFt  = <span class="fn">mmToFt</span>(<span class="n">400</span>) / <span class="n">2</span> - <span class="fn">mmToFt</span>(<span class="n">50</span>);  <span class="cm">// approx column face</span>
+        <span class="k">double</span> startLp = <span class="fn">mmToFt</span>(starterLapMm);
+        <span class="k">double</span> topZ    = ctr.Z + fH + startLp;         <span class="cm">// project above footing</span>
+        <span class="k">double</span> sBaseZ  = ctr.Z + coverFt;              <span class="cm">// starts at footing bottom</span>
+
+        <span class="k">double</span>[] xs = { ctr.X - colBFt, ctr.X + colBFt,
+                         ctr.X + colBFt, ctr.X - colBFt };
+        <span class="k">double</span>[] ys = { ctr.Y - colBFt, ctr.Y - colBFt,
+                         ctr.Y + colBFt, ctr.Y + colBFt };
+
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; <span class="n">4</span>; i++)
+        {
+            <span class="tp">XYZ</span> s = <span class="k">new</span> <span class="tp">XYZ</span>(xs[i], ys[i], sBaseZ);
+            <span class="tp">XYZ</span> e = <span class="k">new</span> <span class="tp">XYZ</span>(xs[i], ys[i], topZ);
+            <span class="fn">PlaceBar</span>(doc, footing, btStarter,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(s, e),
+                (i == <span class="n">0</span> || i == <span class="n">2</span>) ? <span class="tp">XYZ</span>.BasisX : <span class="tp">XYZ</span>.BasisY)
+              .<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+              ?.<span class="fn">Set</span>(<span class="s">$"ST{i+1}-Ø{starterBarDiamMm}"</span>);
+        }
+
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STRIP FOOTING -->
+<div class="class-block" id="sec-found-strip">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-found">Strip Footing Reinforcement</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Longitudinal + transverse bars for strip/wall footing</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Strip footing — 3T16 bottom longitudinal + T10 transverse @300mm</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">ReinforcStripFooting</span>(<span class="tp">Document</span> doc, <span class="tp">Wall</span> footingWall)
+{
+    <span class="tp">LocationCurve</span> lc   = footingWall.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+    <span class="tp">Line</span>          line = lc?.Curve <span class="k">as</span> <span class="tp">Line</span>;
+    <span class="k">if</span> (line == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="tp">XYZ</span>    s     = line.<span class="fn">GetEndPoint</span>(<span class="n">0</span>);
+    <span class="tp">XYZ</span>    e     = line.<span class="fn">GetEndPoint</span>(<span class="n">1</span>);
+    <span class="tp">XYZ</span>    dir   = (e - s).<span class="fn">Normalize</span>();
+    <span class="k">double</span> lenFt  = line.Length;
+
+    <span class="k">double</span> fWidthFt = footingWall.Width;
+    <span class="k">double</span> fDepthFt = (<span class="fn">mmToFt</span>(<span class="n">450</span>)); <span class="cm">// typical strip depth</span>
+    <span class="k">double</span> cvFt     = <span class="fn">mmToFt</span>(<span class="n">75</span>);
+
+    <span class="tp">RebarBarType</span> bt16 = <span class="fn">GetBarType</span>(doc, <span class="n">16</span>);
+    <span class="tp">RebarBarType</span> bt10 = <span class="fn">GetBarType</span>(doc, <span class="n">10</span>);
+    <span class="tp">XYZ</span>          perp = dir.<span class="fn">CrossProduct</span>(<span class="tp">XYZ</span>.BasisZ).<span class="fn">Normalize</span>();
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Strip Footing Reinf"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// ── 3 bottom longitudinal bars ──</span>
+        <span class="k">double</span>[] xOffsets = {
+            -fWidthFt/<span class="n">2</span> + cvFt + <span class="fn">mmToFt</span>(<span class="n">8</span>),
+            <span class="n">0</span>,
+            +fWidthFt/<span class="n">2</span> - cvFt - <span class="fn">mmToFt</span>(<span class="n">8</span>)
+        };
+        <span class="k">double</span> botZ = s.Z + cvFt + <span class="fn">mmToFt</span>(<span class="n">8</span>);  <span class="cm">// bottom of footing + cover + r</span>
+
+        <span class="k">foreach</span> (<span class="k">var</span> xOff <span class="k">in</span> xOffsets)
+        {
+            <span class="tp">XYZ</span> off   = perp * xOff + <span class="tp">XYZ</span>.BasisZ * (botZ - s.Z);
+            <span class="tp">XYZ</span> barS  = s + off + dir * cvFt;
+            <span class="tp">XYZ</span> barE  = e + off - dir * cvFt;
+            <span class="fn">PlaceBar</span>(doc, footingWall, bt16,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(barS, barE), <span class="tp">XYZ</span>.BasisZ)
+              .<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+              ?.<span class="fn">Set</span>(<span class="s">"SF-LONG-Ø16"</span>);
+        }
+
+        <span class="cm">// ── Transverse distribution bars @300mm ──</span>
+        <span class="k">double</span> spT = <span class="fn">mmToFt</span>(<span class="n">300</span>);
+        <span class="k">int</span>    nT  = (<span class="k">int</span>)((lenFt - <span class="n">2</span> * cvFt) / spT) + <span class="n">1</span>;
+
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; nT; i++)
+        {
+            <span class="k">double</span> dist  = cvFt + i * spT;
+            <span class="k">if</span> (dist > lenFt - cvFt) <span class="k">break</span>;
+
+            <span class="tp">XYZ</span> ctrPt = s + dir * dist + <span class="tp">XYZ</span>.BasisZ * (botZ - s.Z + <span class="fn">mmToFt</span>(<span class="n">16</span>));
+            <span class="tp">XYZ</span> tS    = ctrPt - perp * (fWidthFt/<span class="n">2</span> - cvFt);
+            <span class="tp">XYZ</span> tE    = ctrPt + perp * (fWidthFt/<span class="n">2</span> - cvFt);
+            <span class="fn">PlaceBar</span>(doc, footingWall, bt10,
+                <span class="tp">Line</span>.<span class="fn">CreateBound</span>(tS, tE), dir)
+              .<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+              ?.<span class="fn">Set</span>(<span class="s">$"SF-T{i+1}-Ø10"</span>);
+        }
+
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-foundation -->
+
+<!-- ═══════════════════════════════════════
+     STEEL CONNECTIONS
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-steel" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔩</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Advance Steel + DB.Structure</div>
+      <h2>Steel Connections</h2>
+      <p>Read, audit, create, and report on steel connections — base plates, end plates, angle cleats, gussets — using both the Revit API and the Advance Steel Object Model.</p>
+    </div>
+  </div>
+
+  <div class="callout c-note" style="margin-bottom:20px;"><strong>// Two APIs for Steel</strong>
+  <strong>Revit API (DB.Steel)</strong> — read SteelElementProperties data from any Revit model regardless of whether Advance Steel is installed. Read-only for connection data.<br/>
+  <strong>Advance Steel Object Model (Autodesk.AdvanceSteel.CADAccess)</strong> — full read/write for AS connections, requires Advance Steel installed. Both are shown below.</div>
+
+<!-- Base Plate -->
+<div class="class-block" id="sec-steel-baseplate">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-steel">Base Plate Connection</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Column base plate — read and create via FamilyInstance</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Base plate — place structural family + read/write parameters</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">/// Base plate connection for a steel column.
+/// In Revit API, steel connections are FamilyInstance elements
+/// in the Structural Connections category.</span>
+
+<span class="k">public void</span> <span class="fn">PlaceBasePlate</span>(<span class="tp">Document</span> doc, <span class="tp">FamilyInstance</span> column)
+{
+    <span class="cm">// ── Find base plate family symbol ──</span>
+    <span class="tp">FamilySymbol</span> bpSym = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructConnections)
+        .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;()
+        .<span class="fn">FirstOrDefault</span>(s => s.Name.Contains(<span class="s">"Base Plate"</span>)
+                          || s.Family.Name.Contains(<span class="s">"Base"</span>));
+
+    <span class="k">if</span> (bpSym == <span class="k">null</span>)
+    {
+        <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Error"</span>,
+            <span class="s">"No 'Base Plate' structural connection family found.\n"</span> +
+            <span class="s">"Load it from the Structural Connections library first."</span>);
+        <span class="k">return</span>;
+    }
+
+    <span class="cm">// ── Column base point ──</span>
+    <span class="tp">XYZ</span> basePoint = (column.Location <span class="k">as</span> <span class="tp">LocationPoint</span>)?.Point;
+    <span class="k">if</span> (basePoint == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="tp">Level</span> level = doc.<span class="fn">GetElement</span>(column.LevelId) <span class="k">as</span> <span class="tp">Level</span>
+        ?? <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Base Plate"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="k">if</span> (!bpSym.IsActive) bpSym.<span class="fn">Activate</span>();
+
+        <span class="tp">FamilyInstance</span> bp = doc.Create.<span class="fn">NewFamilyInstance</span>(
+            basePoint, bpSym, level, <span class="tp">StructuralType</span>.NonStructural);
+
+        <span class="cm">// ── Set plate dimensions ──</span>
+        <span class="k">void</span> <span class="fn">SetP</span>(<span class="k">string</span> name, <span class="k">double</span> mm)
+        {
+            bp.<span class="fn">LookupParameter</span>(name)?.Set(<span class="fn">mmToFt</span>(mm));
+        }
+        <span class="fn">SetP</span>(<span class="s">"Plate Width"</span>,     <span class="n">450</span>);
+        <span class="fn">SetP</span>(<span class="s">"Plate Length"</span>,    <span class="n">450</span>);
+        <span class="fn">SetP</span>(<span class="s">"Plate Thickness"</span>, <span class="n">25</span>);
+        <span class="fn">SetP</span>(<span class="s">"Anchor Bolt Dia"</span>, <span class="n">24</span>);
+        <span class="fn">SetP</span>(<span class="s">"Bolt Gauge X"</span>,    <span class="n">250</span>);
+        <span class="fn">SetP</span>(<span class="s">"Bolt Gauge Y"</span>,    <span class="n">250</span>);
+
+        <span class="cm">// Steel grade</span>
+        bp.<span class="fn">LookupParameter</span>(<span class="s">"Material Grade"</span>)?.<span class="fn">Set</span>(<span class="s">"S275"</span>);
+
+        <span class="cm">// Mark</span>
+        bp.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+          ?.<span class="fn">Set</span>(<span class="s">$"BP-{column.Id.IntegerValue}"</span>);
+
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── Read existing base plate data ──</span>
+<span class="k">public void</span> <span class="fn">AuditBasePlates</span>(<span class="tp">Document</span> doc)
+{
+    <span class="k">var</span> plates = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructConnections)
+        .<span class="fn">WhereElementIsNotElementType</span>()
+        .<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+        .<span class="fn">Where</span>(fi => fi.Symbol.Family.Name.Contains(<span class="s">"Base"</span>))
+        .<span class="fn">ToList</span>();
+
+    <span class="k">var</span> sb = <span class="k">new</span> System.Text.<span class="tp">StringBuilder</span>();
+    sb.<span class="fn">AppendLine</span>(<span class="s">"BASE PLATE AUDIT"</span>);
+    sb.<span class="fn">AppendLine</span>(<span class="s">$"{"Mark",-12} {"W(mm)",-8} {"L(mm)",-8} {"T(mm)",-8} {"BoltDia",-10} {"Grade",-8}"</span>);
+    sb.<span class="fn">AppendLine</span>(<span class="k">new string</span>(<span class="s">'-'</span>, <span class="n">60</span>));
+
+    <span class="k">foreach</span> (<span class="k">var</span> bp <span class="k">in</span> plates)
+    {
+        <span class="k">string</span> mark = bp.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+                        ?.AsString() ?? <span class="s">"—"</span>;
+        <span class="k">double</span> w    = bp.<span class="fn">LookupParameter</span>(<span class="s">"Plate Width"</span>)    ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+        <span class="k">double</span> l    = bp.<span class="fn">LookupParameter</span>(<span class="s">"Plate Length"</span>)   ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+        <span class="k">double</span> t    = bp.<span class="fn">LookupParameter</span>(<span class="s">"Plate Thickness"</span>)?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+        <span class="k">double</span> bolt = bp.<span class="fn">LookupParameter</span>(<span class="s">"Anchor Bolt Dia"</span>)?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+        <span class="k">string</span> grd  = bp.<span class="fn">LookupParameter</span>(<span class="s">"Material Grade"</span>)  ?.AsString() ?? <span class="s">"—"</span>;
+
+        sb.<span class="fn">AppendLine</span>(<span class="s">$"{mark,-12} {w,-8:F0} {l,-8:F0} {t,-8:F0} {bolt,-10:F0} {grd,-8}"</span>);
+    }
+
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Base Plates"</span>, sb.ToString());
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- End Plate -->
+<div class="class-block" id="sec-steel-endplate">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-steel">End Plate Connection</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Beam-to-column end plate — parameters + bolt pattern</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// End plate beam-to-column — M20 bolts at 4-bolt pattern</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">PlaceEndPlateConnection</span>(<span class="tp">Document</span> doc,
+    <span class="tp">FamilyInstance</span> beam, <span class="tp">FamilyInstance</span> column)
+{
+    <span class="cm">// Find end plate connection symbol</span>
+    <span class="tp">FamilySymbol</span> epSym = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructConnections)
+        .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;()
+        .<span class="fn">FirstOrDefault</span>(s => s.Name.Contains(<span class="s">"End Plate"</span>)
+                          || s.Family.Name.Contains(<span class="s">"EndPlate"</span>));
+
+    <span class="k">if</span> (epSym == <span class="k">null</span>) <span class="k">return</span>;
+
+    <span class="cm">// Position: end of beam</span>
+    <span class="tp">LocationCurve</span> lc      = beam.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+    <span class="tp">XYZ</span>           beamEnd = lc?.Curve.<span class="fn">GetEndPoint</span>(<span class="n">1</span>) ?? <span class="tp">XYZ</span>.Zero;
+
+    <span class="tp">Level</span> level = doc.<span class="fn">GetElement</span>(beam.LevelId) <span class="k">as</span> <span class="tp">Level</span>
+        ?? <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+            .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Level</span>)).<span class="fn">Cast</span>&lt;<span class="tp">Level</span>&gt;().<span class="fn">First</span>();
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"End Plate"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="k">if</span> (!epSym.IsActive) epSym.<span class="fn">Activate</span>();
+
+        <span class="tp">FamilyInstance</span> ep = doc.Create.<span class="fn">NewFamilyInstance</span>(
+            beamEnd, epSym, level, <span class="tp">StructuralType</span>.NonStructural);
+
+        <span class="cm">// ── Configure plate ──</span>
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Plate Width"</span>)     ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">180</span>));
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Plate Depth"</span>)     ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">300</span>));
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Plate Thickness"</span>) ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">15</span>));
+
+        <span class="cm">// ── Configure bolts (4-bolt pattern) ──</span>
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Bolt Diameter"</span>)  ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">20</span>));  <span class="cm">// M20</span>
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Bolt Grade"</span>)     ?.<span class="fn">Set</span>(<span class="s">"8.8"</span>);
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"No. of Bolt Rows"</span>)?.<span class="fn">Set</span>(<span class="n">2</span>);
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Bolt Gauge"</span>)     ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">90</span>));
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Bolt Pitch"</span>)     ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">100</span>));
+        ep.<span class="fn">LookupParameter</span>(<span class="s">"Top Edge Dist"</span>)  ?.<span class="fn">Set</span>(<span class="fn">mmToFt</span>(<span class="n">50</span>));
+
+        ep.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+          ?.<span class="fn">Set</span>(<span class="s">$"EP-{beam.Id.IntegerValue}-{column.Id.IntegerValue}"</span>);
+
+        tx.<span class="fn">Commit</span>();
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEEL CONNECTION AUDIT -->
+<div class="class-block" id="sec-steel-audit">
+  <div class="class-header"><div><div class="class-title-row"><span class="rebar-badge rb-steel">Complete Steel Connection Audit</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Full steel model audit — all connections, types, and bolt grades</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Audit all structural connections + generate CSV report</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">public void</span> <span class="fn">AuditAllSteelConnections</span>(<span class="tp">Document</span> doc)
+{
+    <span class="cm">// ── 1. Get all structural connections ──</span>
+    <span class="k">var</span> connections = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructConnections)
+        .<span class="fn">WhereElementIsNotElementType</span>()
+        .<span class="fn">Cast</span>&lt;<span class="tp">FamilyInstance</span>&gt;()
+        .<span class="fn">ToList</span>();
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Total structural connections: {connections.Count}"</span>);
+
+    <span class="cm">// ── 2. Group by connection type ──</span>
+    <span class="k">var</span> byType = connections
+        .<span class="fn">GroupBy</span>(c => c.Symbol?.Family?.Name ?? <span class="s">"Unknown"</span>)
+        .<span class="fn">OrderByDescending</span>(g => g.Count());
+
+    <span class="k">foreach</span> (<span class="k">var</span> grp <span class="k">in</span> byType)
+    {
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"  {grp.Key}: {grp.Count()} instances"</span>);
+    }
+
+    <span class="cm">// ── 3. Full data extraction ──</span>
+    <span class="k">var</span> sb = <span class="k">new</span> System.Text.<span class="tp">StringBuilder</span>();
+    sb.<span class="fn">AppendLine</span>(<span class="s">"Mark,Family,Type,BoltDia,BoltGrade,PlateThk,SteelGrade,X,Y,Z"</span>);
+
+    <span class="k">foreach</span> (<span class="k">var</span> conn <span class="k">in</span> connections)
+    {
+        <span class="k">string</span> mark      = conn.<span class="fn">get_Parameter</span>(
+            <span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)?.AsString() ?? <span class="s">""</span>;
+        <span class="k">string</span> famName   = conn.Symbol?.Family?.Name ?? <span class="s">""</span>;
+        <span class="k">string</span> typeName  = conn.Symbol?.Name ?? <span class="s">""</span>;
+
+        <span class="cm">// Try common parameter names across different families</span>
+        <span class="k">double</span> boltDia   = (conn.<span class="fn">LookupParameter</span>(<span class="s">"Bolt Diameter"</span>)
+                         ?? conn.<span class="fn">LookupParameter</span>(<span class="s">"Anchor Bolt Dia"</span>)
+                         ?? conn.<span class="fn">LookupParameter</span>(<span class="s">"Bolt"</span>))
+                         ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+
+        <span class="k">string</span> boltGrade = conn.<span class="fn">LookupParameter</span>(<span class="s">"Bolt Grade"</span>)
+                            ?.AsString() ?? <span class="s">""</span>;
+
+        <span class="k">double</span> plateThk  = (conn.<span class="fn">LookupParameter</span>(<span class="s">"Plate Thickness"</span>)
+                         ?? conn.<span class="fn">LookupParameter</span>(<span class="s">"Thickness"</span>))
+                         ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+
+        <span class="k">string</span> steelGrd  = conn.<span class="fn">LookupParameter</span>(<span class="s">"Material Grade"</span>)
+                            ?.AsString() ?? <span class="s">"S275"</span>;
+
+        <span class="cm">// Position</span>
+        <span class="tp">XYZ</span> pos = (conn.Location <span class="k">as</span> <span class="tp">LocationPoint</span>)?.Point ?? <span class="tp">XYZ</span>.Zero;
+
+        sb.<span class="fn">AppendLine</span>(<span class="s">$"{mark},{famName},{typeName},"</span> +
+                       <span class="s">$"{boltDia:F0},{boltGrade},{plateThk:F0},"</span> +
+                       <span class="s">$"{steelGrd},"</span> +
+                       <span class="s">$"{pos.X * 304.8:F0},{pos.Y * 304.8:F0},{pos.Z * 304.8:F0}"</span>);
+    }
+
+    <span class="cm">// Write CSV</span>
+    <span class="k">string</span> csvPath = System.IO.<span class="tp">Path</span>.<span class="fn">Combine</span>(
+        System.Environment.<span class="fn">GetFolderPath</span>(
+            System.Environment.SpecialFolder.Desktop),
+        <span class="s">"SteelConnections.csv"</span>);
+    System.IO.<span class="tp">File</span>.<span class="fn">WriteAllText</span>(csvPath, sb.ToString());
+
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Audit Complete"</span>,
+        <span class="s">$"Found {connections.Count} connections\n"</span> +
+        <span class="s">$"CSV saved to: {csvPath}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-steel -->
+
+<!-- ═══════════════════════════════════════
+     REBAR SCHEDULE + EXPORT
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-schedule" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">📋</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Rebar Schedules</div>
+      <h2>Rebar Schedule · Auto-Mark · CSV Export</h2>
+      <p>Generate bar bending schedules, auto-number bars by type, and export complete reinforcement data to CSV.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="sec-schedule-rebar">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Schedule</span><span class="class-name">Rebar Schedule + Auto Mark + CSV Export</span></div></div></div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete reinforcement reporting workflow</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Auto-mark all bars + generate rebar schedule view + export CSV</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ═══════════════════════════════════
+// STEP 1: Auto-number all rebar bars
+// ═══════════════════════════════════</span>
+<span class="k">public void</span> <span class="fn">AutoMarkAllRebar</span>(<span class="tp">Document</span> doc)
+{
+    <span class="k">var</span> bars = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar)
+        .<span class="fn">Cast</span>&lt;<span class="tp">Rebar</span>&gt;()
+        .<span class="fn">OrderBy</span>(b => b.Id.IntegerValue)
+        .<span class="fn">ToList</span>();
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Auto Mark Rebar"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        <span class="cm">// Group by diameter and style, then assign sequential marks</span>
+        <span class="k">var</span> groups = bars
+            .<span class="fn">GroupBy</span>(b => (<span class="fn">GetDiamMm</span>(doc, b), b.RebarStyle))
+            .<span class="fn">OrderBy</span>(g => g.Key.Item1);
+
+        <span class="k">int</span> barMark = <span class="n">1</span>;
+        <span class="k">foreach</span> (<span class="k">var</span> grp <span class="k">in</span> groups)
+        {
+            (<span class="k">double</span> diam, <span class="tp">RebarStyle</span> style) = grp.Key;
+            <span class="k">string</span> prefix = style == <span class="tp">RebarStyle</span>.StirrupTie ? <span class="s">"L"</span> : <span class="s">"B"</span>;
+            <span class="k">int</span>    idx    = <span class="n">1</span>;
+
+            <span class="k">foreach</span> (<span class="k">var</span> bar <span class="k">in</span> grp)
+            {
+                <span class="k">string</span> mark = <span class="s">$"{prefix}{barMark:D2}-Ø{diam:F0}"</span>;
+                bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+                   ?.<span class="fn">Set</span>(mark);
+                idx++;
+            }
+            barMark++;
+        }
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="k">double</span> <span class="fn">GetDiamMm</span>(<span class="tp">Document</span> doc, <span class="tp">Rebar</span> bar)
+{
+    <span class="k">var</span> bt = doc.<span class="fn">GetElement</span>(bar.<span class="fn">GetTypeId</span>()) <span class="k">as</span> <span class="tp">RebarBarType</span>;
+    <span class="k">return</span> bt?.BarNominalDiameter * <span class="n">304.8</span> ?? <span class="n">0</span>;
+}
+
+<span class="cm">// ═══════════════════════════════════
+// STEP 2: Create rebar schedule view
+// ═══════════════════════════════════</span>
+<span class="k">public</span> <span class="tp">ViewSchedule</span> <span class="fn">CreateRebarSchedule</span>(<span class="tp">Document</span> doc)
+{
+    <span class="tp">ViewSchedule</span> sched;
+
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Rebar Schedule"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+
+        sched = <span class="tp">ViewSchedule</span>.<span class="fn">CreateSchedule</span>(doc,
+            <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar));
+        sched.Name = <span class="s">"Bar Bending Schedule"</span>;
+
+        <span class="tp">ScheduleDefinition</span> def    = sched.Definition;
+        <span class="tp">IList</span>&lt;<span class="tp">SchedulableField</span>&gt; sf = def.<span class="fn">GetSchedulableFields</span>();
+
+        <span class="cm">// Add key fields for a bar bending schedule</span>
+        <span class="k">var</span> wantedBIPs = <span class="k">new</span>[]
+        {
+            <span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK,              <span class="cm">// Bar Mark</span>
+            <span class="tp">BuiltInParameter</span>.REBAR_ELEM_BAR_DIAMETER,     <span class="cm">// Diameter</span>
+            <span class="tp">BuiltInParameter</span>.REBAR_ELEM_LENGTH,            <span class="cm">// Total Length</span>
+            <span class="tp">BuiltInParameter</span>.REBAR_NUMBER_OF_BARSINSET,    <span class="cm">// No. of Bars</span>
+            <span class="tp">BuiltInParameter</span>.REBAR_ELEM_BAR_STYLE,         <span class="cm">// Style</span>
+            <span class="tp">BuiltInParameter</span>.HOST_ID_PARAM,               <span class="cm">// Host Element</span>
+            <span class="tp">BuiltInParameter</span>.REBAR_ELEM_VOLUME,            <span class="cm">// Volume (for weight)</span>
+        };
+
+        <span class="k">foreach</span> (<span class="k">var</span> bip <span class="k">in</span> wantedBIPs)
+        {
+            <span class="k">var</span> field = sf.<span class="fn">FirstOrDefault</span>(
+                f => f.ParameterId == <span class="k">new</span> <span class="tp">ElementId</span>(bip));
+            <span class="k">if</span> (field != <span class="k">null</span>) def.<span class="fn">AddField</span>(field);
+        }
+
+        <span class="cm">// Sort by mark</span>
+        <span class="k">var</span> markField = def.<span class="fn">GetField</span>(<span class="n">0</span>);
+        <span class="k">var</span> sortGrp   = <span class="k">new</span> <span class="tp">ScheduleSortGroupField</span>(markField.FieldId)
+        {
+            SortOrder = <span class="tp">ScheduleSortOrder</span>.Ascending
+        };
+        def.<span class="fn">SetSortGroupFields</span>(
+            <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">ScheduleSortGroupField</span>&gt; { sortGrp });
+
+        tx.<span class="fn">Commit</span>();
+    }
+    <span class="k">return</span> sched;
+}
+
+<span class="cm">// ═══════════════════════════════════
+// STEP 3: Export rebar data to CSV
+// ═══════════════════════════════════</span>
+<span class="k">public void</span> <span class="fn">ExportRebarToCSV</span>(<span class="tp">Document</span> doc, <span class="k">string</span> csvPath)
+{
+    <span class="k">var</span> bars = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_Rebar)
+        .<span class="fn">Cast</span>&lt;<span class="tp">Rebar</span>&gt;()
+        .<span class="fn">ToList</span>();
+
+    <span class="k">var</span> sb = <span class="k">new</span> System.Text.<span class="tp">StringBuilder</span>();
+    sb.<span class="fn">AppendLine</span>(<span class="s">"Mark,Diameter(mm),Length(mm),Count,Style,Volume(m³),Weight(kg),Host"</span>);
+
+    <span class="cm">// Steel density: 7850 kg/m³</span>
+    <span class="k">const double</span> STEEL_DENSITY = <span class="n">7850</span>;
+
+    <span class="k">foreach</span> (<span class="k">var</span> bar <span class="k">in</span> bars.<span class="fn">OrderBy</span>(b =>
+        b.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)?.AsString()))
+    {
+        <span class="k">string</span> mark   = bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.ALL_MODEL_MARK)
+                            ?.AsString() ?? <span class="s">""</span>;
+        <span class="k">double</span> diam   = <span class="fn">GetDiamMm</span>(doc, bar);
+        <span class="k">double</span> lenMm  = bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_ELEM_LENGTH)
+                            ?.AsDouble() * <span class="n">304.8</span> ?? <span class="n">0</span>;
+        <span class="k">int</span>    count  = bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_NUMBER_OF_BARSINSET)
+                            ?.AsInteger() ?? <span class="n">1</span>;
+        <span class="k">string</span> style  = bar.RebarStyle.ToString();
+        <span class="k">double</span> volM3  = bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_ELEM_VOLUME)
+                            ?.AsDouble() * <span class="n">0.0283168</span> ?? <span class="n">0</span>;
+        <span class="k">double</span> weightKg = volM3 * STEEL_DENSITY;
+
+        <span class="cm">// Get host name</span>
+        <span class="k">var</span>    hostId   = bar.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.HOST_ID_PARAM)
+                             ?.AsElementId();
+        <span class="k">string</span> hostName = hostId != <span class="k">null</span>
+            ? doc.<span class="fn">GetElement</span>(hostId)?.Name ?? <span class="s">""</span>
+            : <span class="s">""</span>;
+
+        sb.<span class="fn">AppendLine</span>(<span class="s">$"{mark},{diam:F0},{lenMm:F0},{count},"</span> +
+                       <span class="s">$"{style},{volM3:F6},{weightKg:F2},{hostName}"</span>);
+    }
+
+    System.IO.<span class="tp">File</span>.<span class="fn">WriteAllText</span>(csvPath, sb.ToString());
+
+    <span class="cm">// Summary</span>
+    <span class="k">double</span> totalWeight = bars
+        .<span class="fn">Sum</span>(b => (b.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_ELEM_VOLUME)
+                    ?.AsDouble() * <span class="n">0.0283168</span> ?? <span class="n">0</span>) * STEEL_DENSITY);
+
+    <span class="tp">TaskDialog</span>.<span class="fn">Show</span>(<span class="s">"Rebar Export"</span>,
+        <span class="s">$"Exported {bars.Count} bar records\n"</span> +
+        <span class="s">$"Total steel weight: {totalWeight:F0} kg\n"</span> +
+        <span class="s">$"CSV: {csvPath}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-schedule -->
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+<script src="search-data.js"></script><script src="search.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

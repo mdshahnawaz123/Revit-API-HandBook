@@ -1,0 +1,1472 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Revit API Reference — Book 16: ElementTransformUtils · GeometryCreation · SharedParams · GlobalParams · Phases · Elevation · Stairs · MEP Settings · DraftingView</title>
+<link rel="stylesheet" href="api-style.css"/>
+<style>
+.completion-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(62,217,160,.12);border:1px solid rgba(62,217,160,.3);color:var(--accent3);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;padding:4px 12px;border-radius:4px;margin-bottom:12px;}
+.overload-block{background:var(--surface2);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden;}
+.overload-hdr{background:var(--surface3);padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent2);border-bottom:1px solid var(--border);}
+.overload-body{padding:10px 14px;font-size:13px;color:var(--text2);}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-eyebrow">// Revit API Reference</div>
+    <div class="sb-title">Final<br/>Completion</div>
+    <div class="sb-sub">Book 16 · 100% Coverage</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="sbsearch" placeholder="Search…" oninput="sbSearch(this.value)"/>
+  </div>
+  <div class="sb-nav">
+
+    <div class="sb-ns-group open" id="ng1">
+      <div class="sb-ns-header active" onclick="tog('ng1',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>ElementTransformUtils<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-etu')"><span class="type-badge tb-class">CLS</span>ElementTransformUtils</div>
+        <div class="sb-ns-child" onclick="go('cls-copypaste')"><span class="type-badge tb-class">CLS</span>CopyPasteOptions</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng2">
+      <div class="sb-ns-header" onclick="tog('ng2',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>GeometryCreationUtilities<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-gcu')"><span class="type-badge tb-class">CLS</span>GeometryCreationUtilities</div>
+        <div class="sb-ns-child" onclick="go('cls-solidutils')"><span class="type-badge tb-class">CLS</span>SolidUtils</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group open" id="ng3">
+      <div class="sb-ns-header" onclick="tog('ng3',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>Shared Params + Binding<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-sharedparamfile')"><span class="type-badge tb-class">CLS</span>DefinitionFile</div>
+        <div class="sb-ns-child" onclick="go('cls-defgroup')"><span class="type-badge tb-class">CLS</span>DefinitionGroup</div>
+        <div class="sb-ns-child" onclick="go('cls-extdef')"><span class="type-badge tb-class">CLS</span>ExternalDefinition</div>
+        <div class="sb-ns-child" onclick="go('cls-bindingmap')"><span class="type-badge tb-class">CLS</span>BindingMap</div>
+        <div class="sb-ns-child" onclick="go('cls-instancebinding')"><span class="type-badge tb-class">CLS</span>InstanceBinding</div>
+        <div class="sb-ns-child" onclick="go('cls-typebinding')"><span class="type-badge tb-class">CLS</span>TypeBinding</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng4">
+      <div class="sb-ns-header" onclick="tog('ng4',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>GlobalParameter<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-globalparameter')"><span class="type-badge tb-class">CLS</span>GlobalParameter</div>
+        <div class="sb-ns-child" onclick="go('cls-globalparameterutils')"><span class="type-badge tb-class">CLS</span>GlobalParametersManager</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng5">
+      <div class="sb-ns-header" onclick="tog('ng5',this)">
+        <div class="sb-ns-dot" style="background:#f76f4f"></div>Phasing<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-phase')"><span class="type-badge tb-class">CLS</span>Phase</div>
+        <div class="sb-ns-child" onclick="go('cls-phasefilter')"><span class="type-badge tb-class">CLS</span>PhaseFilter</div>
+        <div class="sb-ns-child" onclick="go('cls-phasearray')"><span class="type-badge tb-class">CLS</span>PhaseArray</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng6">
+      <div class="sb-ns-header" onclick="tog('ng6',this)">
+        <div class="sb-ns-dot" style="background:#4f9eff"></div>Views — Missing Types<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-elevationmarker')"><span class="type-badge tb-class">CLS</span>ElevationMarker</div>
+        <div class="sb-ns-child" onclick="go('cls-viewdrafting')"><span class="type-badge tb-class">CLS</span>ViewDrafting</div>
+        <div class="sb-ns-child" onclick="go('cls-viewplan-ceiling')"><span class="type-badge tb-class">CLS</span>Ceiling Plan pattern</div>
+        <div class="sb-ns-child" onclick="go('cls-callout')"><span class="type-badge tb-class">CLS</span>Callout Views</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng7">
+      <div class="sb-ns-header" onclick="tog('ng7',this)">
+        <div class="sb-ns-dot" style="background:#d97cf7"></div>StairsEditScope<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-stairseditscope')"><span class="type-badge tb-class">CLS</span>StairsEditScope</div>
+        <div class="sb-ns-child" onclick="go('cls-stairsrun')"><span class="type-badge tb-class">CLS</span>StairsRun</div>
+        <div class="sb-ns-child" onclick="go('cls-stairslanding')"><span class="type-badge tb-class">CLS</span>StairsLanding</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng8">
+      <div class="sb-ns-header" onclick="tog('ng8',this)">
+        <div class="sb-ns-dot" style="background:#f7c84f"></div>MEP Settings<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-electricalsetting')"><span class="type-badge tb-class">CLS</span>ElectricalSetting</div>
+        <div class="sb-ns-child" onclick="go('cls-mechanicalsettings')"><span class="type-badge tb-class">CLS</span>MechanicalSettings</div>
+        <div class="sb-ns-child" onclick="go('cls-pipingsettings')"><span class="type-badge tb-class">CLS</span>PipingSettings (via doc)</div>
+      </div>
+    </div>
+
+    <div class="sb-ns-group" id="ng9">
+      <div class="sb-ns-header" onclick="tog('ng9',this)">
+        <div class="sb-ns-dot" style="background:#3ed9a0"></div>Structural Extras<span class="sb-ns-arrow">▶</span>
+      </div>
+      <div class="sb-ns-children">
+        <div class="sb-ns-child" onclick="go('cls-pathreinf')"><span class="type-badge tb-class">CLS</span>PathReinforcement</div>
+        <div class="sb-ns-child" onclick="go('cls-areareinf')"><span class="type-badge tb-class">CLS</span>AreaReinforcement</div>
+        <div class="sb-ns-child" onclick="go('cls-beamsystem')"><span class="type-badge tb-class">CLS</span>BeamSystem</div>
+      </div>
+    </div>
+
+  </div>
+              <div class="sb-files">
+    <div class="sb-files-label">All Books</div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html" class="current"><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html" class="current" ><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html" class="current"  ><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html" class="current"   ><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP · Arch · Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family · Print · Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref · Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI · DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html" class="current"    ><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book1-fundamentals.html"><span class="file-num">01</span> Fundamentals</a>
+    <a class="sb-file-link" href="book2-geometry.html"><span class="file-num">02</span> Geometry Elements</a>
+    <a class="sb-file-link" href="book3-views.html"><span class="file-num">03</span> Views & Annotations</a>
+    <a class="sb-file-link" href="book4-events.html"><span class="file-num">04</span> Events & Automation</a>
+    <a class="sb-file-link" href="book5-families.html"><span class="file-num">05</span> Families & Design</a>
+    <a class="sb-file-link" href="book6-mep.html"><span class="file-num">06</span> MEP Systems</a>
+    <a class="sb-file-link" href="book7-challenges.html"><span class="file-num">07</span> Challenges Vol.1</a>
+    <a class="sb-file-link" href="book8-challenges2.html"><span class="file-num">08</span> Challenges Vol.2</a>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="file-num">09</span> Namespace Ref Vol. 1</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="file-num">10</span> Namespace Ref Vol. 2</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="file-num">11</span> MEP � Arch � Structure</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="file-num">12</span> Family � Print � Utilities</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="file-num">13</span> Final Ref � Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="file-num">14</span> Advanced UI � DC3D</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="file-num">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html" class="current"     ><span class="file-num">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="file-num">17</span> Structural Reinforcement</a>
+    <a class="sb-file-link" href="book18-final-gaps-learning-path.html"><span class="file-num">18</span> Learning Path & Gaps</a>
+    <a class="sb-file-link" href="book19-production-development.html"><span class="file-num">19</span> Production Dev</a>
+  </div>
+    <a class="sb-file-link" href="book9-api-ref-db.html"><span class="fn">09</span> DB (A–E)</a>
+    <a class="sb-file-link" href="book10-api-ref-db2.html"><span class="fn">10</span> DB (F–Z) · UI</a>
+    <a class="sb-file-link" href="book11-api-ref-mep.html"><span class="fn">11</span> MEP · Arch · DMU</a>
+    <a class="sb-file-link" href="book12-api-ref-family.html"><span class="fn">12</span> Family · Print</a>
+    <a class="sb-file-link" href="book13-api-ref-final.html"><span class="fn">13</span> Best Practices</a>
+    <a class="sb-file-link" href="book14-advanced-ui.html"><span class="fn">14</span> Ribbon · DockablePane</a>
+    <a class="sb-file-link" href="book15-advanced-workflows.html"><span class="fn">15</span> Advanced Workflows</a>
+    <a class="sb-file-link" href="book16-final-completion.html" class="current"     ><span class="fn">16</span> Final Completion</a>
+    <a class="sb-file-link" href="book17-structural-reinforcement.html"><span class="fn">17</span> Structural Reinforcement</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+<div class="hero">
+  <div class="hero-label">// Book 16 of 19 — Final Completion · 100% Namespace Coverage
+    
+</div>
+  <h1>Final Completion<br/><span>Volume 16</span></h1>
+  <p>The last remaining gaps — ElementTransformUtils (Copy/Move/Rotate/Mirror across documents), GeometryCreationUtilities (create Solids from scratch), the complete Shared Parameter + ParameterBinding workflow, GlobalParameters, Phase management, ElevationMarker, DraftingView, StairsEditScope, MEP Settings, and Structural extras. After this book, every Revit API namespace is covered.</p>
+    <!-- GLOBAL SEARCH -->
+    <div style="margin-top:20px;position:relative;max-width:400px;z-index:9999;">
+      <input type="text" id="globalsearch" placeholder="Search Class, Method or Topic..." 
+             style="width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;outline:none;"
+             oninput="globalSearch(this.value)"/>
+      <div id="searchresults" class="search-results-container"></div>
+    </div>
+    
+  <div class="hero-chips">
+    <span class="chip c-bl">ElementTransformUtils</span>
+    <span class="chip c-pu">GeometryCreation</span>
+    <span class="chip c-ye">SharedParams+Binding</span>
+    <span class="chip c-gr">GlobalParameter</span>
+    <span class="chip c-or">Phases · Views · Stairs</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════
+     ElementTransformUtils
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-etu">
+  <div class="ns-header">
+    <div class="ns-icon">🔄</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>ElementTransformUtils</h2>
+      <p>Copy, move, rotate, and mirror elements — within the same document or across documents. The most-used utility class in production add-ins.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-etu">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ElementTransformUtils</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Static utility class for all element transform operations: move, rotate, mirror, and copy (within and across documents). All methods require an open Transaction. CopyElements across documents is one of the most powerful API features — it preserves type information and hosted elements.</div>
+  <div class="callout c-tip" style="margin:12px 24px 0;"><strong>// Copy vs Duplicate</strong>Use <code>ElementTransformUtils.CopyElements()</code> for copying with position offsets. Use <code>doc.GetElement(id).Clone()</code> or duplicate-specific methods for types. Cross-document copy preserves all parameter values, hosted elements, and materials.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Method Reference</div>
+
+    <!-- MoveElement -->
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static void</span> <span class="fn">MoveElement</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">elementId</span>, <span class="tp">XYZ</span> <span class="pm">translation</span>)</span></div>
+      <div class="member-desc">Moves a single element by the given translation vector. Moves the element's location curve or point by the vector — same as dragging in the UI. Hosted elements (doors in walls) move with their host when the host moves.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>doc</td><td>Document</td><td>The document containing the element.</td></tr><tr><td>elementId</td><td>ElementId</td><td>ID of the element to move.</td></tr><tr><td>translation</td><td>XYZ</td><td>Translation vector in internal units (feet). E.g. new XYZ(0,0,1) moves 1 foot upward.</td></tr></table></div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Move, Rotate, Mirror</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Wall</span>      wall  = ...;
+<span class="tp">Document</span>  doc   = wall.Document;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Transform"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// ── Move element 2000mm in Y direction ──</span>
+    <span class="k">double</span> moveFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">2000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="tp">ElementTransformUtils</span>.<span class="fn">MoveElement</span>(doc, wall.Id, <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, moveFt, <span class="n">0</span>));
+
+    <span class="cm">// ── Move multiple elements ──</span>
+    <span class="k">var</span> idsToMove = walls.<span class="fn">Select</span>(w => w.Id).<span class="fn">ToList</span>();
+    <span class="tp">ElementTransformUtils</span>.<span class="fn">MoveElements</span>(doc, idsToMove, <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, moveFt, <span class="n">0</span>));
+
+    <span class="cm">// ── Rotate element around Z axis at its midpoint ──</span>
+    <span class="tp">LocationCurve</span> lc    = wall.Location <span class="k">as</span> <span class="tp">LocationCurve</span>;
+    <span class="tp">XYZ</span>           mid   = lc.Curve.<span class="fn">Evaluate</span>(<span class="n">0.5</span>, <span class="k">true</span>);
+    <span class="tp">Line</span>          axis  = <span class="tp">Line</span>.<span class="fn">CreateUnbound</span>(mid, <span class="tp">XYZ</span>.BasisZ);
+    <span class="k">double</span>        angle = Math.PI / <span class="n">2</span>;  <span class="cm">// 90 degrees</span>
+
+    <span class="tp">ElementTransformUtils</span>.<span class="fn">RotateElement</span>(doc, wall.Id, axis, angle);
+
+    <span class="cm">// ── Mirror element across the YZ plane ──</span>
+    <span class="tp">Plane</span> mirrorPlane = <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(
+        <span class="tp">XYZ</span>.BasisX, <span class="tp">XYZ</span>.Zero);  <span class="cm">// mirror across X=0</span>
+
+    <span class="tp">ElementTransformUtils</span>.<span class="fn">MirrorElement</span>(doc, wall.Id, mirrorPlane);
+
+    <span class="cm">// ── Mirror with copy (original stays, mirrored copy created) ──</span>
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; mirrored =
+        <span class="tp">ElementTransformUtils</span>.<span class="fn">MirrorElements</span>(
+            doc,
+            idsToMove,
+            mirrorPlane,
+            <span class="k">true</span>);   <span class="cm">// true = keep original, false = move original</span>
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+
+    <!-- RotateElement -->
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static void</span> <span class="fn">RotateElement</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">elementId</span>, <span class="tp">Line</span> <span class="pm">axis</span>, <span class="tp">double</span> <span class="pm">angle</span>)</span></div>
+      <div class="member-desc">Rotates a single element around the given axis line by angle (radians). The axis is a line in 3D space — both its direction and position matter. Use XYZ.BasisZ through the element's centre for standard plan-rotation.</div>
+    </div>
+
+    <!-- CopyElement -->
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">CopyElement</span>(<span class="tp">Document</span> <span class="pm">doc</span>, <span class="tp">ElementId</span> <span class="pm">elementId</span>, <span class="tp">XYZ</span> <span class="pm">translation</span>)</span></div>
+      <div class="member-desc">Copies a single element with the given offset. Returns the ID of the new copy. The original is unchanged. All parameters, hosted elements, and associations are copied.</div>
+      <div class="returns-row">Returns: <span>ICollection&lt;ElementId&gt;</span> — IDs of the newly created copies (usually 1 element).</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Copy elements with offsets (array pattern)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Copy one wall offset by 5m ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Copy Wall"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">double</span> offsetFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">5000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; newIds =
+        <span class="tp">ElementTransformUtils</span>.<span class="fn">CopyElement</span>(doc, wall.Id, <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, offsetFt, <span class="n">0</span>));
+    <span class="tp">Wall</span> newWall = doc.<span class="fn">GetElement</span>(newIds.<span class="fn">First</span>()) <span class="k">as</span> <span class="tp">Wall</span>;
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Array: copy a column 5 times at equal spacing ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Column Array"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">double</span> spacingFt = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">6000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">1</span>; i &lt;= <span class="n">5</span>; i++)
+    {
+        <span class="tp">ElementTransformUtils</span>.<span class="fn">CopyElement</span>(
+            doc, column.Id, <span class="k">new</span> <span class="tp">XYZ</span>(i * spacingFt, <span class="n">0</span>, <span class="n">0</span>));
+    }
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+
+    <!-- CopyElements SAME DOC -->
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">CopyElements</span>(<span class="tp">Document</span> <span class="pm">document</span>, <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="pm">elementIds</span>, <span class="tp">XYZ</span> <span class="pm">translation</span>)</span></div>
+      <div class="member-desc">Copies multiple elements with a translation offset. Returns IDs of all newly created copies in the same order as input. The most common copy overload for batch operations.</div>
+    </div>
+
+    <!-- CopyElements CROSS DOC — the most important one -->
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="fn">CopyElements</span>(<span class="tp">Document</span> <span class="pm">sourceDocument</span>, <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; <span class="pm">elementIds</span>, <span class="tp">Document</span> <span class="pm">destinationDocument</span>, <span class="tp">Transform</span> <span class="pm">transform</span>, <span class="tp">CopyPasteOptions</span> <span class="pm">options</span>)</span></div>
+      <div class="member-desc">Copies elements from one document to another. This is the most powerful overload — it transfers element types, materials, nested families, and all associated data. The transform positions the copied elements in the destination document's coordinate space. Pass Transform.Identity to preserve original positions.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>sourceDocument</td><td>Document</td><td>The document to copy from.</td></tr><tr><td>elementIds</td><td>ICollection&lt;ElementId&gt;</td><td>IDs of elements to copy from the source.</td></tr><tr><td>destinationDocument</td><td>Document</td><td>The document to paste into (must be open).</td></tr><tr><td>transform</td><td>Transform</td><td>Transform applied to copied elements. Use Transform.Identity to keep original positions.</td></tr><tr><td>options</td><td>CopyPasteOptions</td><td>Controls duplicate type handling. Can be null.</td></tr></table></div>
+      <div class="returns-row">Returns: <span>ICollection&lt;ElementId&gt;</span> — IDs of newly created elements in the destination document.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Cross-document copy: transfer walls + rooms from template</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Application</span> app = commandData.Application.Application;
+
+<span class="cm">// Open source (template) document</span>
+<span class="tp">Document</span> sourceDoc = app.<span class="fn">OpenDocumentFile</span>(<span class="s">@"C:\Templates\CoreLayout.rvt"</span>);
+<span class="tp">Document</span> destDoc   = commandData.Application.ActiveUIDocument.Document;
+
+<span class="cm">// Get elements to copy from template</span>
+<span class="k">var</span> toCopy = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(sourceDoc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">WhereElementIsNotElementType</span>()
+    .<span class="fn">ToElementIds</span>()
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// CopyPasteOptions — control how duplicate types are handled</span>
+<span class="k">var</span> cpOpts = <span class="k">new</span> <span class="tp">CopyPasteOptions</span>();
+cpOpts.<span class="fn">SetDuplicateTypeNamesHandler</span>(<span class="k">new</span> <span class="tp">DuplicateTypeNamesHandler</span>());
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(destDoc, <span class="s">"Import Template Walls"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="tp">ICollection</span>&lt;<span class="tp">ElementId</span>&gt; newIds =
+        <span class="tp">ElementTransformUtils</span>.<span class="fn">CopyElements</span>(
+            sourceDoc,
+            toCopy,
+            destDoc,
+            <span class="tp">Transform</span>.Identity,   <span class="cm">// preserve original positions</span>
+            cpOpts);
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Copied {newIds.Count} walls into destination"</span>);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// Close the source template</span>
+sourceDoc.<span class="fn">Close</span>(<span class="k">false</span>);
+
+<span class="cm">// ── DuplicateTypeNamesHandler for cross-doc copy ──</span>
+<span class="k">public class</span> <span class="tp">DuplicateTypeNamesHandler</span> : <span class="tp">IDuplicateTypeNamesHandler</span>
+{
+    <span class="k">public</span> <span class="tp">DuplicateTypeAction</span> <span class="fn">OnDuplicateTypeNamesFound</span>(
+        <span class="tp">DuplicateTypeNamesHandlerArgs</span> args)
+    {
+        <span class="cm">// Options:
+        // UseDestinationTypes — keep existing types in dest (ignore source)
+        // UseSourceTypes      — overwrite dest types with source types
+        </span>
+        <span class="k">return</span> <span class="tp">DuplicateTypeAction</span>.UseDestinationTypes;
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-etu -->
+
+<!-- ═══════════════════════════════════════
+     GeometryCreationUtilities
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-gcu" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🔷</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>GeometryCreationUtilities</h2>
+      <p>Create Solid geometry objects from scratch — extrusions, sweeps, revolves, blends — without a family document. Used for DirectShape geometry, clash volumes, and custom analysis shapes.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-gcu">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">GeometryCreationUtilities</span></div><div class="class-inherit">Inherits: <span>Static utility</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Assembly: RevitAPI.dll</div>
+  <div class="class-desc">Static factory class for creating Solid geometry objects programmatically without a family document. The resulting Solids can be used with DirectShape.SetShape(), BooleanOperationsUtils, or for geometric analysis. All methods take profile CurveLoops and return a Solid.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 All Factory Methods</div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Solid</span> <span class="fn">CreateExtrusionGeometry</span>(<span class="tp">IList</span>&lt;<span class="tp">CurveLoop</span>&gt; <span class="pm">profileLoops</span>, <span class="tp">XYZ</span> <span class="pm">extrusionDir</span>, <span class="tp">double</span> <span class="pm">extrusionDist</span>)</span></div>
+      <div class="member-desc">Creates a solid extrusion from a list of CurveLoops. profileLoops[0] = outer boundary, subsequent loops = holes. extrusionDir is the direction of extrusion (must be perpendicular to profile plane). extrusionDist is the length in feet.</div>
+      <div class="member-params"><table class="param-table"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td>profileLoops</td><td>IList&lt;CurveLoop&gt;</td><td>Profile boundary loops. [0]=outer, [1..n]=holes.</td></tr><tr><td>extrusionDir</td><td>XYZ</td><td>Direction to extrude (unit vector, perpendicular to profile).</td></tr><tr><td>extrusionDist</td><td>double</td><td>Extrusion depth in feet. Must be positive.</td></tr></table></div>
+      <div class="returns-row">Returns: <span>Solid</span> — The extruded solid geometry object.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create L-shaped solid + use with DirectShape</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Create an L-shaped column cross-section ──</span>
+<span class="k">double</span> w1 = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">400</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> w2 = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">200</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> h  = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">3000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="cm">// L-shape profile (6 points)</span>
+<span class="tp">XYZ</span>[] pts = {
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,  <span class="n">0</span>,  <span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(w1, <span class="n">0</span>,  <span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(w1, w2, <span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(w2, w2, <span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(w2, w1, <span class="n">0</span>),
+    <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,  w1, <span class="n">0</span>)
+};
+<span class="tp">CurveLoop</span> profile = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+<span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; pts.Length; i++)
+    profile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(pts[i], pts[(i + <span class="n">1</span>) % pts.Length]));
+
+<span class="cm">// Create the solid (extrude upward)</span>
+<span class="tp">Solid</span> lColumnSolid = <span class="tp">GeometryCreationUtilities</span>.<span class="fn">CreateExtrusionGeometry</span>(
+    <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { profile },
+    <span class="tp">XYZ</span>.BasisZ,    <span class="cm">// extrude upward</span>
+    h);
+
+<span class="cm">// Use it as a DirectShape</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"L-Column"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">DirectShape</span> ds = <span class="tp">DirectShape</span>.<span class="fn">CreateElement</span>(doc,
+        <span class="k">new</span> <span class="tp">ElementId</span>(<span class="tp">BuiltInCategory</span>.OST_StructuralColumns));
+    ds.<span class="fn">SetShape</span>(<span class="k">new</span> <span class="tp">GeometryObject</span>[] { lColumnSolid });
+    ds.Name = <span class="s">"L-Column 400×400"</span>;
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Solid</span> <span class="fn">CreateRevolvedGeometry</span>(<span class="tp">Frame</span> <span class="pm">coordinateFrame</span>, <span class="tp">IList</span>&lt;<span class="tp">CurveLoop</span>&gt; <span class="pm">profileLoops</span>, <span class="tp">double</span> <span class="pm">startAngle</span>, <span class="tp">double</span> <span class="pm">endAngle</span>)</span></div>
+      <div class="member-desc">Creates a solid by revolving a profile around the Z-axis of the given coordinate frame. The profile must be on one side of the revolution axis. startAngle=0, endAngle=2π creates a full revolution (cylinder, cone, torus etc.).</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create a cylinder and a pipe-shaped solid</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Cylinder: revolve a rectangle ──</span>
+<span class="k">double</span> radius = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">300</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> cylH   = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">1000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="cm">// Profile: rectangle from (radius,0,0) to (radius,0,cylH)</span>
+<span class="cm">// on the XZ plane — revolution axis is Z</span>
+<span class="tp">CurveLoop</span> cylProfile = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+cylProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(radius, <span class="n">0</span>, <span class="n">0</span>),   <span class="k">new</span> <span class="tp">XYZ</span>(radius, <span class="n">0</span>, cylH)));
+cylProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(radius, <span class="n">0</span>, cylH), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, cylH)));
+cylProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, cylH),      <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>)));
+cylProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>),        <span class="k">new</span> <span class="tp">XYZ</span>(radius, <span class="n">0</span>, <span class="n">0</span>)));
+
+<span class="cm">// Frame: origin at base, Z = revolution axis</span>
+<span class="k">var</span> frame = <span class="k">new</span> <span class="tp">Frame</span>(<span class="tp">XYZ</span>.Zero, <span class="tp">XYZ</span>.BasisX, <span class="tp">XYZ</span>.BasisY, <span class="tp">XYZ</span>.BasisZ);
+
+<span class="tp">Solid</span> cylinder = <span class="tp">GeometryCreationUtilities</span>.<span class="fn">CreateRevolvedGeometry</span>(
+    frame,
+    <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { cylProfile },
+    <span class="n">0</span>,
+    <span class="n">2</span> * Math.PI);   <span class="cm">// full revolution</span>
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Cylinder volume: {cylinder.Volume * 0.0283168:F4}m³"</span>);</pre></div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Solid</span> <span class="fn">CreateSweptGeometry</span>(<span class="tp">Curve</span> <span class="pm">sweepPath</span>, <span class="tp">int</span> <span class="pm">pathAttachmentCurveIndex</span>, <span class="tp">double</span> <span class="pm">pathAttachmentParameter</span>, <span class="tp">IList</span>&lt;<span class="tp">CurveLoop</span>&gt; <span class="pm">profileLoops</span>)</span></div>
+      <div class="member-desc">Creates a solid by sweeping a profile along a path curve. The profile is placed perpendicular to the path at the attachment point. Used for pipes, beams, rails, and any linear solid following a curve.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Swept rectangular section along an arc path</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Path: semicircle arc</span>
+<span class="tp">Arc</span> sweepPath = <span class="tp">Arc</span>.<span class="fn">Create</span>(<span class="tp">XYZ</span>.Zero, <span class="n">5.0</span>, <span class="n">0</span>, Math.PI,
+    <span class="tp">XYZ</span>.BasisX, <span class="tp">XYZ</span>.BasisZ);
+
+<span class="cm">// Profile: 200×400mm rectangle centred at origin</span>
+<span class="k">double</span> pw = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">200</span>, <span class="tp">UnitTypeId</span>.Millimeters) / <span class="n">2</span>;
+<span class="k">double</span> ph = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">400</span>, <span class="tp">UnitTypeId</span>.Millimeters) / <span class="n">2</span>;
+<span class="tp">CurveLoop</span> profile = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+profile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(-pw,-ph,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>( pw,-ph,<span class="n">0</span>)));
+profile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>( pw,-ph,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>( pw, ph,<span class="n">0</span>)));
+profile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>( pw, ph,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(-pw, ph,<span class="n">0</span>)));
+profile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(-pw, ph,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(-pw,-ph,<span class="n">0</span>)));
+
+<span class="tp">Solid</span> sweptBeam = <span class="tp">GeometryCreationUtilities</span>.<span class="fn">CreateSweptGeometry</span>(
+    sweepPath,
+    <span class="n">0</span>,      <span class="cm">// path attachment curve index (0 = the path itself)</span>
+    <span class="n">0.0</span>,    <span class="cm">// attachment parameter (0.0 = start of path)</span>
+    <span class="k">new</span> <span class="tp">List</span>&lt;<span class="tp">CurveLoop</span>&gt; { profile });
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Swept beam volume: {sweptBeam.Volume * 0.0283168:F4}m³"</span>);</pre></div>
+    </div>
+
+    <div class="member">
+      <div class="member-sig"><span class="member-icon">🟢</span><span class="sig-text"><span class="kw">public static</span> <span class="tp">Solid</span> <span class="fn">CreateBlendGeometry</span>(<span class="tp">CurveLoop</span> <span class="pm">topProfile</span>, <span class="tp">CurveLoop</span> <span class="pm">bottomProfile</span>, <span class="tp">IList</span>&lt;<span class="tp">VertexPair</span>&gt; <span class="pm">vertexPairing</span>)</span></div>
+      <div class="member-desc">Creates a solid by blending (lofting) between two CurveLoops. The vertexPairing specifies which vertex in the top profile corresponds to which vertex in the bottom profile — controls the twist of the blend.</div>
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Blend from square base to circular top (tapered column)</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">double</span> baseSize = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">500</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> topRad   = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">200</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+<span class="k">double</span> colH     = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">3000</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+<span class="cm">// Bottom: square</span>
+<span class="k">double</span> h = baseSize / <span class="n">2</span>;
+<span class="tp">CurveLoop</span> bottom = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+bottom.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(-h,-h,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>( h,-h,<span class="n">0</span>)));
+bottom.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>( h,-h,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>( h, h,<span class="n">0</span>)));
+bottom.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>( h, h,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(-h, h,<span class="n">0</span>)));
+bottom.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(-h, h,<span class="n">0</span>),<span class="k">new</span> <span class="tp">XYZ</span>(-h,-h,<span class="n">0</span>)));
+
+<span class="cm">// Top: circle (approximate with arc)</span>
+<span class="tp">Plane</span>     topPlane  = <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisZ, <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,colH));
+<span class="tp">CurveLoop</span> top       = <span class="k">new</span> <span class="tp">CurveLoop</span>();
+top.<span class="fn">Append</span>(<span class="tp">Arc</span>.<span class="fn">Create</span>(topPlane, topRad, <span class="n">0</span>, Math.PI));
+top.<span class="fn">Append</span>(<span class="tp">Arc</span>.<span class="fn">Create</span>(topPlane, topRad, Math.PI, <span class="n">2</span> * Math.PI));
+
+<span class="tp">Solid</span> taperedCol = <span class="tp">GeometryCreationUtilities</span>.<span class="fn">CreateBlendGeometry</span>(
+    top, bottom, <span class="k">null</span>);  <span class="cm">// null = auto vertex pairing</span>
+
+System.Diagnostics.Debug.WriteLine(
+    <span class="s">$"Tapered column volume: {taperedCol.Volume * 0.0283168:F4}m³"</span>);</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-gcu -->
+
+<!-- ═══════════════════════════════════════
+     SHARED PARAMETERS + BINDING
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-sharedparam" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">📎</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>Shared Parameters + ParameterBinding</h2>
+      <p>The complete workflow for creating shared parameters programmatically and binding them to categories — the #1 enterprise add-in requirement.</p>
+    </div>
+  </div>
+  <div class="callout c-note" style="margin-bottom:16px;"><strong>// Two Types of Programmatic Parameters</strong><br/>
+  <strong>Shared Parameters</strong> — defined in an external .txt file, identified by GUID, transferable between projects, appear in schedules. Use for data that needs to travel with elements across projects.<br/>
+  <strong>Project Parameters</strong> — defined in the project only, not in a shared file. Created directly without a .txt file. Cannot be scheduled across projects.</div>
+
+<div class="class-block" id="cls-sharedparamfile">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">DefinitionFile (Shared Parameter File)</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span> · Accessed via app.OpenSharedParameterFile()</div>
+  <div class="class-desc">Represents the shared parameter .txt file. The file is plain text — Revit creates and manages it. Each file contains groups of parameter definitions, each with a unique GUID. You must set app.SharedParametersFilename before calling OpenSharedParameterFile().</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Shared Parameter Workflow</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Complete shared parameter creation + binding workflow</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="tp">Application</span> app    = commandData.Application.Application;
+<span class="tp">Document</span>    doc    = commandData.Application.ActiveUIDocument.Document;
+<span class="k">string</span>      spPath = <span class="s">@"C:\BIM\StudioSharedParams.txt"</span>;
+
+<span class="cm">// ── STEP 1: Create or open the shared parameter file ──</span>
+<span class="k">if</span> (!System.IO.<span class="tp">File</span>.<span class="fn">Exists</span>(spPath))
+    System.IO.<span class="tp">File</span>.<span class="fn">Create</span>(spPath).<span class="fn">Close</span>();  <span class="cm">// create empty file</span>
+
+app.SharedParametersFilename = spPath;
+<span class="tp">DefinitionFile</span> defFile = app.<span class="fn">OpenSharedParameterFile</span>();
+
+<span class="cm">// ── STEP 2: Get or create a definition group ──</span>
+<span class="k">const string</span> GROUP_NAME = <span class="s">"Studio BIM Data"</span>;
+<span class="tp">DefinitionGroup</span> group = defFile.Groups.<span class="fn">get_Item</span>(GROUP_NAME)
+    ?? defFile.Groups.<span class="fn">Create</span>(GROUP_NAME);
+
+<span class="cm">// ── STEP 3: Create parameter definitions ──</span>
+<span class="k">var</span> paramDefs = <span class="k">new</span>[]
+{
+    <span class="cm">// (name, spec type, is visible)</span>
+    (<span class="s">"FireRating"</span>,     <span class="tp">SpecTypeId</span>.String.Text,             <span class="k">true</span>),
+    (<span class="s">"UValue"</span>,         <span class="tp">SpecTypeId</span>.ThermalTransmittance,    <span class="k">true</span>),
+    (<span class="s">"CarbonKgM2"</span>,     <span class="tp">SpecTypeId</span>.MassPerUnitArea,         <span class="k">true</span>),
+    (<span class="s">"ReviewStatus"</span>,   <span class="tp">SpecTypeId</span>.String.Text,             <span class="k">true</span>),
+    (<span class="s">"IsExternal"</span>,     <span class="tp">SpecTypeId</span>.Boolean.YesNo,           <span class="k">true</span>),
+};
+
+<span class="k">var</span> createdDefs = <span class="k">new</span> Dictionary&lt;<span class="k">string</span>, <span class="tp">ExternalDefinition</span>&gt;();
+<span class="k">foreach</span> (<span class="k">var</span> (name, spec, visible) <span class="k">in</span> paramDefs)
+{
+    <span class="tp">Definition</span> existing = group.Definitions.<span class="fn">get_Item</span>(name);
+    <span class="k">if</span> (existing <span class="k">is</span> <span class="tp">ExternalDefinition</span> ext)
+    {
+        createdDefs[name] = ext;  <span class="cm">// already exists</span>
+    }
+    <span class="k">else</span>
+    {
+        <span class="k">var</span> opts = <span class="k">new</span> <span class="tp">ExternalDefinitionCreationOptions</span>(name, spec)
+        {
+            Visible = visible,
+            UserModifiable = <span class="k">true</span>
+        };
+        createdDefs[name] = group.Definitions.<span class="fn">Create</span>(opts) <span class="k">as</span> <span class="tp">ExternalDefinition</span>;
+    }
+}
+
+<span class="cm">// ── STEP 4: Bind parameters to categories ──</span>
+<span class="tp">CategorySet</span> wallCats = app.<span class="fn">Create</span>.<span class="fn">NewCategorySet</span>();
+wallCats.<span class="fn">Insert</span>(doc.Settings.Categories.<span class="fn">get_Item</span>(<span class="tp">BuiltInCategory</span>.OST_Walls));
+wallCats.<span class="fn">Insert</span>(doc.Settings.Categories.<span class="fn">get_Item</span>(<span class="tp">BuiltInCategory</span>.OST_Floors));
+wallCats.<span class="fn">Insert</span>(doc.Settings.Categories.<span class="fn">get_Item</span>(<span class="tp">BuiltInCategory</span>.OST_Roofs));
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Bind Shared Params"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="k">foreach</span> (<span class="k">var</span> kvp <span class="k">in</span> createdDefs)
+    {
+        <span class="tp">ExternalDefinition</span> def = kvp.Value;
+        <span class="k">if</span> (def == <span class="k">null</span>) <span class="k">continue</span>;
+
+        <span class="cm">// Check if already bound</span>
+        <span class="tp">BindingMap</span> bm = doc.ParameterBindings;
+        <span class="k">if</span> (bm.<span class="fn">Contains</span>(def)) <span class="k">continue</span>;  <span class="cm">// skip if already bound</span>
+
+        <span class="cm">// Create instance binding (appears on instances, not types)</span>
+        <span class="tp">InstanceBinding</span> binding = app.<span class="fn">Create</span>.<span class="fn">NewInstanceBinding</span>(wallCats);
+
+        <span class="cm">// OR: TypeBinding (appears on types/families)</span>
+        <span class="cm">// TypeBinding typeBinding = app.Create.NewTypeBinding(wallCats);</span>
+
+        <span class="k">bool</span> ok = doc.ParameterBindings.<span class="fn">Insert</span>(def, binding,
+            <span class="tp">GroupTypeId</span>.Data);  <span class="cm">// which group in Properties panel</span>
+
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"Bound '{kvp.Key}': {(ok ? "OK" : "FAILED")}"</span>);
+    }
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── STEP 5: Write values to elements ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Set Shared Params"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> walls)
+    {
+        <span class="cm">// Access by GUID (most reliable)</span>
+        <span class="tp">ExternalDefinition</span> frDef = createdDefs[<span class="s">"FireRating"</span>];
+        <span class="tp">Parameter</span> frParam = wall.<span class="fn">get_Parameter</span>(frDef.GUID);
+        frParam?.<span class="fn">Set</span>(<span class="s">"2HR"</span>);
+
+        <span class="tp">Parameter</span> uvParam = wall.<span class="fn">get_Parameter</span>(createdDefs[<span class="s">"UValue"</span>].GUID);
+        uvParam?.<span class="fn">Set</span>(<span class="n">0.35</span>);  <span class="cm">// W/m²K — Revit stores as internal units</span>
+
+        <span class="tp">Parameter</span> extParam = wall.<span class="fn">get_Parameter</span>(createdDefs[<span class="s">"IsExternal"</span>].GUID);
+        extParam?.<span class="fn">Set</span>(<span class="n">1</span>);  <span class="cm">// 1 = Yes, 0 = No for YesNo params</span>
+    }
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── STEP 6: Read all shared parameters on an element ──</span>
+<span class="k">foreach</span> (<span class="tp">Parameter</span> p <span class="k">in</span> wall.Parameters)
+{
+    <span class="k">if</span> (!p.IsShared) <span class="k">continue</span>;
+    <span class="k">string</span> val = p.StorageType <span class="k">switch</span>
+    {
+        <span class="tp">StorageType</span>.String    => p.<span class="fn">AsString</span>(),
+        <span class="tp">StorageType</span>.Double   => (p.<span class="fn">AsDouble</span>() * <span class="n">304.8</span>).<span class="fn">ToString</span>(<span class="s">"F2"</span>),
+        <span class="tp">StorageType</span>.Integer  => p.<span class="fn">AsInteger</span>().<span class="fn">ToString</span>(),
+        <span class="tp">StorageType</span>.ElementId => p.<span class="fn">AsElementId</span>()?.IntegerValue.<span class="fn">ToString</span>(),
+        _                    => <span class="s">"—"</span>
+    };
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"  [{p.Definition.Name}] = {val}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-sharedparam -->
+
+<!-- ═══════════════════════════════════════
+     GLOBALPARAMETER
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-globalparameter" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🌐</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>GlobalParameter</h2>
+      <p>Project-wide parameters that can drive multiple dimensions, element parameters, and constraints from a single value.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-globalparameter">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">GlobalParameter</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">A project-level parameter that can control dimensions and constrain element parameters. Global parameters appear in the Manage → Global Parameters dialog. They can drive wall heights, grid spacing, facade module widths, and any dimension or constrained parameter — making the model fully parametric.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete GlobalParameter Workflow</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create, read, write, and link global parameters</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Create global parameters ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Global Params"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Create a length global parameter</span>
+    <span class="tp">GlobalParameter</span> floorHeight = <span class="tp">GlobalParameter</span>.<span class="fn">Create</span>(
+        doc,
+        <span class="s">"FloorToCeilingHeight"</span>,
+        <span class="tp">SpecTypeId</span>.Length);   <span class="cm">// or SpecTypeId.String, SpecTypeId.Boolean.YesNo etc.</span>
+
+    <span class="cm">// Set the value (in internal units)</span>
+    floorHeight.<span class="fn">SetValue</span>(
+        <span class="k">new</span> <span class="tp">DoubleParameterValue</span>(
+            <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">3000</span>, <span class="tp">UnitTypeId</span>.Millimeters)));
+
+    <span class="cm">// Create a text global parameter</span>
+    <span class="tp">GlobalParameter</span> projectCode = <span class="tp">GlobalParameter</span>.<span class="fn">Create</span>(
+        doc, <span class="s">"ProjectCode"</span>, <span class="tp">SpecTypeId</span>.String.Text);
+    projectCode.<span class="fn">SetValue</span>(<span class="k">new</span> <span class="tp">StringParameterValue</span>(<span class="s">"2024-BIM-001"</span>));
+
+    <span class="cm">// Create a boolean</span>
+    <span class="tp">GlobalParameter</span> isMetric = <span class="tp">GlobalParameter</span>.<span class="fn">Create</span>(
+        doc, <span class="s">"UseMetric"</span>, <span class="tp">SpecTypeId</span>.Boolean.YesNo);
+    isMetric.<span class="fn">SetValue</span>(<span class="k">new</span> <span class="tp">IntegerParameterValue</span>(<span class="n">1</span>));  <span class="cm">// 1=Yes</span>
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Read all global parameters ──</span>
+<span class="k">var</span> globalParamIds = <span class="tp">GlobalParametersManager</span>.<span class="fn">GetAllGlobalParameters</span>(doc);
+<span class="k">foreach</span> (<span class="k">var</span> gpId <span class="k">in</span> globalParamIds)
+{
+    <span class="tp">GlobalParameter</span> gp = doc.<span class="fn">GetElement</span>(gpId) <span class="k">as</span> <span class="tp">GlobalParameter</span>;
+    <span class="k">if</span> (gp == <span class="k">null</span>) <span class="k">continue</span>;
+
+    <span class="tp">ParameterValue</span> val    = gp.<span class="fn">GetValue</span>();
+    <span class="k">string</span>         valStr = <span class="s">"?"</span>;
+
+    <span class="k">if</span> (val <span class="k">is</span> <span class="tp">DoubleParameterValue</span> dpv)
+        valStr = <span class="s">$"{dpv.Value * 304.8:F0}mm"</span>;
+    <span class="k">else if</span> (val <span class="k">is</span> <span class="tp">StringParameterValue</span> spv)
+        valStr = spv.Value;
+    <span class="k">else if</span> (val <span class="k">is</span> <span class="tp">IntegerParameterValue</span> ipv)
+        valStr = ipv.Value == <span class="n">1</span> ? <span class="s">"Yes"</span> : <span class="s">"No"</span>;
+
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"GlobalParam: {gp.Name} = {valStr} | Formula: {gp.GetFormula() ?? "(none)"}"</span>);
+}
+
+<span class="cm">// ── Update a global parameter value ──</span>
+<span class="tp">GlobalParameter</span> fh = <span class="tp">GlobalParametersManager</span>
+    .<span class="fn">FindByName</span>(doc, <span class="s">"FloorToCeilingHeight"</span>);
+
+<span class="k">if</span> (fh != <span class="k">null</span>)
+{
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Update GlobalParam"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        fh.<span class="fn">SetValue</span>(<span class="k">new</span> <span class="tp">DoubleParameterValue</span>(
+            <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">3200</span>, <span class="tp">UnitTypeId</span>.Millimeters)));
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── Set formula on a global parameter ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"GP Formula"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="cm">// Formula uses other global parameter names</span>
+    fh?.<span class="fn">SetFormula</span>(<span class="s">"FloorHeight * 0.85"</span>);
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Check what dimensions/params are driven by a global param ──</span>
+<span class="k">if</span> (fh != <span class="k">null</span>)
+{
+    <span class="k">var</span> users = <span class="tp">GlobalParametersManager</span>.<span class="fn">GetUsedGlobalParameters</span>(doc, fh.Id);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"GlobalParam '{fh.Name}' drives {users.Count} elements/dimensions"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-globalparameter -->
+
+<!-- ═══════════════════════════════════════
+     PHASING
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-phasing" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">📅</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>Phase · PhaseFilter · Phasing Workflow</h2>
+      <p>Create and manage construction phases, phase filters, and phase-aware element queries.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-phase">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">Phase</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents a construction phase in the Revit project. All model elements have a Phase Created and optionally a Phase Demolished parameter. Phases are stored in doc.Phases (a PhaseArray) and are always ordered chronologically.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Phasing Workflow</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create phases, assign elements, create phase filter, phase-aware query</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// ── Read existing phases ──</span>
+<span class="tp">PhaseArray</span> phases = doc.Phases;
+System.Diagnostics.Debug.WriteLine(<span class="s">$"Project has {phases.Size} phases:"</span>);
+<span class="k">foreach</span> (<span class="tp">Phase</span> ph <span class="k">in</span> phases)
+    System.Diagnostics.Debug.WriteLine(<span class="s">$"  {ph.Id}: {ph.Name}"</span>);
+
+<span class="tp">Phase</span> existingPhase      = phases.<span class="fn">get_Item</span>(<span class="n">0</span>);   <span class="cm">// first phase</span>
+<span class="tp">Phase</span> newConstructPhase  = phases.<span class="fn">get_Item</span>(phases.Size - <span class="n">1</span>); <span class="cm">// last phase</span>
+
+<span class="cm">// ── Create a new phase ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Phase"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Insert after a specific phase</span>
+    <span class="tp">Phase</span> phase2 = doc.<span class="fn">Phases</span>.<span class="fn">get_Item</span>(<span class="n">0</span>);  <span class="cm">// insert after phase index 0</span>
+    <span class="tp">Phase</span> newPhase = doc.<span class="fn">Phases</span>.<span class="fn">Insert</span>(phase2.Id, <span class="s">"Phase 2 - Extension"</span>);
+
+    <span class="cm">// Rename existing phase</span>
+    existingPhase.Name = <span class="s">"Phase 1 - Existing"</span>;
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Assign phase to elements ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Assign Phases"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">Phase</span> extension = doc.Phases.<span class="fn">get_Item</span>(doc.Phases.Size - <span class="n">1</span>);
+
+    <span class="k">foreach</span> (<span class="k">var</span> wall <span class="k">in</span> newWalls)
+    {
+        <span class="cm">// Set phase created</span>
+        wall.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.PHASE_CREATED)
+            .<span class="fn">Set</span>(extension.Id);
+
+        <span class="cm">// Demolish existing walls in the extension zone</span>
+        <span class="cm">// wall.get_Parameter(BuiltInParameter.PHASE_DEMOLISHED).Set(extension.Id);</span>
+    }
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Phase-aware collector: get elements existing in Phase 2 ──</span>
+<span class="tp">Phase</span> queryPhase = doc.Phases.<span class="fn">get_Item</span>(<span class="n">1</span>);
+<span class="k">var</span> phaseFilter  = <span class="k">new</span> <span class="tp">ElementPhaseStatusFilter</span>(queryPhase.Id,
+    <span class="tp">ElementPhaseStatus</span>.Existing);
+
+<span class="k">var</span> existingWalls = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">Wall</span>))
+    .<span class="fn">WherePasses</span>(phaseFilter)
+    .<span class="fn">ToList</span>();
+
+<span class="cm">// ElementPhaseStatus values:
+// New          — created in this phase
+// Existing     — existed before this phase and not demolished
+// Demolished   — demolished in this phase
+// Temporary    — created and demolished in same phase
+// None         — not part of this phase</span>
+
+<span class="cm">// ── Set PhaseFilter on a view ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Set View Phase"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="tp">ViewPlan</span> vp = ...;
+
+    <span class="cm">// Set view's active phase</span>
+    vp.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.VIEW_PHASE)
+        .<span class="fn">Set</span>(queryPhase.Id);
+
+    <span class="cm">// Set phase filter (how demolished/new elements appear)</span>
+    <span class="tp">PhaseFilter</span> pf = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+        .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">PhaseFilter</span>)).<span class="fn">Cast</span>&lt;<span class="tp">PhaseFilter</span>&gt;()
+        .<span class="fn">FirstOrDefault</span>(f => f.Name.Contains(<span class="s">"Show All"</span>));
+
+    <span class="k">if</span> (pf != <span class="k">null</span>)
+        vp.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.VIEW_PHASE_FILTER)
+            .<span class="fn">Set</span>(pf.Id);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-phasing -->
+
+<!-- ═══════════════════════════════════════
+     ELEVATION MARKER + DRAFTING VIEW
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-views-missing" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">📐</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB</div>
+      <h2>ElevationMarker · ViewDrafting · Callout Views</h2>
+      <p>Create elevation views, drafting views, and callout views programmatically.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-elevationmarker">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ElevationMarker</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB</span></div>
+  <div class="class-desc">Represents an elevation marker — the circular annotation symbol that creates elevation views in a floor plan. An ElevationMarker can hold up to 4 elevation views (N/S/E/W). You place the marker, then call CreateElevation() to generate each directed elevation view.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + All View Types</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create all 4 room elevations + drafting view + callout</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="cm">// Get elevation view family type</span>
+<span class="tp">ViewFamilyType</span> elevType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.Elevation);
+
+<span class="tp">ViewPlan</span> floorPlan = doc.ActiveView <span class="k">as</span> <span class="tp">ViewPlan</span>;
+<span class="tp">XYZ</span>      markerPos = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">5</span>, <span class="n">5</span>, <span class="n">0</span>);  <span class="cm">// position in floor plan</span>
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Elevations"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// ── Create elevation marker ──</span>
+    <span class="tp">ElevationMarker</span> marker = <span class="tp">ElevationMarker</span>.<span class="fn">CreateElevationMarker</span>(
+        doc, elevType.Id, markerPos, <span class="n">50</span>);  <span class="cm">// scale 1:50</span>
+
+    <span class="cm">// ── Create elevation views from the marker (indices 0-3 = N/E/S/W) ──</span>
+    <span class="tp">ViewSection</span> northElev = marker.<span class="fn">CreateElevation</span>(doc, floorPlan.Id, <span class="n">0</span>);
+    northElev.Name = <span class="s">"Elevation North"</span>;
+
+    <span class="tp">ViewSection</span> eastElev  = marker.<span class="fn">CreateElevation</span>(doc, floorPlan.Id, <span class="n">1</span>);
+    eastElev.Name = <span class="s">"Elevation East"</span>;
+
+    <span class="tp">ViewSection</span> southElev = marker.<span class="fn">CreateElevation</span>(doc, floorPlan.Id, <span class="n">2</span>);
+    southElev.Name = <span class="s">"Elevation South"</span>;
+
+    <span class="tp">ViewSection</span> westElev  = marker.<span class="fn">CreateElevation</span>(doc, floorPlan.Id, <span class="n">3</span>);
+    westElev.Name = <span class="s">"Elevation West"</span>;
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Create Drafting View ──</span>
+<span class="tp">ViewFamilyType</span> draftType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.DraftingView);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Drafting View"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="tp">ViewDrafting</span> draftView = <span class="tp">ViewDrafting</span>.<span class="fn">Create</span>(doc, draftType.Id);
+    draftView.Name  = <span class="s">"Detail - Door Frame"</span>;
+    draftView.Scale = <span class="n">5</span>;   <span class="cm">// 1:5</span>
+
+    <span class="cm">// Add detail lines to the drafting view</span>
+    <span class="tp">SketchPlane</span> sp = <span class="tp">SketchPlane</span>.<span class="fn">Create</span>(doc,
+        <span class="tp">Plane</span>.<span class="fn">CreateByNormalAndOrigin</span>(<span class="tp">XYZ</span>.BasisZ, <span class="tp">XYZ</span>.Zero));
+
+    <span class="tp">DetailLine</span> dl = doc.Create.<span class="fn">NewDetailCurve</span>(draftView,
+        <span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">1</span>,<span class="n">0</span>,<span class="n">0</span>))) <span class="k">as</span> <span class="tp">DetailLine</span>;
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── Create Callout View from an existing section ──</span>
+<span class="tp">ViewFamilyType</span> sectionType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">ViewFamilyType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">ViewFamilyType</span>&gt;()
+    .<span class="fn">First</span>(v => v.ViewFamily == <span class="tp">ViewFamily</span>.Section);
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Callout"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Create callout in the active view (zooms into a specific area)</span>
+    <span class="tp">BoundingBoxXYZ</span> calloutBox = <span class="k">new</span> <span class="tp">BoundingBoxXYZ</span>();
+    calloutBox.Min = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">2</span>,  <span class="n">2</span>, <span class="n">0</span>);
+    calloutBox.Max = <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">8</span>,  <span class="n">8</span>, <span class="n">0</span>);
+
+    <span class="tp">ViewSection</span> callout = <span class="tp">ViewSection</span>.<span class="fn">CreateCallout</span>(
+        doc, floorPlan.Id, sectionType.Id, calloutBox);
+    callout.Name = <span class="s">"Callout - Stair Detail"</span>;
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-views-missing -->
+
+<!-- ═══════════════════════════════════════
+     STAIRS EDIT SCOPE
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-stairs" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🪜</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Autodesk.Revit.DB.Architecture</div>
+      <h2>StairsEditScope · StairsRun · StairsLanding</h2>
+      <p>The correct pattern for creating and modifying stairs — requires StairsEditScope, not a regular Transaction.</p>
+    </div>
+  </div>
+  <div class="callout c-crit" style="margin-bottom:16px;"><strong>// Critical — Stairs require StairsEditScope</strong>Unlike most elements, stairs CANNOT be created or modified inside a regular Transaction. You must use <code>StairsEditScope</code> — a special scope that wraps stair operations. Forgetting this causes an InvalidOperationException.</div>
+
+<div class="class-block" id="cls-stairseditscope">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">StairsEditScope</span></div><div class="class-inherit">Inherits: <span>IDisposable</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Architecture</span></div>
+  <div class="class-desc">A special scope required for all stair creation and modification. Works alongside a Transaction — the Transaction records the operation in the undo stack, while StairsEditScope manages the stair-specific editing state. Both must be started before making stair changes.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Complete Stair Creation + Modification</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — Create straight stair + add landing + modify</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Architecture;
+
+<span class="tp">Level</span> baseLvl = ...;   <span class="cm">// ground floor</span>
+<span class="tp">Level</span> topLvl  = ...;   <span class="cm">// first floor</span>
+
+<span class="tp">Stairs</span> stair;
+<span class="tp">ElementId</span> stairId;
+
+<span class="cm">// ── STEP 1: Create stair using StairsEditScope + Transaction ──</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Create Stairs"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="k">using</span> (<span class="k">var</span> scope = <span class="k">new</span> <span class="tp">StairsEditScope</span>(doc, <span class="s">"Create Stairs"</span>))
+    {
+        stairId = scope.<span class="fn">Start</span>(baseLvl.Id, topLvl.Id);
+        <span class="cm">// Start() creates an empty stair assembly and returns its ID</span>
+
+        <span class="cm">// Create a straight run</span>
+        <span class="tp">StairsRun</span> run = <span class="tp">StairsRun</span>.<span class="fn">CreateStraightRun</span>(
+            doc,
+            stairId,
+            <span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+                <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">0</span>, baseLvl.Elevation),
+                <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>, <span class="n">12</span>, baseLvl.Elevation)),  <span class="cm">// path of run</span>
+            <span class="tp">StairsRunJustification</span>.Center);
+
+        <span class="cm">// Configure run properties</span>
+        run.ActualRunWidth = <span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(
+            <span class="n">1200</span>, <span class="tp">UnitTypeId</span>.Millimeters);
+
+        <span class="cm">// Commit the scope (validates stair geometry)</span>
+        scope.<span class="fn">Commit</span>(<span class="k">new</span> <span class="tp">StairsEditScopeFailuresPreprocessor</span>());
+    }
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── STEP 2: Modify existing stair ──</span>
+stair = doc.<span class="fn">GetElement</span>(stairId) <span class="k">as</span> <span class="tp">Stairs</span>;
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Modify Stair"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">using</span> (<span class="k">var</span> scope = <span class="k">new</span> <span class="tp">StairsEditScope</span>(doc, <span class="s">"Modify"</span>))
+    {
+        scope.<span class="fn">Start</span>(stairId);  <span class="cm">// pass existing stair ID to edit it</span>
+
+        <span class="cm">// Read stair properties</span>
+        <span class="k">int</span>    risers   = stair.DesiredRisersNumber;
+        <span class="k">double</span> riserH   = stair.ActualRiserHeight;
+
+        <span class="cm">// Modify desired riser count</span>
+        stair.DesiredRisersNumber = <span class="n">18</span>;
+
+        <span class="cm">// Access runs and landings</span>
+        <span class="k">foreach</span> (<span class="tp">ElementId</span> rid <span class="k">in</span> stair.<span class="fn">GetStairsRuns</span>())
+        {
+            <span class="tp">StairsRun</span> r = doc.<span class="fn">GetElement</span>(rid) <span class="k">as</span> <span class="tp">StairsRun</span>;
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"  Run: risers={r.ActualRisersNumber} width={r.ActualRunWidth * 304.8:F0}mm"</span>);
+        }
+
+        <span class="k">foreach</span> (<span class="tp">ElementId</span> lid <span class="k">in</span> stair.<span class="fn">GetStairsLandings</span>())
+        {
+            <span class="tp">StairsLanding</span> land = doc.<span class="fn">GetElement</span>(lid) <span class="k">as</span> <span class="tp">StairsLanding</span>;
+            System.Diagnostics.Debug.WriteLine(
+                <span class="s">$"  Landing area: {land.get_BoundingBox(null)?.Max.X:F2}"</span>);
+        }
+
+        scope.<span class="fn">Commit</span>(<span class="k">new</span> <span class="tp">StairsEditScopeFailuresPreprocessor</span>());
+    }
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ── StairsEditScopeFailuresPreprocessor (suppress common warnings) ──</span>
+<span class="k">public class</span> <span class="tp">StairsEditScopeFailuresPreprocessor</span> : <span class="tp">IFailuresPreprocessor</span>
+{
+    <span class="k">public</span> <span class="tp">FailureProcessingResult</span> <span class="fn">PreprocessFailures</span>(<span class="tp">FailuresAccessor</span> acc)
+    {
+        <span class="k">foreach</span> (<span class="k">var</span> f <span class="k">in</span> acc.<span class="fn">GetFailureMessages</span>())
+            <span class="k">if</span> (f.<span class="fn">GetSeverity</span>() == <span class="tp">FailureSeverity</span>.Warning)
+                acc.<span class="fn">DeleteWarning</span>(f);
+        <span class="k">return</span> <span class="tp">FailureProcessingResult</span>.Continue;
+    }
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-stairs -->
+
+<!-- ═══════════════════════════════════════
+     MEP SETTINGS
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-mepsettings" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">⚙️</div>
+    <div class="ns-meta">
+      <div class="ns-label">// DB.Electrical · DB.Mechanical</div>
+      <h2>ElectricalSetting · MechanicalSettings</h2>
+      <p>Access and configure project-level MEP engineering settings — voltage definitions, distribution systems, duct/pipe sizing defaults.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-electricalsetting">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">ElectricalSetting</span></div><div class="class-inherit">Inherits: <span>APIObject</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Electrical</span> · Accessed via ElectricalSetting.GetElectricalSettings(doc)</div>
+  <div class="class-desc">Contains all project-level electrical engineering settings: voltage definitions, distribution systems (single-phase, three-phase), wire sizes, and conduit/cable tray default settings. Equivalent to the Manage → MEP Settings → Electrical Settings dialog.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Read + Modify MEP Settings</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — ElectricalSetting + MechanicalSettings audit</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Electrical;
+<span class="k">using</span> Autodesk.Revit.DB.Mechanical;
+
+<span class="cm">// ── Electrical Settings ──</span>
+<span class="tp">ElectricalSetting</span> elecSettings =
+    <span class="tp">ElectricalSetting</span>.<span class="fn">GetElectricalSettings</span>(doc);
+
+<span class="k">if</span> (elecSettings != <span class="k">null</span>)
+{
+    <span class="cm">// Read voltage definitions</span>
+    System.Diagnostics.Debug.WriteLine(<span class="s">"Voltage Definitions:"</span>);
+    <span class="k">foreach</span> (<span class="tp">VoltageType</span> vt <span class="k">in</span> elecSettings.GetVoltageTypes())
+    {
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"  {vt.Name}: {vt.Voltage:F0}V min={vt.MinVoltage:F0} max={vt.MaxVoltage:F0}"</span>);
+    }
+
+    <span class="cm">// Read distribution systems</span>
+    System.Diagnostics.Debug.WriteLine(<span class="s">"Distribution Systems:"</span>);
+    <span class="k">foreach</span> (<span class="tp">DistributionSysType</span> dst <span class="k">in</span> elecSettings.GetDistributionSysTypes())
+    {
+        System.Diagnostics.Debug.WriteLine(
+            <span class="s">$"  {dst.Name}: Phase={dst.ElectricalPhase} Wires={dst.NumWires}"</span>);
+    }
+
+    <span class="cm">// Get/set hidden line settings</span>
+    <span class="k">bool</span> useSinglePhase = elecSettings.GroundConductorSizing != <span class="k">null</span>;
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Wire size method: {elecSettings.WireSizeCalculationMethod}"</span>);
+
+    <span class="cm">// Modify settings in transaction</span>
+    <span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Elec Settings"</span>))
+    {
+        tx.<span class="fn">Start</span>();
+        <span class="cm">// Add a new voltage definition</span>
+        <span class="tp">VoltageType</span> newVt = elecSettings.<span class="fn">AddVoltageType</span>();
+        newVt.Name       = <span class="s">"230V"</span>;
+        newVt.Voltage    = <span class="n">230</span>;
+        newVt.MinVoltage = <span class="n">216</span>;
+        newVt.MaxVoltage = <span class="n">253</span>;
+        tx.<span class="fn">Commit</span>();
+    }
+}
+
+<span class="cm">// ── Mechanical Settings ──</span>
+<span class="tp">MechanicalSettings</span> mechSettings =
+    <span class="tp">MechanicalSettings</span>.<span class="fn">GetMechanicalSettings</span>(doc);
+
+<span class="k">if</span> (mechSettings != <span class="k">null</span>)
+{
+    <span class="cm">// Read duct sizing method</span>
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Duct friction: {mechSettings.GetDuctFriction()} Pa/m"</span>);
+
+    <span class="cm">// Read pipe settings</span>
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Pipe friction: {mechSettings.GetPipeFriction()} Pa/m"</span>);
+
+    <span class="cm">// Read air density and viscosity</span>
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Air density: {mechSettings.AirDensity}"</span>);
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Air viscosity: {mechSettings.AirViscosity}"</span>);
+
+    <span class="cm">// Hidden line settings</span>
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Rectangular duct tee sizing: {mechSettings.RectangularMajorSizes}"</span>);
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-mepsettings -->
+
+<!-- ═══════════════════════════════════════
+     STRUCTURAL EXTRAS
+═══════════════════════════════════════ -->
+<div class="ns-block" id="ns-structextras" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">🏗️</div>
+    <div class="ns-meta">
+      <div class="ns-label">// DB.Structure</div>
+      <h2>PathReinforcement · AreaReinforcement · BeamSystem</h2>
+      <p>Structural reinforcement and beam system automation.</p>
+    </div>
+  </div>
+
+<div class="class-block" id="cls-pathreinf">
+  <div class="class-header"><div><div class="class-title-row"><span class="class-type-badge ctb-class">Class</span><span class="class-name">PathReinforcement</span></div><div class="class-inherit">Inherits: <span>Element</span></div></div></div>
+  <div class="ns-path">Namespace: <span>Autodesk.Revit.DB.Structure</span></div>
+  <div class="class-desc">Represents a linear reinforcement (rebar distributed along a path/curve) within a structural host element (floor, wall, or foundation). Unlike individual Rebar elements, PathReinforcement creates evenly-spaced bars along a curve with configurable spacing and cover.</div>
+  <div class="class-section">
+    <div class="section-title st-method">🟢 Creation + AreaReinforcement + BeamSystem</div>
+    <div class="member">
+      <div class="code-example"><div class="code-example-hdr"><span class="code-example-label">// Example — PathReinforcement, AreaReinforcement, BeamSystem</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+<pre class="code-ex"><span class="k">using</span> Autodesk.Revit.DB.Structure;
+
+<span class="cm">// ═══════════════════════════════════
+// PATH REINFORCEMENT
+// ═══════════════════════════════════</span>
+<span class="tp">Floor</span>        slab    = ...;
+<span class="tp">RebarBarType</span> barType = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">RebarBarType</span>)).<span class="fn">Cast</span>&lt;<span class="tp">RebarBarType</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"PathReinforcement"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Define the path curve (along the slab centreline)</span>
+    <span class="k">var</span> pathCurves = <span class="k">new</span> <span class="tp">CurveArray</span>();
+    pathCurves.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(
+        <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">0</span>,<span class="n">0</span>)));
+
+    <span class="tp">PathReinforcement</span> pathReinf =
+        <span class="tp">PathReinforcement</span>.<span class="fn">Create</span>(
+            doc,
+            slab,           <span class="cm">// host</span>
+            pathCurves,     <span class="cm">// path</span>
+            <span class="k">true</span>,           <span class="cm">// flipYDir</span>
+            barType.Id,     <span class="cm">// primary bar type</span>
+            <span class="tp">ElementId</span>.InvalidElementId,  <span class="cm">// no hook type start</span>
+            <span class="tp">ElementId</span>.InvalidElementId); <span class="cm">// no hook type end</span>
+
+    <span class="cm">// Set spacing</span>
+    pathReinf.<span class="fn">get_Parameter</span>(<span class="tp">BuiltInParameter</span>.REBAR_ELEM_SPACING_VALUE)
+        ?.<span class="fn">Set</span>(<span class="tp">UnitUtils</span>.<span class="fn">ConvertToInternalUnits</span>(<span class="n">200</span>, <span class="tp">UnitTypeId</span>.Millimeters));
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ═══════════════════════════════════
+// AREA REINFORCEMENT
+// ═══════════════════════════════════</span>
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"AreaReinforcement"</span>))
+{
+    tx.<span class="fn">Start</span>();
+
+    <span class="cm">// Define boundary of reinforcement area</span>
+    <span class="k">var</span> boundary = <span class="k">new</span> <span class="tp">CurveArray</span>();
+    boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">0</span>,<span class="n">0</span>)));
+    boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">0</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">8</span>,<span class="n">0</span>)));
+    boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">10</span>,<span class="n">8</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">8</span>,<span class="n">0</span>)));
+    boundary.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">8</span>,<span class="n">0</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>)));
+
+    <span class="tp">AreaReinforcement</span> areaReinf =
+        <span class="tp">AreaReinforcement</span>.<span class="fn">Create</span>(
+            doc,
+            slab,
+            boundary,
+            <span class="tp">XYZ</span>.BasisX,        <span class="cm">// major bar direction</span>
+            barType.Id,        <span class="cm">// major bar type</span>
+            <span class="tp">ElementId</span>.InvalidElementId,
+            barType.Id,        <span class="cm">// minor bar type</span>
+            <span class="tp">ElementId</span>.InvalidElementId);
+
+    tx.<span class="fn">Commit</span>();
+}
+
+<span class="cm">// ═══════════════════════════════════
+// BEAM SYSTEM
+// ═══════════════════════════════════</span>
+<span class="tp">FamilySymbol</span> beamSym = <span class="k">new</span> <span class="tp">FilteredElementCollector</span>(doc)
+    .<span class="fn">OfClass</span>(<span class="k">typeof</span>(<span class="tp">FamilySymbol</span>))
+    .<span class="fn">OfCategory</span>(<span class="tp">BuiltInCategory</span>.OST_StructuralFraming)
+    .<span class="fn">Cast</span>&lt;<span class="tp">FamilySymbol</span>&gt;().<span class="fn">First</span>();
+
+<span class="k">using</span> (<span class="k">var</span> tx = <span class="k">new</span> <span class="tp">Transaction</span>(doc, <span class="s">"Beam System"</span>))
+{
+    tx.<span class="fn">Start</span>();
+    <span class="k">if</span> (!beamSym.IsActive) beamSym.<span class="fn">Activate</span>();
+
+    <span class="cm">// Create beam system from boundary curves</span>
+    <span class="k">var</span> bsProfile = <span class="k">new</span> <span class="tp">CurveArray</span>();
+    bsProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">3</span>),  <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">15</span>,<span class="n">0</span>,<span class="n">3</span>)));
+    bsProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">15</span>,<span class="n">0</span>,<span class="n">3</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">15</span>,<span class="n">10</span>,<span class="n">3</span>)));
+    bsProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">15</span>,<span class="n">10</span>,<span class="n">3</span>),<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">10</span>,<span class="n">3</span>)));
+    bsProfile.<span class="fn">Append</span>(<span class="tp">Line</span>.<span class="fn">CreateBound</span>(<span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">10</span>,<span class="n">3</span>), <span class="k">new</span> <span class="tp">XYZ</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">3</span>)));
+
+    <span class="tp">BeamSystem</span> bs = <span class="tp">BeamSystem</span>.<span class="fn">Create</span>(doc, bsProfile, level, <span class="tp">XYZ</span>.BasisX);
+    bs.BeamSystemType = beamSym.Id;
+
+    <span class="cm">// Set layout rule</span>
+    bs.<span class="fn">ChangeTypeId</span>(bs.GetTypeId());
+
+    <span class="cm">// Read beam count</span>
+    System.Diagnostics.Debug.WriteLine(
+        <span class="s">$"Beam system created with {bs.GetBeamIds().Count} beams"</span>);
+
+    tx.<span class="fn">Commit</span>();
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ns-structextras -->
+
+<!-- ═══════════════════════════════════════
+     COMPLETE HANDBOOK INDEX
+═══════════════════════════════════════ -->
+<div class="ns-block" id="sec-index" style="padding-top:44px;border-top:1px solid var(--border);">
+  <div class="ns-header">
+    <div class="ns-icon">📚</div>
+    <div class="ns-meta">
+      <div class="ns-label">// Complete Handbook</div>
+      <h2>Full Book Index — 16 Volumes</h2>
+      <p>Every book in the complete Revit API handbook with coverage summary.</p>
+    </div>
+  </div>
+
+<div class="class-block">
+  <div class="class-section">
+    <div class="section-title st-enum">📖 All 16 Books</div>
+    <div class="member">
+      <table class="enum-table">
+        <tr><th>Book</th><th>Title</th><th>Key Topics</th></tr>
+        <tr><td>01</td><td>Fundamentals</td><td>UIApplication, Document, Element, Parameters, FilteredElementCollector, Transaction, Units</td></tr>
+        <tr><td>02</td><td>Geometry</td><td>XYZ, Transform, Arc, Line, Solid, Face, Edge, GeometryElement, CurveLoop</td></tr>
+        <tr><td>03</td><td>Views</td><td>ViewPlan, ViewSection, ViewSheet, Viewport, Dimensions, TextNote, Tags</td></tr>
+        <tr><td>04</td><td>Events &amp; DMU</td><td>All document events, IUpdater, ExternalEvent, IFailuresPreprocessor, Idling</td></tr>
+        <tr><td>05</td><td>Families</td><td>Family, FamilyManager, FamilySymbol, IFamilyLoadOptions, Extrusion</td></tr>
+        <tr><td>06</td><td>MEP Guide</td><td>Pipe, Duct, CableTray, Connector, MEPSystem, Space, ConnectorManager</td></tr>
+        <tr><td>07</td><td>Challenges Vol.1</td><td>312 plugin challenges, 15 chapters Beginner→Expert</td></tr>
+        <tr><td>08</td><td>Challenges Vol.2</td><td>320+ challenges: Ribbon, Worksharing, Import/Export, Rebar, Capstone projects</td></tr>
+        <tr><td>09</td><td>API Reference DB (A–E)</td><td>AddInId, Arc, BoundingBoxXYZ, BuiltInCategory, BuiltInParameter, Color, CurveLoop, Dimension, Document, Element, ElementId, FilteredElementCollector</td></tr>
+        <tr><td>10</td><td>API Reference DB (F–Z) + UI</td><td>Face, FamilyInstance, Floor, Grid, Level, Line, Material, Options, OverrideGraphicSettings, Parameter, Solid, Transaction, Transform, UnitUtils, Wall, XYZ · UIApplication, UIDocument, IExternalCommand, ExternalEvent, TaskDialog, Selection</td></tr>
+        <tr><td>11</td><td>MEP · Architecture · DMU</td><td>CableTray, Duct, Pipe, Connector, Room, TopographySurface, Rebar, ExtensibleStorage, IUpdater, View3D, ViewSchedule, ViewFamilyType, Viewport</td></tr>
+        <tr><td>12</td><td>Family · Print · Worksets</td><td>Family, FamilyManager, DirectShape, PDF/DWG/IFC/Image export, WorksharingUtils, Workset, Dimension, IndependentTag, TextNote, FilledRegion, RevitLinkInstance, BooleanOperationsUtils, CompoundStructureLayer, all Filters</td></tr>
+        <tr><td>13</td><td>AppServices · Best Practices</td><td>Application, ControlledApplication, doc.Create, famDoc.FamilyCreate, all Exceptions, ISelectionFilter, addin manifest, 16 best practice cards, BuiltInParameter index, UnitTypeId table, 20 copy-paste patterns</td></tr>
+        <tr><td>14</td><td>Advanced UI</td><td>Full Ribbon (8 controls), IExternalCommandAvailability, PostableCommand, DockablePane, DirectContext3D, Attributes</td></tr>
+        <tr><td>15</td><td>Advanced Workflows</td><td>ExternalService, CurtainGrid, AdaptiveComponents, ColorFillScheme, DesignOption, AssemblyInstance, PointClouds, Steel, Fabrication, Worksharing deep, Lighting</td></tr>
+        <tr><td>16</td><td>Final Completion ← This Book</td><td>ElementTransformUtils, GeometryCreationUtilities, SharedParams+Binding, GlobalParameter, Phasing, ElevationMarker, DraftingView, Callout, StairsEditScope, MEP Settings, PathReinforcement, AreaReinforcement, BeamSystem</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- /sec-index -->
+</div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function tog(gid,el){document.getElementById(gid).classList.toggle('open');el.classList.toggle('active');}
+function copyCode(btn){const pre=btn.closest('.code-example').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1800);});}
+function sbSearch(q){const lq=q.toLowerCase();document.querySelectorAll('.class-block').forEach(b=>{b.style.display=(!q||b.textContent.toLowerCase().includes(lq))?'':'none';});}
+</script>
+<script src="search-data.js"></script><script src="search.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
